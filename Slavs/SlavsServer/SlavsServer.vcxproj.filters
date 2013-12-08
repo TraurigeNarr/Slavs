@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Server States">
+      <UniqueIdentifier>{4c27c462-630b-4ff2-aeec-30179c6b354c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Server States">
+      <UniqueIdentifier>{b6a8f15c-65af-467a-b1ff-bd5294427536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{288483e5-82bf-4c09-88fc-cf355bb15b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{ebb6961e-c1e3-4394-b9b9-0d465b933621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers">
+      <UniqueIdentifier>{72165fa2-d6c1-46d9-aa92-e444ea7dc1bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controllers">
+      <UniqueIdentifier>{d165800e-7bc4-4049-91e7-8c1ec6843b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\misc">
+      <UniqueIdentifier>{7b8bf390-d04b-4d26-9c9f-080ea91a2d6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\misc">
+      <UniqueIdentifier>{99f01fc3-d149-4835-9f8e-23f17ad76f9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Component">
+      <UniqueIdentifier>{19b6bdcb-958a-4b34-ad19-abfde5bf686a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Component">
+      <UniqueIdentifier>{66332ab2-2046-4558-b15c-e23e0351217a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\2D">
+      <UniqueIdentifier>{10430af1-9efc-4b7f-b415-03bb3cfd2545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\State Machines">
+      <UniqueIdentifier>{9049c50f-f685-48c0-9e5e-6cf15c5af440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\State Machines">
+      <UniqueIdentifier>{15f3152f-6412-4c32-9477-8037f5ae5c2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Professions">
+      <UniqueIdentifier>{22917056-6811-436e-9a0b-957142c5dbdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Professions">
+      <UniqueIdentifier>{49f3bfa2-d1ad-4071-98e2-d00c4ecbe05e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI">
+      <UniqueIdentifier>{c0dbefd0-5d7f-463b-b45d-13a715b8a59b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AI">
+      <UniqueIdentifier>{4c6f21cb-2f8e-48bc-b4cf-872aa5d8eb5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Goals">
+      <UniqueIdentifier>{adbd8ea8-bb8d-4c44-94b1-c6ef025ffa1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AI\Goals">
+      <UniqueIdentifier>{ea236aa9-47b5-4416-b3ef-54682d9748b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Goals\base">
+      <UniqueIdentifier>{79c8cc83-f59b-4220-81b4-2d0b311b55e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Goals\goal evaluation">
+      <UniqueIdentifier>{c08b035e-6cb5-45a4-8482-5a0c49a76202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AI\Goals\goal evaluation">
+      <UniqueIdentifier>{0a998a2b-7a47-42a5-95fb-22e381c9f9c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Maintanance">
+      <UniqueIdentifier>{baba13e0-9f2e-48fa-9286-43e2aa45bc30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Management">
+      <UniqueIdentifier>{d4a057e8-55a5-45ff-9c4d-cf1f385f21fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Management.Base">
+      <UniqueIdentifier>{c7970f73-8e5b-4a4e-a5a6-8f3cd2241dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Management">
+      <UniqueIdentifier>{979aaad7-33fa-4bba-9582-c5f38b905661}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\SlavsServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ServerMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ServerLoadGameState.cpp">
+      <Filter>Source Files\Server States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ServerGameState.cpp">
+      <Filter>Source Files\Server States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ServerWaitState.cpp">
+      <Filter>Source Files\Server States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ServerGlobalState.cpp">
+      <Filter>Source Files\Server States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SGameContext.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SPlayerController.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SGameObject.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SceneLoader.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SStaticObjCom.cpp">
+      <Filter>Source Files\Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SDynamicObj.cpp">
+      <Filter>Source Files\Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SStoreHouseCom.cpp">
+      <Filter>Source Files\Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SHouseComponent.cpp">
+      <Filter>Source Files\Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SteeringBehaviors.cpp">
+      <Filter>Source Files\Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SHumanComponent.cpp">
+      <Filter>Source Files\Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HumanStates.cpp">
+      <Filter>Source Files\Game\State Machines</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SBuildingComp.cpp">
+      <Filter>Source Files\Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SManufactureCom.cpp">
+      <Filter>Source Files\Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Worker.cpp">
+      <Filter>Source Files\Game\Professions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SResourceManager.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\Goal_Think.cpp">
+      <Filter>Source Files\AI\Goals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\FindWorkGoal_Evaluator.cpp">
+      <Filter>Source Files\AI\Goals\goal evaluation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\GetEatGoal_Evaluator.cpp">
+      <Filter>Source Files\AI\Goals\goal evaluation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\WaitGoal_Evaluator.cpp">
+      <Filter>Source Files\AI\Goals\goal evaluation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\WaitGoal.cpp">
+      <Filter>Source Files\AI\Goals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\FindWorkGoal.cpp">
+      <Filter>Source Files\AI\Goals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\GetEatGoal.cpp">
+      <Filter>Source Files\AI\Goals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI\WorkGoal.cpp">
+      <Filter>Source Files\AI\Goals</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Profession.cpp">
+      <Filter>Source Files\Game\Professions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IGoldKeeper.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ManufactureRequest.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Management\Goverment.cpp">
+      <Filter>Source Files\Game\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Management\GlobalEconomics.cpp">
+      <Filter>Source Files\Game\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Management\IEconomyManager.cpp">
+      <Filter>Source Files\Game\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IController.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Management\EconomyManagerBase.cpp">
+      <Filter>Source Files\Game\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Management\StoreSystemBase.cpp">
+      <Filter>Source Files\Game\Management</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\ServerMain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ServerGameState.h">
+      <Filter>Header Files\Server States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ServerLoadGameState.h">
+      <Filter>Header Files\Server States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SGameContext.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ServerGlobalState.h">
+      <Filter>Header Files\Server States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SGameObject.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SPlayerController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SStaticObjCom.h">
+      <Filter>Header Files\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDynamicObjCom.h">
+      <Filter>Header Files\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\2D\Geometry.h">
+      <Filter>Header Files\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="include\2D\Transformations.h">
+      <Filter>Header Files\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="include\2D\InvertedAABBox2D.h">
+      <Filter>Header Files\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SResourceManager.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SStoreHouseCom.h">
+      <Filter>Header Files\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SHouseComponent.h">
+      <Filter>Header Files\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ServerWaitState.h">
+      <Filter>Header Files\Server States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SteeringBehaviors.h">
+      <Filter>Header Files\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SHumanComponent.h">
+      <Filter>Header Files\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HumanStates.h">
+      <Filter>Header Files\Game\State Machines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SBuildingComp.h">
+      <Filter>Header Files\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SManufacureCom.h">
+      <Filter>Header Files\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Profession.h">
+      <Filter>Header Files\Game\Professions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Worker.h">
+      <Filter>Header Files\Game\Professions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WorkerStates.h">
+      <Filter>Header Files\Game\State Machines</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\PriorityQueue.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\SceneLoader.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\misc\ServerEnums.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\Goal.h">
+      <Filter>Header Files\AI\Goals\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\CompositeGoal.h">
+      <Filter>Header Files\AI\Goals\base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\Goal_Think.h">
+      <Filter>Header Files\AI\Goals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\GoalTypes.h">
+      <Filter>Header Files\AI\Goals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\Goal_Evaluator.h">
+      <Filter>Header Files\AI\Goals\goal evaluation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\GetEatGoal_Evaluator.h">
+      <Filter>Header Files\AI\Goals\goal evaluation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\FindWorkGoal_Evaluator.h">
+      <Filter>Header Files\AI\Goals\goal evaluation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ServerUtils.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\WaitGoal_Evaluator.h">
+      <Filter>Header Files\AI\Goals\goal evaluation</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\FindWorkGoal.h">
+      <Filter>Header Files\AI\Goals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\GetEatGoal.h">
+      <Filter>Header Files\AI\Goals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\WaitGoal.h">
+      <Filter>Header Files\AI\Goals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AI\WorkGoal.h">
+      <Filter>Header Files\AI\Goals</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IGoldKeeper.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ManufactureRequest.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IControllerPlugin.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NotificationData.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SlavsServerAPI.h">
+      <Filter>Header Files\Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AIController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IEconomyManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IMilitaryManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\ISocietyManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\ITechnologyManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IRelashionshipsManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\GlobalEconomics.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IController.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Types.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Management\BaseEvent.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IObjectFactory.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\Goverment.h">
+      <Filter>Header Files\Game\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\EventsEnumerations.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\EconomyManagerBase.h">
+      <Filter>Header Files\Game\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IStoreSystem.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\StoreSystemBase.h">
+      <Filter>Header Files\Game\Management</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

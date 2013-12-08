@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Patterns">
+      <UniqueIdentifier>{1bbb5237-0899-457a-9f1e-35bfb3e44be3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{b89dba79-ee0b-4b75-b2d0-12e13cbb8c1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{6668df17-13fa-4992-bc80-d4a6059d2395}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{bf18d2d8-9c23-4757-a3be-ca246caa076f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Graph">
+      <UniqueIdentifier>{c38aec12-5492-4871-81c7-6c906df15a55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="misc">
+      <UniqueIdentifier>{e6de44f8-5478-41fb-8c77-4c8640f6f3bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Resources">
+      <UniqueIdentifier>{c10b7af6-8751-4890-b82d-ec8c81f393a2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Utilities\FileUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\StringUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\XmlUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector2D.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\CommandData.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameObjectState.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\IGameObject.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TimeController.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\MathUtilities.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\GameUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="misc\BitMask.cpp">
+      <Filter>misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameResources.cpp">
+      <Filter>Game\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\RequestForWorkers.cpp">
+      <Filter>Game\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameResource.cpp">
+      <Filter>Game\Resources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Utilities\FileUtilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\StringUtilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\TemplateFunctions.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\XmlUtilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Patterns\Singleton.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Patterns\State.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Patterns\StateMachine.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Patterns\MessageDispatcher.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Patterns\MessageListener.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Patterns\Telegram.h">
+      <Filter>Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2D.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Graph\GraphAlgorithms.h">
+      <Filter>Math\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Graph\GraphEdgeTypes.h">
+      <Filter>Math\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Graph\GraphNodeTypes.h">
+      <Filter>Math\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Graph\NodeTypeEnumerations.h">
+      <Filter>Math\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Graph\SparseGraph.h">
+      <Filter>Math\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\CommandData.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameObjectState.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\IComponent.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\IGameContext.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\IGameObject.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TimeController.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enumerations.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\MathUtilities.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\GameUtilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix2D.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="misc\Property.h">
+      <Filter>misc</Filter>
+    </ClInclude>
+    <ClInclude Include="misc\BitMask.h">
+      <Filter>misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameResources.h">
+      <Filter>Game\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\RequestForWorkers.h">
+      <Filter>Game\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameResource.h">
+      <Filter>Game\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameResourceTypes.h">
+      <Filter>Game\Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

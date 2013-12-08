@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game\CommandData.cpp" />
+    <ClCompile Include="Game\GameObjectState.cpp" />
+    <ClCompile Include="Game\GameResource.cpp" />
+    <ClCompile Include="Game\GameResources.cpp" />
+    <ClCompile Include="Game\IGameObject.cpp" />
+    <ClCompile Include="Game\RequestForWorkers.cpp" />
+    <ClCompile Include="Game\TimeController.cpp" />
+    <ClCompile Include="Math\MathUtilities.cpp" />
+    <ClCompile Include="Math\Vector2D.cpp" />
+    <ClCompile Include="misc\BitMask.cpp" />
+    <ClCompile Include="Utilities\FileUtilities.cpp" />
+    <ClCompile Include="Utilities\GameUtilities.cpp" />
+    <ClCompile Include="Utilities\StringUtilities.cpp" />
+    <ClCompile Include="Utilities\XmlUtilities.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\CommandData.h" />
+    <ClInclude Include="Game\Enumerations.h" />
+    <ClInclude Include="Game\GameObjectState.h" />
+    <ClInclude Include="Game\GameResource.h" />
+    <ClInclude Include="Game\GameResources.h" />
+    <ClInclude Include="Game\GameResourceTypes.h" />
+    <ClInclude Include="Game\IComponent.h" />
+    <ClInclude Include="Game\IGameContext.h" />
+    <ClInclude Include="Game\IGameObject.h" />
+    <ClInclude Include="Game\RequestForWorkers.h" />
+    <ClInclude Include="Game\TimeController.h" />
+    <ClInclude Include="Math\Graph\GraphAlgorithms.h" />
+    <ClInclude Include="Math\Graph\GraphEdgeTypes.h" />
+    <ClInclude Include="Math\Graph\GraphNodeTypes.h" />
+    <ClInclude Include="Math\Graph\NodeTypeEnumerations.h" />
+    <ClInclude Include="Math\Graph\SparseGraph.h" />
+    <ClInclude Include="Math\MathUtilities.h" />
+    <ClInclude Include="Math\Matrix2D.h" />
+    <ClInclude Include="Math\Vector2D.h" />
+    <ClInclude Include="misc\BitMask.h" />
+    <ClInclude Include="misc\Property.h" />
+    <ClInclude Include="Patterns\MessageDispatcher.h" />
+    <ClInclude Include="Patterns\MessageListener.h" />
+    <ClInclude Include="Patterns\Singleton.h" />
+    <ClInclude Include="Patterns\State.h" />
+    <ClInclude Include="Patterns\StateMachine.h" />
+    <ClInclude Include="Patterns\Telegram.h" />
+    <ClInclude Include="Utilities\FileUtilities.h" />
+    <ClInclude Include="Utilities\GameUtilities.h" />
+    <ClInclude Include="Utilities\StringUtilities.h" />
+    <ClInclude Include="Utilities\TemplateFunctions.h" />
+    <ClInclude Include="Utilities\XmlUtilities.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6BEE3135-A395-4594-B8A9-AA3E11F8C295}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Common</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>Common_d</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)..\lib\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>Common</TargetName>
+    <TargetExt>.lib</TargetExt>
+    <OutDir>$(SolutionDir)..\lib\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(THIRD_PARTIES)\tinyxml\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(THIRD_PARTIES)\tinyxml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>tinyxml.lib</AdditionalDependencies>
+    </Lib>
+    <Bscmake>
+      <OutputFile>$(SolutionDir)lib\$(TargetName).bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;COMMON_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(THIRD_PARTIES)\tinyxml\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>$(THIRD_PARTIES)\tinyxml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tinyxml.lib</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

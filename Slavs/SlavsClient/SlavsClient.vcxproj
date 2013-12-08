@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{76567829-EE87-4F64-BC2F-0297DA8F8BAC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SlavsClient</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OIS;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE\Overlay;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\CEGUI_0.8.2\cegui\include;$(THIRD_PARTIES)\tinyxml\include;$(SolutionDir)Network\include;$(SolutionDir)SlavsClient\include;$(SolutionDir)Common</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>tinyxml.lib;OgreMain_d.lib;OIS_d.lib;OgreOverlay_d.lib;OgreTerrain_d.lib;CEGUIBase-0_d.lib;CEGUIOgreRenderer-0_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\lib\$(Configuration);$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost\lib;$(THIRD_PARTIES)\CEGUI_0.8.2\lib;$(THIRD_PARTIES)\tinyxml\lib;$(SolutionDir)..\lib\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OIS;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE\Overlay;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\CEGUI_0.8.2\cegui\include;$(THIRD_PARTIES)\tinyxml\include;$(SolutionDir)Network\include;$(SolutionDir)SlavsClient\include;$(SolutionDir)Common</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\lib\$(Configuration);$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost\lib;$(THIRD_PARTIES)\CEGUI_0.8.2\lib;$(THIRD_PARTIES)\tinyxml\lib;$(SolutionDir)..\lib\$(Configuration)\;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain.lib;OIS.lib;OgreTerrain.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;tinyxml.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{6bee3135-a395-4594-b8a9-aa3e11f8c295}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Network\Network.vcxproj">
+      <Project>{57ea8c6e-baf9-4852-94e8-bb509e528241}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\AppState.cpp" />
+    <ClCompile Include="src\BuildingsBox.cpp" />
+    <ClCompile Include="src\CCamera.cpp" />
+    <ClCompile Include="src\CEGUIFramework.cpp" />
+    <ClCompile Include="src\CGameContext.cpp" />
+    <ClCompile Include="src\CGameObject.cpp" />
+    <ClCompile Include="src\ClientUtilities.cpp" />
+    <ClCompile Include="src\ClientCreateLevelState.cpp" />
+    <ClCompile Include="src\ClientGameState.cpp" />
+    <ClCompile Include="src\ClientGlobalState.cpp" />
+    <ClCompile Include="src\ClientLoadGameState.cpp" />
+    <ClCompile Include="src\ClientMenuState.cpp" />
+    <ClCompile Include="src\ClientOptionsState.cpp" />
+    <ClCompile Include="src\CommandBox.cpp" />
+    <ClCompile Include="src\CPlayerController.cpp" />
+    <ClCompile Include="src\CreateLevelScreen.cpp" />
+    <ClCompile Include="src\CRendererComponent.cpp" />
+    <ClCompile Include="src\CTerrain.cpp" />
+    <ClCompile Include="src\GetTargetCGameState.cpp" />
+    <ClCompile Include="src\HelpBox.cpp" />
+    <ClCompile Include="src\HUD.cpp" />
+    <ClCompile Include="src\IdleCGameState.cpp" />
+    <ClCompile Include="src\InformationField.cpp" />
+    <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\LoadGameScreen.cpp" />
+    <ClCompile Include="src\MenuScreen.cpp" />
+    <ClCompile Include="src\MessageBox.cpp" />
+    <ClCompile Include="src\OgreFramework.cpp" />
+    <ClCompile Include="src\OgreMaxModel.cpp" />
+    <ClCompile Include="src\Options.cpp" />
+    <ClCompile Include="src\OptionsScreen.cpp" />
+    <ClCompile Include="src\PlaceBuildingCGameState.cpp" />
+    <ClCompile Include="src\ResourcePanel.cpp" />
+    <ClCompile Include="src\ScreenBase.cpp" />
+    <ClCompile Include="src\ScreenManager.cpp" />
+    <ClCompile Include="src\SelectionBox.cpp" />
+    <ClCompile Include="src\SelectionField.cpp" />
+    <ClCompile Include="src\SlavsClient.cpp" />
+    <ClCompile Include="src\VisualInformation.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AppState.h" />
+    <ClInclude Include="include\Application.h" />
+    <ClInclude Include="include\BuildingsBox.h" />
+    <ClInclude Include="include\ButtonInformation.h" />
+    <ClInclude Include="include\CCamera.h" />
+    <ClInclude Include="include\CEGUIFramework.h" />
+    <ClInclude Include="include\CGameContext.h" />
+    <ClInclude Include="include\CGameObject.h" />
+    <ClInclude Include="include\ClientCreateLevelState.h" />
+    <ClInclude Include="include\ClientEnums.h" />
+    <ClInclude Include="include\ClientGameState.h" />
+    <ClInclude Include="include\ClientGlobalState.h" />
+    <ClInclude Include="include\ClientLoadGameState.h" />
+    <ClInclude Include="include\ClientMenuState.h" />
+    <ClInclude Include="include\ClientStateVariable.h" />
+    <ClInclude Include="include\ClientUtilities.h" />
+    <ClInclude Include="include\CommandBox.h" />
+    <ClInclude Include="include\CreateLevelScreen.h" />
+    <ClInclude Include="include\CRendererComponent.h" />
+    <ClInclude Include="include\CTerrain.h" />
+    <ClInclude Include="include\GetTargetCGameState.h" />
+    <ClInclude Include="include\HelpBox.h" />
+    <ClInclude Include="include\HUD.h" />
+    <ClInclude Include="include\IdleCGameState.h" />
+    <ClInclude Include="include\InformationField.h" />
+    <ClInclude Include="include\InputManager.h" />
+    <ClInclude Include="include\InputSubscriber.h" />
+    <ClInclude Include="include\LoadGameScreen.h" />
+    <ClInclude Include="include\MenuScreen.h" />
+    <ClInclude Include="include\MessageBox.h" />
+    <ClInclude Include="include\OgreFramework.h" />
+    <ClInclude Include="include\OgreMaxModel.h" />
+    <ClInclude Include="include\OgreMaxTypes.h" />
+    <ClInclude Include="include\ClientOptionsState.h" />
+    <ClInclude Include="include\ClientPauseState.h" />
+    <ClInclude Include="include\ClientResultsState.h" />
+    <ClInclude Include="include\Options.h" />
+    <ClInclude Include="include\OptionsScreen.h" />
+    <ClInclude Include="include\PlaceBuildingCGameState.h" />
+    <ClInclude Include="include\CPlayerController.h" />
+    <ClInclude Include="include\ResourcePanel.h" />
+    <ClInclude Include="include\ScreenBase.h" />
+    <ClInclude Include="include\ScreenManager.h" />
+    <ClInclude Include="include\SelectionBox.h" />
+    <ClInclude Include="include\SelectionField.h" />
+    <ClInclude Include="include\ObjectInformation.h" />
+    <ClInclude Include="include\VisualInformation.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

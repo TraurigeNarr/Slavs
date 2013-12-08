@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A72FD430-58A6-4564-B40A-4100DE356C9E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SlavsServer</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;SLAVSEXPORTING;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Common;$(SolutionDir)Network\include;$(SolutionDir)SlavsServer\include;$(SolutionDir)OutputData\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration)\;$(THIRD_PARTIES)\tinyxml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tinyxml.lib;OutputData_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;SLAVSEXPORTING;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Common;$(SolutionDir)Network\include;$(SolutionDir)SlavsServer\include;$(SolutionDir)OutputData\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration)\;$(THIRD_PARTIES)\tinyxml\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tinyxml.lib;OutputData.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AI\FindWorkGoal.cpp" />
+    <ClCompile Include="src\AI\FindWorkGoal_Evaluator.cpp" />
+    <ClCompile Include="src\AI\GetEatGoal.cpp" />
+    <ClCompile Include="src\AI\GetEatGoal_Evaluator.cpp" />
+    <ClCompile Include="src\AI\Goal_Think.cpp" />
+    <ClCompile Include="src\AI\WaitGoal.cpp" />
+    <ClCompile Include="src\AI\WaitGoal_Evaluator.cpp" />
+    <ClCompile Include="src\AI\WorkGoal.cpp" />
+    <ClCompile Include="src\HumanStates.cpp" />
+    <ClCompile Include="src\IGoldKeeper.cpp" />
+    <ClCompile Include="src\Management\EconomyManagerBase.cpp" />
+    <ClCompile Include="src\Management\GlobalEconomics.cpp" />
+    <ClCompile Include="src\Management\Goverment.cpp" />
+    <ClCompile Include="src\Management\IEconomyManager.cpp" />
+    <ClCompile Include="src\Management\StoreSystemBase.cpp" />
+    <ClCompile Include="src\ManufactureRequest.cpp" />
+    <ClCompile Include="src\Profession.cpp" />
+    <ClCompile Include="src\SBuildingComp.cpp" />
+    <ClCompile Include="src\SceneLoader.cpp" />
+    <ClCompile Include="src\IController.cpp" />
+    <ClCompile Include="src\SDynamicObj.cpp" />
+    <ClCompile Include="src\ServerGlobalState.cpp" />
+    <ClCompile Include="src\ServerGameState.cpp" />
+    <ClCompile Include="src\ServerLoadGameState.cpp" />
+    <ClCompile Include="src\ServerMain.cpp" />
+    <ClCompile Include="src\SGameContext.cpp" />
+    <ClCompile Include="src\SGameObject.cpp" />
+    <ClCompile Include="src\SHouseComponent.cpp" />
+    <ClCompile Include="src\SHumanComponent.cpp" />
+    <ClCompile Include="src\SlavsServer.cpp" />
+    <ClCompile Include="src\ServerWaitState.cpp" />
+    <ClCompile Include="src\SPlayerController.cpp" />
+    <ClCompile Include="src\SResourceManager.cpp" />
+    <ClCompile Include="src\SManufactureCom.cpp" />
+    <ClCompile Include="src\SStaticObjCom.cpp" />
+    <ClCompile Include="src\SStoreHouseCom.cpp" />
+    <ClCompile Include="src\SteeringBehaviors.cpp" />
+    <ClCompile Include="src\Worker.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.vcxproj">
+      <Project>{6bee3135-a395-4594-b8a9-aa3e11f8c295}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Network\Network.vcxproj">
+      <Project>{57ea8c6e-baf9-4852-94e8-bb509e528241}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\2D\Geometry.h" />
+    <ClInclude Include="include\2D\InvertedAABBox2D.h" />
+    <ClInclude Include="include\2D\Transformations.h" />
+    <ClInclude Include="include\AIController.h" />
+    <ClInclude Include="include\AI\FindWorkGoal.h" />
+    <ClInclude Include="include\AI\FindWorkGoal_Evaluator.h" />
+    <ClInclude Include="include\AI\GetEatGoal.h" />
+    <ClInclude Include="include\AI\GetEatGoal_Evaluator.h" />
+    <ClInclude Include="include\AI\Goal.h" />
+    <ClInclude Include="include\AI\CompositeGoal.h" />
+    <ClInclude Include="include\AI\GoalTypes.h" />
+    <ClInclude Include="include\AI\Goal_Evaluator.h" />
+    <ClInclude Include="include\AI\Goal_Think.h" />
+    <ClInclude Include="include\AI\WaitGoal.h" />
+    <ClInclude Include="include\AI\WaitGoal_Evaluator.h" />
+    <ClInclude Include="include\AI\WorkGoal.h" />
+    <ClInclude Include="include\HumanStates.h" />
+    <ClInclude Include="include\IControllerPlugin.h" />
+    <ClInclude Include="include\IGoldKeeper.h" />
+    <ClInclude Include="include\IObjectFactory.h" />
+    <ClInclude Include="include\Management\EconomyManagerBase.h" />
+    <ClInclude Include="include\Management\EventsEnumerations.h" />
+    <ClInclude Include="include\Management\GlobalEconomics.h" />
+    <ClInclude Include="include\Management\Goverment.h" />
+    <ClInclude Include="include\Management\IEconomyManager.h" />
+    <ClInclude Include="include\Management\IMilitaryManager.h" />
+    <ClInclude Include="include\Management\IRelashionshipsManager.h" />
+    <ClInclude Include="include\Management\ISocietyManager.h" />
+    <ClInclude Include="include\Management\IStoreSystem.h" />
+    <ClInclude Include="include\Management\ITechnologyManager.h" />
+    <ClInclude Include="include\Management\StoreSystemBase.h" />
+    <ClInclude Include="include\ManufactureRequest.h" />
+    <ClInclude Include="include\misc\PriorityQueue.h" />
+    <ClInclude Include="include\misc\SceneLoader.h" />
+    <ClInclude Include="include\misc\ServerEnums.h" />
+    <ClInclude Include="include\NotificationData.h" />
+    <ClInclude Include="include\Profession.h" />
+    <ClInclude Include="include\SBuildingComp.h" />
+    <ClInclude Include="include\IController.h" />
+    <ClInclude Include="include\SDynamicObjCom.h" />
+    <ClInclude Include="include\ServerGlobalState.h" />
+    <ClInclude Include="include\ServerGameState.h" />
+    <ClInclude Include="include\ServerLoadGameState.h" />
+    <ClInclude Include="include\ServerMain.h" />
+    <ClInclude Include="include\ServerUtils.h" />
+    <ClInclude Include="include\SGameContext.h" />
+    <ClInclude Include="include\ServerWaitState.h" />
+    <ClInclude Include="include\SGameObject.h" />
+    <ClInclude Include="include\SHouseComponent.h" />
+    <ClInclude Include="include\SHumanComponent.h" />
+    <ClInclude Include="include\SlavsServerAPI.h" />
+    <ClInclude Include="include\SPlayerController.h" />
+    <ClInclude Include="include\SResourceManager.h" />
+    <ClInclude Include="include\SManufacureCom.h" />
+    <ClInclude Include="include\SStaticObjCom.h" />
+    <ClInclude Include="include\SStoreHouseCom.h" />
+    <ClInclude Include="include\SteeringBehaviors.h" />
+    <ClInclude Include="include\Types.h" />
+    <ClInclude Include="include\Worker.h" />
+    <ClInclude Include="include\WorkerStates.h" />
+    <ClInclude Include="Management\BaseEvent.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

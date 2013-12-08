@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Service.Declarations">
+      <UniqueIdentifier>{10a75139-1d6d-4003-a893-55197d74ded8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Implementation">
+      <UniqueIdentifier>{b166e7bc-4edc-4208-aa36-f29b1a0055a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GSoapCore">
+      <UniqueIdentifier>{9bf0f65f-63ad-4aa1-8506-c429e11f6fa0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ServiceStarter.cpp">
+      <Filter>Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="stdsoap2.cpp">
+      <Filter>GSoapCore</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Service.h">
+      <Filter>Service.Declarations</Filter>
+    </ClInclude>
+    <ClInclude Include="stdsoap2.h">
+      <Filter>GSoapCore</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

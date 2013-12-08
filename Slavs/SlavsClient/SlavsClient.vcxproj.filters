@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{f0dafb50-7567-42c5-841e-42ab0147ca90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Frameworks">
+      <UniqueIdentifier>{cf754308-6b1e-4f25-b6cb-03f0a8722ecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\misc">
+      <UniqueIdentifier>{fa29f8f6-2a58-4144-b657-0346e5e1e680}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{e30dbef6-c7c5-4386-9402-40ec09cf0ee9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Frameworks">
+      <UniqueIdentifier>{bbad447f-b056-457e-8a1a-6130ff1efa64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\misc">
+      <UniqueIdentifier>{36781935-7f6c-4b79-9c5a-168a04b0ff4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{32b12c8b-a00d-4578-bee2-b78ccf426843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{94064dae-2511-4733-b458-1a185a0372c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens">
+      <UniqueIdentifier>{f9032d48-b03d-4e01-bc04-582e4aa80da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens">
+      <UniqueIdentifier>{6ed237b6-fdfa-4114-8910-cf33147b4d4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{fd955236-594c-4ae7-ab17-b7828b183c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{3180f98c-9eb7-4d20-84c3-80e35fddd9ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Components">
+      <UniqueIdentifier>{2dea09f3-e49a-4c3c-ac31-de178d64fad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Components">
+      <UniqueIdentifier>{99a2b55f-6479-46e6-a5fc-f0e999ba633d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\misc\OgreMax">
+      <UniqueIdentifier>{e614d9a8-d080-4cca-89ad-383d954df51a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\misc\OgreMax">
+      <UniqueIdentifier>{11d784fa-28aa-4831-bfe5-1329e58157fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\HUD">
+      <UniqueIdentifier>{96909cbc-d1aa-4e5a-a64d-d6469588758d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\HUD">
+      <UniqueIdentifier>{0dfc757f-3df5-4877-881f-b46e6930fb6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\States\GameState">
+      <UniqueIdentifier>{cd57e188-b9c5-4cf7-a1e5-65da86c1dc12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States\GameState">
+      <UniqueIdentifier>{97bce7e1-ccba-4211-a735-ddb7ed3b6bb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\PlayerController">
+      <UniqueIdentifier>{d7b714ff-1edb-40de-9788-51a67b54e1da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PlayerController">
+      <UniqueIdentifier>{16f944d6-32d2-44f9-a30c-d461a49a179e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Options">
+      <UniqueIdentifier>{1b828e95-36da-4c2b-a6df-fc312d6c6f51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Options">
+      <UniqueIdentifier>{6406d43d-51b9-4ab4-a132-f7be6db6471b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\SlavsClient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CEGUIFramework.cpp">
+      <Filter>Source Files\Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClientGlobalState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClientMenuState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClientLoadGameState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputManager.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OgreFramework.cpp">
+      <Filter>Source Files\Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClientCreateLevelState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClientOptionsState.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenManager.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScreenBase.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OptionsScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoadGameScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CreateLevelScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CGameObject.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CGameContext.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CTerrain.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CCamera.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OgreMaxModel.cpp">
+      <Filter>Source Files\misc\OgreMax</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClientUtilities.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CRendererComponent.cpp">
+      <Filter>Source Files\Game\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HUD.cpp">
+      <Filter>Source Files\Screens\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BuildingsBox.cpp">
+      <Filter>Source Files\Screens\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CommandBox.cpp">
+      <Filter>Source Files\Screens\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InformationField.cpp">
+      <Filter>Source Files\Screens\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VisualInformation.cpp">
+      <Filter>Source Files\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SelectionBox.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ClientGameState.cpp">
+      <Filter>Source Files\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IdleCGameState.cpp">
+      <Filter>Source Files\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PlaceBuildingCGameState.cpp">
+      <Filter>Source Files\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SelectionField.cpp">
+      <Filter>Source Files\Screens\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GetTargetCGameState.cpp">
+      <Filter>Source Files\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CPlayerController.cpp">
+      <Filter>Source Files\PlayerController</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourcePanel.cpp">
+      <Filter>Source Files\Screens\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Options.cpp">
+      <Filter>Source Files\Options</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HelpBox.cpp">
+      <Filter>Source Files\Screens\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessageBox.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AppState.cpp">
+      <Filter>Header Files\States</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CEGUIFramework.h">
+      <Filter>Header Files\Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OgreFramework.h">
+      <Filter>Header Files\Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AppState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OgreMaxTypes.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientCreateLevelState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientGlobalState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientMenuState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientOptionsState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientPauseState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientResultsState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientLoadGameState.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputManager.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputSubscriber.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenBase.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScreenManager.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MenuScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OptionsScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CreateLevelScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LoadGameScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientUtilities.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CGameObject.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CGameContext.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CTerrain.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CCamera.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OgreMaxModel.h">
+      <Filter>Header Files\misc\OgreMax</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CRendererComponent.h">
+      <Filter>Header Files\Game\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HUD.h">
+      <Filter>Header Files\Screens\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InformationField.h">
+      <Filter>Header Files\Screens\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CommandBox.h">
+      <Filter>Header Files\Screens\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="include\BuildingsBox.h">
+      <Filter>Header Files\Screens\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientEnums.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VisualInformation.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ButtonInformation.h">
+      <Filter>Header Files\misc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SelectionBox.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientGameState.h">
+      <Filter>Header Files\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IdleCGameState.h">
+      <Filter>Header Files\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\PlaceBuildingCGameState.h">
+      <Filter>Header Files\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GetTargetCGameState.h">
+      <Filter>Header Files\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SelectionField.h">
+      <Filter>Header Files\Screens\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ObjectInformation.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CPlayerController.h">
+      <Filter>Header Files\PlayerController</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ResourcePanel.h">
+      <Filter>Header Files\Screens\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Options.h">
+      <Filter>Header Files\Options</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HelpBox.h">
+      <Filter>Header Files\Screens\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MessageBox.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ClientStateVariable.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
