@@ -62,7 +62,7 @@ T* IGameObject::GetComponent() const
 	{
 		if(typeid(*m_lComponents[i]) == typeid(T))
 		{
-			return dynamic_cast<T*>(m_lComponents[i]);
+			return static_cast<T*>(m_lComponents[i]);
 		}
 	}
 	return NULL;

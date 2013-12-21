@@ -45,18 +45,14 @@ bool ServerMain::Initialize()
 		return false;
 	}
 
-	//create connection with specific protocolID and time for detection disconnection
 	m_pServerConnection = new net::Connection(net::ProtocolId, net::TimeOut);
-	//start server on specified port
 	if(!m_pServerConnection->Start(net::ServerPort))
-	{
 		return false;
-	}
-	m_pServerConnection->Listen();
+
+  m_pServerConnection->Listen();
 	m_bWorking = true;
 	
-	//initialize list of maps
-
+	//TODO: initialize list of maps
 
 	new Singleton<WaitState>(new WaitState());
  	new Singleton<GlobalServerState>(new GlobalServerState());
