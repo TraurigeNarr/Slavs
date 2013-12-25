@@ -6,6 +6,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Common\Common.vcxproj", "{6BEE3135-A395-4594-B8A9-AA3E11F8C295}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SlavsServer", "SlavsServer\SlavsServer.vcxproj", "{A72FD430-58A6-4564-B40A-4100DE356C9E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F95DE44F-C82D-46A7-96D9-23C5BE12BF3B} = {F95DE44F-C82D-46A7-96D9-23C5BE12BF3B}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Network", "Network\Network.vcxproj", "{57EA8C6E-BAF9-4852-94E8-BB509E528241}"
 EndProject
