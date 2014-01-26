@@ -5,6 +5,8 @@
 #include "SStaticObjCom.h"
 #include "IController.h"
 #include "SGameContext.h"
+#include "Management/Goverment.h"
+#include "Management/ISocietyManager.h"
 //additional components
 #include "SHumanComponent.h"
 #include "SBuildingComp.h"
@@ -19,18 +21,18 @@ SHouseComponent::SHouseComponent(SGameObject* owner, const TiXmlElement* compone
 	: m_pOwner(owner), m_iPeriod(0), m_iElapsedTicks(0), m_uiMaxNumber(0)
 {
 	ParseElelement(componentElement);
-	owner->GetOwner()->GetResourceMgr()->Add(this);
+  owner->GetOwner()->GetGoverment().GetSocietyManager()->RegisterHouse(this);
 }
 
 SHouseComponent::~SHouseComponent()
 {
-	m_pOwner->GetOwner()->GetResourceMgr()->Remove(this);
 	Telegram t(0,0,0,Msg_HouseDeleted);
 	while(!m_lInhabitants.empty())
 	{
 		m_lInhabitants.back()->HandleMessage(t);
 		m_lInhabitants.pop_back();
 	}
+  m_pOwner->GetOwner()->GetGoverment().GetSocietyManager()->UnregisterHouse(this);
 }
 
 void SHouseComponent::TickPerformed()
@@ -119,7 +121,7 @@ bool SHouseComponent::AddInhabitant(SHumanComponent* inhabitant)
 		m_lInhabitants.push_back(inhabitant);
 		inhabitant->SetHome(this);
 		//report general resource controller
-		((SGameObject*)m_pOwner)->GetOwner()->GetResourceMgr()->PopulationIncrease(1);
+    m_pOwner->GetOwner()->GetGoverment().GetSocietyManager()->PopulationIncrease();
     m_pOwner->StateChanged();
 		return true;
 	}
@@ -130,7 +132,7 @@ bool SHouseComponent::AddInhabitant(SHumanComponent* inhabitant)
 void SHouseComponent::RemoveInhabitant(SHumanComponent* inhabitant)
 {
   m_lInhabitants.remove(inhabitant);
-  m_pOwner->GetOwner()->GetResourceMgr()->PopulationDecrease(1);
+  m_pOwner->GetOwner()->GetGoverment().GetSocietyManager()->PopulationDecrease();
   m_pOwner->StateChanged();
 }
 

@@ -33,14 +33,14 @@ public:
 	void									AllObjectsUpdated();
 
 	/*void									Add(SStoreHouseCom* storeHouse);*/
-	void									Add(SHouseComponent *house);
+	//void									Add(SHouseComponent *house);
 	//returns the number of resource that added. The resource can be added partially if there is not enough space in store houses
 	/*void									Add(std::list<GameResourceBox*>& newResources);
 	size_t									Add(GameResourceBox* newResources);
 	//this method is calling from houses than human created*/
 	//@param number - number of new humans
-	void									PopulationIncrease(int number = 1);
-  void                  PopulationDecrease(int number = 1);
+	//void									PopulationIncrease(int number = 1);
+  //void                  PopulationDecrease(int number = 1);
 
 	/*void									Remove(SStoreHouseCom* storeHouse);*/
 	void									Remove(SHouseComponent* house);

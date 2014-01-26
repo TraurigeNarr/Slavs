@@ -15,20 +15,21 @@ Relationships (out of country)
 class SLAVS_SERVER_EXPORT Goverment
 {
 private:
-  IController*    mp_owner;
+  IController*           mp_owner;
   Slavs::TEconomy        m_economy_manager;
   Slavs::TMilitary       m_military;
   Slavs::TRelashionships m_relashionships;
   Slavs::TSociety        m_society;
   Slavs::TTechnologies   m_technologies;
+
 public:
-  Goverment(IController* ip_owner, Slavs::TEconomy i_economy, 
+    Goverment(IController* ip_owner, Slavs::TEconomy i_economy, 
     Slavs::TMilitary i_military, Slavs::TRelashionships i_relashionships, 
     Slavs::TSociety i_society, Slavs::TTechnologies i_technologies);
   ~Goverment();
 
   //initializes all managers
-  bool            Initialize();
+  bool                  Initialize();
 
   Slavs::TEconomy        GetEconomyManager();
   Slavs::TMilitary       GetMilitaryManager();

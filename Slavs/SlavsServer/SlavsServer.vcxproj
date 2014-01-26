@@ -101,6 +101,8 @@
     <ClCompile Include="src\Management\GlobalEconomics.cpp" />
     <ClCompile Include="src\Management\Goverment.cpp" />
     <ClCompile Include="src\Management\IEconomyManager.cpp" />
+    <ClCompile Include="src\Management\IManager.cpp" />
+    <ClCompile Include="src\Management\SocietyManagerBase.cpp" />
     <ClCompile Include="src\Management\StoreSystemBase.cpp" />
     <ClCompile Include="src\ManufactureRequest.cpp" />
     <ClCompile Include="src\Profession.cpp" />
@@ -155,16 +157,19 @@
     <ClInclude Include="include\IControllerPlugin.h" />
     <ClInclude Include="include\IGoldKeeper.h" />
     <ClInclude Include="include\IObjectFactory.h" />
+    <ClInclude Include="include\Management\BaseEvent.h" />
     <ClInclude Include="include\Management\EconomyManagerBase.h" />
     <ClInclude Include="include\Management\EventsEnumerations.h" />
     <ClInclude Include="include\Management\GlobalEconomics.h" />
     <ClInclude Include="include\Management\Goverment.h" />
     <ClInclude Include="include\Management\IEconomyManager.h" />
+    <ClInclude Include="include\Management\IManager.h" />
     <ClInclude Include="include\Management\IMilitaryManager.h" />
     <ClInclude Include="include\Management\IRelashionshipsManager.h" />
     <ClInclude Include="include\Management\ISocietyManager.h" />
     <ClInclude Include="include\Management\IStoreSystem.h" />
     <ClInclude Include="include\Management\ITechnologyManager.h" />
+    <ClInclude Include="include\Management\SocietyManagerBase.h" />
     <ClInclude Include="include\Management\StoreSystemBase.h" />
     <ClInclude Include="include\ManufactureRequest.h" />
     <ClInclude Include="include\misc\PriorityQueue.h" />
@@ -195,7 +200,6 @@
     <ClInclude Include="include\Types.h" />
     <ClInclude Include="include\Worker.h" />
     <ClInclude Include="include\WorkerStates.h" />
-    <ClInclude Include="Management\BaseEvent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -34,7 +34,18 @@ void ClientLoadGameState::Enter(std::shared_ptr<Application> ip_owner)
 	
 	Singleton<ScreenManager>::GetInstancePtr()->SetCurrentScreen(new LoadGameScreen());
 	//set main scene manager
-	Singleton<OgreFramework>::GetInstancePtr()->m_pSceneManager = Singleton<OgreFramework>::GetInstancePtr()->m_pRoot->createSceneManager("OctreeSceneManager");
+  std::shared_ptr<OgreFramework> p_instance = Singleton<OgreFramework>::GetInstancePtr();
+  Ogre::SceneManagerEnumerator::MetaDataIterator scene_mgr_it =p_instance->m_pRoot->getSceneManagerMetaDataIterator();
+  for ( ; scene_mgr_it.current() != scene_mgr_it.end(); scene_mgr_it.moveNext())
+    {
+    if (scene_mgr_it.peekNext()->typeName == "OctreeSceneManager")
+      break;
+    }
+
+  if (scene_mgr_it.current() != scene_mgr_it.end())
+    p_instance->CreateSceneManager((*scene_mgr_it.current())->sceneTypeMask, "GameSceneManager");
+  else
+    p_instance->CreateSceneManager(Ogre::ST_GENERIC, "GameSceneManager");
 
 	m_State = CLState_Loading;
 }

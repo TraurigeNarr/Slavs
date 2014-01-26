@@ -1,18 +1,18 @@
 #include "IController.h"
 
 #include "SGameContext.h"
+
 #include "Management/Goverment.h"
+#include "Management/EconomyManagerBase.h"
+#include "Management/SocietyManagerBase.h"
 
 #include <cassert>
-
-#include "Management/EconomyManagerBase.h"
 
 IController::IController(int iMask, SGameContext* context)
 	: m_pContext(context), m_iMask(iMask)
 {
 	m_pResourceManager = new SResourceManager();
-  mp_goverment.reset(new Goverment(this, std::make_shared<EconomyManagerBase>(), nullptr, nullptr, nullptr, nullptr));
-  mp_goverment->GetEconomyManager()->Initialize();
+  mp_goverment.reset(new Goverment(this, std::make_shared<EconomyManagerBase>(), nullptr, nullptr, std::make_shared<SocietyManagerBase>(), nullptr));
 }
 
 IController::~IController()

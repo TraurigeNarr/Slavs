@@ -63,6 +63,7 @@ void SResourceManager::Add(SStoreHouseCom* storeHouse)
 }
 */
 
+/*
 void SResourceManager::Add(SHouseComponent *house)
 {
 	assert(house && 
@@ -75,7 +76,7 @@ void SResourceManager::Add(SHouseComponent *house)
 	}
 	m_mResources[GR_Population]->uiMaxResources += house->GetFreePlaces();
 	m_mResources[GR_Population]->bHasChanges = true;
-}
+}*/
 
 /*
 void SResourceManager::Add(std::list<GameResourceBox*>& newResources)
@@ -120,19 +121,20 @@ size_t SResourceManager::Add(GameResourceBox* newResources)
 	return initialResources - newResources->GetNumber();
 }*/
 
-void SResourceManager::PopulationIncrease(int number /* = 1 */)
+/*
+void SResourceManager::PopulationIncrease(int number / * = 1 * /)
 {
 	m_mResources[GR_Population]->uiCurrentResources += number;
 	m_mResources[GR_Population]->bHasChanges = true;
   assert(m_mResources[GR_Population]->uiCurrentResources >= 0);
 }
 
-void SResourceManager::PopulationDecrease(int number /* = 1 */)
+void SResourceManager::PopulationDecrease(int number / * = 1 * /)
 {
   m_mResources[GR_Population]->uiCurrentResources -= number;
   m_mResources[GR_Population]->bHasChanges = true;
   assert(m_mResources[GR_Population]->uiCurrentResources >= 0);
-}
+}*/
 
 /*
 void SResourceManager::Remove(SStoreHouseCom* storeHouse)

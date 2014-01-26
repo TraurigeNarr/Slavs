@@ -8,7 +8,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 class IEconomyManager;
-class IController;
+class Goverment;
 
 
 /*
@@ -30,5 +30,5 @@ public:
   void              RegisterEconomy(Slavs::TEconomy i_economy);
   void              RemoveEconomy(Slavs::TEconomy i_economy);
 
-  Slavs::TEconomy   GetEconomy(IController* ip_economy_owner) const;
+  Slavs::TEconomy   GetEconomy(Goverment* ip_economy_owner) const;
 };

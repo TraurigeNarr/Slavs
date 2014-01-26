@@ -2,27 +2,20 @@
 
 #include "SlavsServerAPI.h"
 
-#include "EventsEnumerations.h"
-#include "Types.h"
+#include "IManager.h"
 
-#include <vector>
-#include <memory>
+#include "EventsEnumerations.h"
 
 //////////////////////////////////////////////////////////////////////////
 
-class IController;
-
-class SLAVS_SERVER_EXPORT IEconomyManager
+class SLAVS_SERVER_EXPORT IEconomyManager : public IManager
 {
 protected:
   Slavs::TGoldKeepers m_employers;
   Slavs::TGoldKeepers m_employees;
-  IController* mp_owner;
+
 public:
   virtual ~IEconomyManager();
-
-  void            SetOwner(IController* ip_owner);
-  IController*    GetOwner() const;
 
   virtual void    RegisterEmployee(Slavs::TGoldKeeper ip_payer);
   virtual void    RemoveEmployee(Slavs::TGoldKeeper ip_payer);

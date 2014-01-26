@@ -203,6 +203,12 @@
     <ClCompile Include="src\Management\StoreSystemBase.cpp">
       <Filter>Source Files\Game\Management</Filter>
     </ClCompile>
+    <ClCompile Include="src\Management\IManager.cpp">
+      <Filter>Source Files\Game\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Management\SocietyManagerBase.cpp">
+      <Filter>Source Files\Game\Management</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ServerMain.h">
@@ -367,9 +373,6 @@
     <ClInclude Include="include\Types.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
-    <ClInclude Include="Management\BaseEvent.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
     <ClInclude Include="include\IObjectFactory.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
@@ -386,6 +389,15 @@
       <Filter>Header Files\Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\StoreSystemBase.h">
+      <Filter>Header Files\Game\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\BaseEvent.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\SocietyManagerBase.h">
       <Filter>Header Files\Game\Management</Filter>
     </ClInclude>
   </ItemGroup>

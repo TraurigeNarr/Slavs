@@ -17,30 +17,33 @@ Goverment::Goverment(IController* ip_owner, TEconomy i_economy, TMilitary i_mili
   , m_relashionships(i_relashionships)
   , m_society(i_society)
   , m_technologies(i_technologies)
-{
+  {
+  m_economy_manager->SetGoverment(this);
+  m_economy_manager->Initialize();
 
-}
+  m_society->SetGoverment(this);
+  }
 
 Goverment::~Goverment()
 {
 }
 
-TEconomy        Goverment::GetEconomyManager()
+TEconomy Goverment::GetEconomyManager()
 {
   return m_economy_manager;
 }
 
-TMilitary       Goverment::GetMilitaryManager()
+TMilitary Goverment::GetMilitaryManager()
 {
   return m_military;
 }
 
-TRelashionships   Goverment::GetRelationshipManager()
+TRelashionships Goverment::GetRelationshipManager()
 {
   return m_relashionships;
 }
 
-TSociety        Goverment::GetSocietyManager()
+TSociety Goverment::GetSocietyManager()
 {
   return m_society;
 }

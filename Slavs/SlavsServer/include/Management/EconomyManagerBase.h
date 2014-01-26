@@ -8,6 +8,7 @@ class SLAVS_SERVER_EXPORT EconomyManagerBase : public IEconomyManager
 protected:
   Slavs::TStoreSystem             mp_store_system;
 
+
 public:
   EconomyManagerBase();
   virtual ~EconomyManagerBase();

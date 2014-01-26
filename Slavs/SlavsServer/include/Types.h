@@ -6,10 +6,12 @@
 #include <map>
 #include <memory>
 #include <vector>
-
-
+#include <set>
+#pragma warning (push)
+#pragma warning (disable : 4251)
 class GameResourceBox;
 class GeneralResourceInfo;
+class Goverment;
 class IController;
 class IEconomyManager;
 class IGoldKeeper;
@@ -19,6 +21,8 @@ class ISocietyManager;
 class IStoreSystem;
 class ITechnologyManager;
 class SGameObject;
+class SHouseComponent;
+class SHumanComponent;
 class SStoreHouseCom;
 
 namespace Slavs
@@ -29,13 +33,19 @@ namespace Slavs
   typedef std::shared_ptr<IRelashionshipsManager> TRelashionships;
   typedef std::shared_ptr<ISocietyManager>        TSociety;
   typedef std::shared_ptr<ITechnologyManager>     TTechnologies;
-  typedef std::shared_ptr<IGoldKeeper>            TGoldKeeper;
-  typedef GameResourceBox*                        TGameResourceBox;
   typedef std::shared_ptr<IStoreSystem>           TStoreSystem;
+  typedef IGoldKeeper*                            TGoldKeeper;
+  typedef GameResourceBox*                        TGameResourceBox;
+  typedef Goverment*                              TGoverment;
+  typedef SHouseComponent*                        THouse;
 
   typedef std::vector<TEconomy>                   TEconomyManagers;
-  typedef std::vector<TGoldKeeper>                TGoldKeepers;
+  typedef std::set<TGoldKeeper>                   TGoldKeepers;
+  typedef std::set<THouse>                        THouses;
   typedef std::vector<TGameResourceBox>           TResources;
-  typedef std::map<GameResourceType,GeneralResourceInfo> TReourcesInformation;
   typedef std::vector<SStoreHouseCom*>            TStoreHouses;
+  typedef std::vector<SHumanComponent*>           THumans;
+  typedef std::map<GameResourceType,GeneralResourceInfo> TReourcesInformation;
+
 }
+#pragma warning(pop)

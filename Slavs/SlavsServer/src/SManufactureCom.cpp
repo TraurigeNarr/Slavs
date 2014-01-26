@@ -31,7 +31,7 @@ SManufacureCom::SManufacureCom(SGameObject* owner, const TiXmlElement* component
 	m_pRequest = new ManufactureRequest(this);
 	ParseElelement(componentElement);
 	m_pOwner->GetOwner()->GetResourceMgr()->RegisterManufacture(this, m_pRequest);
-  m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->RegisterEmployer(std::shared_ptr<SManufacureCom>(this));
+  m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->RegisterEmployer(this);
 }
 
 SManufacureCom::~SManufacureCom()
@@ -41,7 +41,7 @@ SManufacureCom::~SManufacureCom()
 	{
 		m_vWorkers[i]->HandleMessage(Telegram(0,0,0, Msg_HumanFired, this));
 	}
-  m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->RemoveEmployer(std::shared_ptr<SManufacureCom>(this));
+  m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->RemoveEmployer(this);
 }
 
 void SManufacureCom::TickPerformed()

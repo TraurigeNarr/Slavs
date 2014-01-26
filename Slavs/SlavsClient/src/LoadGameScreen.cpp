@@ -20,7 +20,8 @@ void LoadGameScreen::Init()
   CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(m_pRootCEGUIWindow);
 	
 	//create and tune imageset
-	CEGUI::ImageManager::getSingleton().addFromImageFile("Backgrounds", "LoadScreenBackground.jpg", "Imagesets");
+  //temp solution - no image while loading
+	//CEGUI::ImageManager::getSingleton().addFromImageFile("Backgrounds", "LoadScreenBackground.jpg", "Imagesets");
 	// Menu Background
 	CEGUI::DefaultWindow* MenuBackground = static_cast<CEGUI::DefaultWindow*>(wmgr.createWindow("TaharezLook/StaticImage", "Background"));
 	m_pRootCEGUIWindow->addChild( MenuBackground );

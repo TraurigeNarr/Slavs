@@ -2,8 +2,6 @@
 
 #include "Management/StoreSystemBase.h"
 
-#include <algorithm>
-
 //////////////////////////////////////////////////////////////////////////
 
 EconomyManagerBase::EconomyManagerBase()
