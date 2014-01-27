@@ -30,8 +30,6 @@ public:
 	SResourceManager();
 	~SResourceManager();
 
-	void									AllObjectsUpdated();
-
 	/*void									Add(SStoreHouseCom* storeHouse);*/
 	//void									Add(SHouseComponent *house);
 	//returns the number of resource that added. The resource can be added partially if there is not enough space in store houses
@@ -51,15 +49,15 @@ public:
 	bool                  Sell(IGoldKeeper* customer, GameResourceType grType, size_t number);
   bool                  Buy(GameResourceBox* i_resource_box);
 	//register manufacture`s request
-	void									RegisterManufacture(SManufacureCom* manufacture, ManufactureRequest* request);
+	//void									RegisterManufacture(SManufacureCom* manufacture, EmployerInformation* request);
 	//manufacture reports manager that request has been refreshed so that it(manager) can tell humans
-	void									RefreshRequests();
-	ManufactureRequest const*		GetRequest(SManufacureCom* manufacture);
-	ManufactureRequests&					GetAllRequests();
+	//void									RefreshRequests();
+	//EmployerInformation const*		GetRequest(SManufacureCom* manufacture);
+	//EmployersInformation&					GetAllRequests();
 	//register human in manager, so that he will be processing for requests
 	void									RegisterHuman(SHumanComponent* pHuman);
   void                  UnregisterHuman(SHumanComponent* p_human);
-
+  void                  ProcessEconomyEvent(EconomyEvent i_event, void* ip_data /* = nullptr */){}
 	//call from SManufacture --> push into queue also calls then the stores is expanded
 	/*void									ToStoreQueue(SManufacureCom* manufacture);*/
 	//human gets to this queue then he needs to restore energy
@@ -87,7 +85,7 @@ private:
 	mutable size_t							m_uiNeededSize;
 
 	//list of requests from manufactures. Then manufacture is created it must get to this list
-	ManufactureRequests						m_mManRequests;
+	EmployersInformation						m_mManRequests;
 	std::list<SHumanComponent*>				m_lHumans;
 
 	//list of manufactures that needs workers

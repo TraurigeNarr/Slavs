@@ -25,12 +25,13 @@
 SManufacureCom::SManufacureCom(SGameObject* owner, const TiXmlElement* componentElement)
 	: m_pOwner(owner), m_pBoxOfResources(NULL), 
 	m_iCurrentTick(0), m_bWorking(false), m_iWorkersEndsCycle(0)
+  , m_state(MS_WAITING_FOR_WORKERS)
 {
 	assert(componentElement &&
 		"<SResourceMining::SResourceMining>: NULL parameter of config element.");
-	m_pRequest = new ManufactureRequest(this);
+	m_pRequest = new EmployerInformation(this);
 	ParseElelement(componentElement);
-	m_pOwner->GetOwner()->GetResourceMgr()->RegisterManufacture(this, m_pRequest);
+	//m_pOwner->GetOwner()->GetResourceMgr()->RegisterManufacture(this, m_pRequest);
   m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->RegisterEmployer(this);
 }
 
@@ -45,14 +46,31 @@ SManufacureCom::~SManufacureCom()
 }
 
 void SManufacureCom::TickPerformed()
-{
+  {
+  if (m_state == MS_PRE_WORKING)
+    {
+    if(!m_bWorking && 0 != m_vWorkers.size())
+      {
+      m_bWorking = true;
+      m_state = MS_PRE_WORKING;
+      m_pRequest->Deactivate();
+      for(size_t i = 0; i < m_vWorkers.size(); ++i)
+        {
+        //move worker to point of meeting --> temporary
+        Telegram t(0, m_pOwner->GetID(), m_vWorkers[i]->GetOwner()->GetID(), Msg_PeriodBegins, this);
+        m_vWorkers[i]->HandleMessage(t);
+        }
+      return;
+      }
+    }
+
 	if(m_bWorking && 0 != m_vWorkers.size())
 		++m_iCurrentTick;
 	if(m_iOperatingCycle <= m_iCurrentTick)
   {
 		m_iWorkersEndsCycle = m_iCurrentTick = 0;
 		//send all workers notification of ending operating cycle
-		m_pRequest->GetRequest().bAvailability = true;
+		m_pRequest->Activate();
 		Telegram t(0,0,0, Msg_PeriodEnds, this);
 		for(size_t i = 0; i < m_vWorkers.size(); ++i)
 		{
@@ -72,9 +90,9 @@ void SManufacureCom::TickPerformed()
 			m_vWorkers.pop_back();
 		}
 		//if manufacture can to work on
-		if(m_pRequest->GetRequest().bAvailability)
+		if(m_pRequest->IsActive())
 		{
-			m_pOwner->GetOwner()->GetResourceMgr()->RefreshRequests();
+			m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EE_NEW_WORK_APPEARED);
 		}
 	}
 }
@@ -84,22 +102,6 @@ bool SManufacureCom::HandleMessage(const Telegram& msg)
 	bool processed = false;
 	switch(msg.Msg)
 	{
-	case Msg_AllObjectsUpdated:
-		{
-			if(!m_bWorking && 0 != m_vWorkers.size())
-			{
-				m_bWorking = true;
-				m_pRequest->GetRequest().bAvailability = false;
-        for(size_t i = 0; i < m_vWorkers.size(); ++i)
-        {
-          //move worker to point of meeting --> temporary
-          Telegram t(0, m_pOwner->GetID(), m_vWorkers[i]->GetOwner()->GetID(), Msg_PeriodBegins, this);
-          m_vWorkers[i]->HandleMessage(t);
-        }
-				processed = true;
-			}
-			break;
-		}
 	case Msg_HumanDied:
 		{
 			for(size_t i = 0; i < m_vWorkers.size(); ++i)
@@ -125,12 +127,14 @@ bool SManufacureCom::HandleMessage(const Telegram& msg)
         }*/
 
 				m_bWorking = false;
+        m_state = MS_WAITING_FOR_WORKERS;
 				if(0 != m_pBoxOfResources->GetNumber())
 				{
-					m_pRequest->GetRequest().bAvailability = false;
-          m_pRequest->GetRequest().bNeedStore = true;
+					m_pRequest->Deactivate();
+          m_pRequest->AccessRequest().bNeedStore = true;
 					m_pTransitStore->AddResource(m_pBoxOfResources);
-					m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->GetStoreSystem()->ProcessEvent(EE_NEED_STORE, this);
+					m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EE_NEED_STORE, this);
+          m_state = MS_WAITING_FOR_STORES;
 				}
 				
 				m_pBoxOfResources->Clear();
@@ -142,6 +146,16 @@ bool SManufacureCom::HandleMessage(const Telegram& msg)
 	}
 	return processed;
 }
+
+void SManufacureCom::ProcessEconomyEvent(EconomyEvent i_event, void* ip_data /*= nullptr*/)
+  {
+  switch (i_event)
+    {
+    default:
+      assert("Should not get here");
+      break;
+    }
+  }
 
 void SManufacureCom::GetState(GameObjectState& goState) const
 {
@@ -155,12 +169,13 @@ void SManufacureCom::GetState(GameObjectState& goState) const
 	goState.iFlags |= m_bWorking ? GOF_Working : GOF_Waiting;
     
   goState.iFlags |= GOF_RequestForWorkers;
-  m_pRequest->GetRequest().fAverageSkill = 0.0f;
-  for(size_t i = 0; i < m_vWorkers.size(); ++i)
-    m_pRequest->GetRequest().fAverageSkill += m_vWorkers[i]->GetCurrentProfession()->GetSkill();
-  m_pRequest->GetRequest().fAverageSkill /= m_vWorkers.size();
-  goState.request_for_workers = new RequestForWorkers(m_pRequest->GetRequest());
 
+  m_pRequest->AccessRequest().fAverageSkill = 0.0f;
+  for(size_t i = 0; i < m_vWorkers.size(); ++i)
+    m_pRequest->AccessRequest().fAverageSkill += m_vWorkers[i]->GetCurrentProfession()->GetSkill();
+  m_pRequest->AccessRequest().fAverageSkill /= m_vWorkers.size();
+  goState.request_for_workers = new RequestForWorkers(m_pRequest->GetRequest());
+  m_pRequest->AccessRequest().bAvailability = !m_bWorking;
   goState.iFlags |= GOF_Money;
   goState.uiMoney = HasMoney();
 }
@@ -187,11 +202,11 @@ void SManufacureCom::ParseElelement(const TiXmlElement* componentElement)
 	m_pBoxOfResources			= new GameResourceBox(m_grType, 0, 0, res_confs.m_price);
 	m_pTransitStore				= std::make_shared<GameResourceContainer>(GameResourceContainer(m_grType, m_iNeededWorkers*m_iIniResMines*m_fMaxSkill));
 
-	m_pRequest->GetRequest().bAvailability	= true;
-	m_pRequest->GetRequest().fNeededSkill	= m_fInitialSkill;
-	m_pRequest->GetRequest().otNeededType	= m_WorkerType;
-	m_pRequest->GetRequest().grType			= m_grType;
-	m_pRequest->GetRequest().uiPayment		= m_uiPayment;
+	m_pRequest->Activate();
+	m_pRequest->AccessRequest().fNeededSkill	= m_fInitialSkill;
+	m_pRequest->AccessRequest().otNeededType	= m_WorkerType;
+	m_pRequest->AccessRequest().grType			= m_grType;
+	m_pRequest->AccessRequest().uiPayment		= m_uiPayment;
 	
 	RequestForWorkers::uiMaxPayment		= RequestForWorkers::uiMaxPayment >= m_uiPayment ? RequestForWorkers::uiMaxPayment : m_uiPayment;
 }
@@ -214,20 +229,22 @@ bool SManufacureCom::HireWorker(SHumanComponent* worker)
 	assert(worker && "<SResourceMiningCom::HireWorker>: worker is NULL.");
 
 	if(m_bWorking)
-	{
 		return false;
-	}
+
 	m_vWorkers.push_back(worker);
   
   --m_iNeededWorkers;
   if(0 == m_iNeededWorkers)
-    m_pRequest->GetRequest().bAvailability = false;
+    {
+    m_pRequest->Deactivate();
+    m_state = MS_PRE_WORKING;
+    }
 
 	m_pOwner->StateChanged();
   //send worker some information
   worker->GetOwner()->HandleMessage(Telegram(0,0,0, Msg_ObtainProfession, this));
   Vector2D vec = (m_pOwner->GetComponent<SStaticObjCom>()->GetPosition());
-  vec += Vector2D(rand()%500-500,rand()%500-500);
+  vec += Vector2D(rand()%1000-1000,rand()%1000-1000);
   worker->GetOwner()->HandleMessage(Telegram(0,0,0,Cmd_Move, &vec));
 	return true;
 }
@@ -250,8 +267,9 @@ void SManufacureCom::StoreExpanded()
 	//if we sent ALL resources from transit store we begin to work
 	if(0 == m_pTransitStore->GetResNumber())
 	{
-		m_pRequest->GetRequest().bAvailability = true;
-		m_pOwner->GetOwner()->GetResourceMgr()->RefreshRequests();
+		m_pRequest->Activate();
+    m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EE_NEW_WORK_APPEARED);
+		//m_pOwner->GetOwner()->GetResourceMgr()->RefreshRequests();
 		m_pOwner->StateChanged();
 	}
 }

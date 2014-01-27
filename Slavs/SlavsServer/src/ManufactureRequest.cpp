@@ -1,20 +1,30 @@
 #include "ManufactureRequest.h"
+
 #include "SManufacureCom.h"
+
+#include "IGoldKeeper.h"
+
 
 size_t RequestForWorkers::uiMaxPayment = 0;
 
-ManufactureRequest::ManufactureRequest(SManufacureCom* i_request_owner)
-  : mp_request_owner(i_request_owner)
+EmployerInformation::EmployerInformation(SManufacureCom* ip_owner)
+  : mp_employer(ip_owner)
+  , m_active(true)
 {
 
 }
 
-RequestForWorkers& ManufactureRequest::GetRequest()
+const RequestForWorkers& EmployerInformation::GetRequest() const
 {
   return m_request;
 }
 
-SManufacureCom* ManufactureRequest::GetOwner()
+RequestForWorkers& EmployerInformation::AccessRequest()
+  {
+  return m_request;
+  }
+
+SManufacureCom* EmployerInformation::GetOwner() const
 {
-  return mp_request_owner;
+  return mp_employer;
 }

@@ -120,6 +120,7 @@ void SHumanComponent::HumanStateWriter::TraceSkill(long i_current_tick, const st
 }
 
 //////////////////////////////////////////////////////////////////////////
+
 SHumanComponent::SHumanComponent(SGameObject* owner, const TiXmlElement* componentElement)
 	: m_pOwner(owner), m_pFSM(NULL), m_pDynamicComponent(NULL), m_hungry(false),
 	m_bChangeType(false), m_pCurrentProfession(NULL), m_current_no_eaten(0), m_die_in_ticks(0)
@@ -223,6 +224,19 @@ bool SHumanComponent::HandleMessage(const Telegram& msg)
 	m_pBrain->Process();
 	return processed;
 }
+
+void SHumanComponent::ProcessEconomyEvent(EconomyEvent i_event, void* ip_data /*= nullptr*/)
+  {
+  switch (i_event)
+    {
+    case EE_NEW_WORK_APPEARED:
+      m_pBrain->Arbitrate();
+      break;
+    default:
+      assert("Should not get here");
+      break;
+    }
+  }
 
 void SHumanComponent::SetHome(SHouseComponent* pHome)
 {

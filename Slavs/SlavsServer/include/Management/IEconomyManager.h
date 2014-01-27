@@ -3,7 +3,7 @@
 #include "SlavsServerAPI.h"
 
 #include "IManager.h"
-
+#include "ManufactureRequest.h"
 #include "EventsEnumerations.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -26,6 +26,8 @@ public:
   virtual void    GetRegisteredPayers(Slavs::TGoldKeepers& o_payers);
   virtual void    GetEmplyees(Slavs::TGoldKeepers& o_payers);
   virtual void    GetEmployers(Slavs::TGoldKeepers& o_payers);
+
+  virtual void    GetAvailableEmployers(Slavs::TEmployersInformation& o_available) const;
 
   virtual void    Initialize() = 0;
   virtual void    Update(long i_elapsed_time) = 0;

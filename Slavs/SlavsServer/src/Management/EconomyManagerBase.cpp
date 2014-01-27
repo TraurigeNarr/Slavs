@@ -2,6 +2,11 @@
 
 #include "Management/StoreSystemBase.h"
 
+#include "IGoldKeeper.h"
+
+#include <algorithm>
+#include <cassert>
+
 //////////////////////////////////////////////////////////////////////////
 
 EconomyManagerBase::EconomyManagerBase()
@@ -25,8 +30,25 @@ void EconomyManagerBase::Update(long i_elapsed_time)
 }
 
 void EconomyManagerBase::ProcessEvent(EconomyEvent i_event, void* ip_data /* = nullptr */)
-{
-}
+  {
+  switch(i_event)
+    {
+    case EE_NEW_WORK_APPEARED:
+      std::for_each(m_employees.begin(), m_employees.end(), [ip_data](Slavs::TGoldKeeper i_employee)
+        {
+        i_employee->ProcessEconomyEvent(EE_NEW_WORK_APPEARED, ip_data);
+        });
+      break;
+      break;
+    case EE_NEED_STORE:
+      assert(ip_data && "ip_data should be pointer to entity that needs store.");
+      mp_store_system->ProcessEvent(EE_NEED_STORE, ip_data);
+      break;
+    default:
+      assert("Not implemented.");
+      break;
+    }  
+  }
 
 Slavs::TStoreSystem EconomyManagerBase::GetStoreSystem()
 {

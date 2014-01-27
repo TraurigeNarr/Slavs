@@ -20,7 +20,6 @@ IController::~IController()
 
 void IController::ControllerStaff()
 {
-	m_pResourceManager->AllObjectsUpdated();
 }
 
 void IController::SetContext(SGameContext *context)

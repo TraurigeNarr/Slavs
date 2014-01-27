@@ -1,7 +1,11 @@
 #include "AI/FindWorkGoal.h"
+
 #include "SResourceManager.h"
 #include "SGameObject.h"
 #include "IController.h"
+
+#include "Management/Goverment.h"
+#include "Management/IEconomyManager.h"
 //components
 #include "SHumanComponent.h"
 #include "Profession.h"
@@ -9,6 +13,8 @@
 //server
 #include "ServerUtils.h"
 #include "misc/ServerEnums.h"
+
+#include <cassert>
 
 FindWorkGoal::FindWorkGoal(SHumanComponent* pOwner)
 	: Goal<SHumanComponent>(pOwner, GT_FindWork)
@@ -23,7 +29,9 @@ FindWorkGoal::~FindWorkGoal()
 void FindWorkGoal::Activate()
 {
 	m_gStatus = active;
-	ParseRequests(m_pOwner->GetOwner()->GetOwner()->GetResourceMgr()->GetAllRequests());
+  Slavs::TEmployersInformation informations;
+  m_pOwner->GetOwner()->GetOwner()->GetGoverment().GetEconomyManager()->GetAvailableEmployers(informations);
+	ParseRequests(informations);
 }
 
 int FindWorkGoal::Process()
@@ -37,14 +45,14 @@ void FindWorkGoal::Terminate()
 
 }
 
-void FindWorkGoal::ParseRequests(ManufactureRequests& requests)
+void FindWorkGoal::ParseRequests(const Slavs::TEmployersInformation& i_informations)
 {
-	if(requests.empty())
+	if(i_informations.empty())
 	{
 		m_gStatus = waitnig;
 		return;
 	}
-	ManufactureRequests::iterator reqIter = requests.begin();
+	Slavs::TEmployersInformation::const_iterator reqIter = i_informations.begin();
 
 	const HumanProfessions& professions = m_pOwner->GetProfessions();
 	HumanProfessions::const_iterator profIter;
@@ -55,44 +63,44 @@ void FindWorkGoal::ParseRequests(ManufactureRequests& requests)
 	//total desirability of place of work
 	float fTotalDes = 0.0f;
 	float fBestDesirability = 0.0f;
-	ManufactureRequest* BestRequest = NULL;
+	const EmployerInformation* BestRequest = nullptr;
 	//choose most desirable place of work
-  for ( ; reqIter != requests.end(); ++reqIter)
-  {
-		profIter = professions.find(reqIter->second->GetRequest().otNeededType);
-		//if this request is not available now or human`s skill does not suitable for manufacture
-		if( !reqIter->second->GetRequest().bAvailability)
-			continue;
-		//if human has this profession
-		if(professions.end() != profIter)
-		{
-			fDskill = m_fInterestingJobCoef * (reqIter->second->GetRequest().fNeededSkill/reqIter->first->GetMaxSkill());
-			fDpayment = m_fLookForPaymentCoef * (reqIter->second->GetRequest().uiPayment/(reqIter->second->GetRequest().uiMaxPayment*1.0f));
-			fTotalDes = fDskill + fDpayment;
-		}
-		//if human has not this profession
-		else
-		{
-      float temp = reqIter->second->GetRequest().fNeededSkill/reqIter->first->GetMaxSkill();
-			fDskill = m_fInterestingJobCoef * (reqIter->second->GetRequest().fNeededSkill/reqIter->first->GetMaxSkill());
-			fDpayment = m_fLookForPaymentCoef * (reqIter->second->GetRequest().uiPayment/(reqIter->second->GetRequest().uiMaxPayment*1.0f));
-			fTotalDes = fDskill + fDpayment;
-		}
-		if(fBestDesirability <= fTotalDes)
-		{
-			fBestDesirability = fTotalDes;
-			BestRequest = reqIter->second;
-		}
-	}
-	if(NULL != BestRequest)
-	{
+  for ( ; reqIter != i_informations.end(); ++reqIter)
+    {
+    const EmployerInformation* p_information = *reqIter;
+    profIter = professions.find(p_information->GetRequest().otNeededType);
+    //if this request is not available now or human`s skill does not suitable for manufacture
+    assert ((*reqIter)->IsActive());
+    //if human has this profession
+    if(professions.end() != profIter)
+      {
+      fDskill = m_fInterestingJobCoef * (p_information->GetRequest().NeededSkill()/p_information->GetOwner()->GetMaxSkill());
+      fDpayment = m_fLookForPaymentCoef * p_information->GetRequest().RelativePayment();
+      fTotalDes = fDskill + fDpayment;
+      }
+    //if human has not this profession
+    else
+      {
+      float temp = p_information->GetRequest().NeededSkill()/p_information->GetOwner()->GetMaxSkill();
+      fDskill = m_fInterestingJobCoef * (p_information->GetRequest().NeededSkill()/p_information->GetOwner()->GetMaxSkill());
+      fDpayment = m_fLookForPaymentCoef * p_information->GetRequest().RelativePayment();
+      fTotalDes = fDskill + fDpayment;
+      }
+    if(fBestDesirability <= fTotalDes)
+      {
+      fBestDesirability = fTotalDes;
+      BestRequest = p_information;
+      }
+    }
+	if(nullptr != BestRequest)
+	  {
 		m_gStatus = completed;
     BestRequest->GetOwner()->HireWorker(m_pOwner);
-	}
+	  }
 	else
-	{
+	  {
 		m_gStatus = waitnig;
-	}
+	  }
 }
 
 bool FindWorkGoal::HandleMessage(const Telegram& msg)
@@ -101,8 +109,10 @@ bool FindWorkGoal::HandleMessage(const Telegram& msg)
 	{
 	case Msg_NewRequestsAvailable:
 		{
-			ParseRequests(m_pOwner->GetOwner()->GetOwner()->GetResourceMgr()->GetAllRequests());
-			return true;
+    Slavs::TEmployersInformation informations;
+    m_pOwner->GetOwner()->GetOwner()->GetGoverment().GetEconomyManager()->GetAvailableEmployers(informations);
+    ParseRequests(informations);
+		return true;
 		}
 	}
 	return false;

@@ -18,15 +18,6 @@ SResourceManager::SResourceManager()
   m_mResources[GR_Money] = new GeneralResourceInfo(GR_Money, 50000, 100000);
 }
 
-void SResourceManager::AllObjectsUpdated()
-{
-	Telegram t(0,0,0,Msg_AllObjectsUpdated);
-	std::for_each(m_mManRequests.begin(), m_mManRequests.end(), [&t](std::pair<SManufacureCom*, ManufactureRequest*> p)
-	{
-		p.first->HandleMessage(t);
-	});
-}
-
 SResourceManager::~SResourceManager()
 {
 	ClearSTLMap(m_mResources);
@@ -273,7 +264,8 @@ bool SResourceManager::Sell(IGoldKeeper* customer, GameResourceType grType, size
 	return peekedResources != 0;
 }
 
-void SResourceManager::RegisterManufacture(SManufacureCom* manufacture, ManufactureRequest* request)
+/*
+void SResourceManager::RegisterManufacture(SManufacureCom* manufacture, EmployerInformation* request)
 {
 	m_mManRequests[manufacture] = request;
 	//refresh request info and send it to humans
@@ -292,18 +284,18 @@ void SResourceManager::RefreshRequests()
 	});
 }
 
-ManufactureRequest const* SResourceManager::GetRequest(SManufacureCom* manufacture)
+EmployerInformation const* SResourceManager::GetRequest(SManufacureCom* manufacture)
 {
-	std::map<SManufacureCom*, ManufactureRequest*>::const_iterator iter = m_mManRequests.find(manufacture);
+	std::map<SManufacureCom*, EmployerInformation*>::const_iterator iter = m_mManRequests.find(manufacture);
 	if(m_mManRequests.end() == iter)
 		return NULL;
 	return iter->second;
 }
 
-ManufactureRequests& SResourceManager::GetAllRequests()
+EmployersInformation& SResourceManager::GetAllRequests()
 {
 	return m_mManRequests;
-}
+}*/
 
 void SResourceManager::RegisterHuman(SHumanComponent* pHuman)
 {

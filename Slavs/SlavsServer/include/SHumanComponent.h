@@ -64,6 +64,8 @@ public:
 	SGameObject*						        GetOwner() const { return m_pOwner; }
 	void								            GetState(GameObjectState&) const;
 	bool								            Probe();
+
+  virtual void ProcessEconomyEvent(EconomyEvent i_event, void* ip_data = nullptr) override;
 	//getters
 	StateMachine<SHumanComponent, long>*  GetFSM() const { return m_pFSM; }
   SHouseComponent*                GetHome() const {return m_pHome;}

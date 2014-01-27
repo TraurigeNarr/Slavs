@@ -7,8 +7,8 @@
 #include <memory>
 #include <vector>
 #include <set>
-#pragma warning (push)
-#pragma warning (disable : 4251)
+
+class EmployerInformation;
 class GameResourceBox;
 class GeneralResourceInfo;
 class Goverment;
@@ -45,7 +45,7 @@ namespace Slavs
   typedef std::vector<TGameResourceBox>           TResources;
   typedef std::vector<SStoreHouseCom*>            TStoreHouses;
   typedef std::vector<SHumanComponent*>           THumans;
+  typedef std::vector<const EmployerInformation*> TEmployersInformation;
   typedef std::map<GameResourceType,GeneralResourceInfo> TReourcesInformation;
 
 }
-#pragma warning(pop)

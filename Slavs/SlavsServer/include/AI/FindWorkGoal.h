@@ -2,8 +2,10 @@
 #define FindWorkGoal_h
 
 #include "AI/Goal.h"
-#include "SHumanComponent.h"
 #include "ManufactureRequest.h"
+#include "SHumanComponent.h"
+
+#include "Types.h"
 
 class FindWorkGoal : public Goal<SHumanComponent>
 {
@@ -17,7 +19,7 @@ public:
 
 	bool			HandleMessage(const Telegram& msg);
 protected:
-	inline void		ParseRequests(ManufactureRequests& requests);
+	void		ParseRequests(const Slavs::TEmployersInformation& i_informations);
 
 	//human prefer interesting job with coefficient
 	float			m_fInterestingJobCoef;

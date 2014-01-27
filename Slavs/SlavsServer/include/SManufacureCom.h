@@ -44,6 +44,8 @@ public:
 	//check for building component
 	bool							Probe();
 
+  virtual void ProcessEconomyEvent(EconomyEvent i_event, void* ip_data = nullptr) override;
+
 	/************************************************************************/
 	/*                      Getters/Setters                                 */
 	/************************************************************************/
@@ -56,7 +58,7 @@ public:
   float             GetLearningCoefficient() const { return m_learning_coefficient; }
 	int								GetIniResMines() const { return m_iIniResMines; }
 	int								NeedWorkers() const { return 0 == m_iNeededWorkers; }
-
+  inline const EmployerInformation& GetInformation() const;
 	//calls from ResourceManager if there is a population. Returns true if hired, false otherwise
 	//@param worker - human that can be hired. if he will - moves to position of factory(temporary)
 	bool							HireWorker(SHumanComponent* worker);
@@ -98,11 +100,25 @@ protected:
 	int								m_iNeededWorkers;
 	ObjectType						m_WorkerType;
 	//request that is holden in Resource manager
-	ManufactureRequest*			m_pRequest;
+	EmployerInformation*			m_pRequest;
 	//payment
 	size_t							m_uiPayment;
 	//list of workers
 	std::vector<SHumanComponent*>	m_vWorkers;
+
+  enum ManufactureState
+    {
+    MS_WAITING_FOR_WORKERS,
+    MS_WAITING_FOR_STORES,
+    MS_PRE_WORKING,
+    MS_WORKING,
+    };
+  ManufactureState m_state;
 };
+
+const EmployerInformation& SManufacureCom::GetInformation() const
+  {
+  return *m_pRequest;
+  }
 
 #endif

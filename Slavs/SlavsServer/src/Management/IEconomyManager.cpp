@@ -1,8 +1,12 @@
 #include "Management/IEconomyManager.h"
 
 #include "IController.h"
+#include "SManufacureCom.h"
+
 #include "Management/Goverment.h"
 
+#include <algorithm>
+#include <vector>
 //////////////////////////////////////////////////////////////////////////
 
 IEconomyManager::~IEconomyManager()
@@ -45,3 +49,16 @@ void IEconomyManager::GetEmployers(Slavs::TGoldKeepers& o_payers)
 {
   o_payers.insert(m_employers.begin(), m_employers.end());
 }
+
+void IEconomyManager::GetAvailableEmployers(Slavs::TEmployersInformation& o_available) const
+  {
+  std::for_each(m_employers.begin(), m_employers.end(), [&o_available](Slavs::TGoldKeeper i_employer)
+    {
+    if (typeid(*i_employer) == typeid(SManufacureCom))
+      {
+      const EmployerInformation& information = static_cast<SManufacureCom*>(i_employer)->GetInformation();
+      if (information.IsActive())
+        o_available.push_back(&information);
+      }
+    });
+  }
