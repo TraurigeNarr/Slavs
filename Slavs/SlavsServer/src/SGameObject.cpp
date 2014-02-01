@@ -14,6 +14,7 @@
 #include <Game/CommandData.h>
 #include <Math/Vector2D.h>
 #include <Utilities/XmlUtilities.h>
+#include <Utilities/TemplateFunctions.h>
 
 SGameObject::SGameObject(SGameContext* pContext, long ID, ObjectType otype, int iMask, const TiXmlElement* configElement/* = NULL*/, Vector2D *extraData/* = NULL*/, IController* owner/* = NULL*/)
 	: IGameObject(ID, otype, (QueryMask)iMask), m_pOwner(owner), m_pContext(pContext), m_iFlags(0)
@@ -23,8 +24,14 @@ SGameObject::SGameObject(SGameContext* pContext, long ID, ObjectType otype, int 
 }
 
 SGameObject::~SGameObject()
-{
-}
+  {
+  while(!m_lComponents.empty()) 
+    {
+    IComponent* obj = m_lComponents.back();
+    m_lComponents.pop_back();
+    delete obj;
+    }
+  }
 
 void SGameObject::Init()
 {

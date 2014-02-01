@@ -11,11 +11,11 @@ public:
 	GlobalServerState();
 	~GlobalServerState();
 
-  void          Enter(std::shared_ptr<ServerMain> ip_owner);
-  void          Execute(std::shared_ptr<ServerMain> ip_owner, long i_elapsed_time);
-  void          Exit(std::shared_ptr<ServerMain> ip_owner);
+  void          Enter(ServerMain* ip_owner);
+  void          Execute(ServerMain* ip_owner, long i_elapsed_time);
+  void          Exit(ServerMain* ip_owner);
 protected:
-  void          HoldPacket(std::shared_ptr<ServerMain> ip_owner, unsigned char *packet, size_t bytes_read);
+  void          HoldPacket(ServerMain* ip_owner, unsigned char *packet, size_t bytes_read);
 
 	bool m_bExitState;
 };

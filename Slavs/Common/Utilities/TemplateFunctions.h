@@ -49,12 +49,13 @@ T FromChar(char* val)
 }
 
 template <class T>
-void ClearVector(std::vector<T*> &vec) 
+void ClearVector(std::vector<T*>& vec) 
 {
 	while(!vec.empty()) 
 	{
-    delete vec.back();
-    vec.pop_back();
+  T* obj = vec.back();
+  vec.pop_back();
+  delete obj;
 	}
 	vec.clear();
 }

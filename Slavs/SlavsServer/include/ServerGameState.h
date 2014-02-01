@@ -19,17 +19,17 @@ public:
 	ServerGameState(SGameContext*, std::shared_ptr<std::map<int, IController*>> controllers);
 	~ServerGameState();
 
-	void          Enter(std::shared_ptr<ServerMain> ip_owner);
-	void          Execute(std::shared_ptr<ServerMain> ip_owner, long i_elapsed_time);
-	void          Exit(std::shared_ptr<ServerMain> ip_owner);
+	void          Enter(ServerMain* ip_owner);
+	void          Execute(ServerMain* ip_owner, long i_elapsed_time);
+	void          Exit(ServerMain* ip_owner);
 
-	void          HoldPacket(std::shared_ptr<ServerMain> ip_owner, unsigned char *packet, size_t bytes_read);
+	void          HoldPacket(ServerMain* ip_owner, unsigned char *packet, size_t bytes_read);
   SGameContext& GetContext() { return *m_pSContext; }
 
   TTimeController GetTimeController() const;
 protected:
-	void          SendStates(std::shared_ptr<ServerMain> ip_owner);
-	void          PassToController(std::shared_ptr<ServerMain> ip_owner, unsigned char *packet, size_t bytes_read);
+	void          SendStates(ServerMain* ip_owner);
+	void          PassToController(ServerMain* ip_owner, unsigned char *packet, size_t bytes_read);
 	
   
 	std::shared_ptr<std::map<int, IController*>> m_pControllers;

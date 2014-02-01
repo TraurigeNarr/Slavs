@@ -23,6 +23,7 @@ public:
 
 	virtual void	Init() = 0;
 	virtual void	TickPerformed(){}
+  virtual void  ReleaseContext() = 0;
   //returns the max needed size
 	void			GetAllGameObjectsState(ObjectStateMap& container) const;
 	T*				GetGameObject(long id) const;

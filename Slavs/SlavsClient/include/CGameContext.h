@@ -22,6 +22,7 @@ public:
 
 	void				Init();
 	void				TickPerformed();
+  virtual void            ReleaseContext() override;
 
 	//each update applies state from server
 	void				ApplyState(long id, const GameObjectState& state);

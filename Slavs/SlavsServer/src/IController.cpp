@@ -59,5 +59,5 @@ int IController::NeededSize() const
 bool IController::ChechResources(ObjectType oType)
 {
 	bool c = m_pResourceManager->CheckAndPickResources(m_pContext->GetNeededResources(oType));
-	return c;
+	return true;
 }

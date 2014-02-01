@@ -55,6 +55,7 @@ public:
 
 	void										Init();
 	void										TickPerformed();
+  virtual void            ReleaseContext() override;
 
   //call this function before destruction of the object
   void                    WriteData();

@@ -2,7 +2,6 @@
 //server
 #include "IController.h"
 #include "SGameObject.h"
-#include "SResourceManager.h"
 //additional components
 #include "SBuildingComp.h"
 

@@ -16,12 +16,12 @@ ClientGlobalState ::~ClientGlobalState()
 {
 }
 
-void ClientGlobalState::Enter(std::shared_ptr<Application> ip_owner)
+void ClientGlobalState::Enter(Application* ip_owner)
 {
 	m_exit_state = false;
 }
 
-void ClientGlobalState::Execute(std::shared_ptr<Application> ip_owner, long i_elapsed_time)
+void ClientGlobalState::Execute(Application* ip_owner, long i_elapsed_time)
 {
 	if(m_exit_state)
 		return;
@@ -33,12 +33,12 @@ void ClientGlobalState::Execute(std::shared_ptr<Application> ip_owner, long i_el
  		ip_owner->GetConnection()->SendPacket( packetToServer, sizeof( PacketType ) );
 }
 
-void ClientGlobalState::Exit(std::shared_ptr<Application> ip_owner)
+void ClientGlobalState::Exit(Application* ip_owner)
 {
 	m_exit_state = true;
 }
 
-void ClientGlobalState::HoldPacket(std::shared_ptr<Application> ip_owner, unsigned char *packet)
+void ClientGlobalState::HoldPacket(Application* ip_owner, unsigned char *packet)
 {
 
 }

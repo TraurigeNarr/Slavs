@@ -21,7 +21,7 @@ ClientMenuState::~ClientMenuState()
 {
 }
 
-void ClientMenuState::Enter(std::shared_ptr<Application> ip_owner)
+void ClientMenuState::Enter(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Enter MenuState....");
 
@@ -39,7 +39,7 @@ void ClientMenuState::Enter(std::shared_ptr<Application> ip_owner)
 	CreateScene();
 }
 
-void ClientMenuState::Execute(std::shared_ptr<Application> ip_owner, long i_elapsed_time)
+void ClientMenuState::Execute(Application* ip_owner, long i_elapsed_time)
 {
 	switch(m_State)
 	{
@@ -55,7 +55,7 @@ void ClientMenuState::Execute(std::shared_ptr<Application> ip_owner, long i_elap
 	}
 }
 
-void ClientMenuState::Exit(std::shared_ptr<Application> ip_owner)
+void ClientMenuState::Exit(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Leaving MenuState...");
   Singleton<InputManager>::GetInstance().RemoveSubscriber(this);

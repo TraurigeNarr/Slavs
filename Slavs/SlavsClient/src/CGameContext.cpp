@@ -24,7 +24,9 @@ CGameContext::CGameContext(const std::string& mapName, int ownMask)
 }
 
 CGameContext::~CGameContext()
-{}
+  {
+  
+  }
 
 void CGameContext::Init()
 {}
@@ -36,6 +38,11 @@ void CGameContext::TickPerformed()
 		p.second->TickPerformed();
 	});*/
 }
+
+void CGameContext::ReleaseContext()
+  {
+  ReleaseGameObjects();
+  }
 
 void CGameContext::RemoveObject(CGameObject* gameObject)
 {

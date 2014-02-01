@@ -28,7 +28,7 @@ ServerLoadGameState::ServerLoadGameState(std::shared_ptr<std::map<int, IControll
 ServerLoadGameState::~ServerLoadGameState()
 {}
 
-void ServerLoadGameState::Enter(std::shared_ptr<ServerMain> ip_owner)
+void ServerLoadGameState::Enter(ServerMain* ip_owner)
 {
 	printf( "Enters LoadGame state\n" );
 	Singleton<WaitState>::ReleaseIfValid();
@@ -74,7 +74,7 @@ void ServerLoadGameState::Enter(std::shared_ptr<ServerMain> ip_owner)
 	printf("Begin update load\n");
 }
 
-void ServerLoadGameState::Execute(std::shared_ptr<ServerMain> ip_owner, long i_elapsed_time)
+void ServerLoadGameState::Execute(ServerMain* ip_owner, long i_elapsed_time)
 {
   unsigned char *packet = new unsigned char[PACKET_SIZE];
 	while(true)
@@ -88,12 +88,12 @@ void ServerLoadGameState::Execute(std::shared_ptr<ServerMain> ip_owner, long i_e
   delete []packet;
 }
 
-void ServerLoadGameState::Exit(std::shared_ptr<ServerMain> ip_owner)
+void ServerLoadGameState::Exit(ServerMain* ip_owner)
 {
 	printf( "Exits LoadGame state\n" );
 }
 
-void ServerLoadGameState::HoldPacket(std::shared_ptr<ServerMain> ip_owner, unsigned char* ip_packet, size_t i_bytes_read)
+void ServerLoadGameState::HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read)
 {
 	PacketType pType = (PacketType)FromChar<int>((char*)ip_packet);
 	char *packetToClient = NULL;

@@ -21,7 +21,7 @@ WaitState::WaitState()
 WaitState::~WaitState()
 {}
 
-void WaitState::Enter(std::shared_ptr<ServerMain> ip_owner)
+void WaitState::Enter(ServerMain* ip_owner)
 {
 	printf( "Enters wait state\n" );
   if(m_pControllers->size() != 0)
@@ -31,12 +31,15 @@ void WaitState::Enter(std::shared_ptr<ServerMain> ip_owner)
   }
 
 	if(ip_owner->FromGame)
+    {
+    ip_owner->GetFSM()->SetPreviousState(nullptr);
     Singleton<ServerGameState>::ReleaseIfValid();
+    }
 
 	m_bExitState = false;
 }
 
-void WaitState::Execute(std::shared_ptr<ServerMain> ip_owner, long i_elapsed_time)
+void WaitState::Execute(ServerMain* ip_owner, long i_elapsed_time)
 {
 	while(true)
 	{
@@ -54,12 +57,12 @@ void WaitState::Execute(std::shared_ptr<ServerMain> ip_owner, long i_elapsed_tim
 	}
 }
 
-void WaitState::Exit(std::shared_ptr<ServerMain> ip_owner)
+void WaitState::Exit(ServerMain* ip_owner)
 {
 	printf( "Exits wait state\n" );
 }
 
-void WaitState::HoldPacket(std::shared_ptr<ServerMain> ip_owner, unsigned char *packet, size_t size)
+void WaitState::HoldPacket(ServerMain* ip_owner, unsigned char *packet, size_t size)
 {
 	PacketType pType = (PacketType)FromChar<int>((char*)packet);
 	char *packetBuf = NULL;
@@ -97,7 +100,7 @@ void WaitState::HoldPacket(std::shared_ptr<ServerMain> ip_owner, unsigned char *
 	delete []m;
 }
 
-void WaitState::ClientConnects(std::shared_ptr<ServerMain> ip_owner)
+void WaitState::ClientConnects(ServerMain* ip_owner)
 {
 	//find address in list of controllers
 	int address = ip_owner->GetConnection()->GetAddress().GetAddress();

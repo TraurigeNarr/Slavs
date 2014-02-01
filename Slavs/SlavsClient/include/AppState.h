@@ -21,18 +21,18 @@ public:
   virtual ~AppState();
 
 	//this will execute when the state is entered
-	virtual void Enter(std::shared_ptr<Application> ip_owner) = 0;
+	virtual void Enter(Application* ip_owner) = 0;
 
 	//this is the states normal update function
-	virtual void Execute(std::shared_ptr<Application> ip_owner, long i_elapsed_time) = 0;
+	virtual void Execute(Application* ip_owner, long i_elapsed_time) = 0;
 
 	//this will execute when the state is exited. (My word, isn't
 	//life full of surprises... ;o))
-	virtual void Exit(std::shared_ptr<Application> ip_owner) = 0;
+	virtual void Exit(Application* ip_owner) = 0;
 
 	/*this executes if the agent receives a message from
 	message dispatcher*/
-	virtual bool OnMessage(std::shared_ptr<Application> ip_owner, const Telegram&) { return false; }
+	virtual bool OnMessage(Application* ip_owner, const Telegram&) { return false; }
 };
 
 #endif

@@ -31,17 +31,6 @@ ServerGameState::ServerGameState(SGameContext* context, std::shared_ptr<std::map
 
 ServerGameState::~ServerGameState()
 {
-	printf("Clearing game state.================\n");
-	mp_time_controller->RemoveSubscriber(m_pSContext);
-	delete m_pSContext;
-	std::for_each(m_pControllers->begin(), m_pControllers->end(), [this](std::pair<int, IController*> contr)
-	{
-		mp_time_controller->RemoveSubscriber(contr.second);
-	});
-
-  ClearSTLMap(*m_pControllers);
-  m_pControllers->clear();
-	printf("Clear success.================\n");
 }
 
 ServerGameState::TTimeController ServerGameState::GetTimeController() const
@@ -49,9 +38,10 @@ ServerGameState::TTimeController ServerGameState::GetTimeController() const
   return mp_time_controller;
 }
 
-void ServerGameState::Enter(std::shared_ptr<ServerMain> ip_owner)
+void ServerGameState::Enter(ServerMain* ip_owner)
 {
 	printf( "Enters GAME state\n" );
+  ip_owner->GetFSM()->SetPreviousState(nullptr);
   Singleton<ServerLoadGameState>::ReleaseIfValid();
 
 	m_bExitState = false;
@@ -65,7 +55,7 @@ void ServerGameState::Enter(std::shared_ptr<ServerMain> ip_owner)
 	});
 }
 
-void ServerGameState::Execute(std::shared_ptr<ServerMain> ip_owner, long i_elapsed_time)
+void ServerGameState::Execute(ServerMain* ip_owner, long i_elapsed_time)
 {
 	//catch all packets
 	unsigned char *packet = new unsigned char[PACKET_SIZE];
@@ -86,14 +76,25 @@ void ServerGameState::Execute(std::shared_ptr<ServerMain> ip_owner, long i_elaps
   SendStates(ip_owner);
 }
 
-void ServerGameState::Exit(std::shared_ptr<ServerMain> ip_owner)
+void ServerGameState::Exit(ServerMain* ip_owner)
 {
 	printf( "Exits GAME state\n" );
-	//disconnect from client
+  //clear objects
+  mp_time_controller->RemoveSubscriber(m_pSContext);
+  m_pSContext->ReleaseContext();
+  delete m_pSContext;
+  //disconnect from client
 	ip_owner->GetConnection()->Disconnect();
+  std::for_each(m_pControllers->begin(), m_pControllers->end(), [this](std::pair<int, IController*> contr)
+    {
+    mp_time_controller->RemoveSubscriber(contr.second);
+    });
+
+  ClearSTLMap(*m_pControllers);
+  m_pControllers->clear();
 }
 
-void ServerGameState::HoldPacket(std::shared_ptr<ServerMain> ip_owner, unsigned char *packet, size_t bytes_read)
+void ServerGameState::HoldPacket(ServerMain* ip_owner, unsigned char *packet, size_t bytes_read)
 {
 	PacketType pType = (PacketType)FromChar<int>((char*)packet);
 	char *packetToClient = NULL;
@@ -111,7 +112,7 @@ void ServerGameState::HoldPacket(std::shared_ptr<ServerMain> ip_owner, unsigned 
 	}
 }
 
-void ServerGameState::SendStates(std::shared_ptr<ServerMain> ip_owner)
+void ServerGameState::SendStates(ServerMain* ip_owner)
 {
   net::Connection &connection = *ip_owner->GetConnection();
 
@@ -162,7 +163,7 @@ void ServerGameState::SendStates(std::shared_ptr<ServerMain> ip_owner)
   delete []buf;
 }
 
-void ServerGameState::PassToController(std::shared_ptr<ServerMain> ip_owner, unsigned char *packet, size_t bytes_read)
+void ServerGameState::PassToController(ServerMain* ip_owner, unsigned char *packet, size_t bytes_read)
 {
 	std::map<int, IController*>::const_iterator iter = m_pControllers->find(ip_owner->GetConnection()->GetAddress().GetAddress());
 

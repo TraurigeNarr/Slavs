@@ -22,19 +22,19 @@ HumanGlobal::HumanGlobal()
 HumanGlobal::~HumanGlobal()
 {}
 
-void HumanGlobal::Enter(std::shared_ptr<SHumanComponent> ip_owner)
+void HumanGlobal::Enter(SHumanComponent* ip_owner)
 {
 }
 
-void HumanGlobal::Execute(std::shared_ptr<SHumanComponent> ip_owner, long i_elapse_time)
+void HumanGlobal::Execute(SHumanComponent* ip_owner, long i_elapse_time)
 {
 }
 
-void HumanGlobal::Exit(std::shared_ptr<SHumanComponent> ip_owner)
+void HumanGlobal::Exit(SHumanComponent* ip_owner)
 {
 }
 
-bool HumanGlobal::OnMessage(std::shared_ptr<SHumanComponent> ip_owner, const Telegram& i_message)
+bool HumanGlobal::OnMessage(SHumanComponent* ip_owner, const Telegram& i_message)
 {
 	return false;
 }
@@ -47,20 +47,20 @@ HumanIdle::HumanIdle()
 HumanIdle::~HumanIdle()
 {}
 
-void HumanIdle::Enter(std::shared_ptr<SHumanComponent> ip_owner)
+void HumanIdle::Enter(SHumanComponent* ip_owner)
 {
 }
 
-void HumanIdle::Execute(std::shared_ptr<SHumanComponent> ip_owner, long i_elapsed_time)
+void HumanIdle::Execute(SHumanComponent* ip_owner, long i_elapsed_time)
 {
 
 }
 
-void HumanIdle::Exit(std::shared_ptr<SHumanComponent> ip_owner)
+void HumanIdle::Exit(SHumanComponent* ip_owner)
 {
 }
 
-bool HumanIdle::OnMessage(std::shared_ptr<SHumanComponent> ip_owner, const Telegram& i_message)
+bool HumanIdle::OnMessage(SHumanComponent* ip_owner, const Telegram& i_message)
 {
 	switch(i_message.Msg)
 	{
@@ -91,11 +91,11 @@ HumanMove::HumanMove()
 HumanMove::~HumanMove()
 {}
 
-void HumanMove::Enter(std::shared_ptr<SHumanComponent> ip_owner)
+void HumanMove::Enter(SHumanComponent* ip_owner)
 {
 }
 
-void HumanMove::Execute(std::shared_ptr<SHumanComponent> ip_owner, long i_elapsed_time)
+void HumanMove::Execute(SHumanComponent* ip_owner, long i_elapsed_time)
 {
 	if(ip_owner->GetDynamicComponent()->GetPosition().Distance(ip_owner->GetDynamicComponent()->GetTarget()) < 100)
 	{
@@ -103,13 +103,13 @@ void HumanMove::Execute(std::shared_ptr<SHumanComponent> ip_owner, long i_elapse
 	}
 }
 
-void HumanMove::Exit(std::shared_ptr<SHumanComponent> ip_owner)
+void HumanMove::Exit(SHumanComponent* ip_owner)
 {
 	ip_owner->GetDynamicComponent()->SetTarget(Vector2D(0,0));
 	ip_owner->GetDynamicComponent()->GetSteering()->SeekOff();
 }
 
-bool HumanMove::OnMessage(std::shared_ptr<SHumanComponent> ip_owner, const Telegram& i_message)
+bool HumanMove::OnMessage(SHumanComponent* ip_owner, const Telegram& i_message)
 {
 	switch(i_message.Msg)
 	{
@@ -132,19 +132,19 @@ HumanWork::HumanWork()
 HumanWork::~HumanWork()
 {}
 
-void HumanWork::Enter(std::shared_ptr<SHumanComponent> ip_owner)
+void HumanWork::Enter(SHumanComponent* ip_owner)
 {
 }
 
-void HumanWork::Execute(std::shared_ptr<SHumanComponent> ip_owner, long i_elapsed_time)
+void HumanWork::Execute(SHumanComponent* ip_owner, long i_elapsed_time)
 {
 }
 
-void HumanWork::Exit(std::shared_ptr<SHumanComponent> ip_owner)
+void HumanWork::Exit(SHumanComponent* ip_owner)
 {
 }
 
-bool HumanWork::OnMessage(std::shared_ptr<SHumanComponent> ip_owner, const Telegram& i_message)
+bool HumanWork::OnMessage(SHumanComponent* ip_owner, const Telegram& i_message)
 {
 	return false;
 }

@@ -28,7 +28,7 @@ ClientLoadGameState::~ClientLoadGameState()
 {
 }
 
-void ClientLoadGameState::Enter(std::shared_ptr<Application> ip_owner)
+void ClientLoadGameState::Enter(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Enter ClientLoadGameState....");
 	
@@ -50,7 +50,7 @@ void ClientLoadGameState::Enter(std::shared_ptr<Application> ip_owner)
 	m_State = CLState_Loading;
 }
 
-void ClientLoadGameState::Execute(std::shared_ptr<Application> ip_owner, long i_elapsed_time)
+void ClientLoadGameState::Execute(Application* ip_owner, long i_elapsed_time)
 {
 	//hold all packets
 	while ( true )
@@ -79,12 +79,12 @@ void ClientLoadGameState::Execute(std::shared_ptr<Application> ip_owner, long i_
 	}
 }
 
-void ClientLoadGameState::Exit(std::shared_ptr<Application> ip_owner)
+void ClientLoadGameState::Exit(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Exit ClientLoadGameState....");
 }
 
-void ClientLoadGameState::_HoldPacket(std::shared_ptr<Application> ip_owner, unsigned char *packet)
+void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *packet)
 {
 	PacketType pType = (PacketType)FromChar<int>((char*)packet);
 	char *packetToClient = NULL;
@@ -117,7 +117,7 @@ void ClientLoadGameState::_HoldPacket(std::shared_ptr<Application> ip_owner, uns
 	}
 }
 
-void ClientLoadGameState::_SendReadyPacket(std::shared_ptr<Application> ip_owner)
+void ClientLoadGameState::_SendReadyPacket(Application* ip_owner)
 {
 	PacketType pType = PT_ClientReady;
 	char *buf = ToChar(pType);

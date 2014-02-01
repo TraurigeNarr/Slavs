@@ -47,18 +47,18 @@ ClientGameState::~ClientGameState()
 	Singleton<VisualInformation>::ReleaseIfValid();
 }
 
-void ClientGameState::Enter(std::shared_ptr<Application> ip_owner)
+void ClientGameState::Enter(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Enter ClientGameState....");
 	Singleton<ClientLoadGameState>::ReleaseIfValid();
 
 	//create player controller
-	m_pPlayerController = new CPlayerController(ip_owner.get());
+	m_pPlayerController = new CPlayerController(ip_owner);
 
 	//create collections of states for GameState
-	new Singleton<IdleCGameState>(new IdleCGameState(ip_owner.get(), m_pPlayerController));
-  new Singleton<PlaceBuildingCGameState>(new PlaceBuildingCGameState(ip_owner.get(), m_pPlayerController));
-  new Singleton<GetTargetCGameState>(new GetTargetCGameState(ip_owner.get(), m_pPlayerController));
+	new Singleton<IdleCGameState>(new IdleCGameState(ip_owner, m_pPlayerController));
+  new Singleton<PlaceBuildingCGameState>(new PlaceBuildingCGameState(ip_owner, m_pPlayerController));
+  new Singleton<GetTargetCGameState>(new GetTargetCGameState(ip_owner, m_pPlayerController));
 
 	SetCurrentState(Singleton<IdleCGameState>::GetInstancePtr(), GS_Idle);
 
@@ -74,7 +74,7 @@ void ClientGameState::Enter(std::shared_ptr<Application> ip_owner)
 	CreateScene();
 }
 
-void ClientGameState::Execute(std::shared_ptr<Application> ip_owner, long i_elapsed_time)
+void ClientGameState::Execute(Application* ip_owner, long i_elapsed_time)
 {
 	//hold all packets
 	unsigned char *packet = new unsigned char[PACKET_SIZE];
@@ -86,7 +86,7 @@ void ClientGameState::Execute(std::shared_ptr<Application> ip_owner, long i_elap
 		{
 			break;
 		}
-		HoldPacket(ip_owner.get(), packet, bytes_read);
+		HoldPacket(ip_owner, packet, bytes_read);
 	}
 	delete []packet;
 	//update time controller
@@ -99,7 +99,7 @@ void ClientGameState::Execute(std::shared_ptr<Application> ip_owner, long i_elap
 	}
 }
 
-void ClientGameState::Exit(std::shared_ptr<Application> ip_owner)
+void ClientGameState::Exit(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Exit ClientGameState....");
 	//delete collection of states
@@ -110,6 +110,8 @@ void ClientGameState::Exit(std::shared_ptr<Application> ip_owner)
   Singleton<TimeController>::ReleaseIfValid();
 	ip_owner->StopConnection();
   Singleton<InputManager>::GetInstance().RemoveSubscriber(this);
+  m_pContext->ReleaseContext();
+  delete m_pContext;
 }
 
 void ClientGameState::SetCurrentState(std::shared_ptr<InputSubscriber> newState, GameStateModes mode)

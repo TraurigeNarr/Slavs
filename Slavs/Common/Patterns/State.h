@@ -11,16 +11,16 @@ public:
 	virtual ~State(){}
 
 	//this will execute when the state is entered
-	virtual void Enter(std::shared_ptr<StateOwner> ip_owner) = 0;
+	virtual void Enter(StateOwner* ip_owner) = 0;
 
 	//this is the states normal update function
-	virtual void Execute(std::shared_ptr<StateOwner> ip_owner, Param i_parameter) = 0;
+	virtual void Execute(StateOwner* ip_owner, Param i_parameter) = 0;
 
 	//this will execute when the state is exited. (My word, isn't
 	//life full of surprises... ;o))
-	virtual void Exit(std::shared_ptr<StateOwner> ip_owner) = 0;
+	virtual void Exit(StateOwner* ip_owner) = 0;
 
 	/*this executes if the agent receives a message from
 	message dispatcher*/
-	virtual bool OnMessage(std::shared_ptr<StateOwner> ip_owner, const Telegram&) { return false; }
+	virtual bool OnMessage(StateOwner* ip_owner, const Telegram&) { return false; }
 };

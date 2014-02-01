@@ -51,24 +51,27 @@ SGameContext::SGameContext(const std::string& mapName)
 
 SGameContext::~SGameContext()
 {
+}
+
+void SGameContext::ReleaseContext()
+  {
   m_dead_pool.clear();
   try
-  {
+    {
     WriteData();
-  }
+    }
   catch(std::exception& e)
-  {
+    {
     std::cout << e.what();
-  }
-	ClearData();
-	delete m_vSpawns;
-	lID = 0;
-	//initialize human states
+    }
+  ClearData();
+  //uninitialized human states
   Singleton<HumanGlobal>::ReleaseIfValid(); 
   Singleton<HumanIdle>::ReleaseIfValid(); 
   Singleton<HumanMove>::ReleaseIfValid(); 
   Singleton<HumanWork>::ReleaseIfValid(); 
-}
+  lID = 0;
+  }
 
 OutputManager& SGameContext::GetOutputManager()
 {
@@ -166,6 +169,7 @@ void SGameContext::RemoveReferences(SGameObject* gameObject)
 void SGameContext::ClearData()
 {
 	ClearVector(*m_vSpawns);
+  delete m_vSpawns;
 	ReleaseGameObjects();
 	ClearSTLMap(m_mObjectsInformation);
 }

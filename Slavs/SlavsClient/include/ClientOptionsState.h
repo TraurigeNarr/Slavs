@@ -9,9 +9,9 @@ public:
   ClientOptionsState();
   ~ClientOptionsState();
 
-  virtual void Enter(std::shared_ptr<Application> ip_owner) override;
-  virtual void Execute(std::shared_ptr<Application> ip_owner, long i_elapsed_time) override;
-  virtual void Exit(std::shared_ptr<Application> ip_owner) override;
+  virtual void Enter(Application* ip_owner) override;
+  virtual void Execute(Application* ip_owner, long i_elapsed_time) override;
+  virtual void Exit(Application* ip_owner) override;
 
 	bool KeyPressed(const OIS::KeyEvent &keyEventRef);
 	bool KeyReleased(const OIS::KeyEvent &keyEventRef);

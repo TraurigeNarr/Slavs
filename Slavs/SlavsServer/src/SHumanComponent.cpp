@@ -141,7 +141,7 @@ SHumanComponent::SHumanComponent(SGameObject* owner, const TiXmlElement* compone
 	m_pBrain = new Goal_Think(this);
 
   //initialize FSM and set current state to Idle
-	m_pFSM = new StateMachine<SHumanComponent, long>(std::shared_ptr<SHumanComponent>(this));
+	m_pFSM = new StateMachine<SHumanComponent, long>(this);
 	m_pFSM->SetCurrentState(Singleton<HumanIdle>::GetInstancePtr());
 	//set global state
 	m_pFSM->SetGlobalState(Singleton<HumanGlobal>::GetInstancePtr());

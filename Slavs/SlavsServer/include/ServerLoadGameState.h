@@ -16,11 +16,11 @@ public:
 	ServerLoadGameState(std::shared_ptr<std::map<int, IController*>> controllers);
 	~ServerLoadGameState();
 
-  void          Enter(std::shared_ptr<ServerMain> ip_owner);
-  void          Execute(std::shared_ptr<ServerMain> ip_owner, long i_elapsed_time);
-  void          Exit(std::shared_ptr<ServerMain> ip_owner);
+  void          Enter(ServerMain* ip_owner);
+  void          Execute(ServerMain* ip_owner, long i_elapsed_time);
+  void          Exit(ServerMain* ip_owner);
   
-  void          HoldPacket(std::shared_ptr<ServerMain> ip_owner, unsigned char* ip_packet, size_t i_bytes_read);
+  void          HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read);
 protected:
 	bool          m_bExitState;
 	SGameContext* m_pGameContext;

@@ -14,7 +14,6 @@ IGameObject::IGameObject(long ID, ObjectType otype, QueryMask iMask)
 
 IGameObject::~IGameObject()
 {
-	ClearVector(m_lComponents);
 }
 
 void IGameObject::TickForComponents()

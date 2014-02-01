@@ -18,7 +18,7 @@ ClientOptionsState::~ClientOptionsState()
 {
 }
 
-void ClientOptionsState::Enter(std::shared_ptr<Application> ip_owner)
+void ClientOptionsState::Enter(Application* ip_owner)
 {
   //TODO: own logger
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Enter OptionsState....");
@@ -32,7 +32,7 @@ void ClientOptionsState::Enter(std::shared_ptr<Application> ip_owner)
 	CreateScene();
 }
 
-void ClientOptionsState::Execute(std::shared_ptr<Application> ip_owner, long i_elapsed_time)
+void ClientOptionsState::Execute(Application* ip_owner, long i_elapsed_time)
 {
 	switch(m_State)
 	{
@@ -42,7 +42,7 @@ void ClientOptionsState::Execute(std::shared_ptr<Application> ip_owner, long i_e
 	}
 }
 
-void ClientOptionsState::Exit(std::shared_ptr<Application> ip_owner)
+void ClientOptionsState::Exit(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Leaving OptionsState...");
 

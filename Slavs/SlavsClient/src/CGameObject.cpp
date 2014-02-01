@@ -10,6 +10,7 @@
 #include <Game/GameObjectState.h>
 #include <Utilities\XmlUtilities.h>
 #include <Utilities\StringUtilities.h>
+#include <Utilities/TemplateFunctions.h>
 
 //////////////////////////////////////////////////////////////////////////
 const Ogre::String LB_Material = "LifeBoxMaterial";
@@ -27,6 +28,7 @@ CGameObject::CGameObject(long ID, ObjectType otype, int iMask/* = 0x00 */, const
 CGameObject::~CGameObject()
 {
 	delete m_ObjectInformation;
+  ClearVector(m_lComponents);
 }
 
 void CGameObject::Init()

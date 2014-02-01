@@ -37,7 +37,7 @@ ServerMain::~ServerMain()
 bool ServerMain::Initialize()
 {
   FromGame = false;
-  m_pFSM = new StateMachine<ServerMain, long>(std::shared_ptr<ServerMain>(this));
+  m_pFSM = new StateMachine<ServerMain, long>(this);
 	//initialize sockets
 	if ( !net::InitializeSockets() )
 	{

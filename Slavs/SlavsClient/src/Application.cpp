@@ -49,7 +49,7 @@ void Application::Start()
 	m_cConnection = NULL;
 
 	m_bShutdown = false;
-	m_pFSM = new StateMachine<Application, long>(std::shared_ptr<Application>(this));
+	m_pFSM = new StateMachine<Application, long>(this);
 	
 	m_pFSM->SetCurrentState(Singleton<ClientMenuState>::GetInstancePtr());
 	m_pFSM->SetGlobalState(Singleton<ClientGlobalState>::GetInstancePtr());

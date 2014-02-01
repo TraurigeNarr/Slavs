@@ -20,13 +20,13 @@ public:
   typedef std::shared_ptr<State<T, Parameter>> TState;
 
 private:
-  std::shared_ptr<T> mp_owner;
+  T* mp_owner;
   TState mp_current_state;
   TState mp_previous_state;
   TState mp_global_state;
 
 public:
-  StateMachine(std::shared_ptr<T> ip_owner);
+  StateMachine(T* ip_owner);
   virtual ~StateMachine();
 
   void SetGlobalState(TState ip_global);
@@ -49,7 +49,7 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 template <typename T, typename Parameter>
-StateMachine<T, Parameter>::StateMachine(std::shared_ptr<T> ip_owner)
+StateMachine<T, Parameter>::StateMachine(T* ip_owner)
   : mp_owner(ip_owner)
 {
 }

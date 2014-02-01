@@ -29,7 +29,7 @@ ClientCreateLevelState::~ClientCreateLevelState()
 {
 }
 
-void ClientCreateLevelState::Enter(std::shared_ptr<Application> ip_owner)
+void ClientCreateLevelState::Enter(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Enter CreateLevelState....");
 	Singleton<InputManager>::GetInstance().AddSubscriber(this);
@@ -94,7 +94,7 @@ void ClientCreateLevelState::Enter(std::shared_ptr<Application> ip_owner)
 	m_State = VarGetMaps;
 }
 
-bool ClientCreateLevelState::Connect(std::shared_ptr<Application> ip_owner, const net::Address& address)
+bool ClientCreateLevelState::Connect(Application* ip_owner, const net::Address& address)
 {
 	net::Connection* connection = ip_owner->GetConnection();
 	connection->Connect(address);
@@ -166,7 +166,7 @@ void ClientCreateLevelState::AvailableMaps(net::Connection* connection)
 	Sleep(net::DeltaTime * 5000);
 }
 
-void ClientCreateLevelState::Execute(std::shared_ptr<Application> ip_owner, long i_elapsed_time)
+void ClientCreateLevelState::Execute(Application* ip_owner, long i_elapsed_time)
 {
 	switch(m_State)
 	{
@@ -184,7 +184,7 @@ void ClientCreateLevelState::Execute(std::shared_ptr<Application> ip_owner, long
 	}
 }
 
-void ClientCreateLevelState::Exit(std::shared_ptr<Application> ip_owner)
+void ClientCreateLevelState::Exit(Application* ip_owner)
 {
 	Singleton<OgreFramework>::GetInstancePtr()->m_pLog->logMessage("Leaving CreateLevelState...");
   Singleton<InputManager>::GetInstance().RemoveSubscriber(this);
