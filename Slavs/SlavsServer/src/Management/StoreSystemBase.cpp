@@ -75,6 +75,31 @@ void StoreSystemBase::ProcessEvent(EconomyEvent i_event, void* ip_data /* = null
   }
 }
 
+bool StoreSystemBase::PeekResources(GameResourceType i_type, size_t i_number) 
+  {
+  if (m_resource_data.find(i_type) == m_resource_data.end())
+    return false;
+
+  return m_resource_data[i_type].uiCurrentResources <= i_number;
+  }
+
+size_t StoreSystemBase::GetResources(GameResourceType i_type, size_t i_number) 
+  {
+  Slavs::TReourcesInformation::iterator it_res = m_resource_data.find(i_type);
+  if (it_res == m_resource_data.end() || it_res->second.uiCurrentResources < i_number)
+    return 0;
+  it_res->second.uiCurrentResources -= i_number;
+  return i_number;
+  }
+
+ IStoreSystem::TResourcePair StoreSystemBase::GetResource(GameResourceType i_type)
+  {
+  Slavs::TReourcesInformation::iterator it_res = m_resource_data.find(i_type);
+  if (it_res == m_resource_data.end())
+    return std::make_pair(0, 0);
+  return std::make_pair(it_res->second.uiCurrentResources, it_res->second.uiMaxResources);
+  }
+
 void StoreSystemBase::Add(Slavs::TResources& i_new_resources)
 {
   while(!i_new_resources.empty())

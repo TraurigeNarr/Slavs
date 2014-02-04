@@ -5,6 +5,7 @@
 #include "Management/Goverment.h"
 #include "Management/EconomyManagerBase.h"
 #include "Management/SocietyManagerBase.h"
+#include "Management/IStoreSystem.h"
 
 #include <cassert>
 
@@ -58,6 +59,21 @@ int IController::NeededSize() const
 
 bool IController::ChechResources(ObjectType oType)
 {
-	bool c = m_pResourceManager->CheckAndPickResources(m_pContext->GetNeededResources(oType));
+  ResourceMap* p_needed_resources = m_pContext->GetNeededResources(oType);
+  Slavs::TStoreSystem p_store_system = mp_goverment->GetEconomyManager()->GetStoreSystem();
+  
+  ResourceMap::iterator it_cur = p_needed_resources->begin();
+  ResourceMap::iterator it_end = p_needed_resources->end();
+
+  for ( ; it_cur != it_end; ++it_cur)
+    {
+    if ( !p_store_system->PeekResources(it_cur->first, it_cur->second) )
+      return false;
+    }
+
+  it_cur = p_needed_resources->begin();
+  for ( ; it_cur != it_end; ++it_cur)
+    p_store_system->GetResources(it_cur->first, it_cur->second);
+
 	return true;
 }
