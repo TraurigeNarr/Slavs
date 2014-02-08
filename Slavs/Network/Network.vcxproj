@@ -68,12 +68,14 @@
     <TargetExt>.dll</TargetExt>
     <TargetName>Network_d</TargetName>
     <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetName>Network</TargetName>
     <TargetExt>.dll</TargetExt>
     <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
