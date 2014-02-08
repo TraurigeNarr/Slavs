@@ -87,12 +87,12 @@
     <Filter Include="Header Files\Game\Management">
       <UniqueIdentifier>{979aaad7-33fa-4bba-9582-c5f38b905661}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PluginSystem">
+      <UniqueIdentifier>{510240a3-2fc9-431d-b2ca-60323d921c70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SlavsServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ServerMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ServerLoadGameState.cpp">
@@ -209,11 +209,14 @@
     <ClCompile Include="src\ManufactureRequest.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="PluginSystem\DllManager.cpp">
+      <Filter>PluginSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ServerMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\ServerMain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ServerGameState.h">
       <Filter>Header Files\Server States</Filter>
     </ClInclude>
@@ -399,6 +402,15 @@
     </ClInclude>
     <ClInclude Include="include\ManufactureRequest.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\Plugin.h">
+      <Filter>PluginSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\DllManager.h">
+      <Filter>PluginSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ServerMain.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

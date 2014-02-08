@@ -1,5 +1,6 @@
 //server
 #include "ServerMain.h"
+#include "PluginSystem\DllManager.h"
 //states
 #include "ServerGameState.h"
 #include "ServerGlobalState.h"
@@ -22,10 +23,11 @@ template<> std::shared_ptr<ServerLoadGameState> Singleton<ServerLoadGameState>::
 template<> std::shared_ptr<ServerGameState> Singleton<ServerGameState>::mp_singleton = nullptr;
 
 ServerMain::ServerMain()
-{
+  {
 	m_pServerConnection = NULL;
 	m_bWorking = false;
-}
+  mh_dll_manager.reset(new DllManager(L"server\\plugins"));
+  }
 
 ServerMain::~ServerMain()
 {
@@ -76,10 +78,4 @@ void ServerMain::Update(long elapsedTime)
 net::Connection* ServerMain::GetConnection () const
 {
   return m_pServerConnection;
-}
-
-int ServerMain::GetListOfMaps(const std::string& mapDir)
-{
-	m_lMaps.push_back("test_01");
-	return 0;
 }

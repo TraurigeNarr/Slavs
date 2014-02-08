@@ -4,12 +4,17 @@
 #include <Net.h>
 #include <Patterns/StateMachine.h>
 
-#include <list>
+#include <memory>
 
 //////////////////////////////////////////////////////////////////////////
 
+class DllManager;
+
 class ServerMain
 {
+private:
+  std::unique_ptr<DllManager> mh_dll_manager;
+
 public:
 	ServerMain();
 	~ServerMain();
@@ -25,12 +30,10 @@ public:
 	StateMachine<ServerMain, long>* GetFSM() const { return m_pFSM; }
 	bool FromGame;
 private:
-	int GetListOfMaps(const std::string& mapDir);
 	net::Connection *m_pServerConnection;
 	bool m_bWorking;
 
 	StateMachine<ServerMain, long> *m_pFSM;
-	std::list<char*> m_lMaps;
 };
 
 #endif

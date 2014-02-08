@@ -30,6 +30,7 @@ void WaitState::Enter(ServerMain* ip_owner)
     m_pControllers->clear();
   }
 
+  //check prevous state and if it is Game state then release
 	if(ip_owner->FromGame)
     {
     ip_owner->GetFSM()->SetPreviousState(nullptr);
