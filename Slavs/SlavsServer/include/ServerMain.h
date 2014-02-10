@@ -1,6 +1,8 @@
 #ifndef ServerMain_h
 #define ServerMain_h
 
+#include "SlavsServerAPI.h"
+
 #include <Net.h>
 #include <Patterns/StateMachine.h>
 
@@ -10,7 +12,7 @@
 
 class DllManager;
 
-class ServerMain
+class SLAVS_SERVER_EXPORT ServerMain
 {
 private:
   std::unique_ptr<DllManager> mh_dll_manager;
