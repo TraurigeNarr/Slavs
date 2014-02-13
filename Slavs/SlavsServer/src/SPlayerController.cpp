@@ -55,7 +55,7 @@ void SPlayerController::HoldCommand(CommandData* cData)
 {	
 	if(cData->HasParameter(CDParams_CreateBuilding))
 	{
-		ObjectType oType = IGameObject::GetGameObjectType(cData->GetCommand());
+		int oType = IGameObject::GetGameObjectType(cData->GetCommand());
 		if(OT_None != oType && ChechResources(oType))
 			m_pContext->AddObject(oType, *static_cast<Vector2D*>(cData->GetExtraData()), this);
 	}

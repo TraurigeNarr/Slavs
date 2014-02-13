@@ -56,7 +56,7 @@ std::pair<double, double> XmlUtilities::GetXY(const TiXmlElement* i_xml_element)
 float XmlUtilities::GetRealAttribute(const TiXmlElement* i_xml_element, const char* i_name, float i_default_value)
 {
 	std::string value = GetStringAttribute(i_xml_element, i_name);
-	return value.empty() ? i_default_value : atof(value.c_str());
+	return value.empty() ? i_default_value : static_cast<float>(atof(value.c_str()));
 }
 
 std::string XmlUtilities::GetStringAttribute(const TiXmlElement* i_xml_element, const char* i_name)

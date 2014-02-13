@@ -87,7 +87,7 @@ bool PlaceBuildingCGameState::ButtonPressed(ButtonID id, void* extraData)
 
 void PlaceBuildingCGameState::GetParameters()
 {
-	ObjectType oType = IGameObject::GetGameObjectType(m_pCommandData->GetCommand());
+	int oType = IGameObject::GetGameObjectType(m_pCommandData->GetCommand());
 	const TiXmlElement* configElem = Singleton<ClientGameState>::GetInstancePtr()->GetContext()->GetConfigElement(oType);
 	if(NULL == configElem)
 	{

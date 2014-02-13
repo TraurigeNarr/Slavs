@@ -298,7 +298,7 @@ void SHumanComponent::ParseElelement(const TiXmlElement* componentElement)
 
 void SHumanComponent::ObtainProfession(SManufacureCom* ip_manufacture)
 {
-	std::map<ObjectType, Profession*>::iterator proff = m_mProfessions.find(ip_manufacture->GetWorkerType());
+	std::map<int, Profession*>::iterator proff = m_mProfessions.find(ip_manufacture->GetWorkerType());
 
 	if(m_mProfessions.end() == proff)
 	{

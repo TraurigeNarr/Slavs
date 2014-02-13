@@ -376,9 +376,6 @@
     <ClInclude Include="include\Types.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
-    <ClInclude Include="include\IObjectFactory.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="include\Management\Goverment.h">
       <Filter>Header Files\Game\Management</Filter>
     </ClInclude>

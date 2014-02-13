@@ -1,13 +1,17 @@
 #include "IGameObject.h"
+
+#include "Enumerations.h"
 #include "GameObjectState.h"
+#include "IComponent.h"
 
 #include "../Utilities/TemplateFunctions.h"
-#include "tinyxml.h"
+
+#include <tinyxml.h>
 
 #include <algorithm>
 
-IGameObject::IGameObject(long ID, ObjectType otype, QueryMask iMask)
-	: m_lID(ID), m_Type(otype), m_qmMask(iMask), m_bStateChanged(true), 
+IGameObject::IGameObject(long ID, int otype, int iMask)
+	: m_lID(ID), m_type(otype), m_qmMask(iMask), m_bStateChanged(true), 
   m_bDestroyed(false), m_bSelected(false),
   m_ticks_for_components(0)
 {}
@@ -18,7 +22,7 @@ IGameObject::~IGameObject()
 
 void IGameObject::TickForComponents()
 {
-	std::for_each(m_lComponents.begin(), m_lComponents.end(), [](IComponent* component)
+	std::for_each(m_components.begin(), m_components.end(), [](IComponent* component)
 	{
 		component->TickPerformed();
 	});
@@ -34,10 +38,10 @@ GameObjectState* IGameObject::GetState() const
 		GOState->iFlags |= GOF_Destroyed;
 		return GOState;
 	}
-	GOState->oType = m_Type;
+	GOState->oType = static_cast<ObjectType>(m_type);
 	GOState->iMask = m_qmMask;
 	
-	std::for_each(m_lComponents.begin(), m_lComponents.end(), [&GOState](IComponent* component)
+	std::for_each(m_components.begin(), m_components.end(), [&GOState](IComponent* component)
 		{
 			component->GetState(*GOState);
 	});
@@ -46,15 +50,15 @@ GameObjectState* IGameObject::GetState() const
 	return GOState;
 }
 
-ObjectType IGameObject::GetType() const
-{
-	return m_Type;
-}
+int IGameObject::GetType() const
+  {
+	return m_type;
+  }
 
 /************************************************************************/
 /*                     Static functions                                 */
 /************************************************************************/
-std::string IGameObject::ToString(ObjectType oType)
+std::string IGameObject::ToString(int oType)
 {
 	std::string s;
 	switch(oType)
@@ -184,7 +188,7 @@ std::string IGameObject::ToString(ObjectType oType)
 	return s;
 }
 
-ObjectType IGameObject::GetGameObjectType(const std::string& oType)
+int IGameObject::GetGameObjectType(const std::string& oType)
 {
 #pragma region Environment
 	if(tTerrain == oType)
@@ -294,7 +298,7 @@ ObjectType IGameObject::GetGameObjectType(const std::string& oType)
 	return OT_None;
 }
 
-ObjectType IGameObject::GetGameObjectType(CommandID cmdID)
+int IGameObject::GetGameObjectType(int cmdID)
 {
 	switch(cmdID)
 	{

@@ -47,7 +47,7 @@ void SceneLoader::ParseObject(const TiXmlElement* objectElement)
 		elementName = childElement->Value();
 
 		std::string type = XmlUtilities::GetStringAttribute(childElement, "type", "");
-		ObjectType otype = IGameObject::GetGameObjectType(type);
+		int otype = IGameObject::GetGameObjectType(type);
 
 		if(OT_None == otype)
 		{

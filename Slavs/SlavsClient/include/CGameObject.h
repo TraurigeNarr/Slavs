@@ -11,7 +11,7 @@ class TiXmlElement;
 class CGameObject : public IGameObject
 {
 public:
-	CGameObject(long ID, ObjectType otype, int iMask = 0x00, const TiXmlElement* configElement = NULL /*const std::string& configFile = "", SController* owner = NULL*/);
+	CGameObject(long ID, int otype, int iMask = 0x00, const TiXmlElement* configElement = NULL /*const std::string& configFile = "", SController* owner = NULL*/);
 	virtual ~CGameObject();
 
 	virtual void		Init();
@@ -20,7 +20,7 @@ public:
 	virtual void		ApplyState(const GameObjectState& state);
 	ObjectInformation*	GetObjectInfo() const { return m_ObjectInformation; }
 protected:
-	void				ReCreateObject(ObjectType oType);
+	void				ReCreateObject(int oType);
 	void				ParseElement(const TiXmlElement* configElement);
 	inline void			ParseState(const GameObjectState& state);
 

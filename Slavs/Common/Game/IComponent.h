@@ -1,16 +1,18 @@
 #ifndef IComponent_h
 #define IComponent_h
 
+#include "..\SlavsCommonAPI.h"
+
 #include "../Patterns/Telegram.h"
 
 class GameObjectState;
 class TiXmlElement;
 class IGameObject;
 
-class IComponent
+class /*COMMON_EXPORT*/ IComponent
 {
 public:
-					IComponent(){}
+					    IComponent(){}
 	virtual			~IComponent(){}
 
 	virtual void	TickPerformed(){}

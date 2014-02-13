@@ -119,10 +119,10 @@ void SGameContext::AddDynamicObject(SDynamicObjCom *const dynamicObj)
 	m_vDynamicObjects.push_back(dynamicObj);
 }
 
-SGameObject* SGameContext::AddObject(ObjectType oType, const Vector2D &position, IController* owner /* = NULL */, QueryMask qm /* = QM_ALL */)
+SGameObject* SGameContext::AddObject(int oType, const Vector2D &position, IController* owner /* = NULL */, QueryMask qm /* = QM_ALL */)
 {
 	SGameObject *newObject = NULL;
-	std::map<ObjectType, ObjectConfiguration*>::const_iterator iter = m_mObjectsInformation.find(oType);
+	std::map<int, ObjectConfiguration*>::const_iterator iter = m_mObjectsInformation.find(oType);
 	if(m_mObjectsInformation.end() != iter)
 	{
 		newObject = new SGameObject(this, lID, oType,
@@ -191,7 +191,7 @@ void SGameContext::InitObjectsMap()
 
 	const TiXmlElement* childElement = 0;
 
-	ObjectType otype = OT_None;
+	int otype = OT_None;
 
 	while ((childElement = XmlUtilities::IterateChildElements(rootElem, childElement)))
 	{
@@ -244,7 +244,7 @@ void SGameContext::GetInitialSceneObjects()
 
 	const TiXmlElement* childElement = 0;
 
-	ObjectType otype = OT_None;
+	int otype = OT_None;
 	GameResourceType grType = GR_None;
 
 	while ((childElement = XmlUtilities::IterateChildElements(rootElem, childElement)))
@@ -281,7 +281,7 @@ void SGameContext::GiveInitialObjects(IController* controller)
 {
 	Vector2D pos = *m_vSpawns->at(0);
 	int changeDirAt = m_vInitialObjects.size()/2;
-	std::for_each(m_vInitialObjects.begin(), m_vInitialObjects.end(), [this, &controller, &pos, &changeDirAt](ObjectType oType)
+	std::for_each(m_vInitialObjects.begin(), m_vInitialObjects.end(), [this, &controller, &pos, &changeDirAt](int oType)
 		{
 			SGameObject* curObj = AddObject(oType, pos, controller);
 			if(curObj->HasComponent(SGameObject::c_t_staticObject))
@@ -299,9 +299,9 @@ void SGameContext::GiveInitialObjects(IController* controller)
   controller->GetGoverment().GetEconomyManager()->GetStoreSystem()->Add(resToAdd);
 }
 
-ResourceMap *const SGameContext::GetNeededResources(ObjectType oType)
+ResourceMap *const SGameContext::GetNeededResources(int oType)
 {
-	std::map<ObjectType, ObjectConfiguration*>::const_iterator iter = m_mObjectsInformation.find(oType);
+	std::map<int, ObjectConfiguration*>::const_iterator iter = m_mObjectsInformation.find(oType);
 
 	if(m_mObjectsInformation.end() != iter)
 		return &iter->second->NeededResources;

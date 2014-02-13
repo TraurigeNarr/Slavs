@@ -25,7 +25,7 @@ public:
 	virtual bool		HandleMessage(const Telegram& msg) = 0;
 	virtual bool		IsPlaceOfWork(void *placeOfWork) const = 0;
 
-	ObjectType			GetProfessionType() const { return m_ProfessionType; }
+	int       			GetProfessionType() const { return m_ProfessionType; }
 	//returns cycles passed after latest increasing of skill
 	int					    GetCurrentCycles() const { return m_current_tick_for_growth; }
 	float				    GetSkill() const { return m_fSkill; }
@@ -38,7 +38,7 @@ public:
 protected:
 	float				    m_fSkill;
 	SHumanComponent*	m_pHuman;
-	ObjectType			m_ProfessionType;
+	int         			m_ProfessionType;
 
 	//how many cycles passed after latest increasing of skill
 	size_t					m_current_tick_for_growth;

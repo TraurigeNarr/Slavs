@@ -33,7 +33,7 @@ public:
 
 	//getters
 	CTerrain*			GetTerrain() const { return m_pTerrain; }
-	const TiXmlElement* GetConfigElement(ObjectType oType) const;
+	const TiXmlElement* GetConfigElement(int oType) const;
 	IGameObject*		GetObjectByRay(const Ogre::RaySceneQueryResult &results) const;
 
 	ObjectsMap::const_iterator GetIteratorBegin() const { return m_mGameObjects.begin(); }
@@ -43,7 +43,7 @@ public:
 protected:
 	void				ClearData();
 
-	std::map<ObjectType, const TiXmlElement*> m_mConfigElements;
+	std::map<int, const TiXmlElement*> m_mConfigElements;
 
 	CTerrain *m_pTerrain;
 

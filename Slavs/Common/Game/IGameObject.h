@@ -1,40 +1,41 @@
 #ifndef IGameObject_h
 #define IGameObject_h
 
-#include "IComponent.h"
-#include "Enumerations.h"
+#include "..\SlavsCommonAPI.h"
 
 #include <string>
 #include <vector>
 
-class IGameObject
+class IComponent;
+class GameObjectState;
+
+class /*COMMON_EXPORT*/ IGameObject
 {
 	long m_lID;
 protected:
-	ObjectType m_Type;
-	std::vector<IComponent*> m_lComponents;
+	int                      m_type;
+	std::vector<IComponent*> m_components;
 	//if this is true then GOState has only 2 parameters: id and flag (GOS_Destroyed)
 	bool m_bDestroyed;
 	//one of the Own, Allied, Enemy for client is always with | QM_ALL, on Server -> mask is Environment, Resources or address of client, who created this object
-	QueryMask m_qmMask;
+	int m_qmMask;
 	//this is true then the state of the object changes, if it is false, then there is no sense to get it state!!!
 	//we need to modify flag in GetState  --> sets to false
 	mutable bool m_bStateChanged;
 	//needed for selecting objects
 	bool m_bSelected;
 
-  long m_ticks_for_components;
+  long  m_ticks_for_components;
 
 	void							              TickForComponents();
 public:
-									                IGameObject(long ID, ObjectType otype, QueryMask iMask);
+									                IGameObject(long ID, int otype, int iMask);
 	virtual							            ~IGameObject();
 	
   long                            GetElapsedTicksForComponents() const { return m_ticks_for_components; }
-	const std::vector<IComponent>&	GetComponents() const;
 	long							              GetID() const { return m_lID; }
-	ObjectType						          GetType() const;
-	QueryMask						            GetQueryMask() const { return m_qmMask; }
+	int       						          GetType() const;
+	int     						            GetQueryMask() const { return m_qmMask; }
 	bool							              HasChanges() const { return m_bStateChanged; }
 	void							              StateChanged() { m_bStateChanged = true; }
 
@@ -50,19 +51,19 @@ public:
 	virtual void					          Select(){ m_bSelected = true; }
 	virtual void					          Deselect() { m_bSelected = false; }
 
-	static std::string				      ToString(ObjectType oType);
-	static ObjectType				        GetGameObjectType(const std::string& oType);
-	static ObjectType				        GetGameObjectType(CommandID cmdID);
+	static std::string				      ToString(int oType);
+	static int      				        GetGameObjectType(const std::string& oType);
+	static int                      GetGameObjectType(int cmdID);
 };
 
 template<typename T>
 T* IGameObject::GetComponent() const
 {
-	for(unsigned int i = 0; i < m_lComponents.size(); ++i)
+	for(unsigned int i = 0; i < m_components.size(); ++i)
 	{
-		if(typeid(*m_lComponents[i]) == typeid(T))
+		if(typeid(*m_components[i]) == typeid(T))
 		{
-			return static_cast<T*>(m_lComponents[i]);
+			return static_cast<T*>(m_components[i]);
 		}
 	}
 	return NULL;

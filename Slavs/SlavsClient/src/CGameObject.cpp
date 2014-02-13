@@ -16,8 +16,8 @@
 const Ogre::String LB_Material = "LifeBoxMaterial";
 
 //////////////////////////////////////////////////////////////////////////
-CGameObject::CGameObject(long ID, ObjectType otype, int iMask/* = 0x00 */, const TiXmlElement* configElement/* = NULL*/)
-	: IGameObject(ID, otype, (QueryMask)iMask)
+CGameObject::CGameObject(long ID, int otype, int iMask/* = 0x00 */, const TiXmlElement* configElement/* = NULL*/)
+	: IGameObject(ID, otype, iMask)
 {
 	
 	m_ObjectInformation = new ObjectInformation(IGameObject::ToString(otype));
@@ -28,7 +28,7 @@ CGameObject::CGameObject(long ID, ObjectType otype, int iMask/* = 0x00 */, const
 CGameObject::~CGameObject()
 {
 	delete m_ObjectInformation;
-  ClearVector(m_lComponents);
+  ClearVector(m_components);
 }
 
 void CGameObject::Init()
@@ -45,15 +45,15 @@ void CGameObject::ApplyState(const GameObjectState& state)
 {
 	ParseState(state);
 
-	std::for_each(m_lComponents.begin(), m_lComponents.end(), [&state](IComponent* component)
+	std::for_each(m_components.begin(), m_components.end(), [&state](IComponent* component)
 	{
 			component->ApplyState(state);
 	});
 }
 
-void CGameObject::ReCreateObject(ObjectType oType)
+void CGameObject::ReCreateObject(int oType)
 {
-	m_Type = oType;
+	m_type = oType;
 	m_ObjectInformation->Clear();
 	const TiXmlElement* configElement = Singleton<ClientGameState>::GetInstancePtr()->GetContext()->GetConfigElement(oType);
 	
@@ -97,7 +97,7 @@ void CGameObject::ParseElement(const TiXmlElement* configElement)
 			if("renderer" == XmlUtilities::GetStringAttribute(childElement, "type"))
 			{
 				CRendererComponent *cRenderer = new CRendererComponent(this, childElement);
-				m_lComponents.push_back(cRenderer);
+				m_components.push_back(cRenderer);
 			}
 		}
 		if("commands" == elementName)

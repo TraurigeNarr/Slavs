@@ -1,6 +1,8 @@
 #ifndef SGameContext_h
 #define SGameContext_h
 //server
+#include "SlavsServerAPI.h"
+
 #include "SGameObject.h"
 #include "SStaticObjCom.h"
 #include "SDynamicObjCom.h"
@@ -47,7 +49,7 @@ struct ResourceConfigs
   float m_calories;
 };
 
-class SGameContext : public IGameContext<SGameObject>, public TickListener
+class SLAVS_SERVER_EXPORT SGameContext : public IGameContext<SGameObject>, public TickListener
 {
 public:
 												SGameContext(const std::string& mapName);
@@ -64,7 +66,7 @@ public:
 	//@param otype - what type context should create
 	//@param owner - if this parameter is not NULL then controller becomes the owner of the object
 	//@param qm	   - if qm != QM_ALL, then query mask of the object becomes qm
-	SGameObject*						AddObject(ObjectType otype, const Vector2D &position, IController* owner = NULL, QueryMask qm = QM_All);
+	SGameObject*						AddObject(int otype, const Vector2D &position, IController* owner = NULL, QueryMask qm = QM_All);
 	void										RemoveObject(SGameObject* gameObject);
 
 	void										AddSpawn(const Vector2D& spawn);
@@ -73,7 +75,7 @@ public:
 
 	void										InitObjectsMap();
 	void										GiveInitialObjects(IController* controller);
-	ResourceMap *const			GetNeededResources(ObjectType oType);
+	ResourceMap *const			GetNeededResources(int oType);
 	const Obstacles&				GetObstacles() const { return m_vObstacles;}
 	const DynamicObjects&		GetDynamicObjects() const { return m_vDynamicObjects; }
   bool                    GetResConfigcs(GameResourceType i_type, ResourceConfigs& o_configs) const;
@@ -90,14 +92,19 @@ protected:
 
   OutputManager                     m_writer;
 	std::vector<Vector2D*>*						m_vSpawns;
-	std::vector<ObjectType>						m_vInitialObjects;
-	
+  //initial -> to other class
+	std::vector<int>						m_vInitialObjects;
   std::map<GameResourceType, size_t>	        m_mInitialResources;
-	std::map<ObjectType, ObjectConfiguration*>	m_mObjectsInformation;
+  
+  //suitable in MetaFactory
+	std::map<int, ObjectConfiguration*>	m_mObjectsInformation;
+  
+
   std::map<GameResourceType, ResourceConfigs> m_resources_configs;
-	//cash the information about obstacles
+	
+  //cash the information about obstacles
 	Obstacles									m_vObstacles;
-	//cas the information about dynamic objects
+	//cash the information about dynamic objects
 	DynamicObjects						m_vDynamicObjects;
 
   std::vector<SGameObject*> m_dead_pool;

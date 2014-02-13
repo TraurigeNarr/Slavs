@@ -1,7 +1,6 @@
 #ifndef RequestForWorkers_h
 #define RequestForWorkers_h
 
-#include "Enumerations.h"
 #include "GameResources.h"
 #include <map>
 
@@ -10,7 +9,7 @@ struct RequestForWorkers
 public:
   RequestForWorkers();
 
-  ObjectType			otNeededType;
+  int			    otNeededType;
   float				fNeededSkill;
   float       fAverageSkill;
   //may be for type processing while choosing work

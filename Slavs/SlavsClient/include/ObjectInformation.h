@@ -31,7 +31,7 @@ protected:
 public:
 	std::vector<std::string>		vInformation;
 	bool							bStore;
-	ObjectType						oType;
+	int   						oType;
 
 									ObjectInformation(const std::string& name) : sName(name)
 									{ Clear(); bStore = false; }

@@ -22,6 +22,9 @@
     <Filter Include="Game\Resources">
       <UniqueIdentifier>{c10b7af6-8751-4890-b82d-ec8c81f393a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maintanance">
+      <UniqueIdentifier>{759b7e09-7df8-479c-aecc-42c64355ab31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Utilities\FileUtilities.cpp">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="Game\GameResourceTypes.h">
       <Filter>Game\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="SlavsCommonAPI.h">
+      <Filter>Maintanance</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

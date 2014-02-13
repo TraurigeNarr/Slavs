@@ -161,7 +161,6 @@
     <ClInclude Include="include\HumanStates.h" />
     <ClInclude Include="include\IControllerPlugin.h" />
     <ClInclude Include="include\IGoldKeeper.h" />
-    <ClInclude Include="include\IObjectFactory.h" />
     <ClInclude Include="include\Management\BaseEvent.h" />
     <ClInclude Include="include\Management\EconomyManagerBase.h" />
     <ClInclude Include="include\Management\EventsEnumerations.h" />

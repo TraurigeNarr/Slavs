@@ -57,7 +57,7 @@ int IController::NeededSize() const
 	return m_iNeededSize;
 }
 
-bool IController::ChechResources(ObjectType oType)
+bool IController::ChechResources(int oType)
 {
   ResourceMap* p_needed_resources = m_pContext->GetNeededResources(oType);
   Slavs::TStoreSystem p_store_system = mp_goverment->GetEconomyManager()->GetStoreSystem();

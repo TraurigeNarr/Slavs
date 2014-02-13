@@ -40,7 +40,7 @@ public:
 	int					        Serialize(char* buf_end, int size) const;
 	int					        NeededSize() const;
 protected:
-	bool				        ChechResources(ObjectType oType);
+	bool				        ChechResources(int oType);
 	void				        ControllerStaff();
 
 	SGameContext*		m_pContext;

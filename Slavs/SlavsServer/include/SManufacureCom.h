@@ -51,7 +51,7 @@ public:
 	/************************************************************************/
 	GameResourceType	GetGRType() const;
 	int								GetGrowthPeriod() const { return m_iGrowthPeriod; }
-	ObjectType				GetWorkerType() const { return m_WorkerType; }
+	int       				GetWorkerType() const { return m_WorkerType; }
 	float							GetInitialSkill() const { return m_fInitialSkill; }
   float             GetSkillGrowth() const { return m_fSkillGrowth; }
   float             GetMaxSkill() const { return m_fMaxSkill; }
@@ -98,7 +98,7 @@ protected:
 	float							m_fSkillGrowth;
 	//needed number of workers - assume, that needed number = max number
 	int								m_iNeededWorkers;
-	ObjectType						m_WorkerType;
+	int   						m_WorkerType;
 	//request that is holden in Resource manager
 	EmployerInformation*			m_pRequest;
 	//payment

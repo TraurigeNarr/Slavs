@@ -73,7 +73,7 @@ void CGameContext::ApplyState(long id, const GameObjectState& state)
 	//if not - add object and apply state
 	else
 	{
-		std::map<ObjectType, const TiXmlElement*>::const_iterator iter = m_mConfigElements.find(state.oType);
+		std::map<int, const TiXmlElement*>::const_iterator iter = m_mConfigElements.find(state.oType);
 		if(m_mConfigElements.end() != iter)
 		{
 			int m = QM_All;
@@ -103,9 +103,9 @@ void CGameContext::AddTerrain(const std::string &configName)
 
 }
 
-const TiXmlElement* CGameContext::GetConfigElement(ObjectType oType) const
+const TiXmlElement* CGameContext::GetConfigElement(int oType) const
 {
-	std::map<ObjectType, const TiXmlElement*>::const_iterator iter = m_mConfigElements.find(oType);
+	std::map<int, const TiXmlElement*>::const_iterator iter = m_mConfigElements.find(oType);
 
 	if(m_mConfigElements.end() != iter)
 		return iter->second;
@@ -154,7 +154,7 @@ void CGameContext::InitObjectsMap()
 
 	const TiXmlElement* childElement = 0;
 
-	ObjectType otype = OT_None;
+	int otype = OT_None;
 
 	while ((childElement = XmlUtilities::IterateChildElements(rootElem, childElement)))
 	{

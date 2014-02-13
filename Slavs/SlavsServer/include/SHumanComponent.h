@@ -32,7 +32,7 @@ struct FoodInformation
 	size_t				uiNumber;
 };
 
-typedef std::map<ObjectType, Profession*> HumanProfessions;
+typedef std::map<int, Profession*> HumanProfessions;
 
 struct FoodPreferences
 {

@@ -1,5 +1,7 @@
 #include "RequestForWorkers.h"
 
+#include "Enumerations.h"
+
 #include "../Utilities/TemplateFunctions.h"
 
 #include <cassert>
@@ -11,14 +13,14 @@ RequestForWorkers::RequestForWorkers()
 
 int RequestForWorkers::NeededSize()
 {
-  return sizeof(ObjectType) + sizeof(float) + 2*sizeof(bool);
+  return sizeof(int) + sizeof(float) + 2*sizeof(bool);
 }
 
 int RequestForWorkers::Serialize(char *buf_end, int size) const
 {
 
-  ToChar(otNeededType, buf_end, sizeof(ObjectType));
-  buf_end += sizeof(ObjectType);
+  ToChar(otNeededType, buf_end, sizeof(int));
+  buf_end += sizeof(int);
   ToChar(bAvailability,buf_end,sizeof(bool));
   buf_end += sizeof(bool);
   ToChar(bNeedStore,buf_end,sizeof(bool));
@@ -39,8 +41,8 @@ int RequestForWorkers::Serialize(char *buf_end, int size) const
 int RequestForWorkers::Deserialize(char* buf)
 {
   char *initial_position = buf;
-  otNeededType = static_cast<ObjectType>(FromChar<int>(buf));
-  buf += sizeof(ObjectType);
+  otNeededType = FromChar<int>(buf);
+  buf += sizeof(int);
   bAvailability = FromChar<bool>(buf);
   buf += sizeof(bool);
   bNeedStore = FromChar<bool>(buf);
