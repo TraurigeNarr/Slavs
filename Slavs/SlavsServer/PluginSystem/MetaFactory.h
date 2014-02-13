@@ -1,0 +1,87 @@
+#pragma once
+
+#include "SlavsServerAPI.h"
+
+#include <boost/noncopyable.hpp>
+
+#include <map>
+#include <memory>
+#include <vector>
+
+//////////////////////////////////////////////////////////////////////////
+
+class IObjectComposer;
+class SGameObject;
+class SGameContext;
+
+/*
+Base factory for other factories that are specific for 
+types:
+  1. GameObject - When object created all factories that supports this object type
+    will include their pieces;
+    Factory should be registered/unregister with 
+      - RegisterObjectComposer
+      - UnregisterComposer
+  2. Managers - Factory for IEconomyManager, ISociualManager, etc..
+  3. AI - to be implemented
+All factories should register types that they support via:
+  - RegisterType      - for objects like Humans, Trees, Manufactures, Space ships and so on
+  - RegisterComponent - for components in objects (DynanicComponent, HumanComponent)
+Or attach to use objects and components from other libraries
+
+All registering operations should be in initialization step of Plugin
+  - Plugin::Install
+  - Plugin::Initialize
+*/
+
+class MetaFactory : boost::noncopyable
+  {
+  private:
+    /// internal var for registration system
+    int                       m_next_definitions_id;
+    std::vector<std::string>  m_registered_types;
+
+  public:
+    typedef std::shared_ptr<IObjectComposer>  TObjectComposer;
+    typedef std::vector<TObjectComposer>      TObjectComposers;
+    typedef std::map<std::string, int>        TDefinitionsMap;
+  private:
+    TObjectComposers m_object_composers;
+
+    /// this list should be transferred to client so it
+    /// will be able to render all objects properly
+    TDefinitionsMap          m_type_definitions;
+    
+  public:
+    MetaFactory();
+    ~MetaFactory();
+
+    /// adds to composers array
+    void SLAVS_SERVER_EXPORT RegisterObjectComposer(TObjectComposer ih_composer);
+    /// unregister if needed;
+    /// use when plugin is uninstalled
+    void SLAVS_SERVER_EXPORT UnregisterComposer(TObjectComposer ih_composer);
+
+    /// register type and returns unique id that will be assigned to this type (for optimization)
+    /// names must be unique; propose to use GUIDS or <PluginName>.<TypeName> {BasePlugin.HumanObject}
+    /// use this function when your library is creator of this object
+    int SLAVS_SERVER_EXPORT RegisterType(const std::string& i_type_name);
+    /// register component and returns unique id that will be assigned to this type (for optimization)
+    /// names must be unique; propose to use GUIDS or <PluginName>.<TypeName> {BasePlugin.HumanComponent}
+    /// use this function when your library is creator of this component
+    int SLAVS_SERVER_EXPORT RegisterComponent(const std::string& i_component_name);
+
+    /// attaches to objects that was created by another library
+    /// if there is no such objects
+    int SLAVS_SERVER_EXPORT AttachToType(const std::string& i_type_name);
+    int SLAVS_SERVER_EXPORT AttachToComponent(const std::string& i_component_name);
+
+    /// validate all contracts between libraries
+    /// 1. ObjectComposer - checks if all string ids have correct int id;
+    ///                     if not throws runtime_error exception
+    void SLAVS_SERVER_EXPORT CheckContracts();
+
+    /// constructs object with all object composers which
+    /// were registered on initialization state
+    void ComposeObject(SGameObject* i_object);
+  };

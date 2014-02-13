@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Maintanance">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="SlavsBasePlugin">
+      <UniqueIdentifier>{f9f6b759-2702-4cab-955f-04f725aec4ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="SlavsBasePlugin.h">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClInclude>
+    <ClInclude Include="SlavsBasePluginAPI.h">
+      <Filter>Maintanance</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="BasePlugin.cpp">
+      <Filter>Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="SlavsBasePlugin.cpp">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
