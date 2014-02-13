@@ -1,6 +1,7 @@
 //server
 #include "ServerMain.h"
 #include "PluginSystem\DllManager.h"
+#include "PluginSystem\Plugin.h"
 //states
 #include "ServerGameState.h"
 #include "ServerGlobalState.h"
@@ -8,6 +9,8 @@
 #include "ServerWaitState.h"
 //common
 #include <Patterns/Singleton.h>
+//net
+#include <Net.h>
 //standard
 #include <ostream>
 #include <cassert>
@@ -22,18 +25,21 @@ template<> std::shared_ptr<WaitState> Singleton<WaitState>::mp_singleton = nullp
 template<> std::shared_ptr<ServerLoadGameState> Singleton<ServerLoadGameState>::mp_singleton = nullptr;
 template<> std::shared_ptr<ServerGameState> Singleton<ServerGameState>::mp_singleton = nullptr;
 
+std::shared_ptr<ServerMain> ServerMain::mh_instance= nullptr;
+
 ServerMain::ServerMain()
+  : mh_server_connection(nullptr)
+  , m_bWorking(false)
+  , mh_dll_manager(new DllManager(L"server\\plugins"))
   {
-	m_pServerConnection = NULL;
-	m_bWorking = false;
-  mh_dll_manager.reset(new DllManager(L"server\\plugins"));
+  assert (mh_instance.get() == nullptr);
+  mh_instance.reset(this);
   }
 
 ServerMain::~ServerMain()
 {
-	if(NULL != m_pServerConnection)
-		delete m_pServerConnection;
 	net::ShutdownSockets();
+  mh_instance = nullptr;
 }
 
 bool ServerMain::Initialize()
@@ -47,11 +53,11 @@ bool ServerMain::Initialize()
 		return false;
 	}
 
-	m_pServerConnection = new net::Connection(net::ProtocolId, net::TimeOut);
-	if(!m_pServerConnection->Start(net::ServerPort))
+	mh_server_connection.reset(new net::Connection(net::ProtocolId, net::TimeOut));
+	if(!mh_server_connection->Start(net::ServerPort))
 		return false;
 
-  m_pServerConnection->Listen();
+  mh_server_connection->Listen();
 	m_bWorking = true;
 	
 	//TODO: initialize list of maps
@@ -68,6 +74,7 @@ void ServerMain::Shutdown()
 {
 	Singleton<WaitState>::ReleaseIfValid();
   Singleton<GlobalServerState>::ReleaseIfValid();
+  mh_dll_manager->ReleaseLibraries();
 }
 
 void ServerMain::Update(long elapsedTime)
@@ -77,5 +84,35 @@ void ServerMain::Update(long elapsedTime)
 
 net::Connection* ServerMain::GetConnection () const
 {
-  return m_pServerConnection;
+  return mh_server_connection.get();
 }
+
+MetaFactory& ServerMain::GetMetaFactory()
+  {
+  return m_meta_factory;
+  }
+
+DllManager& ServerMain::GetDllManager()
+  {
+  return *mh_dll_manager.get();
+  }
+
+void ServerMain::RegisterPlugin(Plugin* ip_plugin)
+  {
+  m_plugins.insert(ip_plugin);
+  ip_plugin->Install();
+  ip_plugin->Initialize();
+  }
+
+void ServerMain::UnregisterPlugin(Plugin* ip_plugin)
+  {
+  m_plugins.erase(ip_plugin);
+  ip_plugin->Release();
+  ip_plugin->Uninstall();
+  }
+
+ServerMain& ServerMain::GetInstance()
+  {
+  assert (mh_instance.get());
+  return *mh_instance.get();
+  }

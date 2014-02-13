@@ -2,10 +2,8 @@
 
 #include "SlavsServerAPI.h"
 
-class SLAVS_SERVER_EXPORT IObjectFactory
-{
+class SLAVS_SERVER_EXPORT IObjectComposer
+  {
 public:
-  virtual ~IObjectFactory(){}
-
-  
-};
+  virtual ~IObjectComposer(){}  
+  };

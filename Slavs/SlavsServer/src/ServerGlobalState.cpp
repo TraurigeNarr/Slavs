@@ -3,6 +3,8 @@
 //server
 #include "ServerMain.h"
 
+#include <Net.h>
+
 GlobalServerState::GlobalServerState(){}
 
 GlobalServerState::~GlobalServerState(){}

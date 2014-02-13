@@ -18,16 +18,10 @@
     <ClCompile Include="ServiceStarter.cpp">
       <Filter>Implementation</Filter>
     </ClCompile>
-    <ClCompile Include="stdsoap2.cpp">
-      <Filter>GSoapCore</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Service.h">
       <Filter>Service.Declarations</Filter>
-    </ClInclude>
-    <ClInclude Include="stdsoap2.h">
-      <Filter>GSoapCore</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

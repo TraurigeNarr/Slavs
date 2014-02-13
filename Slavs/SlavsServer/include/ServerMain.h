@@ -3,19 +3,42 @@
 
 #include "SlavsServerAPI.h"
 
-#include <Net.h>
+#include "PluginSystem/MetaFactory.h"
 #include <Patterns/StateMachine.h>
 
 #include <memory>
+#include <set>
 
 //////////////////////////////////////////////////////////////////////////
 
 class DllManager;
+class Plugin;
+
+namespace net
+  {
+  class Connection;
+  }
 
 class SLAVS_SERVER_EXPORT ServerMain
 {
 private:
+  static std::shared_ptr<ServerMain> mh_instance;
+
+  ServerMain(const ServerMain& i_other);
+  ServerMain& operator = (const ServerMain& i_other);
+
+private:
+  typedef std::set<Plugin*> TPlugins;
+
+private:
+  std::unique_ptr<net::Connection> mh_server_connection;
+  bool m_bWorking;
+
+  StateMachine<ServerMain, long> *m_pFSM;
+
   std::unique_ptr<DllManager> mh_dll_manager;
+  MetaFactory m_meta_factory;
+  TPlugins m_plugins;
 
 public:
 	ServerMain();
@@ -31,11 +54,15 @@ public:
 	net::Connection* GetConnection() const;
 	StateMachine<ServerMain, long>* GetFSM() const { return m_pFSM; }
 	bool FromGame;
-private:
-	net::Connection *m_pServerConnection;
-	bool m_bWorking;
 
-	StateMachine<ServerMain, long> *m_pFSM;
+//////////////////////////////////////////////////////////////////////////
+  MetaFactory& GetMetaFactory();
+  DllManager&  GetDllManager();
+
+  void RegisterPlugin(Plugin* ip_plugin);
+  void UnregisterPlugin(Plugin* ip_plugin);
+
+  static ServerMain& GetInstance();
 };
 
 #endif

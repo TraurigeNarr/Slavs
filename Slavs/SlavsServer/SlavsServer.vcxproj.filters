@@ -75,9 +75,6 @@
     <Filter Include="Source Files\AI\Goals\goal evaluation">
       <UniqueIdentifier>{0a998a2b-7a47-42a5-95fb-22e381c9f9c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Maintanance">
-      <UniqueIdentifier>{baba13e0-9f2e-48fa-9286-43e2aa45bc30}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Game\Management">
       <UniqueIdentifier>{d4a057e8-55a5-45ff-9c4d-cf1f385f21fb}</UniqueIdentifier>
     </Filter>
@@ -90,11 +87,14 @@
     <Filter Include="PluginSystem">
       <UniqueIdentifier>{510240a3-2fc9-431d-b2ca-60323d921c70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Factories">
+      <UniqueIdentifier>{58e0c89f-f856-430e-9937-78b06c19d46e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Maintanance">
+      <UniqueIdentifier>{baba13e0-9f2e-48fa-9286-43e2aa45bc30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\SlavsServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ServerLoadGameState.cpp">
       <Filter>Source Files\Server States</Filter>
     </ClCompile>
@@ -214,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="src\ServerMain.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PluginSystem\MetaFactory.cpp">
+      <Filter>Factories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -344,7 +347,7 @@
       <Filter>Header Files\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="include\SlavsServerAPI.h">
-      <Filter>Header Files\Maintanance</Filter>
+      <Filter>Maintanance</Filter>
     </ClInclude>
     <ClInclude Include="include\AIController.h">
       <Filter>Header Files\Controllers</Filter>
@@ -411,6 +414,12 @@
     </ClInclude>
     <ClInclude Include="include\ServerMain.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\MetaFactory.h">
+      <Filter>Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\IObjectComposer.h">
+      <Filter>Factories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
