@@ -156,3 +156,8 @@ void SGameObject::AddComponent(const TiXmlElement* componentElement, Vector2D *e
 		m_iFlags |= c_t_building;
 	}
 }
+
+void SGameObject::AddComponent(IComponent* ip_component)
+  {
+  m_components.push_back(ip_component);
+  }

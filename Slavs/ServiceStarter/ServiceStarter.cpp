@@ -16,9 +16,14 @@ int main(int argc, _TCHAR* argv[])
   {
   new ServerMain;
   ServerMain& server = ServerMain::GetInstance();
+
+  // load libraries
   server.GetDllManager().LoadLib(L"SlavsBasePlugin");
+
+
   try
     {
+    // initialize
     if(!server.Initialize())
       {
       throw std::runtime_error("Failed to initialize server.");

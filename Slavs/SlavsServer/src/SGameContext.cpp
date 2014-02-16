@@ -120,7 +120,7 @@ void SGameContext::AddDynamicObject(SDynamicObjCom *const dynamicObj)
 }
 
 SGameObject* SGameContext::AddObject(int oType, const Vector2D &position, IController* owner /* = NULL */, QueryMask qm /* = QM_ALL */)
-{
+  {
 	SGameObject *newObject = NULL;
 	std::map<int, ObjectConfiguration*>::const_iterator iter = m_mObjectsInformation.find(oType);
 	if(m_mObjectsInformation.end() != iter)
@@ -132,7 +132,7 @@ SGameObject* SGameContext::AddObject(int oType, const Vector2D &position, IContr
 		++lID;
 	}
 	return newObject;
-}
+  }
 
 void SGameContext::RemoveObject(SGameObject* gameObject)
 {

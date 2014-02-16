@@ -56,14 +56,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;SLAVS_BASEPLUGIN_EXPORTING;_DEBUG;_WINDOWS;_USRDLL;BASEPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SlavsServer;$(SolutionDir)\Common\;$(SolutionDir)\SlavsServer\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\SlavsServer;$(SolutionDir)\Common\;$(SolutionDir)\SlavsServer\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SlavsServer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);$(THIRD_PARTIES)\tinyxml\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SlavsServer.lib;tinyxml.lib;Common_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -74,15 +74,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;SLAVS_BASEPLUGIN_EXPORTING;NDEBUG;_WINDOWS;_USRDLL;BASEPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SlavsServer;$(SolutionDir)\Common\;$(SolutionDir)\SlavsServer\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\SlavsServer;$(SolutionDir)\Common\;$(SolutionDir)\SlavsServer\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SlavsServer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);$(THIRD_PARTIES)\tinyxml\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SlavsServer.lib;tinyxml.lib;Common.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -90,14 +90,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObjectComposer.h" />
+    <ClInclude Include="HumanComponent.h" />
+    <ClInclude Include="IComponentSerializer.h" />
+    <ClInclude Include="ObjectSettings.h" />
     <ClInclude Include="SlavsBasePlugin.h" />
     <ClInclude Include="SlavsBasePluginAPI.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Types.h" />
+    <ClInclude Include="TypeEnumerations.h" />
+    <ClInclude Include="TypeNames.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObjectComposer.cpp" />
     <ClCompile Include="BasePlugin.cpp" />
+    <ClCompile Include="HumanComponent.cpp" />
+    <ClCompile Include="ObjectSettings.cpp" />
     <ClCompile Include="SlavsBasePlugin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

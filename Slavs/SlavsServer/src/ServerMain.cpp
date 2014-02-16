@@ -66,7 +66,6 @@ bool ServerMain::Initialize()
  	new Singleton<GlobalServerState>(new GlobalServerState());
  	m_pFSM->SetGlobalState(Singleton<GlobalServerState>::GetInstancePtr());
 	m_pFSM->SetCurrentState(Singleton<WaitState>::GetInstancePtr());
-
 	return true;
 }
 
@@ -101,7 +100,16 @@ void ServerMain::RegisterPlugin(Plugin* ip_plugin)
   {
   m_plugins.insert(ip_plugin);
   ip_plugin->Install();
-  ip_plugin->Initialize();
+  try
+    {
+    ip_plugin->Initialize();
+    }
+  catch (std::invalid_argument& except)
+    {
+    std::cout << ip_plugin->GetName() << " can not be initialized." << std::endl;
+    m_plugins.erase(ip_plugin);
+    ip_plugin->Uninstall();
+    }
   }
 
 void ServerMain::UnregisterPlugin(Plugin* ip_plugin)

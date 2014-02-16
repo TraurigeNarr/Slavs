@@ -42,6 +42,8 @@ class SLAVS_SERVER_EXPORT SGameObject : public IGameObject
 	  virtual bool	ProcessCommand(const CommandData& cData);
 	  virtual bool	HandleMessage(const Telegram& msg);
 	  bool			    HasComponent(component_type c_t) const { return (m_iFlags & c_t) == c_t; }
+    /// takes ownage of component
+    void          AddComponent (IComponent* ip_component);
   protected:
 	  void			ParseElement(const TiXmlElement* configElement, Vector2D *extraData);
 	  void			AddComponent(const TiXmlElement* componentElement, Vector2D *extraData);

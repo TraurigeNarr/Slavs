@@ -8,6 +8,9 @@
     <Filter Include="SlavsBasePlugin">
       <UniqueIdentifier>{f9f6b759-2702-4cab-955f-04f725aec4ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{e95e7388-d949-4472-b211-c12f27093452}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -25,8 +28,20 @@
     <ClInclude Include="BaseObjectComposer.h">
       <Filter>SlavsBasePlugin</Filter>
     </ClInclude>
-    <ClInclude Include="Types.h">
+    <ClInclude Include="ObjectSettings.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeNames.h">
       <Filter>SlavsBasePlugin</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeEnumerations.h">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IComponentSerializer.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -41,6 +56,12 @@
     </ClCompile>
     <ClCompile Include="BaseObjectComposer.cpp">
       <Filter>SlavsBasePlugin</Filter>
+    </ClCompile>
+    <ClCompile Include="HumanComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectSettings.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

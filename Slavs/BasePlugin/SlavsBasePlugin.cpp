@@ -6,12 +6,16 @@
 #include <ServerMain.h>
 #include <PluginSystem/MetaFactory.h>
 
+#include <Utilities/FileUtilities.h>
+#include <Utilities/XmlUtilities.h>
+
 #include <string>
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////////
 
-const std::string PLUGIN_NAME = "SlavsBasePlugin";
+const std::string PLUGIN_NAME               = "SlavsBasePlugin";
+const std::string PLUGIN_CONFIGURATION_FILE = "server\\configs\\SlavsBasePlugin.xml";
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -42,6 +46,26 @@ void SlavsBasePlugin::Initialize()
   {
   std::cout << "Plugin: " << PLUGIN_NAME << " initialized." << std::endl;
   ServerMain::GetInstance().GetMetaFactory().RegisterObjectComposer(mh_object_composer);  
+
+
+  TiXmlDocument document;
+
+  if(!XmlUtilities::LoadXmlDocument(FileUtilities::JoinPath(FileUtilities::GetApplicationDirectory(), PLUGIN_CONFIGURATION_FILE), document))
+    throw std::invalid_argument("Can not load file");
+  
+  const TiXmlElement* p_root = document.RootElement();
+
+  std::string element_name = "";
+  const TiXmlElement* p_child = 0;
+
+  while ((p_child = XmlUtilities::IterateChildElements(p_root, p_child)))
+    {
+    element_name = p_child->Value();
+    if (element_name == "Composer")
+      {
+      mh_object_composer->Initialize(*p_child);
+      }
+    }
   }
 
 /// performs logical releasing 
