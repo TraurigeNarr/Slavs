@@ -14,4 +14,11 @@ class SLAVS_SERVER_EXPORT IObjectComposer
     virtual void ComposeObject (SGameObject* ip_object) = 0;
     virtual bool Supports (int i_object_type) = 0;
 
+    /// call this before using composer
+    /// register set of types and components in global factory
+    virtual void DeclareSupportedTypes() = 0;
+
+    /// checks if all dependencies were registered in system
+    /// checks that all types are registered correctly
+    virtual bool CheckContracts() const = 0;
   };

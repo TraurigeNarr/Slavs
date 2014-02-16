@@ -1,10 +1,16 @@
 #pragma once
 
 #include <PluginSystem/Plugin.h>
+
+#include <memory>
 #include <string>
+
+class BaseObjectComposer;
 
 class SlavsBasePlugin : public Plugin
   {
+  std::shared_ptr<BaseObjectComposer> mh_object_composer;
+
   public:
     SlavsBasePlugin ();
     virtual ~SlavsBasePlugin();

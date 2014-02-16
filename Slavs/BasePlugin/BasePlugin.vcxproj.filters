@@ -22,6 +22,12 @@
     <ClInclude Include="SlavsBasePluginAPI.h">
       <Filter>Maintanance</Filter>
     </ClInclude>
+    <ClInclude Include="BaseObjectComposer.h">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -31,6 +37,9 @@
       <Filter>Maintanance</Filter>
     </ClCompile>
     <ClCompile Include="SlavsBasePlugin.cpp">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseObjectComposer.cpp">
       <Filter>SlavsBasePlugin</Filter>
     </ClCompile>
   </ItemGroup>

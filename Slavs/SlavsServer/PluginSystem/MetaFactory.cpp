@@ -31,7 +31,10 @@ void MetaFactory::RegisterObjectComposer(TObjectComposer ih_composer)
   {
   TObjectComposers::iterator it = std::find(m_object_composers.begin(), m_object_composers.end(), ih_composer);
   if (it == m_object_composers.end())
+    {
     m_object_composers.push_back(ih_composer);
+    ih_composer->DeclareSupportedTypes();
+    }
   }
 
 void MetaFactory::UnregisterComposer(TObjectComposer ih_composer)
@@ -66,7 +69,7 @@ int MetaFactory::RegisterType(const std::string& i_type_name)
     }
   else
     {
-    assert ("<RegisterType>: " + i_type_name + " is already existing");
+    assert ("<RegisterType>: type is already existing");
     //print something to log
     }
 
@@ -88,7 +91,7 @@ int MetaFactory::RegisterComponent(const std::string& i_component_name)
     }
   else
     {
-    assert ("<RegisterComponent>: " + i_component_name + " is already existing");
+    assert ("<RegisterComponent> component is already existing");
     //print something to log
     }
 
@@ -117,4 +120,13 @@ int MetaFactory::AttachToComponent(const std::string& i_component_name)
     {
     return m_type_definitions[i_component_name] = m_next_definitions_id++;
     }
+  }
+
+void MetaFactory::CheckContracts()
+  {
+  std::for_each(m_object_composers.begin(), m_object_composers.end(), [](TObjectComposer ih_composer)
+    {
+    if (!ih_composer->CheckContracts())
+      throw std::runtime_error("Bad contract");
+    });
   }

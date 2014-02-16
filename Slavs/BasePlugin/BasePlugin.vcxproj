@@ -89,11 +89,14 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseObjectComposer.h" />
     <ClInclude Include="SlavsBasePlugin.h" />
     <ClInclude Include="SlavsBasePluginAPI.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseObjectComposer.cpp" />
     <ClCompile Include="BasePlugin.cpp" />
     <ClCompile Include="SlavsBasePlugin.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -1,8 +1,13 @@
 #include "stdafx.h"
 
 #include "SlavsBasePlugin.h"
+#include "BaseObjectComposer.h"
+
+#include <ServerMain.h>
+#include <PluginSystem/MetaFactory.h>
 
 #include <string>
+#include <iostream>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -28,23 +33,27 @@ std::string SlavsBasePlugin::GetName() const
 /// performs memory and resources allocations
 void SlavsBasePlugin::Install()
   {
-  printf ("\ninstalled\n");
+  std::cout << "Plugin: " << PLUGIN_NAME << " installed." << std::endl;
+  mh_object_composer.reset(new BaseObjectComposer);
   }
 
 /// performs logical initialization based on allocated resources
 void SlavsBasePlugin::Initialize()
   {
-  printf ("\ninitialized\n");
+  std::cout << "Plugin: " << PLUGIN_NAME << " initialized." << std::endl;
+  ServerMain::GetInstance().GetMetaFactory().RegisterObjectComposer(mh_object_composer);  
   }
 
 /// performs logical releasing 
 void SlavsBasePlugin::Release()
   {
-  printf ("\nreleased\n");
+  std::cout << "Plugin: " << PLUGIN_NAME << " released." << std::endl;
+  ServerMain::GetInstance().GetMetaFactory().UnregisterComposer(mh_object_composer);  
   }
 
 /// performs memory and resources deletion
 void SlavsBasePlugin::Uninstall()
   {
-  printf ("\nuninstalled\n");
+  std::cout << "Plugin: " << PLUGIN_NAME << " uninstalled." << std::endl;
+  mh_object_composer = nullptr;
   }
