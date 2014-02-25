@@ -15,6 +15,10 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>BasePlugin</RootNamespace>
     <ProjectName>SlavsBasePlugin</ProjectName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -56,7 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;SLAVS_BASEPLUGIN_EXPORTING;_DEBUG;_WINDOWS;_USRDLL;BASEPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SlavsServer;$(SolutionDir)\Common\;$(SolutionDir)\SlavsServer\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(SolutionDir)\SlavsServer;$(SolutionDir)\Common\;$(SolutionDir)\SlavsServer\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
@@ -74,7 +78,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;SLAVS_BASEPLUGIN_EXPORTING;NDEBUG;_WINDOWS;_USRDLL;BASEPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SlavsServer;$(SolutionDir)\Common\;$(SolutionDir)\SlavsServer\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(SolutionDir)\SlavsServer;$(SolutionDir)\Common\;$(SolutionDir)\SlavsServer\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -90,11 +94,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObjectComposer.h" />
+    <ClInclude Include="DynamicObjectComponent.h" />
     <ClInclude Include="HumanComponent.h" />
     <ClInclude Include="IComponentSerializer.h" />
+    <ClInclude Include="IMovementStrategy.h" />
     <ClInclude Include="ObjectSettings.h" />
     <ClInclude Include="SlavsBasePlugin.h" />
     <ClInclude Include="SlavsBasePluginAPI.h" />
+    <ClInclude Include="StaticObjectComponent.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TypeEnumerations.h" />
     <ClInclude Include="TypeNames.h" />
@@ -102,9 +109,11 @@
   <ItemGroup>
     <ClCompile Include="BaseObjectComposer.cpp" />
     <ClCompile Include="BasePlugin.cpp" />
+    <ClCompile Include="DynamicObjectComponent.cpp" />
     <ClCompile Include="HumanComponent.cpp" />
     <ClCompile Include="ObjectSettings.cpp" />
     <ClCompile Include="SlavsBasePlugin.cpp" />
+    <ClCompile Include="StaticObjectComponent.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

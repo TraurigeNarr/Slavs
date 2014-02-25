@@ -1,8 +1,11 @@
 #pragma once
 
+#include "IComponentSerializer.h"
+
 #include <Game/IComponent.h>
 
-#include "IComponentSerializer.h"
+#include <SlavsServer/GameObject.h>
+#include <SlavsServer/include/Types.h>
 
 namespace BasePlugin
   {
@@ -21,7 +24,7 @@ namespace BasePlugin
       size_t m_die_if_no_eat;
 
     public:
-                    HumanComponent();
+                    HumanComponent(Slavs::TGameObject ih_owner);
       virtual       ~HumanComponent();
 
       virtual void	TickPerformed() override;
@@ -30,8 +33,6 @@ namespace BasePlugin
       virtual void	GetState(GameObjectState& i_state) const override;
 
       virtual bool	Probe() override;
-
-      static std::string ComponentName;
     };
 
   class HumanComponentSerializer : public IComponentSerializer
@@ -44,8 +45,8 @@ namespace BasePlugin
     public:
       HumanComponentSerializer();
       ~HumanComponentSerializer();
-      virtual void Parse(const TiXmlElement& i_configuration_node) override;
 
+      virtual void Parse(const TiXmlElement& i_configuration_node) override;
       virtual void ApplyTo(IComponent& i_component) override;
     };
   }

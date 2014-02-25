@@ -10,7 +10,6 @@
 
 class EmployerInformation;
 class GameResourceBox;
-class GeneralResourceInfo;
 class Goverment;
 class IController;
 class IEconomyManager;
@@ -24,10 +23,13 @@ class SGameObject;
 class SHouseComponent;
 class SHumanComponent;
 class SStoreHouseCom;
+struct GeneralResourceInfo;
 
 namespace Slavs
 {
-  typedef std::shared_ptr<SGameObject>            TGameObject;
+  class GameObject;
+  //////////////////////////////////////////////////////////////////////////
+  typedef GameObject*                             TGameObject;
   typedef std::shared_ptr<IEconomyManager>        TEconomy;
   typedef std::shared_ptr<IMilitaryManager>       TMilitary;
   typedef std::shared_ptr<IRelashionshipsManager> TRelashionships;
@@ -46,6 +48,7 @@ namespace Slavs
   typedef std::vector<SStoreHouseCom*>            TStoreHouses;
   typedef std::vector<SHumanComponent*>           THumans;
   typedef std::vector<const EmployerInformation*> TEmployersInformation;
+    typedef std::map<long, GameObject*>           TObjectsMap;
   typedef std::map<GameResourceType,GeneralResourceInfo> TReourcesInformation;
 
 }

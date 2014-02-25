@@ -31,6 +31,38 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientSide", "ClientSide", "{68FAFE33-049F-459B-AE6F-5BBFFB8B6139}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://shcherbina.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SlavsClient\\SlavsClient.vcxproj
+		SccProjectTopLevelParentUniqueName1 = Slavs.sln
+		SccProjectName1 = SlavsClient
+		SccLocalPath1 = SlavsClient
+		SccProjectUniqueName2 = Common\\Common.vcxproj
+		SccProjectName2 = Common
+		SccLocalPath2 = Common
+		SccProjectUniqueName3 = SlavsServer\\SlavsServer.vcxproj
+		SccProjectTopLevelParentUniqueName3 = Slavs.sln
+		SccProjectName3 = SlavsServer
+		SccLocalPath3 = SlavsServer
+		SccProjectUniqueName4 = Network\\Network.vcxproj
+		SccProjectName4 = Network
+		SccLocalPath4 = Network
+		SccProjectUniqueName5 = OutputData\\OutputData.vcxproj
+		SccProjectTopLevelParentUniqueName5 = Slavs.sln
+		SccProjectName5 = OutputData
+		SccLocalPath5 = OutputData
+		SccProjectUniqueName6 = ServiceStarter\\ServiceStarter.vcxproj
+		SccProjectTopLevelParentUniqueName6 = Slavs.sln
+		SccProjectName6 = ServiceStarter
+		SccLocalPath6 = ServiceStarter
+		SccProjectUniqueName7 = BasePlugin\\BasePlugin.vcxproj
+		SccProjectTopLevelParentUniqueName7 = Slavs.sln
+		SccProjectName7 = BasePlugin
+		SccLocalPath7 = BasePlugin
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
@@ -69,11 +101,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8DC453EC-219A-4208-885D-216E87CE808C} = {0D88E7F7-3DA4-400B-B3B0-8B96639F569D}
-		{0D88E7F7-3DA4-400B-B3B0-8B96639F569D} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
-		{50DB7E14-9624-4A56-93D6-665BCEEA02A6} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
-		{F95DE44F-C82D-46A7-96D9-23C5BE12BF3B} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
-		{A72FD430-58A6-4564-B40A-4100DE356C9E} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{76567829-EE87-4F64-BC2F-0297DA8F8BAC} = {68FAFE33-049F-459B-AE6F-5BBFFB8B6139}
+		{F95DE44F-C82D-46A7-96D9-23C5BE12BF3B} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
+		{50DB7E14-9624-4A56-93D6-665BCEEA02A6} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
+		{0D88E7F7-3DA4-400B-B3B0-8B96639F569D} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
+		{A72FD430-58A6-4564-B40A-4100DE356C9E} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
+		{8DC453EC-219A-4208-885D-216E87CE808C} = {0D88E7F7-3DA4-400B-B3B0-8B96639F569D}
 	EndGlobalSection
 EndGlobal

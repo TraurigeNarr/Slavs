@@ -14,7 +14,7 @@ public:
   static bool					              LoadXmlDocument(const std::string& i_file_name, TiXmlDocument& io_document);
   static const TiXmlElement*	      IterateChildElements(const TiXmlElement* i_parent_element, const TiXmlElement* i_child_element);
 
-	static std::pair<double, double>  GetXY(const TiXmlElement* i_xml_element);
+	static std::pair<float, float>    GetXY(const TiXmlElement* i_xml_element);
   static float				              GetRealAttribute(const TiXmlElement* i_xml_element, const char* i_name, float i_default_value = .0f);
 	static std::string	              GetStringAttribute(const TiXmlElement* i_xml_element, const char* i_name);
 	static std::string	              GetStringAttribute(const TiXmlElement* i_xml_element, const char* i_name, const char* i_default_value);

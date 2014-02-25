@@ -6,6 +6,7 @@
 
 //types
 #include "HumanComponent.h"
+#include "StaticObjectComponent.h"
 
 #include <Utilities/XmlUtilities.h>
 
@@ -20,7 +21,8 @@ namespace
     {
     if (i_type == BasePlugin::Component_Human)
       return new BasePlugin::HumanComponent::TSerializer();
-
+    if (i_type == BasePlugin::Component_Static)
+      return new BasePlugin::StaticObjectComponent::TSerializer();
     return nullptr;
     }
   }

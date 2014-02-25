@@ -2,7 +2,10 @@
 
 #include "SlavsServerAPI.h"
 
-class SGameObject;
+namespace Slavs
+  {
+  class GameObject;
+  }
 
 class SLAVS_SERVER_EXPORT IObjectComposer
   {
@@ -11,7 +14,7 @@ class SLAVS_SERVER_EXPORT IObjectComposer
 
     /// add components to game object
     /// @param ip_object - created object (memory must be allocated)
-    virtual void ComposeObject (SGameObject* ip_object) = 0;
+    virtual void ComposeObject (Slavs::GameObject* ip_object) = 0;
     virtual bool Supports (int i_object_type) = 0;
 
     /// call this before using composer

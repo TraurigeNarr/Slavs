@@ -5,7 +5,7 @@
 #include "TypeEnumerations.h"
 #include "ObjectSettings.h"
 
-#include <SGameObject.h>
+#include <GameObject.h>
 
 #include <Utilities/XmlUtilities.h>
 
@@ -22,7 +22,6 @@ namespace
       {
       return BasePlugin::ObjectType::OT_HUMAN;
       }
-
     return BasePlugin::ObjectType::OT_NONE;
     }
   } // namespace
@@ -39,14 +38,14 @@ BaseObjectComposer::~BaseObjectComposer()
 
   }
 
-void BaseObjectComposer::ComposeObject(SGameObject* ip_object)
+void BaseObjectComposer::ComposeObject(Slavs::GameObject* ip_object)
   {
   
   }
 
 bool BaseObjectComposer::Supports(int i_object_type)
   {
-  return false;
+  return m_object_settings.find(static_cast<BasePlugin::ObjectType>(i_object_type)) != m_object_settings.end();
   }
 
 void BaseObjectComposer::DeclareSupportedTypes()
@@ -61,6 +60,8 @@ void BaseObjectComposer::DeclareSupportedTypes()
   // register components
   global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Human));
   m_components_map[global_type_id] = BasePlugin::ComponentType::CT_HUMAN;
+  global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Static));
+  m_components_map[global_type_id] = BasePlugin::ComponentType::CT_STATIC_OBJECT;
   }
 
 bool BaseObjectComposer::CheckContracts() const

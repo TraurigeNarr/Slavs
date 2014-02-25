@@ -93,6 +93,12 @@
     <Filter Include="Maintanance">
       <UniqueIdentifier>{baba13e0-9f2e-48fa-9286-43e2aa45bc30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{e168f3f6-c43c-4d14-9559-b6233b5f38e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{118352b7-29fd-4be5-96a5-50bf688c78a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ServerLoadGameState.cpp">
@@ -217,6 +223,15 @@
     </ClCompile>
     <ClCompile Include="PluginSystem\MetaFactory.cpp">
       <Filter>Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="GameContext.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSerializer.cpp">
+      <Filter>IO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -417,6 +432,15 @@
     </ClInclude>
     <ClInclude Include="PluginSystem\IObjectComposer.h">
       <Filter>Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="GameContext.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSerializer.h">
+      <Filter>IO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

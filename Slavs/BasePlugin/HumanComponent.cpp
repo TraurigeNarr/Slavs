@@ -53,10 +53,9 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Human Component
 
-  std::string HumanComponent::ComponentName = "Human";
-
-  HumanComponent::HumanComponent()
-    : m_needed_calories(0)
+  HumanComponent::HumanComponent(Slavs::TGameObject ih_owner)
+    : IComponent(ih_owner)
+    , m_needed_calories(0)
     {
 
     }
@@ -73,7 +72,7 @@ namespace BasePlugin
 
   bool HumanComponent::HandleMessage(const Telegram& msg)
     {
-    return true;
+    return false;
     }
 
   void HumanComponent::GetState(GameObjectState& i_state) const

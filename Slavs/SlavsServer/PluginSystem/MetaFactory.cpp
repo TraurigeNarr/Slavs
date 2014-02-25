@@ -1,7 +1,7 @@
 #include "MetaFactory.h"
 
 #include "IObjectComposer.h"
-#include "SGameObject.h"
+#include "GameObject.h"
 
 #include <algorithm>
 #include <cassert>
@@ -42,17 +42,41 @@ void MetaFactory::UnregisterComposer(TObjectComposer ih_composer)
   std::remove(m_object_composers.begin(), m_object_composers.end(), ih_composer);
   }
 
-void MetaFactory::ComposeObject(SGameObject* iop_object)
+bool MetaFactory::ComposeObject(Slavs::GameObject* iop_object)
   {
   int object_type = iop_object->GetType();
-
-  std::for_each (m_object_composers.begin(), m_object_composers.end(), [iop_object, object_type](TObjectComposer h_object_composer)
+  bool composed = false;
+  std::for_each (m_object_composers.begin(), m_object_composers.end(), [&composed, iop_object, object_type](TObjectComposer h_object_composer)
     {
     if (h_object_composer->Supports(object_type))
+      {
       h_object_composer->ComposeObject(iop_object);
+      composed = true;
+      }
     });
+  return composed;
   }
 
+bool MetaFactory::SupportObject(int i_type) const
+  {
+  bool support = false;
+  std::for_each (m_object_composers.begin(), m_object_composers.end(), [&support, i_type](TObjectComposer h_object_composer)
+    {
+    support |= h_object_composer->Supports(i_type);
+    });
+  return support;
+  }
+
+bool MetaFactory::SupportObject(const std::string& i_type) const
+  {
+  return m_type_definitions.find(i_type) != m_type_definitions.end();
+  }
+
+int MetaFactory::GetObjectID(const std::string& i_type) const
+  {
+  auto id_it = m_type_definitions.find(i_type);
+  return id_it == m_type_definitions.end() ? -1 : (*id_it).second;
+  }
 
 int MetaFactory::RegisterType(const std::string& i_type_name)
   {

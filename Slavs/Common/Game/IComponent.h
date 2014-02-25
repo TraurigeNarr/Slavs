@@ -11,9 +11,15 @@ class IGameObject;
 
 class /*COMMON_EXPORT*/ IComponent
 {
+protected:
+  IGameObject* mp_owner;
+
 public:
 					    IComponent(){}
+              IComponent(IGameObject* ip_owner) : mp_owner(ip_owner) {}
 	virtual			~IComponent(){}
+
+  IGameObject*  GetOwner() { return mp_owner; }
 
 	virtual void	TickPerformed(){}
 	virtual bool	HandleMessage(const Telegram& msg) = 0;

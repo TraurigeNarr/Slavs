@@ -9,6 +9,7 @@ namespace BasePlugin
   }
 
 class ObjectSettings;
+class TiXmlElement;
 
 class BaseObjectComposer : public IObjectComposer
   {
@@ -25,7 +26,7 @@ class BaseObjectComposer : public IObjectComposer
     BaseObjectComposer();
     virtual ~BaseObjectComposer();
 
-    virtual void ComposeObject (SGameObject* ip_object) override;
+    virtual void ComposeObject (Slavs::GameObject* ip_object) override;
     virtual bool Supports (int i_object_type) override;
 
     virtual void DeclareSupportedTypes() override;

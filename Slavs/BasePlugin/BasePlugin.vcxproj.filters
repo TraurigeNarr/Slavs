@@ -11,6 +11,12 @@
     <Filter Include="Components">
       <UniqueIdentifier>{e95e7388-d949-4472-b211-c12f27093452}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\Base">
+      <UniqueIdentifier>{254125ef-1138-4b7c-a406-7979786b068f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\Movement">
+      <UniqueIdentifier>{31c8d060-9eac-4a74-82a6-27db8865abb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -28,9 +34,6 @@
     <ClInclude Include="BaseObjectComposer.h">
       <Filter>SlavsBasePlugin</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectSettings.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="TypeNames.h">
       <Filter>SlavsBasePlugin</Filter>
     </ClInclude>
@@ -40,8 +43,20 @@
     <ClInclude Include="HumanComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectSettings.h">
+      <Filter>Components\Base</Filter>
+    </ClInclude>
     <ClInclude Include="IComponentSerializer.h">
-      <Filter>Components</Filter>
+      <Filter>Components\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObjectComponent.h">
+      <Filter>Components\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObjectComponent.h">
+      <Filter>Components\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="IMovementStrategy.h">
+      <Filter>Components\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -61,7 +76,13 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="ObjectSettings.cpp">
-      <Filter>Components</Filter>
+      <Filter>Components\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObjectComponent.cpp">
+      <Filter>Components\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObjectComponent.cpp">
+      <Filter>Components\Movement</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

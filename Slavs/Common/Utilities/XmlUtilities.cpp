@@ -44,9 +44,9 @@ const TiXmlElement* XmlUtilities::IterateChildElements(const TiXmlElement* i_par
   return nullptr;
 }
 
-std::pair<double, double> XmlUtilities::GetXY(const TiXmlElement* i_xml_element)
+std::pair<float, float> XmlUtilities::GetXY(const TiXmlElement* i_xml_element)
 {
-	std::pair<double, double> xy;
+	std::pair<float, float> xy;
   xy.first = GetRealAttribute(i_xml_element, "x", 0.0);
 	xy.second = GetRealAttribute(i_xml_element, "y", 0.0);
 

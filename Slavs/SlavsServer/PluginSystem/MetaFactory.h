@@ -11,8 +11,11 @@
 //////////////////////////////////////////////////////////////////////////
 
 class IObjectComposer;
-class SGameObject;
-class SGameContext;
+
+namespace Slavs
+  {
+  class GameObject;
+  }
 
 /*
 Base factory for other factories that are specific for 
@@ -83,5 +86,15 @@ class MetaFactory : boost::noncopyable
 
     /// constructs object with all object composers which
     /// were registered on initialization state
-    void ComposeObject(SGameObject* i_object);
+    /// returns true if at least one composer supports object type
+    bool ComposeObject(Slavs::GameObject* i_object);
+
+    /// return true if at least one composer supports object type
+    bool SupportObject(int i_type) const;
+    /// return true if object with such type is registered
+    bool SupportObject(const std::string& i_type) const;
+    /// returns global id of object if such type name was registered
+    /// in this factory
+    /// -1 otherwise
+    int  GetObjectID(const std::string& i_type) const;
   };

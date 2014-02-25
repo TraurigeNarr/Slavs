@@ -12,7 +12,8 @@ namespace BasePlugin
   enum class ComponentType : char
     {
     CT_NONE,
-    CT_HUMAN,
-    CT_MANUFACTURE
+    CT_STATIC_OBJECT,
+    CT_DYNAMIC_OBJECT,
+    CT_HUMAN
     };
   }
