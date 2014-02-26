@@ -23,7 +23,7 @@ namespace BasePlugin
     {
 #ifdef _DEBUG
     std::string elementName = "";
-    elementName = i_configuration_node.Value();
+    elementName = XmlUtilities::GetStringAttribute(&i_configuration_node, "type", "");
     assert (elementName == Component_Dynamic);
 #endif
     m_bounding_box_radius = XmlUtilities::GetRealAttribute(&i_configuration_node, "bbox_radius", 10.f);
@@ -32,7 +32,7 @@ namespace BasePlugin
     m_maximum_turnrate    = XmlUtilities::GetRealAttribute(&i_configuration_node, "max_turnrate", 1.f);
     }
 
-  void DynamicObjectComponentSerializer::ApplyTo(IComponent& i_component)
+  void DynamicObjectComponentSerializer::ApplyTo(IComponent& i_component) const
     {
     assert (typeid(DynamicObjectComponent) == typeid(i_component));
     DynamicObjectComponent& dynamic_object = static_cast<DynamicObjectComponent&>(i_component);
@@ -42,6 +42,14 @@ namespace BasePlugin
     dynamic_object.m_maximum_speed          = m_maximum_speed;
     dynamic_object.m_maximum_turnrate       = m_maximum_turnrate;
     }
+
+  IComponent* DynamicObjectComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
+    {
+    DynamicObjectComponent* p_dynamic = new DynamicObjectComponent(ip_object);
+    ApplyTo(*p_dynamic);
+    return p_dynamic;
+    }
+
 
   //////////////////////////////////////////////////////////////////////////
   // Dynamic Object Component

@@ -26,18 +26,26 @@ namespace BasePlugin
     {
 #ifdef _DEBUG
     std::string elementName = "";
-    elementName = i_configuration_node.Value();
+    elementName = XmlUtilities::GetStringAttribute(&i_configuration_node, "type", "");
     assert (elementName == Component_Static);
 #endif
     m_bounding_box_radius = XmlUtilities::GetRealAttribute(&i_configuration_node, "bbox_radius", 10.f);
     }
 
-  void StaticObjectComponentSerializer::ApplyTo(IComponent& i_component)
+  void StaticObjectComponentSerializer::ApplyTo(IComponent& i_component) const
     {
     assert (typeid(StaticObjectComponent) == typeid(i_component));
     StaticObjectComponent& static_object = static_cast<StaticObjectComponent&>(i_component);
     static_object.m_bounding_box_radius = m_bounding_box_radius;
     }
+
+  IComponent* StaticObjectComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
+    {
+    StaticObjectComponent* p_static = new StaticObjectComponent(ip_object);
+    ApplyTo(*p_static);
+    return p_static;
+    }
+
 
   //////////////////////////////////////////////////////////////////////////
   // Static Component

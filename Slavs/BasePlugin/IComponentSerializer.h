@@ -3,6 +3,11 @@
 class TiXmlElement;
 class IComponent;
 
+namespace Slavs
+  {
+  class GameObject;
+  }
+
 /*
 -Parse
   Parse data from i_configuration_node and stores it internally.
@@ -19,6 +24,9 @@ class IComponentSerializer
   public:
     virtual ~IComponentSerializer(){}
 
-    virtual void Parse(const TiXmlElement& i_configuration_node) = 0;
-    virtual void ApplyTo(IComponent& i_component) = 0;
+    virtual void        Parse(const TiXmlElement& i_configuration_node) = 0;
+    virtual void        ApplyTo(IComponent& i_component) const = 0;
+    /// creates component and sets ip_object as owner
+    /// return component pointer if successfull; nullptr otherwise
+    virtual IComponent* CreateComponent(Slavs::GameObject* ip_object) const = 0;
   };

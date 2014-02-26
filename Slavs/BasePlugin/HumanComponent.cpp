@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "HumanComponent.h"
+#include "TypeNames.h"
 
 #include <Utilities/XmlUtilities.h>
 
@@ -25,6 +26,12 @@ namespace BasePlugin
     {
     std::string elementName = "";
 
+#ifdef _DEBUG
+    elementName = XmlUtilities::GetStringAttribute(&i_configuration_node, "type", "");
+    assert (elementName == Component_Human);
+    elementName = "";
+#endif
+
     const TiXmlElement* childElement = 0;
     const TiXmlElement*	foodElement = 0;
 
@@ -41,13 +48,20 @@ namespace BasePlugin
       }
     }
 
-  void HumanComponentSerializer::ApplyTo(IComponent& i_component)
+  void HumanComponentSerializer::ApplyTo(IComponent& i_component) const 
     {
     assert (typeid(HumanComponent) == typeid(i_component));
     HumanComponent& human = static_cast<HumanComponent&>(i_component);
     human.m_needed_calories = m_needed_calories;
     human.m_eat_in          = m_eat_in;
     human.m_die_if_no_eat   = m_die_if_no_eat;
+    }
+
+  IComponent* HumanComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
+    {
+    HumanComponent* p_human = new HumanComponent(ip_object);
+    ApplyTo(*p_human);
+    return p_human;
     }
 
   //////////////////////////////////////////////////////////////////////////

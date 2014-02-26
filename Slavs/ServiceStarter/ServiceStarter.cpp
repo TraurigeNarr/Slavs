@@ -18,8 +18,7 @@ int main(int argc, _TCHAR* argv[])
   ServerMain& server = ServerMain::GetInstance();
 
   // load libraries
-  server.GetDllManager().LoadLib(L"SlavsBasePlugin");
-
+  server.Start("F:\\Projects\\Slavs\\Resources\\server\\StartServer.xml");
 
   try
     {

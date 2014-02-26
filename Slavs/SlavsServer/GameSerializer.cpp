@@ -22,23 +22,24 @@ namespace
     const TiXmlElement* p_child = 0;
     std::string node_name = "";
 
-    const TiXmlNode* p_owner = i_xml_node.NextSiblingElement("Owner");
+    const TiXmlNode* p_owner = i_xml_node.FirstChild("Owner");
     const TiXmlNode* p_position = i_xml_node.FirstChild("Position");
-    const TiXmlNode* p_selection_mask = i_xml_node.FirstChild("Address");
+    const TiXmlNode* p_selection_mask = i_xml_node.FirstChild("SelectionMask");
 
 #ifdef _DEBUG
     assert (p_owner);
-    assert (p_position);
-    assert (p_selection_mask);
+    assert (p_owner->FirstChild("Name"));
+    assert (p_owner->FirstChild("Address"));
+    assert (p_selection_mask->FirstChild());
 #endif
     //owner -- should be combination of name + address; can be null
-    std::string owner_name                = p_owner->FirstChild("Name")->ToText()->Value();
-    int address                           = boost::lexical_cast<int>(p_owner->FirstChild("Address")->ToText()->Value());
+    std::string owner_name                = p_owner->FirstChild("Name")->FirstChild()->Value();
+    int address                           = boost::lexical_cast<int>(p_owner->FirstChild("Address")->FirstChild()->Value());
     //position -- x and y coordinates
     float pos_x = 0.f;
     float pos_y = 0.f;
     //selection mask -- int
-    int selection_mask                    = boost::lexical_cast<int>(p_selection_mask->ToText()->Value());
+    int selection_mask                    = boost::lexical_cast<int>(p_selection_mask->FirstChild()->Value());
     
     return o_context.AddObject(i_type, Vector2D(pos_x, pos_y), nullptr, selection_mask);
     }

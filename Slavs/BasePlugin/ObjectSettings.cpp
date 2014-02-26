@@ -7,8 +7,11 @@
 //types
 #include "HumanComponent.h"
 #include "StaticObjectComponent.h"
+#include "DynamicObjectComponent.h"
 
 #include <Utilities/XmlUtilities.h>
+
+#include <GameObject.h>
 
 #include <typeinfo>
 
@@ -23,6 +26,8 @@ namespace
       return new BasePlugin::HumanComponent::TSerializer();
     if (i_type == BasePlugin::Component_Static)
       return new BasePlugin::StaticObjectComponent::TSerializer();
+    if (i_type == BasePlugin::Component_Dynamic)
+      return new BasePlugin::DynamicObjectComponent::TSerializer();
     return nullptr;
     }
   }
@@ -65,7 +70,10 @@ BasePlugin::ObjectType ObjectSettings::GetType() const
   return m_object_type;
   }
 
-const ObjectSettings::TComponents& ObjectSettings::GetComponents() const
+void ObjectSettings::SetupObject(Slavs::GameObject* ip_object) const
   {
-  return mh_component_serializers;
+  for (const TSerializer& serializer : mh_component_serializers)
+    {
+    serializer->CreateComponent(ip_object);
+    }
   }

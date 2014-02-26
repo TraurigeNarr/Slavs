@@ -54,6 +54,7 @@ bool MetaFactory::ComposeObject(Slavs::GameObject* iop_object)
       composed = true;
       }
     });
+  iop_object->ProbeComponents();
   return composed;
   }
 

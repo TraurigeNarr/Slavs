@@ -29,7 +29,7 @@ namespace Slavs
                                         , boost::noncopyable
     {
     private:
-      /// objects must have unique identificators in borders of one context
+      /// objects must have unique identifiers in borders of one context
       long m_next_object_id;
 
       std::set<GameObject*> m_dead_pool;
@@ -39,6 +39,11 @@ namespace Slavs
       ~GameContext();
 
       virtual void TickPerformed() override;
+
+      __declspec(deprecated)
+      void Init(){}
+      __declspec(deprecated)
+      void ReleaseContext(){}
 
       //returns the object that was created or NULL
       //@param i_type - what type context should create

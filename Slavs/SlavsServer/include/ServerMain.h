@@ -44,6 +44,7 @@ public:
 	ServerMain();
 	~ServerMain();
 
+  __declspec(deprecated)
 	bool Initialize();
 	void Shutdown();
 
@@ -56,13 +57,26 @@ public:
 	bool FromGame;
 
 //////////////////////////////////////////////////////////////////////////
-  MetaFactory& GetMetaFactory();
-  DllManager&  GetDllManager();
+public:
+  /// Starts server
+  /// @param i_configuration_file - absolute path to file with configurations
+  /// in file should be present information about 
+  ///   1. Port where to start
+  ///   2. Addresses of connected players
+  ///   3. Plugins which must be loaded
+  ///   4. Relative or absolute path to game name
+  bool                Start(const std::string& i_configuration_file);
+  MetaFactory&        GetMetaFactory();
+  DllManager&         GetDllManager();
 
-  void RegisterPlugin(Plugin* ip_plugin);
-  void UnregisterPlugin(Plugin* ip_plugin);
+  void                RegisterPlugin(Plugin* ip_plugin);
+  void                UnregisterPlugin(Plugin* ip_plugin);
 
-  static ServerMain& GetInstance();
+//////////////////////////////////////////////////////////////////////////
+  static ServerMain&  GetInstance();
+
+private:
+  
 };
 
 #endif

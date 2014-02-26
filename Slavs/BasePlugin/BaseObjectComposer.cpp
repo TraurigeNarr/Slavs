@@ -40,12 +40,17 @@ BaseObjectComposer::~BaseObjectComposer()
 
 void BaseObjectComposer::ComposeObject(Slavs::GameObject* ip_object)
   {
+  std::map<int, BasePlugin::ObjectType>::iterator it = m_types_map.find(ip_object->GetType());
+  assert (it != m_types_map.end());
+  std::map<BasePlugin::ObjectType, TObjectSettings>::iterator settings_it = m_object_settings.find(it->second);
+  assert (settings_it != m_object_settings.end());
   
+  settings_it->second->SetupObject(ip_object);
   }
 
 bool BaseObjectComposer::Supports(int i_object_type)
   {
-  return m_object_settings.find(static_cast<BasePlugin::ObjectType>(i_object_type)) != m_object_settings.end();
+  return m_types_map.find(i_object_type) != m_types_map.end();
   }
 
 void BaseObjectComposer::DeclareSupportedTypes()

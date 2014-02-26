@@ -46,7 +46,8 @@ namespace BasePlugin
       HumanComponentSerializer();
       ~HumanComponentSerializer();
 
-      virtual void Parse(const TiXmlElement& i_configuration_node) override;
-      virtual void ApplyTo(IComponent& i_component) override;
+      virtual void        Parse(const TiXmlElement& i_configuration_node) override;
+      virtual void        ApplyTo(IComponent& i_component) const override;
+      virtual IComponent* CreateComponent(Slavs::GameObject* ip_object) const override;
     };
   }

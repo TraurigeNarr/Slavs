@@ -4,6 +4,11 @@
 
 class TiXmlElement;
 
+namespace Slavs
+  {
+  class GameObject;
+  }
+
 namespace BasePlugin
   {
   enum class ObjectType : char;
@@ -36,6 +41,6 @@ class ObjectSettings
 
     void Initialize(BasePlugin::ObjectType i_type, const TiXmlElement& i_object_node);
 
-    BasePlugin::ObjectType GetType() const;
-    const TComponents& GetComponents() const;
+    BasePlugin::ObjectType GetType() const;    
+    void                   SetupObject(Slavs::GameObject* ip_object) const;
   };
