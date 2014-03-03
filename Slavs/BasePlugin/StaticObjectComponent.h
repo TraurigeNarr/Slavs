@@ -24,7 +24,7 @@ namespace BasePlugin
       float     m_bounding_box_radius;
 
     public:
-      StaticObjectComponent(Slavs::TGameObject ih_owner);
+      StaticObjectComponent(Slavs::TGameObject ih_owner, int i_component_id);
       ~StaticObjectComponent();
 
       void          SetPosition(const Vector2D& i_position);
@@ -42,7 +42,7 @@ namespace BasePlugin
       float m_bounding_box_radius;
 
     public:
-      StaticObjectComponentSerializer();
+      StaticObjectComponentSerializer(int i_component_id);
       ~StaticObjectComponentSerializer();
 
       virtual void        Parse(const TiXmlElement& i_configuration_node) override;

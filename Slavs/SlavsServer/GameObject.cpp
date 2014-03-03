@@ -38,6 +38,11 @@ namespace Slavs
     return mp_owner == nullptr;
     }
 
+  bool GameObject::HasComponent(int i_id) const
+    {
+    return std::find(m_components_ids.begin(), m_components_ids.end(), i_id) != m_components_ids.end();
+    }
+
  /* bool GameObject::ProcessCommand(const CommandData& cData)
     {
     return false;
@@ -48,13 +53,16 @@ namespace Slavs
 
     }*/
 
-  void GameObject::AddComponent (IComponent* ip_component)
+  void GameObject::AddComponent (std::unique_ptr<IComponent> ih_component)
     {
-
+    m_components_ids.push_back(ih_component->GetComponentID());
+    m_components.push_back(ih_component.release());
     }
   
   bool GameObject::ProbeComponents ()
     {
+    for (IComponent* ip_component : m_components)
+      ip_component->Probe();
     return true;
     }
 

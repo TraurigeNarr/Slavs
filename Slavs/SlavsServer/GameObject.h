@@ -4,6 +4,8 @@
 
 #include <Game\IGameObject.h>
 
+#include <memory>
+
 class IController;
 
 namespace Slavs
@@ -16,16 +18,20 @@ namespace Slavs
       GameContext& m_context;
       IController* mp_owner;
 
+      std::vector<int> m_components_ids;
+
     public:
       GameObject(GameContext& i_context, long i_id, int i_type, int i_selection_mask);
       ~GameObject();
 
       void          SetOwner(IController* ip_controller);
       bool          HasOwner() const;
+      /// check if component with global id "i_id" is in components collection
+      bool          HasComponent(int i_id) const;
       IController*  GetController();
 
       /// takes ownage of component
-      void          AddComponent (IComponent* ip_component);
+      void          AddComponent (std::unique_ptr<IComponent> ih_component);
       /// validate state of components
       /// each component checks its state and that all
       /// dependencies are present in object

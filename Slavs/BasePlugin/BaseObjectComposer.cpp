@@ -8,6 +8,7 @@
 #include <GameObject.h>
 
 #include <Utilities/XmlUtilities.h>
+#include <Utilities/TemplateFunctions.h>
 
 #include <ServerMain.h>
 #include <PluginSystem\MetaFactory.h>
@@ -19,9 +20,8 @@ namespace
   BasePlugin::ObjectType _GetTypeFromString(const std::string& i_type)
     {
     if (i_type == BasePlugin::Object_Human)
-      {
       return BasePlugin::ObjectType::OT_HUMAN;
-      }
+
     return BasePlugin::ObjectType::OT_NONE;
     }
   } // namespace
@@ -92,7 +92,17 @@ void BaseObjectComposer::Initialize(const TiXmlElement& i_composer_element)
     BasePlugin::ObjectType obj_type = _GetTypeFromString(object_name);
 
     if (obj_type != BasePlugin::ObjectType::OT_NONE)
-      m_object_settings[obj_type] = TObjectSettings(new ObjectSettings(obj_type, *p_child));
+      m_object_settings[obj_type] = TObjectSettings(new ObjectSettings(obj_type, *p_child, *this));
     }
 
+  }
+
+int BaseObjectComposer::GetObjectGlobalID(BasePlugin::ObjectType i_type) const
+  {
+  return FindKeyByValue<std::map<int, BasePlugin::ObjectType>, int, BasePlugin::ObjectType>(m_types_map, i_type);
+  }
+
+int BaseObjectComposer::GetComponentGlobalID(BasePlugin::ComponentType i_type) const
+  {
+  return FindKeyByValue<std::map<int, BasePlugin::ComponentType>, int, BasePlugin::ComponentType>(m_components_map, i_type);
   }

@@ -2,6 +2,7 @@
 
 #include "IComponentSerializer.h"
 
+class BaseObjectComposer;
 class TiXmlElement;
 
 namespace Slavs
@@ -33,11 +34,13 @@ class ObjectSettings
     BasePlugin::ObjectType m_object_type;
     TComponents mh_component_serializers;
 
+    const BaseObjectComposer& m_composer;
+
   public:
-    ObjectSettings ();
+    ObjectSettings (const BaseObjectComposer& i_composer);
     // construct object settings for i_type
     // parse i_object_node for getting list of components
-    ObjectSettings (BasePlugin::ObjectType i_type, const TiXmlElement& i_object_node);
+    ObjectSettings (BasePlugin::ObjectType i_type, const TiXmlElement& i_object_node, const BaseObjectComposer& i_composer);
 
     void Initialize(BasePlugin::ObjectType i_type, const TiXmlElement& i_object_node);
 

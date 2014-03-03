@@ -37,7 +37,7 @@ namespace BasePlugin
       IMovementStrategy* mp_movement_strategy;
 
     public:
-      DynamicObjectComponent(Slavs::TGameObject ih_owner);
+      DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id);
       ~DynamicObjectComponent();
 
       void          SetPosition(const Vector2D& i_position);
@@ -62,7 +62,7 @@ namespace BasePlugin
       float m_maximum_turnrate;
 
     public:
-      DynamicObjectComponentSerializer();
+      DynamicObjectComponentSerializer(int i_component_id);
       ~DynamicObjectComponentSerializer();
 
       virtual void        Parse(const TiXmlElement& i_configuration_node) override;

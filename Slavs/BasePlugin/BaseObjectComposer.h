@@ -32,5 +32,8 @@ class BaseObjectComposer : public IObjectComposer
     virtual void DeclareSupportedTypes() override;
     virtual bool CheckContracts() const override;
 
-    void Initialize(const TiXmlElement& i_composer_element);
+    void          Initialize(const TiXmlElement& i_composer_element);
+    
+    int           GetObjectGlobalID(BasePlugin::ObjectType i_type) const;
+    int           GetComponentGlobalID(BasePlugin::ComponentType i_type) const;
   };

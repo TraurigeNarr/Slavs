@@ -69,3 +69,14 @@ inline void ClearSTLMap(map& m)
 		it->second = NULL;
 	}
 }
+
+template <typename Container, typename Key, typename Value>
+Key FindKeyByValue(const Container& i_container, Value& i_value)
+  {
+  Container::const_iterator it = std::find_if(i_container.begin(), i_container.end(), [&i_value](const std::pair<Key, Value>& i_pair)
+    {
+    return i_pair.second == i_value;
+    });
+  assert (it != i_container.end());
+  return (*it).first;
+  }

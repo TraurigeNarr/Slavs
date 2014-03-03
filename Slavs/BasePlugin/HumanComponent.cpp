@@ -12,7 +12,8 @@ namespace BasePlugin
   {
   //////////////////////////////////////////////////////////////////////////
   // Human Component Serializer 
-  HumanComponentSerializer::HumanComponentSerializer()
+  HumanComponentSerializer::HumanComponentSerializer(int i_component_id)
+    : IComponentSerializer(i_component_id)
     {
 
     }
@@ -59,7 +60,7 @@ namespace BasePlugin
 
   IComponent* HumanComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
     {
-    HumanComponent* p_human = new HumanComponent(ip_object);
+    HumanComponent* p_human = new HumanComponent(ip_object, m_component_global_id);
     ApplyTo(*p_human);
     return p_human;
     }
@@ -67,8 +68,8 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Human Component
 
-  HumanComponent::HumanComponent(Slavs::TGameObject ih_owner)
-    : IComponent(ih_owner)
+  HumanComponent::HumanComponent(Slavs::TGameObject ih_owner, int i_component_id)
+    : IComponent(ih_owner, i_component_id)
     , m_needed_calories(0)
     {
 
@@ -96,7 +97,7 @@ namespace BasePlugin
 
   bool HumanComponent::Probe()
     {
-    return true;
+    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_component_id);
     }
 
   } // BasePlugin

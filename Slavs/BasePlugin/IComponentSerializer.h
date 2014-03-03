@@ -21,8 +21,11 @@ See HumanComponent as example.
 
 class IComponentSerializer
   {
+  protected:
+    int m_component_global_id;
   public:
-    virtual ~IComponentSerializer(){}
+    IComponentSerializer(int i_component_id) : m_component_global_id(i_component_id) { }
+    virtual ~IComponentSerializer() {}
 
     virtual void        Parse(const TiXmlElement& i_configuration_node) = 0;
     virtual void        ApplyTo(IComponent& i_component) const = 0;

@@ -13,7 +13,8 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Dynamic Object Component Serializer
 
-  DynamicObjectComponentSerializer::DynamicObjectComponentSerializer()
+  DynamicObjectComponentSerializer::DynamicObjectComponentSerializer(int i_component_id)
+    : IComponentSerializer(i_component_id)
     {    }
 
   DynamicObjectComponentSerializer::~DynamicObjectComponentSerializer()
@@ -45,7 +46,7 @@ namespace BasePlugin
 
   IComponent* DynamicObjectComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
     {
-    DynamicObjectComponent* p_dynamic = new DynamicObjectComponent(ip_object);
+    DynamicObjectComponent* p_dynamic = new DynamicObjectComponent(ip_object, m_component_global_id);
     ApplyTo(*p_dynamic);
     return p_dynamic;
     }
@@ -54,8 +55,8 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Dynamic Object Component
 
-  DynamicObjectComponent::DynamicObjectComponent(Slavs::TGameObject ih_owner)
-    : IComponent(ih_owner)
+  DynamicObjectComponent::DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id)
+    : IComponent(ih_owner, i_component_id)
     , m_bounding_box_radius(.0f)
     , m_position(0.f, 0.f)
     , mp_movement_strategy(nullptr)

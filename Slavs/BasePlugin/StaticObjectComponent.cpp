@@ -12,7 +12,8 @@ namespace BasePlugin
   {
   //////////////////////////////////////////////////////////////////////////
   // Static Component Serializer 
-  StaticObjectComponentSerializer::StaticObjectComponentSerializer()
+  StaticObjectComponentSerializer::StaticObjectComponentSerializer(int i_component_id)
+    : IComponentSerializer(i_component_id)
     {
 
     }
@@ -41,7 +42,7 @@ namespace BasePlugin
 
   IComponent* StaticObjectComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
     {
-    StaticObjectComponent* p_static = new StaticObjectComponent(ip_object);
+    StaticObjectComponent* p_static = new StaticObjectComponent(ip_object, m_component_global_id);
     ApplyTo(*p_static);
     return p_static;
     }
@@ -50,8 +51,8 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Static Component
 
-  StaticObjectComponent::StaticObjectComponent(Slavs::TGameObject ih_owner)
-    : IComponent(ih_owner)
+  StaticObjectComponent::StaticObjectComponent(Slavs::TGameObject ih_owner, int i_component_id)
+    : IComponent(ih_owner, i_component_id)
     , m_bounding_box_radius(.0f)
     , m_position(0.f, 0.f)
     {

@@ -24,7 +24,7 @@ namespace BasePlugin
       size_t m_die_if_no_eat;
 
     public:
-                    HumanComponent(Slavs::TGameObject ih_owner);
+                    HumanComponent(Slavs::TGameObject ih_owner, int i_component_id);
       virtual       ~HumanComponent();
 
       virtual void	TickPerformed() override;
@@ -43,7 +43,7 @@ namespace BasePlugin
       size_t m_die_if_no_eat;
 
     public:
-      HumanComponentSerializer();
+      HumanComponentSerializer(int i_component_id);
       ~HumanComponentSerializer();
 
       virtual void        Parse(const TiXmlElement& i_configuration_node) override;

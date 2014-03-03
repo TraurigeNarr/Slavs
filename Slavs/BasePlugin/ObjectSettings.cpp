@@ -1,8 +1,9 @@
 #include "stdafx.h"
 
+#include "BaseObjectComposer.h"
 #include "ObjectSettings.h"
-#include "TypeNames.h"
 #include "TypeEnumerations.h"
+#include "TypeNames.h"
 
 //types
 #include "HumanComponent.h"
@@ -20,28 +21,31 @@
 namespace
   {
   
-  IComponentSerializer* _GetSerializerFromString(const std::string& i_type)
+  IComponentSerializer* _GetSerializerFromString(const std::string& i_type, const BaseObjectComposer& i_composer)
     {
-    if (i_type == BasePlugin::Component_Human)
-      return new BasePlugin::HumanComponent::TSerializer();
-    if (i_type == BasePlugin::Component_Static)
-      return new BasePlugin::StaticObjectComponent::TSerializer();
-    if (i_type == BasePlugin::Component_Dynamic)
-      return new BasePlugin::DynamicObjectComponent::TSerializer();
+    using namespace BasePlugin;
+    if (i_type == Component_Human)
+      return new HumanComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_HUMAN));
+    if (i_type == Component_Static)
+      return new StaticObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_STATIC_OBJECT));
+    if (i_type == Component_Dynamic)
+      return new DynamicObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_OBJECT));
     return nullptr;
     }
   }
 
 //////////////////////////////////////////////////////////////////////////
 
-ObjectSettings::ObjectSettings()
-  : m_object_type(BasePlugin::ObjectType::OT_NONE)
+ObjectSettings::ObjectSettings (const BaseObjectComposer& i_composer)
+  : m_composer(i_composer)
+  , m_object_type(BasePlugin::ObjectType::OT_NONE)
   {
 
   }
 
-ObjectSettings::ObjectSettings(BasePlugin::ObjectType i_type, const TiXmlElement& i_object_node)
+ObjectSettings::ObjectSettings(BasePlugin::ObjectType i_type, const TiXmlElement& i_object_node, const BaseObjectComposer& i_composer)
   : m_object_type(i_type)
+  , m_composer(i_composer)
   {
   Initialize(i_type, i_object_node);
   }
@@ -56,7 +60,7 @@ void ObjectSettings::Initialize(BasePlugin::ObjectType i_type, const TiXmlElemen
   while (p_child = XmlUtilities::IterateChildElements(&i_object_node, p_child))
     {
     component_name = XmlUtilities::GetStringAttribute(p_child, "type", "");
-    IComponentSerializer* p_serializer = _GetSerializerFromString(component_name);
+    IComponentSerializer* p_serializer = _GetSerializerFromString(component_name, m_composer);
     if (nullptr != p_serializer)
       {
       mh_component_serializers.push_back(TSerializer(p_serializer));
@@ -74,6 +78,10 @@ void ObjectSettings::SetupObject(Slavs::GameObject* ip_object) const
   {
   for (const TSerializer& serializer : mh_component_serializers)
     {
-    serializer->CreateComponent(ip_object);
+    std::unique_ptr<IComponent> h_component(serializer->CreateComponent(ip_object));
+    if (h_component)
+      {
+      ip_object->AddComponent(std::move(h_component));
+      }
     }
   }
