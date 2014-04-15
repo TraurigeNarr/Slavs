@@ -36,8 +36,10 @@ template<> std::shared_ptr<GetTargetCGameState> Singleton<GetTargetCGameState>::
 
 //////////////////////////////////////////////////////////////////////////
 
-ClientGameState::ClientGameState(CGameContext *context)
-	: m_pContext(context), m_pCurrentState(NULL), m_pPlayerController(NULL)
+ClientGameState::ClientGameState(std::unique_ptr<CGameContext> i_context)
+	: m_pContext(std::move(i_context))
+  , m_pCurrentState(nullptr)
+  , m_pPlayerController(nullptr)
 {
 	new Singleton<VisualInformation>(new VisualInformation());
 }
@@ -64,7 +66,7 @@ void ClientGameState::Enter(Application* ip_owner)
 
 	//initialize Time controller
 	new Singleton<TimeController>(new TimeController(0.0f));
-	Singleton<TimeController>::GetInstancePtr()->AddSubscriber(m_pContext);
+	Singleton<TimeController>::GetInstancePtr()->AddSubscriber(m_pContext.get());
   Singleton<InputManager>::GetInstance().AddSubscriber(this);
 
 	ip_owner->FromGame = true;
@@ -111,7 +113,6 @@ void ClientGameState::Exit(Application* ip_owner)
 	ip_owner->StopConnection();
   Singleton<InputManager>::GetInstance().RemoveSubscriber(this);
   m_pContext->ReleaseContext();
-  delete m_pContext;
 }
 
 void ClientGameState::SetCurrentState(std::shared_ptr<InputSubscriber> newState, GameStateModes mode)

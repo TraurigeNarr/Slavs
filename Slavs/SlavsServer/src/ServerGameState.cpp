@@ -1,7 +1,7 @@
 #include "ServerGameState.h"
 //server
 #include "SGameContext.h"
-#include "ServerMain.h"
+#include "Main/ServerMain.h"
 #include "misc\ServerEnums.h"
 //common
 #include <Game/Enumerations.h>

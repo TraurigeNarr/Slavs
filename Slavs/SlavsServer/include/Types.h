@@ -28,8 +28,10 @@ struct GeneralResourceInfo;
 namespace Slavs
 {
   class GameObject;
+  class GameContext;
   //////////////////////////////////////////////////////////////////////////
   typedef GameObject*                             TGameObject;
+  typedef std::unique_ptr<GameContext>            TGameContext;
   typedef std::shared_ptr<IEconomyManager>        TEconomy;
   typedef std::shared_ptr<IMilitaryManager>       TMilitary;
   typedef std::shared_ptr<IRelashionshipsManager> TRelashionships;

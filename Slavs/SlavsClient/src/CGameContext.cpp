@@ -17,10 +17,17 @@
 
 const std::string ObjectsMapFileName = "client\\configs\\ObjectsMap.xml";
 
+CGameContext::CGameContext()
+  : IGameContext("")
+  , m_iOwnMask(0)
+  , mh_undefined_configuration(nullptr)
+  {  }
+
 CGameContext::CGameContext(const std::string& mapName, int ownMask)
 	: IGameContext(mapName), m_iOwnMask(ownMask)
+  , mh_undefined_configuration(nullptr)
 {
-	InitObjectsMap();
+	
 }
 
 CGameContext::~CGameContext()
@@ -29,7 +36,9 @@ CGameContext::~CGameContext()
   }
 
 void CGameContext::Init()
-{}
+  {
+  InitObjectsMap();
+  }
 
 void CGameContext::TickPerformed()
 {
@@ -74,7 +83,8 @@ void CGameContext::ApplyState(long id, const GameObjectState& state)
 	else
 	{
 		std::map<int, const TiXmlElement*>::const_iterator iter = m_mConfigElements.find(state.oType);
-		if(m_mConfigElements.end() != iter)
+    const TiXmlElement* p_configuration_elem = iter != m_mConfigElements.end() ? iter->second : mh_undefined_configuration.get();
+		if(p_configuration_elem != nullptr)
 		{
 			int m = QM_All;
 			if(QM_OwnButUncontroller & state.iMask)
@@ -88,7 +98,7 @@ void CGameContext::ApplyState(long id, const GameObjectState& state)
 			else if(m_iOwnMask & state.iMask)
 				m |= QM_Own;
 
-			CGameObject *newObject = new CGameObject(id, state.oType, m, iter->second);
+			CGameObject *newObject = new CGameObject(id, state.oType, m, p_configuration_elem);
 			m_mGameObjects.insert(std::pair<long, CGameObject*>(id, newObject));
 			newObject->ApplyState(state);
 		}
@@ -110,7 +120,7 @@ const TiXmlElement* CGameContext::GetConfigElement(int oType) const
 	if(m_mConfigElements.end() != iter)
 		return iter->second;
 
-	return NULL;
+	return mh_undefined_configuration.get();
 }
 
 IGameObject* CGameContext::GetObjectByRay(const Ogre::RaySceneQueryResult &results) const
@@ -155,16 +165,28 @@ void CGameContext::InitObjectsMap()
 	const TiXmlElement* childElement = 0;
 
 	int otype = OT_None;
-
+  std::map<std::string, int>::iterator it;
 	while ((childElement = XmlUtilities::IterateChildElements(rootElem, childElement)))
 	{
 		elementName = childElement->Value();
-		otype = IGameObject::GetGameObjectType(elementName);
+
+    if (elementName == "Undefined")
+      {
+      mh_undefined_configuration.reset(new TiXmlElement(*childElement));
+      }
+
+    it = m_definitions_map.find(elementName);
+		otype = it != m_definitions_map.end() ? it->second : OT_None;
 
 		if(OT_None != otype)
-		{
+		  {
 			if(m_mConfigElements.end() == m_mConfigElements.find(otype))
 				m_mConfigElements[otype] = new TiXmlElement(*childElement);
-		}
+		  }
 	}
 }
+
+void CGameContext::AddDefinition(const std::pair<std::string, int>&& i_definition)
+  {
+  m_definitions_map.insert(i_definition);
+  }

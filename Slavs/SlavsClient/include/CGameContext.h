@@ -17,6 +17,7 @@ typedef std::map<long, CGameObject*>		ObjectsMap;
 class CGameContext : public IGameContext<CGameObject>, public TickListener
 {
 public:
+  CGameContext();
 	CGameContext(const std::string& mapName, int ownMask);
 	~CGameContext();
 
@@ -40,12 +41,14 @@ public:
 	ObjectsMap::const_iterator GetIteratorEnd() const { return m_mGameObjects.end(); }
 
 	void				InitObjectsMap();
+  void        AddDefinition(const std::pair<std::string, int>&& i_definition);
 protected:
 	void				ClearData();
 
-	std::map<int, const TiXmlElement*> m_mConfigElements;
-
-	CTerrain *m_pTerrain;
+	std::map<int, const TiXmlElement*>  m_mConfigElements;
+  std::map<std::string, int>          m_definitions_map;
+	CTerrain*                           m_pTerrain;
+  std::unique_ptr<TiXmlElement>       mh_undefined_configuration;
 
 	int m_iOwnMask;
 

@@ -3,7 +3,7 @@
 #include "IController.h"
 #include "GameObject.h"
 
-#include "ServerMain.h"
+#include "Main/ServerMain.h"
 #include "PluginSystem\MetaFactory.h"
 #include "PluginSystem\IObjectComposer.h"
 

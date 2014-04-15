@@ -99,6 +99,15 @@
     <Filter Include="IO">
       <UniqueIdentifier>{118352b7-29fd-4be5-96a5-50bf688c78a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{0b155693-419e-4397-a294-3c1209e73f07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\States">
+      <UniqueIdentifier>{7a8edaa2-351e-4413-9d30-cbc6e64b8d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main\States\Loading">
+      <UniqueIdentifier>{2f707f77-a440-4f65-801d-4eca4f4f3a7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ServerLoadGameState.cpp">
@@ -218,20 +227,23 @@
     <ClCompile Include="PluginSystem\DllManager.cpp">
       <Filter>PluginSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\ServerMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PluginSystem\MetaFactory.cpp">
       <Filter>Factories</Filter>
     </ClCompile>
-    <ClCompile Include="GameContext.cpp">
+    <ClCompile Include="Game\GameContext.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
+    <ClCompile Include="Game\GameObject.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="GameSerializer.cpp">
+    <ClCompile Include="IO\GameSerializer.cpp">
       <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\ServerMain.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\LoadGameState.cpp">
+      <Filter>Main\States\Loading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -424,23 +436,29 @@
     <ClInclude Include="PluginSystem\DllManager.h">
       <Filter>PluginSystem</Filter>
     </ClInclude>
-    <ClInclude Include="include\ServerMain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PluginSystem\MetaFactory.h">
       <Filter>Factories</Filter>
     </ClInclude>
     <ClInclude Include="PluginSystem\IObjectComposer.h">
       <Filter>Factories</Filter>
     </ClInclude>
-    <ClInclude Include="GameContext.h">
+    <ClInclude Include="Game\GameContext.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
+    <ClInclude Include="Game\GameObject.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="GameSerializer.h">
+    <ClInclude Include="IO\GameSerializer.h">
       <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\ServerMain.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\LoadGameState.h">
+      <Filter>Main\States\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\LoadingStages.h">
+      <Filter>Main\States\Loading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,12 +5,12 @@
 #include "TypeEnumerations.h"
 #include "ObjectSettings.h"
 
-#include <GameObject.h>
+#include <Game/GameObject.h>
 
 #include <Utilities/XmlUtilities.h>
 #include <Utilities/TemplateFunctions.h>
 
-#include <ServerMain.h>
+#include <Main/ServerMain.h>
 #include <PluginSystem\MetaFactory.h>
 
 //////////////////////////////////////////////////////////////////////////

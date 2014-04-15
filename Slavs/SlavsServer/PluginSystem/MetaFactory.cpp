@@ -1,7 +1,7 @@
 #include "MetaFactory.h"
 
 #include "IObjectComposer.h"
-#include "GameObject.h"
+#include "Game/GameObject.h"
 
 #include <algorithm>
 #include <cassert>

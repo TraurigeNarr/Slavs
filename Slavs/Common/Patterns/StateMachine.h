@@ -51,6 +51,9 @@ public:
 template <typename T, typename Parameter>
 StateMachine<T, Parameter>::StateMachine(T* ip_owner)
   : mp_owner(ip_owner)
+  , mp_global_state(nullptr)
+  , mp_current_state(nullptr)
+  , mp_previous_state(nullptr)
 {
 }
 

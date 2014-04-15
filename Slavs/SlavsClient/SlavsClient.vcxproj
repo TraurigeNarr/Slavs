@@ -60,7 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OIS;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE\Overlay;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\CEGUI_0.8.2\cegui\include;$(THIRD_PARTIES)\tinyxml\include;$(SolutionDir)Network\include;$(SolutionDir)SlavsClient\include;$(SolutionDir)Common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OIS;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE\Overlay;$(THIRD_PARTIES)\boost_1_55_0;$(THIRD_PARTIES)\CEGUI_0.8.2\cegui\include;$(THIRD_PARTIES)\tinyxml\include;$(SolutionDir)Network\include;$(SolutionDir)SlavsClient\include;$(SolutionDir)Common</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -81,7 +81,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OIS;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE\Overlay;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost;$(THIRD_PARTIES)\CEGUI_0.8.2\cegui\include;$(THIRD_PARTIES)\tinyxml\include;$(SolutionDir)Network\include;$(SolutionDir)SlavsClient\include;$(SolutionDir)Common</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OIS;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE;$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\\include\OGRE\Overlay;$(THIRD_PARTIES)\boost_1_55_0;$(THIRD_PARTIES)\CEGUI_0.8.2\cegui\include;$(THIRD_PARTIES)\tinyxml\include;$(SolutionDir)Network\include;$(SolutionDir)SlavsClient\include;$(SolutionDir)Common</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

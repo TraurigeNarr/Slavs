@@ -6,7 +6,7 @@
 #include "SlavsBasePluginAPI.h"
 #include "SlavsBasePlugin.h"
 
-#include <ServerMain.h>
+#include <Main/ServerMain.h>
 
 #include <Patterns/Singleton.h>
 

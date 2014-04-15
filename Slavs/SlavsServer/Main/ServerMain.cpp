@@ -2,11 +2,23 @@
 #include "ServerMain.h"
 #include "PluginSystem\DllManager.h"
 #include "PluginSystem\Plugin.h"
+
+#include "Game\GameContext.h"
+#include "Game\GameObject.h"
+#include "IO\GameSerializer.h"
+
+#include "LoadGameState.h"
+
+
+#include <locale>
+#include <codecvt>
+
 //states
 #include "ServerGameState.h"
 #include "ServerGlobalState.h"
 #include "ServerLoadGameState.h"
 #include "ServerWaitState.h"
+
 //common
 #include <Patterns/Singleton.h>
 #include <Utilities/FileUtilities.h>
@@ -35,6 +47,7 @@ ServerMain::ServerMain()
   : mh_server_connection(nullptr)
   , m_bWorking(false)
   , mh_dll_manager(nullptr)
+  , mh_state_machine(nullptr)
   {
   assert (mh_instance.get() == nullptr);
   mh_instance.reset(this);
@@ -82,7 +95,8 @@ void ServerMain::Shutdown()
 
 void ServerMain::Update(long elapsedTime)
 {
-	m_pFSM->Update(elapsedTime);
+	//m_pFSM->Update(elapsedTime);
+  mh_state_machine->Update(elapsedTime);
 }
 
 net::Connection* ServerMain::GetConnection () const
@@ -136,7 +150,7 @@ void ServerMain::RegisterPlugin(Plugin* ip_plugin)
     {
     ip_plugin->Initialize();
     }
-  catch (std::invalid_argument& except)
+  catch (std::invalid_argument&)
     {
     std::cout << ip_plugin->GetName() << " can not be initialized." << std::endl;
     m_plugins.erase(ip_plugin);
@@ -151,15 +165,15 @@ void ServerMain::UnregisterPlugin(Plugin* ip_plugin)
   ip_plugin->Uninstall();
   }
 
-#include "GameContext.h"
-#include "GameSerializer.h"
-#include "GameObject.h"
-
-#include <locale>
-#include <codecvt>
+ServerMain::TServerFSM& ServerMain::GetStateMachine()
+  {
+  return *mh_state_machine;
+  }
 
 bool ServerMain::Start(const std::string& i_configuration_file)
   {
+  mh_state_machine.reset(new TServerFSM(this));
+
   TiXmlDocument document;
   if (!XmlUtilities::LoadXmlDocument(i_configuration_file, document))
     return false;
@@ -170,7 +184,7 @@ bool ServerMain::Start(const std::string& i_configuration_file)
   const TiXmlNode* p_network = root.FirstChild("Network");
   int port = _GetPort(p_network->FirstChild("Port")->FirstChild()->Value());
 
-  // Plugins
+  // Plug ins
   if (true)
     {
     const TiXmlElement* p_plugins = root.FirstChildElement("Plugins");
@@ -187,10 +201,27 @@ bool ServerMain::Start(const std::string& i_configuration_file)
       }
     }
 
+  // start connection
+  if (true)
+    {
+    if ( !net::InitializeSockets() )
+      {
+      printf( "failed to initialize sockets\n" );
+      return false;
+      }
+
+    mh_server_connection.reset(new net::Connection(net::ProtocolId, net::TimeOut));
+    if(!mh_server_connection->Start(port))
+      return false;
+    
+    mh_server_connection->Listen();
+    }
+
   // Players
   if (true)
     {
     const TiXmlElement* p_players = root.FirstChildElement("Players");
+    
     }
 
   // Game
@@ -201,15 +232,17 @@ bool ServerMain::Start(const std::string& i_configuration_file)
     std::string path      = XmlUtilities::GetStringAttribute(p_game->FirstChildElement("Path"), "File", "");
 
     using namespace Slavs;
-    GameContext context;
-    GameSerializer serializer(context);
+    TGameContext context(new GameContext);
+    GameSerializer serializer(*context);
     std::string game_path = "";
     if (path_type == "Relative")
       game_path = FileUtilities::JoinPath(FileUtilities::GetApplicationDirectory(), path);
     else
       game_path = path;
     serializer.Load(game_path);
+    mh_state_machine->SetCurrentState(std::make_shared<LoadGameState>(std::move(context)));
     }
 
+  m_bWorking = true;
   return true;
   }

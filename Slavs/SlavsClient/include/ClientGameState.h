@@ -7,12 +7,15 @@
 
 #include <OgreVector2.h>
 
+#include <memory>
+
 namespace net
 {
 	class Connection;
 }
 
-class CGameContext;
+#include "CGameContext.h"
+//class CGameContext;
 class CCamera;
 
 class ClientGameState : public AppState
@@ -20,7 +23,7 @@ class ClientGameState : public AppState
 public:
   //need for Singleton class
   ClientGameState(){}
-	ClientGameState(CGameContext *context);
+	ClientGameState(std::unique_ptr<CGameContext> i_context);
 	~ClientGameState();
 
   virtual void Enter(Application* ip_owner) override;
@@ -28,7 +31,7 @@ public:
   virtual void Exit(Application* ip_owner) override;
 
 	void			SetCurrentState(std::shared_ptr<InputSubscriber> newState, GameStateModes mode);
-	CGameContext*	GetContext() const { return m_pContext; }
+	CGameContext*	GetContext() const { return m_pContext.get(); }
 	CCamera*		GetCamera() const { return m_pCamera; }
 
 	bool			KeyPressed(const OIS::KeyEvent &keyEventRef);
@@ -48,7 +51,7 @@ protected:
 	void			SendCmdToServer(net::Connection *connection);
 
 	CCamera*			m_pCamera;
-	CGameContext*		m_pContext;
+	std::unique_ptr<CGameContext>		m_pContext;
 	Ogre::Light*		m_Light;
 	//GameState states represents by collection of Input subscribers. Each state
 	//has it`s own logic of processing input. The first state is Idle

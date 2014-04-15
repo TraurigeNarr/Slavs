@@ -12,7 +12,7 @@
 
 #include <Utilities/XmlUtilities.h>
 
-#include <GameObject.h>
+#include <Game/GameObject.h>
 
 #include <typeinfo>
 

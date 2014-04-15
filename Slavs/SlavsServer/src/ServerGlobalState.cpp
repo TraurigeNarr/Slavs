@@ -1,7 +1,7 @@
 //this state
 #include "ServerGlobalState.h"
 //server
-#include "ServerMain.h"
+#include "Main/ServerMain.h"
 
 #include <Net.h>
 

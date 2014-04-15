@@ -97,4 +97,11 @@ class MetaFactory : boost::noncopyable
     /// in this factory
     /// -1 otherwise
     int  GetObjectID(const std::string& i_type) const;
+
+    inline const TDefinitionsMap& GetDefinitions() const;
   };
+
+const MetaFactory::TDefinitionsMap& MetaFactory::GetDefinitions() const
+  {
+  return m_type_definitions;
+  }

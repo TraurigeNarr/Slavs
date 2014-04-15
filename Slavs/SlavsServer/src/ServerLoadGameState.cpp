@@ -1,11 +1,14 @@
 #include "ServerLoadGameState.h"
 //server
 #include "SGameContext.h"
-#include "ServerMain.h"
+#include "Main/ServerMain.h"
 #include "misc\SceneLoader.h"
 //states
 #include "ServerGameState.h"
 #include "ServerWaitState.h"
+
+#include "PluginSystem/MetaFactory.h"
+
 //common
 #include <Game/Enumerations.h>
 #include <Game/GameObjectState.h>
@@ -19,7 +22,6 @@
 
 const std::string MapName = "server\\maps\\test_01.scene";
 
-
 ServerLoadGameState::ServerLoadGameState(std::shared_ptr<std::map<int, IController*>> controllers)
 {
 	m_pControllers = controllers;
@@ -32,6 +34,10 @@ void ServerLoadGameState::Enter(ServerMain* ip_owner)
 {
 	printf( "Enters LoadGame state\n" );
 	Singleton<WaitState>::ReleaseIfValid();
+
+
+  // load libraries
+  ServerMain::GetInstance().Start("F:\\Projects\\Slavs\\Resources\\server\\StartServer.xml");
 
 	m_pGameContext = new SGameContext("test_01");
 	SceneLoader sLoader(m_pGameContext, &std::cout);

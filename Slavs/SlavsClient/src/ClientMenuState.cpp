@@ -12,6 +12,8 @@
 #include "ClientOptionsState.h"
 //screens
 #include "MenuScreen.h"
+//network
+#include <Net.h>
 
 ClientMenuState::ClientMenuState()
 {
@@ -50,7 +52,11 @@ void ClientMenuState::Execute(Application* ip_owner, long i_elapsed_time)
 		ip_owner->GetFSM()->ChangeState(Singleton<ClientOptionsState>::GetInstancePtr());
 		break;
 	case VarGoToCreateLevel:
-		ip_owner->GetFSM()->ChangeState(Singleton<ClientCreateLevelState>::GetInstancePtr());
+    {
+    int temp_mask = 1;
+    new Singleton<ClientLoadGameState>(new ClientLoadGameState(temp_mask));
+    ip_owner->GetFSM()->ChangeState(Singleton<ClientLoadGameState>::GetInstancePtr());
+    }
 		break;
 	}
 }

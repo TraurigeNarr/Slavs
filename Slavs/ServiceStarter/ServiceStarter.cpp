@@ -1,6 +1,6 @@
 // ServiceStarter.cpp : Defines the entry point for the console application.
 //
-#include <ServerMain.h>
+#include <Main/ServerMain.h>
 #include <PluginSystem/DllManager.h>
 
 #include <Windows.h>
@@ -17,16 +17,17 @@ int main(int argc, _TCHAR* argv[])
   new ServerMain;
   ServerMain& server = ServerMain::GetInstance();
 
-  // load libraries
-  server.Start("F:\\Projects\\Slavs\\Resources\\server\\StartServer.xml");
-
   try
     {
     // initialize
-    if(!server.Initialize())
+    if(!server.Start("F:\\Projects\\Slavs\\Resources\\server\\StartServer.xml"))
       {
       throw std::runtime_error("Failed to initialize server.");
       }
+   /* if(!server.Initialize())
+      {
+      throw std::runtime_error("Failed to initialize server.");
+      }*/
     long start = 0;
     long elapsedTime = 0;
     DWORD sleepTime = 0;

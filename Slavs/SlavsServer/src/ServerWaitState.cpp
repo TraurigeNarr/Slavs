@@ -2,7 +2,7 @@
 #include "ServerWaitState.h"
 //server
 #include "SPlayerController.h"
-#include "ServerMain.h"
+#include "Main\ServerMain.h"
 //states
 #include "ServerGameState.h"
 #include "ServerLoadGameState.h"

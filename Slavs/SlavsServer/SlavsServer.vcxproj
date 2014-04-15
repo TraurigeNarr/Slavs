@@ -95,11 +95,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameContext.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Game\GameContext.cpp" />
+    <ClCompile Include="Game\GameObject.cpp" />
+    <ClCompile Include="Main\LoadGameState.cpp" />
     <ClCompile Include="PluginSystem\DllManager.cpp" />
     <ClCompile Include="PluginSystem\MetaFactory.cpp" />
-    <ClCompile Include="GameSerializer.cpp" />
+    <ClCompile Include="IO\GameSerializer.cpp" />
     <ClCompile Include="src\AI\FindWorkGoal.cpp" />
     <ClCompile Include="src\AI\FindWorkGoal_Evaluator.cpp" />
     <ClCompile Include="src\AI\GetEatGoal.cpp" />
@@ -126,7 +127,7 @@
     <ClCompile Include="src\ServerGlobalState.cpp" />
     <ClCompile Include="src\ServerGameState.cpp" />
     <ClCompile Include="src\ServerLoadGameState.cpp" />
-    <ClCompile Include="src\ServerMain.cpp" />
+    <ClCompile Include="Main\ServerMain.cpp" />
     <ClCompile Include="src\SGameContext.cpp" />
     <ClCompile Include="src\SGameObject.cpp" />
     <ClCompile Include="src\SHouseComponent.cpp" />
@@ -149,8 +150,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameContext.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Game\GameContext.h" />
+    <ClInclude Include="Game\GameObject.h" />
     <ClInclude Include="include\2D\Geometry.h" />
     <ClInclude Include="include\2D\InvertedAABBox2D.h" />
     <ClInclude Include="include\2D\Transformations.h" />
@@ -196,7 +197,9 @@
     <ClInclude Include="include\ServerGlobalState.h" />
     <ClInclude Include="include\ServerGameState.h" />
     <ClInclude Include="include\ServerLoadGameState.h" />
-    <ClInclude Include="include\ServerMain.h" />
+    <ClInclude Include="Main\LoadGameState.h" />
+    <ClInclude Include="Main\LoadingStages.h" />
+    <ClInclude Include="Main\ServerMain.h" />
     <ClInclude Include="include\ServerUtils.h" />
     <ClInclude Include="include\SGameContext.h" />
     <ClInclude Include="include\ServerWaitState.h" />
@@ -217,7 +220,7 @@
     <ClInclude Include="PluginSystem\MetaFactory.h" />
     <ClInclude Include="PluginSystem\IObjectComposer.h" />
     <ClInclude Include="PluginSystem\Plugin.h" />
-    <ClInclude Include="GameSerializer.h" />
+    <ClInclude Include="IO\GameSerializer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

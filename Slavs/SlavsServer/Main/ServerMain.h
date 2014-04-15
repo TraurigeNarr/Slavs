@@ -20,7 +20,11 @@ namespace net
   }
 
 class SLAVS_SERVER_EXPORT ServerMain
-{
+  {
+public:
+    typedef StateMachine<ServerMain, long>  TServerFSM;
+    typedef std::unique_ptr<TServerFSM>     THServerFSM;
+    typedef std::set<Plugin*>               TPlugins;
 private:
   static std::shared_ptr<ServerMain> mh_instance;
 
@@ -28,17 +32,14 @@ private:
   ServerMain& operator = (const ServerMain& i_other);
 
 private:
-  typedef std::set<Plugin*> TPlugins;
-
-private:
-  std::unique_ptr<net::Connection> mh_server_connection;
-  bool m_bWorking;
-
   StateMachine<ServerMain, long> *m_pFSM;
 
-  std::unique_ptr<DllManager> mh_dll_manager;
-  MetaFactory m_meta_factory;
-  TPlugins m_plugins;
+  THServerFSM                       mh_state_machine;
+  std::unique_ptr<net::Connection>  mh_server_connection;
+  std::unique_ptr<DllManager>       mh_dll_manager;
+  MetaFactory                       m_meta_factory;
+  TPlugins                          m_plugins;
+  bool                              m_bWorking;
 
 public:
 	ServerMain();
@@ -71,12 +72,9 @@ public:
 
   void                RegisterPlugin(Plugin* ip_plugin);
   void                UnregisterPlugin(Plugin* ip_plugin);
-
+  TServerFSM&         GetStateMachine();
 //////////////////////////////////////////////////////////////////////////
   static ServerMain&  GetInstance();
-
-private:
-  
-};
+  };
 
 #endif

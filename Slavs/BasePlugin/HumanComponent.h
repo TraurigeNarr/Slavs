@@ -4,7 +4,7 @@
 
 #include <Game/IComponent.h>
 
-#include <SlavsServer/GameObject.h>
+#include <SlavsServer/Game/GameObject.h>
 #include <SlavsServer/include/Types.h>
 
 namespace BasePlugin

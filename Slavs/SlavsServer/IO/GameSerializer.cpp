@@ -1,9 +1,9 @@
 #include "GameSerializer.h"
 
-#include "GameContext.h"
-#include "GameObject.h"
+#include "Game/GameContext.h"
+#include "Game/GameObject.h"
 
-#include <ServerMain.h>
+#include <Main/ServerMain.h>
 
 #include <tinyxml.h>
 

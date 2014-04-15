@@ -16,7 +16,7 @@ namespace
     CreateDirectory(i_directory_name.c_str(), LPSECURITY_ATTRIBUTES());
 
     if(GetLastError() == ERROR_PATH_NOT_FOUND)
-      throw std::exception("One or more intermediate directories do not exist");
+      throw std::exception("One or more intermediate directories do not exist\n");
   }
 
   std::wstring GetNextFileName(const std::wstring& i_file_name)

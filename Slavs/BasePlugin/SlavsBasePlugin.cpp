@@ -3,7 +3,7 @@
 #include "SlavsBasePlugin.h"
 #include "BaseObjectComposer.h"
 
-#include <ServerMain.h>
+#include <Main/ServerMain.h>
 #include <PluginSystem/MetaFactory.h>
 
 #include <Utilities/FileUtilities.h>
