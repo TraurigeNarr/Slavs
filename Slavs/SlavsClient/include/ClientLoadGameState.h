@@ -27,7 +27,8 @@ class ClientLoadGameState : public AppState
       CLStateGoToGame     = 0x02
       };
     char                          m_state;
-
+    int                           m_current_content_number;
+    int                           m_content_number;
   public:
     //mask for selecting own units
   	ClientLoadGameState(int i_own_mask);

@@ -26,6 +26,8 @@
 ClientLoadGameState::ClientLoadGameState(int i_own_mask)
   : mh_game_context(new CGameContext("test_01", i_own_mask))
   , mp_server_address(new net::Address(net::Address(127, 0, 0, 1, 30000)))
+  , m_content_number(0)
+  , m_current_content_number(0)
 {
 }
 
@@ -80,6 +82,8 @@ void ClientLoadGameState::Enter(Application* ip_owner)
     ip_owner->GetFSM()->ChangeState(Singleton<ClientMenuState>::GetInstancePtr());
     }
 #pragma endregion
+
+  m_content_number = m_current_content_number = 0;
 }
 
 void ClientLoadGameState::Execute(Application* ip_owner, long i_elapsed_time)
@@ -138,6 +142,9 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
 			m_State = CLState_ClientReady;
 		}*/
 		break;
+  case PT_ContentNumber:
+    m_content_number = FromChar<int>(reinterpret_cast<char*>(packet+sizeof(PacketType)));
+    break;
 	case PT_GOState:
     {
 		GameObjectState state;
@@ -147,6 +154,12 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
 			mh_game_context->AddTerrain(mh_game_context->GetMapName());
 		else
 			mh_game_context->ApplyState(state.lID, state);
+    ++m_current_content_number;
+    if (m_current_content_number == m_content_number)
+      {
+      _SendReadyPacket(ip_owner);
+      m_content_number = m_current_content_number = 0;
+      }
     }
 		break;
   case  PT_Definitions:
@@ -157,7 +170,7 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
       {
       if (packet[i] == ';')
         {
-        obj_id = FromChar<int>((char*)(packet+i+1));
+        obj_id = FromChar<int>(reinterpret_cast<char*>(packet+i+1));
         break;
         }
       else
@@ -166,6 +179,12 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
     
     if (obj_id != -1)
       mh_game_context->AddDefinition(std::make_pair(obj_name, obj_id));
+    ++m_current_content_number;
+    if (m_current_content_number == m_content_number)
+      {
+      _SendReadyPacket(ip_owner);
+      m_content_number = m_current_content_number = 0;
+      }
     }
     break;
 	}
@@ -173,7 +192,7 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
 
 void ClientLoadGameState::_SendReadyPacket(Application* ip_owner)
 {
-	PacketType pType = PT_ClientReady;
+	PacketType pType = PT_Achived;
 	char *buf = ToChar(pType);
 	ip_owner->GetConnection()->SendPacket(buf, sizeof(int));
 	delete[] buf;

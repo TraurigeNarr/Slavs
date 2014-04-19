@@ -139,6 +139,7 @@ enum PacketType
 	PT_Selection		    = 0x0C, //two-way: (?client -> server)
   PT_Definitions      = 0x0D,
   PT_Achived          = 0x0E,
+  PT_ContentNumber    = 0x0f,
 	PT_None				      = 0x64,
 };
 

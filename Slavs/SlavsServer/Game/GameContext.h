@@ -25,7 +25,7 @@ namespace Slavs
     - global data that can be influenced with outside
   */
   class SLAVS_SERVER_EXPORT GameContext : public IGameContext<GameObject>
-                                        , public TickListener
+                                          , public TickListener
                                         , boost::noncopyable
     {
     private:
