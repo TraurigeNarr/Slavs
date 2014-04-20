@@ -5,8 +5,11 @@
 #include "IMovementStrategy.h"
 
 #include <Utilities/XmlUtilities.h>
+#include <Game/GameObjectState.h>
 
 #include <typeinfo>
+
+//////////////////////////////////////////////////////////////////////////
 
 namespace BasePlugin
   {
@@ -58,7 +61,6 @@ namespace BasePlugin
   DynamicObjectComponent::DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id)
     : IComponent(ih_owner, i_component_id)
     , m_bounding_box_radius(.0f)
-    , m_position(0.f, 0.f)
     , mp_movement_strategy(nullptr)
     {
 
@@ -77,7 +79,7 @@ namespace BasePlugin
     m_velocity = mp_movement_strategy->GetSteering();
     m_velocity.Truncate(m_maximum_speed);
 
-    m_position += m_velocity;
+    mp_owner->AccessPosition() += m_velocity;
 
     mp_owner->StateChanged();
     }
@@ -89,7 +91,7 @@ namespace BasePlugin
 
   void DynamicObjectComponent::GetState(GameObjectState& i_state) const
     {
-
+    
     }
 
   bool DynamicObjectComponent::Probe()

@@ -31,13 +31,16 @@ namespace
     assert (p_owner->FirstChild("Name"));
     assert (p_owner->FirstChild("Address"));
     assert (p_selection_mask->FirstChild());
+    assert (p_position->FirstChild("x"));
+    assert (p_position->FirstChild("y"));
 #endif
     //owner -- should be combination of name + address; can be null
     std::string owner_name                = p_owner->FirstChild("Name")->FirstChild()->Value();
     int address                           = boost::lexical_cast<int>(p_owner->FirstChild("Address")->FirstChild()->Value());
     //position -- x and y coordinates
-    float pos_x = 0.f;
-    float pos_y = 0.f;
+    float pos_x = boost::lexical_cast<float>(p_position->FirstChild("x")->FirstChild()->Value());
+    float pos_y = boost::lexical_cast<float>(p_position->FirstChild("y")->FirstChild()->Value());
+
     //selection mask -- int
     int selection_mask                    = boost::lexical_cast<int>(p_selection_mask->FirstChild()->Value());
     

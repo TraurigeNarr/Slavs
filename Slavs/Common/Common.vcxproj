@@ -38,6 +38,7 @@
     <ClInclude Include="Game\IGameObject.h" />
     <ClInclude Include="Game\RequestForWorkers.h" />
     <ClInclude Include="Game\TimeController.h" />
+    <ClInclude Include="Game\IMovable.h" />
     <ClInclude Include="Math\Graph\GraphAlgorithms.h" />
     <ClInclude Include="Math\Graph\GraphEdgeTypes.h" />
     <ClInclude Include="Math\Graph\GraphNodeTypes.h" />

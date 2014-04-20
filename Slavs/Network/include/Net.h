@@ -36,7 +36,7 @@ namespace net
 	const int ClientPort = 30001;
 	const int ProtocolId = 0x11112222;
 	const float DeltaTime = 0.01f;
-	const float TimeOut = 1.0f;
+	const float TimeOut = 5.0f;
 
 	bool NETWORKEXPORT InitializeSockets();
 	void NETWORKEXPORT ShutdownSockets();

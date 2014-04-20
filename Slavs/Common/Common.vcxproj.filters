@@ -170,5 +170,8 @@
     <ClInclude Include="SlavsCommonAPI.h">
       <Filter>Maintanance</Filter>
     </ClInclude>
+    <ClInclude Include="Game\IMovable.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

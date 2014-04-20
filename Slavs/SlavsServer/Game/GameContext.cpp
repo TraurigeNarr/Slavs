@@ -22,7 +22,7 @@ namespace Slavs
 
   GameContext::~GameContext()
     {
-
+    ReleaseGameObjects();
     }
 
   void GameContext::TickPerformed()
@@ -53,9 +53,18 @@ namespace Slavs
       GameObject* p_new_object = new GameObject(*this, m_next_object_id, i_type, i_selection_mask);
       meta_factory.ComposeObject(p_new_object);
       p_new_object->SetOwner(ip_owner);
-      m_mGameObjects[m_next_object_id] = p_new_object;
-      ++m_next_object_id;
-      return p_new_object;
+      if (p_new_object->ProbeComponents())
+        {
+        p_new_object->SetPosition(i_position);
+        m_mGameObjects[m_next_object_id] = p_new_object;
+        ++m_next_object_id;
+        return p_new_object;
+        }
+      else
+        {
+        delete p_new_object;
+        return nullptr;
+        }
       }
 
     assert ("Normally we should not get here.");

@@ -4,9 +4,11 @@
 #include "TypeNames.h"
 
 #include <Utilities/XmlUtilities.h>
+#include <Game/GameObjectState.h>
 
 #include <typeinfo>
 
+//////////////////////////////////////////////////////////////////////////
 
 namespace BasePlugin
   {
@@ -54,7 +56,6 @@ namespace BasePlugin
   StaticObjectComponent::StaticObjectComponent(Slavs::TGameObject ih_owner, int i_component_id)
     : IComponent(ih_owner, i_component_id)
     , m_bounding_box_radius(.0f)
-    , m_position(0.f, 0.f)
     {
 
     }
@@ -76,7 +77,7 @@ namespace BasePlugin
 
   void StaticObjectComponent::GetState(GameObjectState& i_state) const
     {
-
+    
     }
 
   bool StaticObjectComponent::Probe()

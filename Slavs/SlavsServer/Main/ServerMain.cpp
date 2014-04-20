@@ -5,7 +5,6 @@
 
 #include "Game\GameContext.h"
 #include "Game\GameObject.h"
-#include "IO\GameSerializer.h"
 
 #include "LoadGameState.h"
 
@@ -180,10 +179,6 @@ bool ServerMain::Start(const std::string& i_configuration_file)
 
   const TiXmlElement& root = *document.RootElement();
 
-  // network
-  const TiXmlNode* p_network = root.FirstChild("Network");
-  int port = _GetPort(p_network->FirstChild("Port")->FirstChild()->Value());
-
   // Plug ins
   if (true)
     {
@@ -201,9 +196,13 @@ bool ServerMain::Start(const std::string& i_configuration_file)
       }
     }
 
+  // network
   // start connection
   if (true)
     {
+    const TiXmlNode* p_network = root.FirstChild("Network");
+    int port = _GetPort(p_network->FirstChild("Port")->FirstChild()->Value());
+
     if ( !net::InitializeSockets() )
       {
       printf( "failed to initialize sockets\n" );
@@ -217,13 +216,6 @@ bool ServerMain::Start(const std::string& i_configuration_file)
     mh_server_connection->Listen();
     }
 
-  // Players
-  if (true)
-    {
-    const TiXmlElement* p_players = root.FirstChildElement("Players");
-    
-    }
-
   // Game
   if (true)
     {
@@ -232,15 +224,15 @@ bool ServerMain::Start(const std::string& i_configuration_file)
     std::string path      = XmlUtilities::GetStringAttribute(p_game->FirstChildElement("Path"), "File", "");
 
     using namespace Slavs;
-    TGameContext context(new GameContext);
-    GameSerializer serializer(*context);
     std::string game_path = "";
     if (path_type == "Relative")
       game_path = FileUtilities::JoinPath(FileUtilities::GetApplicationDirectory(), path);
     else
       game_path = path;
-    serializer.Load(game_path);
-    mh_state_machine->SetCurrentState(std::make_shared<LoadGameState>(std::move(context)));
+    LoadingParameters loading_parameters;
+    loading_parameters.m_map_name = game_path;
+    
+    mh_state_machine->SetCurrentState(std::make_shared<LoadGameState>(loading_parameters));
     }
 
   m_bWorking = true;

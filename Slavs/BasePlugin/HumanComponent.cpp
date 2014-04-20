@@ -4,6 +4,7 @@
 #include "TypeNames.h"
 
 #include <Utilities/XmlUtilities.h>
+#include <Game/GameObjectState.h>
 
 #include <typeinfo>
 
@@ -82,7 +83,7 @@ namespace BasePlugin
 
   void HumanComponent::TickPerformed()
     {
-
+    
     }
 
   bool HumanComponent::HandleMessage(const Telegram& msg)

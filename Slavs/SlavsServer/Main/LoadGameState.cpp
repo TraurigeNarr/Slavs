@@ -1,10 +1,14 @@
 #include "LoadGameState.h"
 
 #include "ServerMain.h"
+#include "GameState.h"
 
 #include "Game\GameContext.h"
 #include "Game\GameObject.h"
+#include "IO\GameSerializer.h"
 #include "LoadingStages.h"
+
+#include "SPlayerController.h"
 
 #include <Utilities/TemplateFunctions.h>
 
@@ -17,11 +21,10 @@
 namespace Slavs
   {
 
-  LoadGameState::LoadGameState(TGameContext ih_game_context)
-    : mh_game_context(std::move(ih_game_context))
+  LoadGameState::LoadGameState(const LoadingParameters& i_loading_parameters)
+    : m_loading_parameters(i_loading_parameters)
     , mp_loading_fsm(nullptr)
-    { 
-    
+    {
     }
 
   LoadGameState::~LoadGameState()
@@ -30,7 +33,19 @@ namespace Slavs
   void LoadGameState::Enter(ServerMain* ip_owner)
     {
     printf( "Enters LoadGame state\n" );
-    net::Connection &connection = *ip_owner->GetConnection();
+    mh_game_context.reset(new GameContext());
+    GameSerializer serializer(*mh_game_context);
+    serializer.Load(m_loading_parameters.m_map_name);
+    net::Connection& connection = *ip_owner->GetConnection();
+    // set player controller; now it is only one PC but it is needed to move this to separate class
+    m_controllers.push_back( std::unique_ptr<IController>
+                              (
+                              new SPlayerController(connection.GetAddress().GetAddress(), nullptr)
+                              )
+                           );
+    // also set AI controllers
+    // TODO: code here
+
     mp_loading_fsm.reset(new LoadingStages::LoadingFSM(&connection, ip_owner, boost::ref(*mh_game_context.get())));
     mp_loading_fsm->start();
     }
@@ -48,8 +63,8 @@ namespace Slavs
       // if in Wait state
       if ( mp_loading_fsm->current_state()[0] == 2)
         {
-        // switch to another state
         mp_loading_fsm->stop();
+        ip_owner->GetStateMachine().ChangeState( std::make_shared<GameState>(std::move(mh_game_context)) );
         return;
         }
       }

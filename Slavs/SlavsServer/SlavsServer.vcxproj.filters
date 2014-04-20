@@ -245,6 +245,9 @@
     <ClCompile Include="Main\LoadGameState.cpp">
       <Filter>Main\States\Loading</Filter>
     </ClCompile>
+    <ClCompile Include="Main\GameState.cpp">
+      <Filter>Main\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ServerGameState.h">
@@ -379,53 +382,11 @@
     <ClInclude Include="include\AIController.h">
       <Filter>Header Files\Controllers</Filter>
     </ClInclude>
-    <ClInclude Include="include\Management\IEconomyManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\IMilitaryManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\ISocietyManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\ITechnologyManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\IRelashionshipsManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\GlobalEconomics.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
     <ClInclude Include="include\IController.h">
       <Filter>Header Files\Controllers</Filter>
     </ClInclude>
     <ClInclude Include="include\Types.h">
       <Filter>Header Files\misc</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\Goverment.h">
-      <Filter>Header Files\Game\Management</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\EventsEnumerations.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\EconomyManagerBase.h">
-      <Filter>Header Files\Game\Management</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\IStoreSystem.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\StoreSystemBase.h">
-      <Filter>Header Files\Game\Management</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\IManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\BaseEvent.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Management\SocietyManagerBase.h">
-      <Filter>Header Files\Game\Management</Filter>
     </ClInclude>
     <ClInclude Include="include\ManufactureRequest.h">
       <Filter>Header Files\Game</Filter>
@@ -459,6 +420,51 @@
     </ClInclude>
     <ClInclude Include="Main\LoadingStages.h">
       <Filter>Main\States\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\GameState.h">
+      <Filter>Main\States</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\BaseEvent.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\EconomyManagerBase.h">
+      <Filter>Header Files\Game\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\EventsEnumerations.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\GlobalEconomics.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\Goverment.h">
+      <Filter>Header Files\Game\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IEconomyManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IMilitaryManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IRelashionshipsManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\ISocietyManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\IStoreSystem.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\ITechnologyManager.h">
+      <Filter>Header Files\Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\SocietyManagerBase.h">
+      <Filter>Header Files\Game\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Management\StoreSystemBase.h">
+      <Filter>Header Files\Game\Management</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

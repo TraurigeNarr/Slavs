@@ -82,8 +82,7 @@ void CGameContext::ApplyState(long id, const GameObjectState& state)
 	//if not - add object and apply state
 	else
 	{
-		std::map<int, const TiXmlElement*>::const_iterator iter = m_mConfigElements.find(state.oType);
-    const TiXmlElement* p_configuration_elem = iter != m_mConfigElements.end() ? iter->second : mh_undefined_configuration.get();
+    const TiXmlElement* p_configuration_elem = GetConfigElement(state.oType);
 		if(p_configuration_elem != nullptr)
 		{
 			int m = QM_All;

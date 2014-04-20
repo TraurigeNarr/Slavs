@@ -3,13 +3,15 @@
 
 #include "..\SlavsCommonAPI.h"
 
+#include "IMovable.h"
+
 #include <string>
 #include <vector>
 
 class IComponent;
 class GameObjectState;
 
-class /*COMMON_EXPORT*/ IGameObject
+class /*COMMON_EXPORT*/ IGameObject : public IMovable
 {
 	long m_lID;
 protected:
@@ -54,6 +56,10 @@ public:
 	static std::string				      ToString(int oType);
 	static int      				        GetGameObjectType(const std::string& oType);
 	static int                      GetGameObjectType(int cmdID);
+
+  virtual void     SetPosition(const Vector2D& i_position) override {}
+  virtual Vector2D GetPosition() const override { return Vector2D(); }
+  virtual Vector2D& AccessPosition() override { return Vector2D(); }
 };
 
 template<typename T>

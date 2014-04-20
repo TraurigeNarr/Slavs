@@ -20,15 +20,12 @@ namespace BasePlugin
       typedef StaticObjectComponentSerializer TSerializer;
 
     private:
-      Vector2D  m_position;
       float     m_bounding_box_radius;
 
     public:
       StaticObjectComponent(Slavs::TGameObject ih_owner, int i_component_id);
       ~StaticObjectComponent();
 
-      void          SetPosition(const Vector2D& i_position);
-      Vector2D      GetPosition() const;
       virtual void	TickPerformed() override;
       virtual bool	HandleMessage(const Telegram& msg) override;
 

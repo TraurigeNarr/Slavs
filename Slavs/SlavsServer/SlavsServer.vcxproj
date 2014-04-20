@@ -95,6 +95,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Main\GameState.cpp" />
     <ClCompile Include="Game\GameContext.cpp" />
     <ClCompile Include="Game\GameObject.cpp" />
     <ClCompile Include="Main\LoadGameState.cpp" />
@@ -150,6 +151,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Main\GameState.h" />
     <ClInclude Include="Game\GameContext.h" />
     <ClInclude Include="Game\GameObject.h" />
     <ClInclude Include="include\2D\Geometry.h" />

@@ -66,9 +66,19 @@ namespace Slavs
     return true;
     }
 
+  //////////////////////////////////////////////////////////////////////////
+  // IGameObject
   void GameObject::Init()
     {
 
+    }
+
+  GameObjectState* GameObject::GetState() const
+    {
+    GameObjectState* p_state = IGameObject::GetState();
+    p_state->iFlags |= GOF_Position;
+    p_state->pPosition = new Vector2D(m_position);
+    return p_state;
     }
 
   void GameObject::TickPerformed()
@@ -76,5 +86,22 @@ namespace Slavs
     TickForComponents();
     }
 
+  //////////////////////////////////////////////////////////////////////////
+  // IMovable
+
+  void GameObject::SetPosition(const Vector2D& i_position)
+    {
+    m_position = i_position;
+    }
+
+  Vector2D GameObject::GetPosition() const
+    {
+    return m_position;
+    }
+
+  Vector2D& GameObject::AccessPosition()
+    {
+    return m_position;
+    }
   }
 

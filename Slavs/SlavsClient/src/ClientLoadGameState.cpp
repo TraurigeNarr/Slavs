@@ -82,7 +82,7 @@ void ClientLoadGameState::Enter(Application* ip_owner)
     ip_owner->GetFSM()->ChangeState(Singleton<ClientMenuState>::GetInstancePtr());
     }
 #pragma endregion
-
+  mh_game_context->AddTerrain(mh_game_context->GetMapName());
   m_content_number = m_current_content_number = 0;
 }
 
@@ -129,7 +129,6 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
 	switch(pType)
 	{
 	case PT_ServerReady:
-    mh_game_context->InitObjectsMap();
 		new Singleton<ClientGameState>(new ClientGameState(std::move(mh_game_context)));
 		ip_owner->GetFSM()->ChangeState(Singleton<ClientGameState>::GetInstancePtr());
 		_SendReadyPacket(ip_owner);
@@ -150,10 +149,7 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
 		GameObjectState state;
 		unsigned char *buf = packet + sizeof(int);
 		state.Deserialize((char*)buf);
-		if(OT_Terrain == state.oType)
-			mh_game_context->AddTerrain(mh_game_context->GetMapName());
-		else
-			mh_game_context->ApplyState(state.lID, state);
+    mh_game_context->ApplyState(state.lID, state);
     ++m_current_content_number;
     if (m_current_content_number == m_content_number)
       {
@@ -182,6 +178,7 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
     ++m_current_content_number;
     if (m_current_content_number == m_content_number)
       {
+      mh_game_context->InitObjectsMap();
       _SendReadyPacket(ip_owner);
       m_content_number = m_current_content_number = 0;
       }

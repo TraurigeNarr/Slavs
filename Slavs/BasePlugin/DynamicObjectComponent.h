@@ -21,7 +21,6 @@ namespace BasePlugin
       typedef DynamicObjectComponentSerializer TSerializer;
 
     private:
-      Vector2D  m_position;
       Vector2D  m_velocity;
       //a normalized vector pointing in the direction the entity is heading
       Vector2D	m_heading;
@@ -39,9 +38,6 @@ namespace BasePlugin
     public:
       DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id);
       ~DynamicObjectComponent();
-
-      void          SetPosition(const Vector2D& i_position);
-      Vector2D      GetPosition() const;
 
       virtual void	TickPerformed() override;
       virtual bool	HandleMessage(const Telegram& msg) override;
