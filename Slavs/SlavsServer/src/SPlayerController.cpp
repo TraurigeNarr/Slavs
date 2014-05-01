@@ -3,6 +3,9 @@
 #include "SGameContext.h"
 #include "SGameObject.h"
 #include "misc/ServerEnums.h"
+
+#include "Game/GameContext.h"
+#include "Game/GameObject.h"
 //common
 #include <Game/CommandData.h>
 #include <Game/Enumerations.h>
@@ -12,8 +15,8 @@
 #include <algorithm>
 #include <cassert>
 
-SPlayerController::SPlayerController(int iMask, SGameContext *context)
-	: IController(iMask, context)
+SPlayerController::SPlayerController(int iMask, Slavs::GameContext& i_context)
+	: IController(iMask, i_context)
 {}
 
 SPlayerController::~SPlayerController()
@@ -56,7 +59,7 @@ void SPlayerController::HoldCommand(CommandData* cData)
 	if(cData->HasParameter(CDParams_CreateBuilding))
 	{
 		int oType = IGameObject::GetGameObjectType(cData->GetCommand());
-		if(OT_None != oType && ChechResources(oType))
+		if(OT_None != oType && CreateObject(oType))
 			m_pContext->AddObject(oType, *static_cast<Vector2D*>(cData->GetExtraData()), this);
 	}
 	if(cData->HasParameter(CDParams_CharAction))

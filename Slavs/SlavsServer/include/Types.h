@@ -43,6 +43,9 @@ namespace Slavs
   typedef Goverment*                              TGoverment;
   typedef SHouseComponent*                        THouse;
 
+  typedef std::pair<int, size_t>                  ResourcePair;
+  typedef std::vector<ResourcePair>               ResourcesCountSet;
+
   typedef std::vector<TEconomy>                   TEconomyManagers;
   typedef std::set<TGoldKeeper>                   TGoldKeepers;
   typedef std::set<THouse>                        THouses;

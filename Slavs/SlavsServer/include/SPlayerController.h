@@ -8,6 +8,12 @@
 
 #include <ISendable.h>
 
+namespace Slavs
+  {
+  class GameContext;
+  class GameObject;
+  }
+
 class Vector2D;
 class SGameObject;
 
@@ -15,7 +21,7 @@ class SPlayerController
   : public IController
 {
 public:
-	SPlayerController(int iMask, SGameContext *context = 0);
+	SPlayerController(int iMask, Slavs::GameContext& i_context);
 	~SPlayerController();
 
 	void Init();

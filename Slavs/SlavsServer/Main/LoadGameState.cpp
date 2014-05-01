@@ -34,17 +34,21 @@ namespace Slavs
     {
     printf( "Enters LoadGame state\n" );
     mh_game_context.reset(new GameContext());
-    GameSerializer serializer(*mh_game_context);
-    serializer.Load(m_loading_parameters.m_map_name);
+
     net::Connection& connection = *ip_owner->GetConnection();
     // set player controller; now it is only one PC but it is needed to move this to separate class
-    m_controllers.push_back( std::unique_ptr<IController>
+    mh_game_context->RegisterController( std::unique_ptr<IController>
                               (
-                              new SPlayerController(connection.GetAddress().GetAddress(), nullptr)
+                              new SPlayerController(connection.GetAddress().GetAddress(), *mh_game_context)
                               )
                            );
     // also set AI controllers
     // TODO: code here
+
+    // load game
+    GameSerializer serializer(*mh_game_context);
+    serializer.LoadConfigurations(m_loading_parameters.m_configurations_path);
+    serializer.LoadGame(m_loading_parameters.m_map_path);
 
     mp_loading_fsm.reset(new LoadingStages::LoadingFSM(&connection, ip_owner, boost::ref(*mh_game_context.get())));
     mp_loading_fsm->start();

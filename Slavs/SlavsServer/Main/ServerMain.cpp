@@ -8,7 +8,6 @@
 
 #include "LoadGameState.h"
 
-
 #include <locale>
 #include <codecvt>
 
@@ -220,19 +219,26 @@ bool ServerMain::Start(const std::string& i_configuration_file)
   if (true)
     {
     const TiXmlElement* p_game = root.FirstChildElement("Game");
-    std::string path_type = XmlUtilities::GetStringAttribute(p_game->FirstChildElement("Path"), "Type", "Relative");
-    std::string path      = XmlUtilities::GetStringAttribute(p_game->FirstChildElement("Path"), "File", "");
 
-    using namespace Slavs;
-    std::string game_path = "";
-    if (path_type == "Relative")
-      game_path = FileUtilities::JoinPath(FileUtilities::GetApplicationDirectory(), path);
-    else
-      game_path = path;
-    LoadingParameters loading_parameters;
-    loading_parameters.m_map_name = game_path;
+    auto get_path = [](const TiXmlElement* p_path_element, const std::string& i_path_name) -> std::string
+      {
+      std::string path_type = XmlUtilities::GetStringAttribute(p_path_element->FirstChildElement(i_path_name.c_str()), "Type", "Relative");
+      std::string path      = XmlUtilities::GetStringAttribute(p_path_element->FirstChildElement(i_path_name.c_str()), "File", "");
+
+      using namespace Slavs;
+      std::string game_path = "";
+      if (path_type == "Relative")
+        game_path = FileUtilities::JoinPath(FileUtilities::GetApplicationDirectory(), path);
+      else
+        game_path = path;
+      return game_path;
+      };
+
+    Slavs::LoadingParameters loading_parameters;
+    loading_parameters.m_map_path = get_path(p_game, "GamePath");
+    loading_parameters.m_configurations_path = get_path(p_game, "ConfigurationsPath");
     
-    mh_state_machine->SetCurrentState(std::make_shared<LoadGameState>(loading_parameters));
+    mh_state_machine->SetCurrentState(std::make_shared<Slavs::LoadGameState>(loading_parameters));
     }
 
   m_bWorking = true;

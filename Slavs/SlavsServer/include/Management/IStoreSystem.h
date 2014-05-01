@@ -21,6 +21,9 @@ public:
   virtual void            Add(Slavs::TResources& i_new_resources) = 0;
   virtual void            Add(Slavs::TGameResourceBox i_new_resource) = 0;
 
+  virtual void            Add(Slavs::ResourcePair i_resource) = 0;
+  virtual void            Add(Slavs::ResourcesCountSet i_resources) = 0;
+
   virtual void            ProcessEvent(EconomyEvent i_event, void* ip_data = nullptr) = 0;
 
   virtual bool            PeekResources(GameResourceType i_type, size_t i_number) = 0;

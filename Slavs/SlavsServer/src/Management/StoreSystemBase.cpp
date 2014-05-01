@@ -4,6 +4,7 @@
 #include "SManufacureCom.h"
 
 #include <Game/GameResources.h>
+#include <Game/GameResource.h>
 
 #include <algorithm>
 #include <cassert>
@@ -88,6 +89,15 @@ size_t StoreSystemBase::GetResources(GameResourceType i_type, size_t i_number)
   Slavs::TReourcesInformation::iterator it_res = m_resource_data.find(i_type);
   if (it_res == m_resource_data.end() || it_res->second.uiCurrentResources < i_number)
     return 0;
+
+  size_t resources_left = i_number;
+  for (SStoreHouseCom* ip_store : m_stores)
+    {
+    resources_left -= ip_store->PeekResources(i_type, resources_left);
+    if (resources_left == 0)
+      break;
+    }
+
   it_res->second.uiCurrentResources -= i_number;
   return i_number;
   }
@@ -113,6 +123,7 @@ void StoreSystemBase::Add(Slavs::TGameResourceBox i_new_resource)
 {
   GameResourceType res_type = i_new_resource->GetGRType();
   size_t initial_resources = i_new_resource->GetNumber();
+
   for(size_t i = 0; i < m_stores.size(); ++i)
   {
     m_stores[i]->AddResource(i_new_resource);
@@ -126,6 +137,23 @@ void StoreSystemBase::Add(Slavs::TGameResourceBox i_new_resource)
   m_resource_data[res_type].uiCurrentResources += (initial_resources - i_new_resource->GetNumber());
   m_resource_data[res_type].bHasChanges = i_new_resource->GetNumber() != initial_resources;
 }
+
+void StoreSystemBase::Add(Slavs::ResourcePair i_resource)
+  {
+  GameResourceType res_type = static_cast<GameResourceType>(i_resource.first);
+  size_t initial_resources = i_resource.second;
+  
+  // TODO: refactor when Manufacture component will be changed
+
+  GameResourceBox box(res_type, initial_resources, 0, 0);
+  Add(&box);
+  }
+
+void StoreSystemBase::Add(Slavs::ResourcesCountSet i_resources)
+  {
+  for (Slavs::ResourcePair resource : i_resources)
+    Add(resource);
+  }
 
 Slavs::TStoreHouses& StoreSystemBase::GetStores()
 {

@@ -13,9 +13,7 @@ namespace Slavs
   {
   class GameContext;
 
-  class SLAVS_SERVER_EXPORT GameObject 
-    : public IGameObject
-    , public IMovable
+  class SLAVS_SERVER_EXPORT GameObject : public IGameObject
     {
     private:
       GameContext& m_context;

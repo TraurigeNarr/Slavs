@@ -25,6 +25,9 @@ public:
   virtual void          Add(Slavs::TResources& i_new_resources) override;
   virtual void          Add(Slavs::TGameResourceBox i_new_resource) override;
 
+  virtual void          Add(Slavs::ResourcePair i_resource) override;
+  virtual void          Add(Slavs::ResourcesCountSet i_resources) override;
+
   virtual void          ProcessEvent(EconomyEvent i_event, void* ip_data = nullptr) override;
   
   virtual bool          PeekResources(GameResourceType i_type, size_t i_number) override;

@@ -17,6 +17,7 @@
 
 namespace
   {
+
   Slavs::TGameObject _CreateObject(Slavs::GameContext& o_context, const TiXmlElement& i_xml_node, int i_type)
     {
     const TiXmlElement* p_child = 0;
@@ -27,16 +28,19 @@ namespace
     const TiXmlNode* p_selection_mask = i_xml_node.FirstChild("SelectionMask");
 
 #ifdef _DEBUG
-    assert (p_owner);
-    assert (p_owner->FirstChild("Name"));
-    assert (p_owner->FirstChild("Address"));
     assert (p_selection_mask->FirstChild());
     assert (p_position->FirstChild("x"));
     assert (p_position->FirstChild("y"));
 #endif
-    //owner -- should be combination of name + address; can be null
-    std::string owner_name                = p_owner->FirstChild("Name")->FirstChild()->Value();
-    int address                           = boost::lexical_cast<int>(p_owner->FirstChild("Address")->FirstChild()->Value());
+
+    int controller_id = 0;
+    try
+      {
+      controller_id = p_owner == nullptr ? 0 : boost::lexical_cast<int>(p_owner->FirstChild("Id")->FirstChild()->Value());
+      }
+    catch (boost::bad_lexical_cast&)
+      {      }
+    
     //position -- x and y coordinates
     float pos_x = boost::lexical_cast<float>(p_position->FirstChild("x")->FirstChild()->Value());
     float pos_y = boost::lexical_cast<float>(p_position->FirstChild("y")->FirstChild()->Value());
@@ -44,9 +48,42 @@ namespace
     //selection mask -- int
     int selection_mask                    = boost::lexical_cast<int>(p_selection_mask->FirstChild()->Value());
     
-    return o_context.AddObject(i_type, Vector2D(pos_x, pos_y), nullptr, selection_mask);
+    return o_context.AddObject(i_type, Vector2D(pos_x, pos_y), controller_id, selection_mask);
     }
-  }
+
+  GameResourceType GetResourceType(const std::string& i_resource_name)
+    {
+    if (i_resource_name == "tree")
+      return GameResourceType::GR_Tree;
+    if (i_resource_name == "stone")
+      return GameResourceType::GR_Stone;
+    if (i_resource_name == "wood")
+      return GameResourceType::GR_Wood;
+    if (i_resource_name == "iron_ore")
+      return GameResourceType::GR_IronOre;
+    if (i_resource_name == "wool")
+      return GameResourceType::GR_Wool;
+    }
+
+  void GetResourcesSetForType(Slavs::ResourcesCountSet& o_resources, const TiXmlElement& i_xml_node)
+    {
+    const TiXmlElement* p_child = nullptr;
+    std::string resource_name = "";
+    GameResourceType res_type = GameResourceType::GR_None;
+    int count = 0;
+    while (p_child = XmlUtilities::IterateChildElements(&i_xml_node, p_child))
+      {
+      resource_name = p_child->Value();
+      res_type = GetResourceType(resource_name);
+      if (res_type != GameResourceType::GR_None)
+        {
+        count = XmlUtilities::GetIntAttribute(p_child, "value", 0);
+        o_resources.push_back(std::make_pair(static_cast<int>(res_type), count));
+        }
+      }
+    }
+
+  } // namespace
 
 namespace Slavs
   {
@@ -57,7 +94,7 @@ namespace Slavs
   GameSerializer::~GameSerializer()
     {    }
 
-  void GameSerializer::Load(const std::string& i_game_name)
+  void GameSerializer::LoadGame(const std::string& i_game_name)
     {
     TiXmlDocument document;
     if (!XmlUtilities::LoadXmlDocument(i_game_name, document))
@@ -66,10 +103,22 @@ namespace Slavs
       return;
       }
     else
-      Parse(*document.RootElement());
+      ParseGameDocument(*document.RootElement());
+    }
+  
+  void GameSerializer::LoadConfigurations(const std::string& i_configurations_path)
+    {
+    TiXmlDocument document;
+    if (!XmlUtilities::LoadXmlDocument(i_configurations_path, document))
+      {
+      //write to log about failure
+      return;
+      }
+    else
+      ParseConfigurationDocument(*document.RootElement());
     }
 
-  void GameSerializer::Parse(TiXmlElement& i_root)
+  void GameSerializer::ParseGameDocument(TiXmlElement& i_root)
     {
     const TiXmlElement* p_child = 0;
     std::string type_name = "";
@@ -83,6 +132,26 @@ namespace Slavs
       if (type_id != -1)
         {
         _CreateObject(m_game_context, *p_child, type_id);
+        }
+      }
+    }
+
+  void GameSerializer::ParseConfigurationDocument(TiXmlElement& i_root)
+    {
+    const TiXmlElement* p_child = 0;
+    std::string type_name = "";
+
+    MetaFactory& factory = ServerMain::GetInstance().GetMetaFactory();
+
+    while ((p_child = XmlUtilities::IterateChildElements(&i_root, p_child)))
+      {
+      type_name = p_child->Value();
+      int type_id = factory.GetObjectID(type_name);
+      if (type_id != -1)
+        {
+        Slavs::ResourcesCountSet resources_set;
+        GetResourcesSetForType(resources_set, *p_child);
+        m_game_context.RegisterResources(type_id, resources_set);
         }
 
       }

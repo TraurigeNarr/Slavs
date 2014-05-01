@@ -102,21 +102,6 @@ void WaitState::HoldPacket(ServerMain* ip_owner, unsigned char *packet, size_t s
 }
 
 void WaitState::ClientConnects(ServerMain* ip_owner)
-{
-	//find address in list of controllers
-	int address = ip_owner->GetConnection()->GetAddress().GetAddress();
-	std::map<int, IController*>::const_iterator address_iter = m_pControllers->find(address);
-	//if controller with such mask already exists return
-	if(m_pControllers->end() == address_iter)
   {
-    //create new controller
-    SPlayerController* controller = new SPlayerController(address);
-    m_pControllers->insert(std::pair<int, IController*>(controller->GetMask(), controller));
+  throw std::exception("not use it");
   }
-	
-	//send to client his mask
-	char *packetBuf = new char[sizeof(PacketType)];
-	ToChar(PT_Connects, packetBuf, sizeof(PacketType));
-	ip_owner->GetConnection()->SendPacket( packetBuf, sizeof(PacketType) );
-	delete []packetBuf;
-}
