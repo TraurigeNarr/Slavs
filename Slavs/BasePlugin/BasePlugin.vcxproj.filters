@@ -58,6 +58,9 @@
     <ClInclude Include="IMovementStrategy.h">
       <Filter>Components\Base</Filter>
     </ClInclude>
+    <ClInclude Include="HouseComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -83,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="DynamicObjectComponent.cpp">
       <Filter>Components\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="HouseComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

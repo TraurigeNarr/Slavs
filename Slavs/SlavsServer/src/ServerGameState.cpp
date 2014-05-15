@@ -12,6 +12,9 @@
 //states
 #include "ServerWaitState.h"
 #include "ServerLoadGameState.h"
+
+#include <Net.h>
+
 //standard
 #include <algorithm>
 #include <iostream>

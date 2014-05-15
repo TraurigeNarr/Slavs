@@ -9,6 +9,8 @@
 
 #include "PluginSystem/MetaFactory.h"
 
+#include <Net.h>
+
 //common
 #include <Game/Enumerations.h>
 #include <Game/GameObjectState.h>

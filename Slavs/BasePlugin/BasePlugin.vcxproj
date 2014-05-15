@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClInclude Include="BaseObjectComposer.h" />
     <ClInclude Include="DynamicObjectComponent.h" />
+    <ClInclude Include="HouseComponent.h" />
     <ClInclude Include="HumanComponent.h" />
     <ClInclude Include="IComponentSerializer.h" />
     <ClInclude Include="IMovementStrategy.h" />
@@ -110,6 +111,7 @@
     <ClCompile Include="BaseObjectComposer.cpp" />
     <ClCompile Include="BasePlugin.cpp" />
     <ClCompile Include="DynamicObjectComponent.cpp" />
+    <ClCompile Include="HouseComponent.cpp" />
     <ClCompile Include="HumanComponent.cpp" />
     <ClCompile Include="ObjectSettings.cpp" />
     <ClCompile Include="SlavsBasePlugin.cpp" />

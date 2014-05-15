@@ -10,6 +10,8 @@
 #include "Management/SocietyManagerBase.h"
 #include "Management/IStoreSystem.h"
 
+#include <Net.h>
+
 #include <cassert>
 
 IController::IController(int iMask, Slavs::GameContext& i_context)

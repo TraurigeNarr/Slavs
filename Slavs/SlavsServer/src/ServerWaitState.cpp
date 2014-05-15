@@ -11,6 +11,8 @@
 #include <Patterns/Singleton.h>
 #include <Utilities/TemplateFunctions.h>
 
+#include <Net.h>
+
 #include <iostream>
 
 WaitState::WaitState()

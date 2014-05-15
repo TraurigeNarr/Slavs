@@ -1,13 +1,16 @@
 #pragma once
 //server
 #include "SResourceManager.h"
-//net
-#include "Net.h"
 //common
 #include <Game/Enumerations.h>
 #include <Game/TimeController.h>
 
 #include <map>
+
+namespace net
+  {
+  class Connection;
+  }
 
 namespace Slavs
   {
