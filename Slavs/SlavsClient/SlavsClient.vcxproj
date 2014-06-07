@@ -71,6 +71,9 @@
       <AdditionalLibraryDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\lib\$(Configuration);$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost\lib;$(THIRD_PARTIES)\CEGUI_0.8.2\lib;$(THIRD_PARTIES)\tinyxml\lib;$(SolutionDir)..\lib\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)..\..\Resources\client\*.*" "$(OutputPath)client\" /Y /R /I /E</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -91,6 +94,9 @@
       <AdditionalLibraryDirectories>$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\lib\$(Configuration);$(THIRD_PARTIES)\OgreSDK_vc11_v1-9-0\boost\lib;$(THIRD_PARTIES)\CEGUI_0.8.2\lib;$(THIRD_PARTIES)\tinyxml\lib;$(SolutionDir)..\lib\$(Configuration)\;</AdditionalLibraryDirectories>
       <AdditionalDependencies>OgreMain.lib;OIS.lib;OgreTerrain.lib;CEGUIBase-0.lib;CEGUIOgreRenderer-0.lib;tinyxml.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)..\..\Resources\client\*.*" "$(OutputPath)client\" /Y /R /I /E</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.vcxproj">

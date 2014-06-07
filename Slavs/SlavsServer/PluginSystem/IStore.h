@@ -4,6 +4,7 @@
 #include <vector>
 
 class GameResourceBox;
+class GameResourceContainer;
 
 namespace Slavs
   {
@@ -47,6 +48,11 @@ namespace Slavs
       /// <param name='i_type '>type of resources that is required</param>
       /// <param name='i_number'>number of resources</param>
       virtual size_t GetResourceForcely (int i_type, size_t i_number) = 0;
+
+      /// <summary>
+      /// Returns resources that are held in this store
+      /// </summary>
+      virtual const std::vector<std::shared_ptr<GameResourceContainer>>& GetResources() const = 0;
     };
 
   } // Slavs

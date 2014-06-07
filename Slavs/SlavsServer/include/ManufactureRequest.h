@@ -3,31 +3,27 @@
 
 #include "Types.h"
 
-class IGoldKeeper;
-class SManufacureCom;
-
 class EmployerInformation
 {
 private:
-  RequestForWorkers m_request;
-  SManufacureCom* mp_employer;
-
-  bool m_active;
+  RequestForWorkers     m_request;
+  Slavs::EmployerPtr    mp_employer;
+  bool                  m_active;
 
 public:
-  EmployerInformation(SManufacureCom* ip_owner);
+  EmployerInformation(Slavs::EmployerPtr ip_owner);
   
-  RequestForWorkers& AccessRequest();
-  const RequestForWorkers& GetRequest() const;
+  RequestForWorkers&        AccessRequest();
+  const RequestForWorkers&  GetRequest() const;
 
-  SManufacureCom* GetOwner() const;
+  Slavs::EmployerPtr     GetOwner() const;
 
   inline bool IsActive() const;
   inline void Activate();
   inline void Deactivate();
 };
 
-typedef std::map<SManufacureCom*, const EmployerInformation&>	EmployersInformation;
+typedef std::map<Slavs::EmployerPtr, const EmployerInformation&>	EmployersInformation;
 
 
 void EmployerInformation::Activate()

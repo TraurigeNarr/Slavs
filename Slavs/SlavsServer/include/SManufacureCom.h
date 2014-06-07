@@ -4,6 +4,8 @@
 #include "ManufactureRequest.h"
 #include "IGoldKeeper.h"
 
+#include "PluginSystem/IEmployer.h"
+
 #include <Game/Enumerations.h>
 #include <Game/GameResources.h>
 #include <Game/IComponent.h>
@@ -30,7 +32,7 @@ This can be sawmill, quarry, etc.
 */
 class SManufacureCom 
   : public IComponent
-  , public IGoldKeeper
+  , public Slavs::IEmployer
 {
 public:
 									  SManufacureCom(SGameObject* owner, const TiXmlElement* componentElement);
@@ -57,7 +59,7 @@ public:
   float             GetMaxSkill() const { return m_fMaxSkill; }
   float             GetLearningCoefficient() const { return m_learning_coefficient; }
 	int								GetIniResMines() const { return m_iIniResMines; }
-	int								NeedWorkers() const { return 0 == m_iNeededWorkers; }
+	bool						  NeedWorkers() const { return 0 == m_iNeededWorkers; }
   inline const EmployerInformation& GetInformation() const;
 	//calls from ResourceManager if there is a population. Returns true if hired, false otherwise
 	//@param worker - human that can be hired. if he will - moves to position of factory(temporary)

@@ -1,7 +1,7 @@
 #pragma once
 
 //general economy events that occurred
-enum EconomyEvent
+enum class EconomyEvent
 {
   EE_NEED_STORE,
   EE_NEW_WORK_APPEARED,

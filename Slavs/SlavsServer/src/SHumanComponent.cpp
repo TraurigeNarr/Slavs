@@ -229,7 +229,7 @@ void SHumanComponent::ProcessEconomyEvent(EconomyEvent i_event, void* ip_data /*
   {
   switch (i_event)
     {
-    case EE_NEW_WORK_APPEARED:
+    case EconomyEvent::EE_NEW_WORK_APPEARED:
       m_pBrain->Arbitrate();
       break;
     default:

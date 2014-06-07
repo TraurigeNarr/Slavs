@@ -1,13 +1,13 @@
 #include "ManufactureRequest.h"
 
-#include "SManufacureCom.h"
+#include "PluginSystem/IEmployer.h"
 
 #include "IGoldKeeper.h"
 
 
 size_t RequestForWorkers::uiMaxPayment = 0;
 
-EmployerInformation::EmployerInformation(SManufacureCom* ip_owner)
+EmployerInformation::EmployerInformation(Slavs::EmployerPtr ip_owner)
   : mp_employer(ip_owner)
   , m_active(true)
 {
@@ -24,7 +24,7 @@ RequestForWorkers& EmployerInformation::AccessRequest()
   return m_request;
   }
 
-SManufacureCom* EmployerInformation::GetOwner() const
+Slavs::EmployerPtr EmployerInformation::GetOwner() const
 {
   return mp_employer;
 }

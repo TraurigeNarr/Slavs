@@ -78,12 +78,6 @@
     <Filter Include="Source Files\Game\Management">
       <UniqueIdentifier>{d4a057e8-55a5-45ff-9c4d-cf1f385f21fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Game\Management.Base">
-      <UniqueIdentifier>{c7970f73-8e5b-4a4e-a5a6-8f3cd2241dab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Game\Management">
-      <UniqueIdentifier>{979aaad7-33fa-4bba-9582-c5f38b905661}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PluginSystem">
       <UniqueIdentifier>{510240a3-2fc9-431d-b2ca-60323d921c70}</UniqueIdentifier>
     </Filter>
@@ -110,6 +104,12 @@
     </Filter>
     <Filter Include="Factories\Interfaces">
       <UniqueIdentifier>{1a719be6-b989-40ca-957e-55fb95d5ca89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Management">
+      <UniqueIdentifier>{979aaad7-33fa-4bba-9582-c5f38b905661}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Management.Base">
+      <UniqueIdentifier>{c7970f73-8e5b-4a4e-a5a6-8f3cd2241dab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -425,54 +425,51 @@
       <Filter>Main\States</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\BaseEvent.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\EconomyManagerBase.h">
-      <Filter>Header Files\Game\Management</Filter>
+      <Filter>Game\Management</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\EventsEnumerations.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\GlobalEconomics.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\Goverment.h">
-      <Filter>Header Files\Game\Management</Filter>
+      <Filter>Game\Management</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\IEconomyManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\IManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\IMilitaryManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\IRelashionshipsManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\ISocietyManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\IStoreSystem.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\ITechnologyManager.h">
-      <Filter>Header Files\Game\Management.Base</Filter>
+      <Filter>Game\Management.Base</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\SocietyManagerBase.h">
-      <Filter>Header Files\Game\Management</Filter>
+      <Filter>Game\Management</Filter>
     </ClInclude>
     <ClInclude Include="include\Management\StoreSystemBase.h">
-      <Filter>Header Files\Game\Management</Filter>
+      <Filter>Game\Management</Filter>
     </ClInclude>
     <ClInclude Include="PluginSystem\IBuilding.h">
       <Filter>Factories\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="PluginSystem\IHouse.h">
-      <Filter>Factories\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="PluginSystem\IManufacture.h">
       <Filter>Factories\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="PluginSystem\IHuman.h">
@@ -483,6 +480,9 @@
     </ClInclude>
     <ClInclude Include="PluginSystem\IObjectComposer.h">
       <Filter>Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\IEmployer.h">
+      <Filter>Factories\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

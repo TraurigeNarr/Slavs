@@ -1,7 +1,7 @@
 #include "Management/StoreSystemBase.h"
 
-#include "SStoreHouseCom.h"
-#include "SManufacureCom.h"
+#include "PluginSystem/IStore.h"
+#include "PluginSystem/IEmployer.h"
 
 #include <Game/GameResources.h>
 #include <Game/GameResource.h>
@@ -21,7 +21,7 @@ StoreSystemBase::~StoreSystemBase()
 
 }
 
-void StoreSystemBase::Register(SStoreHouseCom* ip_store_house)
+void StoreSystemBase::Register(Slavs::StorePtr ip_store_house)
 {
   assert(ip_store_house && 
     "<SResourceManager::AddStore>: trying to add to NULL store");
@@ -50,7 +50,7 @@ void StoreSystemBase::Register(SStoreHouseCom* ip_store_house)
   }
 }
 
-void StoreSystemBase::Remove(SStoreHouseCom* ip_store_house)
+void StoreSystemBase::Remove(Slavs::StorePtr ip_store_house)
 {
   std::remove(m_stores.begin(), m_stores.end(), ip_store_house);
 
@@ -69,11 +69,11 @@ void StoreSystemBase::Remove(SStoreHouseCom* ip_store_house)
 void StoreSystemBase::ProcessEvent(EconomyEvent i_event, void* ip_data /* = nullptr */)
 {
   switch(i_event)
-  {
-  case EE_NEED_STORE:
-    m_store_waiting.push_back(static_cast<SManufacureCom*>(ip_data));
-    break;
-  }
+    {
+    case EconomyEvent::EE_NEED_STORE:
+      m_store_waiting.push_back(static_cast<Slavs::EmployerPtr>(ip_data));
+      break;
+    }
 }
 
 bool StoreSystemBase::PeekResources(GameResourceType i_type, size_t i_number) 
@@ -91,9 +91,9 @@ size_t StoreSystemBase::GetResources(GameResourceType i_type, size_t i_number)
     return 0;
 
   size_t resources_left = i_number;
-  for (SStoreHouseCom* ip_store : m_stores)
+  for (Slavs::StorePtr ip_store : m_stores)
     {
-    resources_left -= ip_store->PeekResources(i_type, resources_left);
+    resources_left -= ip_store->GetResourceForcely(i_type, resources_left);
     if (resources_left == 0)
       break;
     }
@@ -126,7 +126,7 @@ void StoreSystemBase::Add(Slavs::TGameResourceBox i_new_resource)
 
   for(size_t i = 0; i < m_stores.size(); ++i)
   {
-    m_stores[i]->AddResource(i_new_resource);
+    m_stores[i]->AddResource(*i_new_resource);
     if(i_new_resource->GetNumber() == 0)
     {
       assert(m_resource_data.end() != m_resource_data.find(res_type) && 
@@ -155,7 +155,7 @@ void StoreSystemBase::Add(Slavs::ResourcesCountSet i_resources)
     Add(resource);
   }
 
-Slavs::TStoreHouses& StoreSystemBase::GetStores()
+Slavs::Stores& StoreSystemBase::GetStores()
 {
   return m_stores;
 }

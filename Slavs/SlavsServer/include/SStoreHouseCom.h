@@ -1,11 +1,7 @@
 #ifndef SStoreHouseCom_h
 #define SStoreHouseCom_h
 
-/*
----------------------------------------------------
-Component that keep track of specific resource types.
----------------------------------------------------
-*/
+#include "PluginSystem/IStore.h"
 
 #include "Game/IComponent.h"
 #include "Game/GameResources.h"
@@ -17,7 +13,14 @@ class SGameObject;
 class TiXmlElement;
 class SBuildingComp;
 
+/*
+---------------------------------------------------
+Component that keep track of specific resource types.
+---------------------------------------------------
+*/
+
 class SStoreHouseCom : public IComponent
+                     , public Slavs::IStore
 {
 public:
 	SStoreHouseCom(SGameObject* owner, const TiXmlElement* componentElement);

@@ -1,7 +1,8 @@
 #include "Management/IEconomyManager.h"
 
 #include "IController.h"
-#include "SManufacureCom.h"
+
+#include "PluginSystem/IEmployer.h"
 
 #include "Management/Goverment.h"
 
@@ -54,9 +55,9 @@ void IEconomyManager::GetAvailableEmployers(Slavs::TEmployersInformation& o_avai
   {
   std::for_each(m_employers.begin(), m_employers.end(), [&o_available](Slavs::TGoldKeeper i_employer)
     {
-    if (typeid(*i_employer) == typeid(SManufacureCom))
+    if (typeid(*i_employer) == typeid(Slavs::IEmployer))
       {
-      const EmployerInformation& information = static_cast<SManufacureCom*>(i_employer)->GetInformation();
+      const EmployerInformation& information = static_cast<Slavs::IEmployer*>(i_employer)->GetInformation();
       if (information.IsActive())
         o_available.push_back(&information);
       }

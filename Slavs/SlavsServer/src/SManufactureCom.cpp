@@ -92,7 +92,7 @@ void SManufacureCom::TickPerformed()
 		//if manufacture can to work on
 		if(m_pRequest->IsActive())
 		{
-			m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EE_NEW_WORK_APPEARED);
+			m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EconomyEvent::EE_NEW_WORK_APPEARED);
 		}
 	}
 }
@@ -133,7 +133,7 @@ bool SManufacureCom::HandleMessage(const Telegram& msg)
 					m_pRequest->Deactivate();
           m_pRequest->AccessRequest().bNeedStore = true;
 					m_pTransitStore->AddResource(m_pBoxOfResources);
-					m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EE_NEED_STORE, this);
+					m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EconomyEvent::EE_NEED_STORE, this);
           m_state = MS_WAITING_FOR_STORES;
 				}
 				
@@ -268,7 +268,7 @@ void SManufacureCom::StoreExpanded()
 	if(0 == m_pTransitStore->GetResNumber())
 	{
 		m_pRequest->Activate();
-    m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EE_NEW_WORK_APPEARED);
+    m_pOwner->GetOwner()->GetGoverment().GetEconomyManager()->ProcessEvent(EconomyEvent::EE_NEW_WORK_APPEARED);
 		//m_pOwner->GetOwner()->GetResourceMgr()->RefreshRequests();
 		m_pOwner->StateChanged();
 	}

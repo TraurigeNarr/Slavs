@@ -127,15 +127,16 @@ void SGameObject::AddComponent(const TiXmlElement* componentElement, Vector2D *e
 	}
 	if("store_house" == componentType)
 	{
-		SStoreHouseCom *storeHouse = new SStoreHouseCom(this, componentElement);
-		m_components.push_back(storeHouse);
-		m_iFlags |= c_t_storeHouse;
+    throw std::runtime_error("Deprecated usage");
+		///SStoreHouseCom *storeHouse = new SStoreHouseCom(this, componentElement);
+		///m_components.push_back(storeHouse);
+		///m_iFlags |= c_t_storeHouse;
 	}
 	if("human" == componentType)
 	{
-		SHumanComponent* human = new SHumanComponent(this, componentElement);
-		m_components.push_back(human);
-		m_iFlags |= c_t_human;
+		//SHumanComponent* human = new SHumanComponent(this, componentElement);
+		//m_components.push_back(human);
+		//m_iFlags |= c_t_human;
 	}
 	if("house" == componentType)
 	{
@@ -146,15 +147,17 @@ void SGameObject::AddComponent(const TiXmlElement* componentElement, Vector2D *e
 	}
 	if("manufacture" == componentType)
 	{
-		SManufacureCom *resMining = new SManufacureCom(this, componentElement);
-		m_components.push_back(resMining);
-		m_iFlags |= c_t_manufacture;
+    throw std::runtime_error("Deprecated usage");
+		///SManufacureCom *resMining = new SManufacureCom(this, componentElement);
+		///m_components.push_back(resMining);
+		///m_iFlags |= c_t_manufacture;
 	}
 	if("building" == componentType)
 	{
-		SBuildingComp *building = new SBuildingComp(this, componentElement);
-		m_components.push_back(building);
-		m_iFlags |= c_t_building;
+    throw std::runtime_error("Deprecated usage");
+		//SBuildingComp *building = new SBuildingComp(this, componentElement);
+		//m_components.push_back(building);
+		//m_iFlags |= c_t_building;
 	}
 }
 

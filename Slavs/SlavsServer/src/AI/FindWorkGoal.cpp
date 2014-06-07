@@ -52,7 +52,8 @@ void FindWorkGoal::ParseRequests(const Slavs::TEmployersInformation& i_informati
 		m_gStatus = waitnig;
 		return;
 	}
-	Slavs::TEmployersInformation::const_iterator reqIter = i_informations.begin();
+  throw std::runtime_error("Deprecated usage");
+	/*Slavs::TEmployersInformation::const_iterator reqIter = i_informations.begin();
 
 	const HumanProfessions& professions = m_pOwner->GetProfessions();
 	HumanProfessions::const_iterator profIter;
@@ -100,7 +101,7 @@ void FindWorkGoal::ParseRequests(const Slavs::TEmployersInformation& i_informati
 	else
 	  {
 		m_gStatus = waitnig;
-	  }
+	  }*/
 }
 
 bool FindWorkGoal::HandleMessage(const Telegram& msg)

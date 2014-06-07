@@ -11,7 +11,7 @@
 class SLAVS_SERVER_EXPORT IEconomyManager : public IManager
 {
 protected:
-  Slavs::TGoldKeepers m_employers;
+  Slavs::TGoldKeepers    m_employers;
   Slavs::TGoldKeepers m_employees;
 
 public:

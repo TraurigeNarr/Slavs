@@ -29,13 +29,20 @@ namespace Slavs
 {
   class GameObject;
   class GameContext;
-  class IHuman;
   class IHouse;
+  class IHuman;
+  class IManufacture;
+  class IStore;
+  class IEmployer;
   //////////////////////////////////////////////////////////////////////////
   typedef IHuman*                                 HumanPtr;
   typedef IHouse*                                 HousePtr;
+  typedef IStore*                                 StorePtr;
+  typedef IEmployer*                              EmployerPtr;
   typedef std::set<HumanPtr>                      Humans;
   typedef std::set<HousePtr>                      Houses;
+  typedef std::vector<StorePtr>                   Stores;
+  typedef std::vector<EmployerPtr>                Employers;
 
   typedef GameObject*                             TGameObject;
   typedef std::unique_ptr<GameContext>            TGameContext;

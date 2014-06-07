@@ -228,7 +228,7 @@
     <ClInclude Include="include\Worker.h" />
     <ClInclude Include="include\WorkerStates.h" />
     <ClInclude Include="PluginSystem\DllManager.h" />
-    <ClInclude Include="PluginSystem\IManufacture.h" />
+    <ClInclude Include="PluginSystem\IEmployer.h" />
     <ClInclude Include="PluginSystem\IStore.h" />
     <ClInclude Include="PluginSystem\MetaFactory.h" />
     <ClInclude Include="PluginSystem\IObjectComposer.h" />
