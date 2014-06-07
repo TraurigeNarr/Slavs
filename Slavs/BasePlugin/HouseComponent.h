@@ -2,6 +2,8 @@
 
 #include "IComponentSerializer.h"
 
+#include <SlavsServer/PluginSystem/IHouse.h>
+
 #include <Game/IComponent.h>
 
 #include <SlavsServer/Game/GameObject.h>
@@ -12,6 +14,7 @@ namespace BasePlugin
   class HouseComponentSerializer;
 
   class HouseComponent : public IComponent
+                       , public Slavs::IHouse
     {
     friend HouseComponentSerializer;
 
@@ -19,28 +22,40 @@ namespace BasePlugin
       typedef HouseComponentSerializer TSerializer;
 
     private:
-      size_t m_needed_calories;
-      size_t m_eat_in;
-      size_t m_die_if_no_eat;
+      size_t        m_max_population;
+      Slavs::Humans m_inhabitants;
 
     public:
       HouseComponent(Slavs::TGameObject ih_owner, int i_component_id);
       virtual       ~HouseComponent();
 
+    // IComponent
+    public:
       virtual void	TickPerformed() override;
       virtual bool	HandleMessage(const Telegram& msg) override;
 
       virtual void	GetState(GameObjectState& i_state) const override;
-
       virtual bool	Probe() override;
+
+    // IHouse
+    public:
+      virtual size_t	GetPopulation() const override;
+
+      virtual size_t	GetUnemployedPopulation() const override;
+      virtual void		GetUnemployedPopulation(Slavs::Humans& o_unemployed) const override;
+
+      virtual size_t	GetFreePlaces() const;
+
+      virtual bool		AddInhabitant(Slavs::HumanPtr ip_inhabitant) override;
+      virtual void    RemoveInhabitant(Slavs::HumanPtr ip_inhabitant) override;
+
+      virtual void    HumanStateChanged() override;
     };
 
   class HouseComponentSerializer : public IComponentSerializer
     {
     private:
-      size_t m_needed_calories;
-      size_t m_eat_in;
-      size_t m_die_if_no_eat;
+      size_t m_max_population;
 
     public:
       HouseComponentSerializer(int i_component_id);

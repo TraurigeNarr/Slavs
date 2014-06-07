@@ -45,18 +45,15 @@ namespace BasePlugin
       {
       elementName = childElement->Value();
       // food preferences
-      if("Food" == elementName)
-        {
-        m_needed_calories = XmlUtilities::GetIntAttribute(childElement, "Calories",   10);
-        m_eat_in          = XmlUtilities::GetIntAttribute(childElement, "EatIn",      500);
-        m_die_if_no_eat   = XmlUtilities::GetIntAttribute(childElement, "DieIfNoEat", 5000);
-        }
+      m_max_population = XmlUtilities::GetIntAttribute(childElement, "max_population", 8);
       }
     }
 
   void HouseComponentSerializer::ApplyTo(IComponent& i_component) const 
     {
-   
+    assert (typeid(HouseComponent) == typeid(i_component));
+    HouseComponent& house = static_cast<HouseComponent&>(i_component);
+    house.m_max_population = m_max_population;
     }
 
   IComponent* HouseComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
@@ -71,15 +68,18 @@ namespace BasePlugin
 
   HouseComponent::HouseComponent(Slavs::TGameObject ih_owner, int i_component_id)
     : IComponent(ih_owner, i_component_id)
-    , m_needed_calories(0)
+    , m_max_population(0)
     {
-//    ih_owner->GetController()->GetGoverment().GetSocietyManager()->RegisterHouse(this);
+    ih_owner->GetController()->GetGoverment().GetSocietyManager()->RegisterHouse(this);
     }
 
   HouseComponent::~HouseComponent()
     {
 
     }
+
+//////////////////////////////////////////////////////////////////////////
+// IComponent
 
   void HouseComponent::TickPerformed()
     {
@@ -99,6 +99,44 @@ namespace BasePlugin
   bool HouseComponent::Probe()
     {
     return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_component_id);
+    }
+
+//////////////////////////////////////////////////////////////////////////
+// IHouse
+
+  size_t HouseComponent::GetPopulation() const
+    {
+    return 0;
+    }
+  
+  size_t HouseComponent::GetUnemployedPopulation() const
+    {
+    return 0;
+    }
+
+  void HouseComponent::GetUnemployedPopulation(Slavs::Humans& o_unemployed) const
+    {
+
+    }
+  
+  size_t HouseComponent::GetFreePlaces() const
+    {
+    return 0;
+    }
+  
+  bool HouseComponent::AddInhabitant(Slavs::HumanPtr ip_inhabitant)
+    {
+    return false;
+    }
+
+  void HouseComponent::RemoveInhabitant(Slavs::HumanPtr ip_inhabitant)
+    {
+
+    }
+
+  void HouseComponent::HumanStateChanged()
+    {
+
     }
 
   } // BasePlugin

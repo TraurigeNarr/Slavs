@@ -6,6 +6,7 @@ namespace BasePlugin
     {
     OT_NONE,
     OT_HUMAN,
+    OT_HIZHINA,
     OT_MILL
     };
 
@@ -14,6 +15,7 @@ namespace BasePlugin
     CT_NONE,
     CT_STATIC_OBJECT,
     CT_DYNAMIC_OBJECT,
-    CT_HUMAN
+    CT_HUMAN,
+    CT_HOUSE
     };
   }

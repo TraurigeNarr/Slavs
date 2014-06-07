@@ -139,9 +139,10 @@ void SGameObject::AddComponent(const TiXmlElement* componentElement, Vector2D *e
 	}
 	if("house" == componentType)
 	{
-		SHouseComponent *house = new SHouseComponent(this, componentElement);
-		m_components.push_back(house);
-		m_iFlags |= c_t_house;
+    throw std::runtime_error("Deprecated usage");
+		//SHouseComponent *house = new SHouseComponent(this, componentElement);
+		//m_components.push_back(house);
+		//m_iFlags |= c_t_house;
 	}
 	if("manufacture" == componentType)
 	{

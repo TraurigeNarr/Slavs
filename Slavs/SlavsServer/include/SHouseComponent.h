@@ -1,12 +1,8 @@
 #ifndef SHouseComponent_h
 #define SHouseComponent_h
 
-/*
----------------------------------------------------
-Implements component for increasing population.
-This is houses there people are living in happiness :)
----------------------------------------------------
-*/
+#include "PluginSystem/IHouse.h"
+
 #include "Game/IComponent.h"
 #include "Game/GameResources.h"
 #include <vector>
@@ -17,7 +13,16 @@ class SGameObject;
 class TiXmlElement;
 class SBuildingComp;
 
-class SHouseComponent : public IComponent
+/*
+---------------------------------------------------
+Implements component for increasing population.
+This is houses there people are living in happiness :)
+---------------------------------------------------
+*/
+
+class SHouseComponent 
+  : public IComponent
+  , public Slavs::IHouse
 {
 public:
   typedef std::list<SHumanComponent*> TInhabitants;

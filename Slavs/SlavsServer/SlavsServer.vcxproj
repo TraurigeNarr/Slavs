@@ -72,6 +72,9 @@
       <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
       <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)..\..\Resources\server\*.*" "$(OutputPath)server\" /Y /R /I /E</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -93,6 +96,9 @@
       <AdditionalDependencies>tinyxml.lib;OutputData.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)..\..\Resources\server\*.*" "$(OutputPath)server\" /Y /R /I /E</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main\GameState.cpp" />
@@ -151,6 +157,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PluginSystem\IBuilding.h" />
+    <ClInclude Include="PluginSystem\IHouse.h" />
+    <ClInclude Include="PluginSystem\IHuman.h" />
     <ClInclude Include="Main\GameState.h" />
     <ClInclude Include="Game\GameContext.h" />
     <ClInclude Include="Game\GameObject.h" />
@@ -219,6 +228,8 @@
     <ClInclude Include="include\Worker.h" />
     <ClInclude Include="include\WorkerStates.h" />
     <ClInclude Include="PluginSystem\DllManager.h" />
+    <ClInclude Include="PluginSystem\IManufacture.h" />
+    <ClInclude Include="PluginSystem\IStore.h" />
     <ClInclude Include="PluginSystem\MetaFactory.h" />
     <ClInclude Include="PluginSystem\IObjectComposer.h" />
     <ClInclude Include="PluginSystem\Plugin.h" />

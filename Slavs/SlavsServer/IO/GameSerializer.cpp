@@ -36,7 +36,7 @@ namespace
     int controller_id = 0;
     try
       {
-      controller_id = p_owner == nullptr ? 0 : boost::lexical_cast<int>(p_owner->FirstChild("Id")->FirstChild()->Value());
+      controller_id = p_owner == nullptr ? 0 : boost::lexical_cast<int>(p_owner->FirstChild("Address")->FirstChild()->Value());
       }
     catch (boost::bad_lexical_cast&)
       {      }

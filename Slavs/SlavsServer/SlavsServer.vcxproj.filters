@@ -108,6 +108,9 @@
     <Filter Include="Main\States\Loading">
       <UniqueIdentifier>{2f707f77-a440-4f65-801d-4eca4f4f3a7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Factories\Interfaces">
+      <UniqueIdentifier>{1a719be6-b989-40ca-957e-55fb95d5ca89}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ServerLoadGameState.cpp">
@@ -400,9 +403,6 @@
     <ClInclude Include="PluginSystem\MetaFactory.h">
       <Filter>Factories</Filter>
     </ClInclude>
-    <ClInclude Include="PluginSystem\IObjectComposer.h">
-      <Filter>Factories</Filter>
-    </ClInclude>
     <ClInclude Include="Game\GameContext.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -465,6 +465,24 @@
     </ClInclude>
     <ClInclude Include="include\Management\StoreSystemBase.h">
       <Filter>Header Files\Game\Management</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\IBuilding.h">
+      <Filter>Factories\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\IHouse.h">
+      <Filter>Factories\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\IManufacture.h">
+      <Filter>Factories\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\IHuman.h">
+      <Filter>Factories\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\IStore.h">
+      <Filter>Factories\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginSystem\IObjectComposer.h">
+      <Filter>Factories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

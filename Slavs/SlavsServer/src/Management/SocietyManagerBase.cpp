@@ -1,6 +1,6 @@
 #include "Management/SocietyManagerBase.h"
 
-#include "SHouseComponent.h"
+#include "PluginSystem/IHouse.h"
 
 #include <cassert>
 
@@ -28,7 +28,7 @@ void SocietyManagerBase::PopulationDecrease()
   _Invalidate();
   }
 
-void SocietyManagerBase::RegisterHouse(SHouseComponent* ip_house)
+void SocietyManagerBase::RegisterHouse(Slavs::HousePtr ip_house)
   {  
   if (m_houses.insert(ip_house).second)
     {
@@ -37,7 +37,7 @@ void SocietyManagerBase::RegisterHouse(SHouseComponent* ip_house)
     }
   }
 
-void SocietyManagerBase::UnregisterHouse(SHouseComponent* ip_house)
+void SocietyManagerBase::UnregisterHouse(Slavs::HousePtr ip_house)
   {
   size_t number_of_erased = m_houses.erase(ip_house);
   assert(number_of_erased == 1);

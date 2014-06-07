@@ -29,7 +29,14 @@ namespace Slavs
 {
   class GameObject;
   class GameContext;
+  class IHuman;
+  class IHouse;
   //////////////////////////////////////////////////////////////////////////
+  typedef IHuman*                                 HumanPtr;
+  typedef IHouse*                                 HousePtr;
+  typedef std::set<HumanPtr>                      Humans;
+  typedef std::set<HousePtr>                      Houses;
+
   typedef GameObject*                             TGameObject;
   typedef std::unique_ptr<GameContext>            TGameContext;
   typedef std::shared_ptr<IEconomyManager>        TEconomy;

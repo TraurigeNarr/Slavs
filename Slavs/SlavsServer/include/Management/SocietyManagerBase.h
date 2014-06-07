@@ -4,21 +4,21 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-class SLAVS_SERVER_EXPORT SocietyManagerBase : public ISocietyManager
+class SocietyManagerBase : public ISocietyManager
   {
   protected:
     size_t m_current_population;
     size_t m_available_places;
 
-    Slavs::THouses m_houses;
+    Slavs::Houses m_houses;
 
   public:
-    SocietyManagerBase();
-    virtual ~SocietyManagerBase();
+    SLAVS_SERVER_EXPORT SocietyManagerBase();
+    virtual SLAVS_SERVER_EXPORT ~SocietyManagerBase();
 
-    virtual void PopulationIncrease() override;
-    virtual void PopulationDecrease() override;
+    virtual SLAVS_SERVER_EXPORT void PopulationIncrease() override;
+    virtual SLAVS_SERVER_EXPORT void PopulationDecrease() override;
 
-    virtual void RegisterHouse(Slavs::THouse ip_house) override;
-    virtual void UnregisterHouse(Slavs::THouse ip_house) override;
+    virtual SLAVS_SERVER_EXPORT void RegisterHouse(Slavs::HousePtr ip_house) override;
+    virtual SLAVS_SERVER_EXPORT void UnregisterHouse(Slavs::HousePtr ip_house) override;
   };
