@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="_Maintanance">
+      <UniqueIdentifier>{bd8fbae7-c300-45b1-89bd-a1d8184ad3aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{6b2e327c-2252-45eb-90cd-8b74876eb4bd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Server.Tests.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="MetaFactoryTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="_LinkingLibraries.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

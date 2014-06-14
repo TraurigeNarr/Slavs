@@ -70,7 +70,9 @@ bool MetaFactory::SupportObject(int i_type) const
 
 bool MetaFactory::SupportObject(const std::string& i_type) const
   {
-  return m_type_definitions.find(i_type) != m_type_definitions.end();
+  auto definition_it = m_type_definitions.find(i_type);
+  return definition_it != m_type_definitions.end()
+        && SupportObject(definition_it->second);
   }
 
 int MetaFactory::GetObjectID(const std::string& i_type) const

@@ -30,9 +30,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerSide", "ServerSide", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientSide", "ClientSide", "{68FAFE33-049F-459B-AE6F-5BBFFB8B6139}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{13815CFB-1F6F-4FBC-AF00-B169CFE2DEA8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server.Tests", "Server.Tests\Server.Tests.vcxproj", "{62690693-45AA-4C36-8477-55BE3C835039}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A72FD430-58A6-4564-B40A-4100DE356C9E} = {A72FD430-58A6-4564-B40A-4100DE356C9E}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
+		SccNumberOfProjects = 9
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://shcherbina.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -62,6 +69,10 @@ Global
 		SccProjectTopLevelParentUniqueName7 = Slavs.sln
 		SccProjectName7 = BasePlugin
 		SccLocalPath7 = BasePlugin
+		SccProjectUniqueName8 = Server.Tests\\Server.Tests.vcxproj
+		SccProjectTopLevelParentUniqueName8 = Slavs.sln
+		SccProjectName8 = Server.Tests
+		SccLocalPath8 = Server.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -96,6 +107,10 @@ Global
 		{8DC453EC-219A-4208-885D-216E87CE808C}.Debug|Win32.Build.0 = Debug|Win32
 		{8DC453EC-219A-4208-885D-216E87CE808C}.Release|Win32.ActiveCfg = Release|Win32
 		{8DC453EC-219A-4208-885D-216E87CE808C}.Release|Win32.Build.0 = Release|Win32
+		{62690693-45AA-4C36-8477-55BE3C835039}.Debug|Win32.ActiveCfg = Debug|Win32
+		{62690693-45AA-4C36-8477-55BE3C835039}.Debug|Win32.Build.0 = Debug|Win32
+		{62690693-45AA-4C36-8477-55BE3C835039}.Release|Win32.ActiveCfg = Release|Win32
+		{62690693-45AA-4C36-8477-55BE3C835039}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,5 +122,6 @@ Global
 		{0D88E7F7-3DA4-400B-B3B0-8B96639F569D} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{A72FD430-58A6-4564-B40A-4100DE356C9E} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{8DC453EC-219A-4208-885D-216E87CE808C} = {0D88E7F7-3DA4-400B-B3B0-8B96639F569D}
+		{62690693-45AA-4C36-8477-55BE3C835039} = {13815CFB-1F6F-4FBC-AF00-B169CFE2DEA8}
 	EndGlobalSection
 EndGlobal

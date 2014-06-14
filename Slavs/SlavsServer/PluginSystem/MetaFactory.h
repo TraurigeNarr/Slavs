@@ -56,8 +56,8 @@ class MetaFactory : boost::noncopyable
     TDefinitionsMap          m_type_definitions;
     
   public:
-    MetaFactory();
-    ~MetaFactory();
+    SLAVS_SERVER_EXPORT MetaFactory();
+    SLAVS_SERVER_EXPORT ~MetaFactory();
 
     /// adds to composers array
     void SLAVS_SERVER_EXPORT RegisterObjectComposer(TObjectComposer ih_composer);
@@ -90,13 +90,13 @@ class MetaFactory : boost::noncopyable
     bool ComposeObject(Slavs::GameObject* i_object);
 
     /// return true if at least one composer supports object type
-    bool SupportObject(int i_type) const;
+    bool SLAVS_SERVER_EXPORT SupportObject(int i_type) const;
     /// return true if object with such type is registered
-    bool SupportObject(const std::string& i_type) const;
+    bool SLAVS_SERVER_EXPORT SupportObject(const std::string& i_type) const;
     /// returns global id of object if such type name was registered
     /// in this factory
     /// -1 otherwise
-    int  GetObjectID(const std::string& i_type) const;
+    int  SLAVS_SERVER_EXPORT GetObjectID(const std::string& i_type) const;
 
     inline const TDefinitionsMap& GetDefinitions() const;
   };

@@ -484,5 +484,8 @@
     <ClInclude Include="PluginSystem\IEmployer.h">
       <Filter>Factories\Interfaces</Filter>
     </ClInclude>
+    <ClInclude Include="_Link.h">
+      <Filter>Maintanance</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
