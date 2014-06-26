@@ -487,5 +487,8 @@
     <ClInclude Include="_Link.h">
       <Filter>Maintanance</Filter>
     </ClInclude>
+    <ClInclude Include="Main\LoadingParameters.h">
+      <Filter>Main\States\Loading</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

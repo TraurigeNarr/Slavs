@@ -25,7 +25,7 @@ namespace Slavs
 
   void GameObject::SetOwner(IController* ip_controller)
     {
-
+    mp_owner = ip_controller;
     }
 
   IController* GameObject::GetController()

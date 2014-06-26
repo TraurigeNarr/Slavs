@@ -6,8 +6,6 @@
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
 
-#include <typeinfo>
-
 
 namespace BasePlugin
   {

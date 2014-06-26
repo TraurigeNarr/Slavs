@@ -157,6 +157,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Main\LoadingParameters.h" />
     <ClInclude Include="PluginSystem\IBuilding.h" />
     <ClInclude Include="PluginSystem\IHouse.h" />
     <ClInclude Include="PluginSystem\IHuman.h" />

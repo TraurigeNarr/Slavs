@@ -1,5 +1,8 @@
 #pragma once
 
+#include "LoadingParameters.h"
+#include "IO/GameSerializer.h"
+
 // back-end
 #include <boost/msm/back/state_machine.hpp>
 //front-end
@@ -23,7 +26,8 @@ namespace net
   }
 
 class ServerMain;
-
+class IController;
+class SPlayerController;
 //////////////////////////////////////////////////////////////////////////
 
 namespace Slavs
@@ -37,21 +41,28 @@ namespace Slavs
     // events
 
     struct ConfirmAchievement { };
+    struct LoadingGameCompleted { };
 
     //////////////////////////////////////////////////////////////////////////
 
     struct loading_ : public msm::front::state_machine_def<loading_> 
       {
-      net::Connection*                    mp_connection;
-      ServerMain*                         mp_owner;
-      std::unique_ptr<ObjectStateMap>     mp_objects_states;
+      net::Connection*                              mp_connection;
+      ServerMain*                                   mp_owner;
+      std::unique_ptr<ObjectStateMap>               mp_objects_states;
+      GameContext&                                  m_game_context;
+      LoadingParameters                             m_loading_parameters;
 
-      loading_(net::Connection* ip_connection, ServerMain* ip_owner, const GameContext& i_game_context)
+      loading_(GameContext& io_game_context, 
+                const LoadingParameters& i_loading_parameters,
+                net::Connection* ip_connection, 
+                ServerMain* ip_owner)
         : mp_connection(ip_connection)
         , mp_owner(ip_owner)
         , mp_objects_states(new ObjectStateMap)
+        , m_game_context(io_game_context)
+        , m_loading_parameters(i_loading_parameters)
         {
-        i_game_context.GetAllGameObjectsState(*mp_objects_states);
         }
 
       ~loading_()
@@ -69,6 +80,31 @@ namespace Slavs
           {
           mp_connection  = i_loading_fsm.mp_connection;
           mp_owner       = i_loading_fsm.mp_owner;
+          }
+        };
+
+      struct loading_data_stage_ : public msm::front::state_machine_def<loading_data_stage_>
+        {
+        template <typename Event, typename FSM>
+        void on_entry(const Event& i_evt, FSM& i_loading_fsm)
+          {
+          // register controller for player
+          i_loading_fsm.m_game_context.RegisterController( std::unique_ptr<IController>
+            (
+            new SPlayerController(i_loading_fsm.mp_connection->GetAddress().GetAddress(), i_loading_fsm.m_game_context)
+            )
+            );
+
+          // load game
+          GameSerializer serializer(i_loading_fsm.m_game_context);
+          serializer.LoadConfigurations(i_loading_fsm.m_loading_parameters.m_configurations_path);
+          serializer.LoadGame(i_loading_fsm.m_loading_parameters.m_map_path);
+
+          // initialize objects state
+          i_loading_fsm.m_game_context.GetAllGameObjectsState(*i_loading_fsm.mp_objects_states);
+
+          // process event
+          i_loading_fsm.process_event(LoadingGameCompleted());
           }
         };
 
@@ -180,7 +216,8 @@ namespace Slavs
       struct transition_table : mpl::vector<
         //      Start                     Event                   Next                    Action               Guard
         //    +--------------------------+-----------------------+----------------------+---------------------+----------------------+
-        _row < connecting_,               ConfirmAchievement,     SendingData>,
+        _row < connecting_,               ConfirmAchievement,     loading_data_stage_>,
+        _row < loading_data_stage_,       LoadingGameCompleted,   SendingData>,
         _row < SendingData,               ConfirmAchievement,     wait_>,
         _row < wait_,                     ConfirmAchievement,     wait_>
       >{};
@@ -188,6 +225,8 @@ namespace Slavs
 
     // back-end
     typedef msm::back::state_machine<loading_> LoadingFSM;
+
+    const size_t LAST_STATE_INDEX = 3;
 
     } // LoadingStages
   } // Slavs

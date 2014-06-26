@@ -97,8 +97,7 @@ namespace Slavs
     if (meta_factory.SupportObject(i_type))
       {
       GameObject* p_new_object = new GameObject(*this, m_next_object_id, i_type, i_selection_mask);
-      meta_factory.ComposeObject(p_new_object);
-
+      
       IController* p_owner = nullptr;
       if (i_controllers_mask != 0)
         {
@@ -107,6 +106,9 @@ namespace Slavs
           p_owner = (*it).mp_controller.get();
         }
       p_new_object->SetOwner(p_owner);
+
+      meta_factory.ComposeObject(p_new_object);
+
       if (p_new_object->ProbeComponents())
         {
         p_new_object->SetPosition(i_position);

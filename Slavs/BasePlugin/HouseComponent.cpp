@@ -10,8 +10,6 @@
 #include <SlavsServer/include/Management/Goverment.h>
 #include <SlavsServer/include/Management/ISocietyManager.h>
 
-#include <typeinfo>
-
 
 namespace BasePlugin
   {

@@ -9,12 +9,11 @@
 #include "HumanComponent.h"
 #include "StaticObjectComponent.h"
 #include "DynamicObjectComponent.h"
+#include "StoreComponent.h"
 
 #include <Utilities/XmlUtilities.h>
 
 #include <Game/GameObject.h>
-
-#include <typeinfo>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -30,6 +29,8 @@ namespace
       return new StaticObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_STATIC_OBJECT));
     if (i_type == Component_Dynamic)
       return new DynamicObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_OBJECT));
+    if (i_type == Component_Store)
+      return new StoreComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_STORE));
     return nullptr;
     }
   }
