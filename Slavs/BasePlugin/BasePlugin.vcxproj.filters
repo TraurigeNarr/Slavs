@@ -64,6 +64,9 @@
     <ClInclude Include="StoreComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="_Link.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

@@ -68,7 +68,7 @@ namespace BasePlugin
   // Human Component
 
   HumanComponent::HumanComponent(Slavs::TGameObject ih_owner, int i_component_id)
-    : IComponent(ih_owner, i_component_id)
+    : IHuman(ih_owner, i_component_id)
     , m_needed_calories(0)
     {
 
@@ -97,6 +97,24 @@ namespace BasePlugin
   bool HumanComponent::Probe()
     {
     return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_component_id);
+    }
+
+  //////////////////////////////////////////////////////////////////////////
+  // IHuman
+
+  void HumanComponent::SetHome(Slavs::HousePtr ip_home)
+    {
+    mp_home = ip_home;
+    }
+
+  Slavs::HousePtr HumanComponent::GetHome() const
+    {
+    return mp_home;
+    }
+
+  bool HumanComponent::HasWork() const
+    {
+    return false;
     }
 
   } // BasePlugin

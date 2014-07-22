@@ -2,8 +2,8 @@
 
 #include "SlavsServerAPI.h"
 
-#include <Game\IGameObject.h>
-#include <Game\IMovable.h>
+#include <Common/Game/IGameObject.h>
+#include <Common/Game/IMovable.h>
 
 #include <memory>
 

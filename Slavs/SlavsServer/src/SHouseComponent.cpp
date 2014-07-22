@@ -18,7 +18,10 @@
 #include <cassert>
 
 SHouseComponent::SHouseComponent(SGameObject* owner, const TiXmlElement* componentElement)
-	: m_pOwner(owner), m_iPeriod(0), m_iElapsedTicks(0), m_uiMaxNumber(0)
+	: IHouse(owner, -1)
+  , m_iPeriod(0), 
+  m_iElapsedTicks(0), 
+  m_uiMaxNumber(0)
 {
 	ParseElelement(componentElement);
   owner->GetOwner()->GetGoverment().GetSocietyManager()->RegisterHouse(this);

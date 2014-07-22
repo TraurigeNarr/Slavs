@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Game/GameResourceTypes.h>
-#include <Game/GameResources.h>
+#include <Common/Game/GameResourceTypes.h>
+#include <Common/Game/GameResources.h>
 
 #include <map>
 #include <memory>

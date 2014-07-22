@@ -3,8 +3,8 @@
 #include "SlavsServerAPI.h"
 #include "Types.h"
 
-#include <Game/IGameContext.h>
-#include <Game/TimeController.h>
+#include <Common/Game/IGameContext.h>
+#include <Common/Game/TimeController.h>
 
 #include <boost/noncopyable.hpp>
 

@@ -6,6 +6,7 @@
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
 
+#include <SlavsServer/PluginSystem/IHuman.h>
 #include <SlavsServer/include/IController.h>
 #include <SlavsServer/include/Management/Goverment.h>
 #include <SlavsServer/include/Management/ISocietyManager.h>
@@ -65,8 +66,9 @@ namespace BasePlugin
   // Human Component
 
   HouseComponent::HouseComponent(Slavs::TGameObject ih_owner, int i_component_id)
-    : IComponent(ih_owner, i_component_id)
+    : IHouse(ih_owner, i_component_id)
     , m_max_population(0)
+    , m_valid(false)
     {
     ih_owner->GetController()->GetGoverment().GetSocietyManager()->RegisterHouse(this);
     }
@@ -74,6 +76,26 @@ namespace BasePlugin
   HouseComponent::~HouseComponent()
     {
 
+    }
+
+  void HouseComponent::Validate() const
+    {
+    if (m_valid)
+      return;
+
+    m_unemployed.clear();
+    m_unemployed_number = 0;
+
+    for (Slavs::HumanPtr p_human : m_inhabitants)
+      {
+      if (!p_human->HasWork())
+        {
+        m_unemployed.insert(p_human);
+        ++m_unemployed_number;
+        }
+      }
+
+    m_valid = true;
     }
 
 //////////////////////////////////////////////////////////////////////////
@@ -104,37 +126,39 @@ namespace BasePlugin
 
   size_t HouseComponent::GetPopulation() const
     {
-    return 0;
+    return m_inhabitants.size();
     }
   
   size_t HouseComponent::GetUnemployedPopulation() const
     {
-    return 0;
+    Validate();
+    return m_unemployed_number;
     }
 
   void HouseComponent::GetUnemployedPopulation(Slavs::Humans& o_unemployed) const
     {
-
+    Validate();
+    std::copy(m_unemployed.begin(), m_unemployed.end(), std::inserter(o_unemployed, o_unemployed.end()));
     }
   
   size_t HouseComponent::GetFreePlaces() const
     {
-    return 0;
+    return m_max_population - m_inhabitants.size();
     }
   
   bool HouseComponent::AddInhabitant(Slavs::HumanPtr ip_inhabitant)
     {
-    return false;
+    return m_inhabitants.insert(ip_inhabitant).second;
     }
 
   void HouseComponent::RemoveInhabitant(Slavs::HumanPtr ip_inhabitant)
     {
-
+    m_inhabitants.erase(ip_inhabitant);
     }
 
   void HouseComponent::HumanStateChanged()
     {
-
+    m_valid = false;
     }
 
   } // BasePlugin

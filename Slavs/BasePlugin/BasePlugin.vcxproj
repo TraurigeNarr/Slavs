@@ -68,6 +68,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);$(THIRD_PARTIES)\tinyxml\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>SlavsServer.lib;tinyxml.lib;Common_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -87,6 +88,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);$(THIRD_PARTIES)\tinyxml\lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>SlavsServer.lib;tinyxml.lib;Common.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -107,6 +109,7 @@
     <ClInclude Include="StoreComponent.h" />
     <ClInclude Include="TypeEnumerations.h" />
     <ClInclude Include="TypeNames.h" />
+    <ClInclude Include="_Link.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseObjectComposer.cpp" />

@@ -4,8 +4,6 @@
 
 #include <SlavsServer/PluginSystem/IHouse.h>
 
-#include <Game/IComponent.h>
-
 #include <SlavsServer/Game/GameObject.h>
 #include <SlavsServer/include/Types.h>
 
@@ -13,8 +11,7 @@ namespace BasePlugin
   {
   class HouseComponentSerializer;
 
-  class HouseComponent : public IComponent
-                       , public Slavs::IHouse
+  class HouseComponent : public Slavs::IHouse
     {
     friend HouseComponentSerializer;
 
@@ -24,6 +21,13 @@ namespace BasePlugin
     private:
       size_t        m_max_population;
       Slavs::Humans m_inhabitants;
+
+      mutable bool          m_valid;
+      mutable size_t        m_unemployed_number;
+      mutable Slavs::Humans m_unemployed;
+
+    private:
+      void          Validate() const;
 
     public:
       HouseComponent(Slavs::TGameObject ih_owner, int i_component_id);

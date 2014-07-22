@@ -2,12 +2,15 @@
 
 #include "Types.h"
 
+#include <Game/IComponent.h>
+
 #include "IGoldKeeper.h"
 
 namespace Slavs
   {
 
-  class IEmployer : public IGoldKeeper
+  class IEmployer : public IComponent
+                  , public IGoldKeeper
     {
     public:
       virtual ~IEmployer(){}

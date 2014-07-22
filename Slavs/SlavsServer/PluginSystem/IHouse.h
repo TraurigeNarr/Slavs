@@ -2,15 +2,18 @@
 
 #include "Types.h"
 
+#include <Common/Game/IComponent.h>
+
 #include <vector>
 
 namespace Slavs
   {
   class IHuman;
 
-  class IHouse
+  class IHouse : public IComponent
   {
   public:
+    IHouse(IGameObject* ip_owner, int i_component_id) : IComponent(ip_owner, i_component_id){}
     virtual ~IHouse(){}
 
     /// gets number of ALL people who have already live in house
