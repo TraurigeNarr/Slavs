@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="_Maintanance">
+      <UniqueIdentifier>{2c64f815-acb1-4d6c-b05d-e771ee9317f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mocks">
+      <UniqueIdentifier>{6195e740-a96b-4f73-b701-e3edb55987d8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="_Link.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="HumanMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="HouseMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="SocietyManagerMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="EconomyManagerMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="StoreMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="StoreSystemMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -46,6 +46,7 @@ namespace BasePlugin
     // IHouse
     public:
       virtual size_t	SLAVS_BASEPLUGIN_EXPORT GetPopulation() const override;
+      virtual void    SLAVS_BASEPLUGIN_EXPORT IncreaseMaximumInhabitatnsBy(size_t i_number) override;
 
       virtual size_t	SLAVS_BASEPLUGIN_EXPORT GetUnemployedPopulation() const override;
       virtual void		SLAVS_BASEPLUGIN_EXPORT GetUnemployedPopulation(Slavs::Humans& o_unemployed) const override;

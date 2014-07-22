@@ -27,6 +27,8 @@ namespace Slavs
     /// gets free places for people
     virtual size_t	GetFreePlaces() const = 0;
 
+    virtual void    IncreaseMaximumInhabitatnsBy(size_t i_number) = 0;
+
     //add inhabitant in list of house owners
     virtual bool		AddInhabitant(HumanPtr ip_inhabitant) = 0;
     /// remove inhabitant from house

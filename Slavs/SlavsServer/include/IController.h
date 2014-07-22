@@ -1,4 +1,7 @@
 #pragma once
+
+#include "SlavsServerAPI.h"
+
 //server
 #include "SResourceManager.h"
 //common
@@ -48,8 +51,8 @@ class IController : public TickListener
     mutable int			m_iNeededSize;
 
   public:
-	  IController(int iMask, Slavs::GameContext& i_context);
-	  virtual ~IController();
+	  SLAVS_SERVER_EXPORT IController(int iMask, Slavs::GameContext& i_context);
+	  virtual SLAVS_SERVER_EXPORT ~IController();
 
 	  virtual void		    Init() = 0;
     virtual void	      HoldPacket(net::Connection* connection, unsigned char* packet, int bytes_read){}

@@ -70,7 +70,8 @@ namespace BasePlugin
     , m_max_population(0)
     , m_valid(false)
     {
-    ih_owner->GetController()->GetGoverment().GetSocietyManager()->RegisterHouse(this);
+    if (nullptr != ih_owner)
+      ih_owner->GetController()->GetGoverment().GetSocietyManager()->RegisterHouse(this);
     }
 
   HouseComponent::~HouseComponent()
@@ -128,6 +129,11 @@ namespace BasePlugin
     {
     return m_inhabitants.size();
     }
+
+  void HouseComponent::IncreaseMaximumInhabitatnsBy(size_t i_number)
+    {
+    m_max_population += i_number;
+    }
   
   size_t HouseComponent::GetUnemployedPopulation() const
     {
@@ -148,6 +154,8 @@ namespace BasePlugin
   
   bool HouseComponent::AddInhabitant(Slavs::HumanPtr ip_inhabitant)
     {
+    if (m_inhabitants.size() >= m_max_population)
+      return false;
     return m_inhabitants.insert(ip_inhabitant).second;
     }
 
