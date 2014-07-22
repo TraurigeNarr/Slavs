@@ -32,7 +32,7 @@ namespace BasePlugin
 
 #ifdef _DEBUG
     elementName = XmlUtilities::GetStringAttribute(&i_configuration_node, "type", "");
-    assert (elementName == Component_Human);
+    assert (elementName == Component_House);
     elementName = "";
 #endif
 

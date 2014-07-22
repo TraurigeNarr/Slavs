@@ -6,6 +6,7 @@
 #include "TypeNames.h"
 
 //types
+#include "HouseComponent.h"
 #include "HumanComponent.h"
 #include "StaticObjectComponent.h"
 #include "DynamicObjectComponent.h"
@@ -31,6 +32,8 @@ namespace
       return new DynamicObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_OBJECT));
     if (i_type == Component_Store)
       return new StoreComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_STORE));
+    if (i_type == Component_House)
+      return new HouseComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_HOUSE));
     return nullptr;
     }
   }
