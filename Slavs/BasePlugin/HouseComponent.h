@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SlavsBasePluginAPI.h"
+
 #include "IComponentSerializer.h"
 
 #include <SlavsServer/PluginSystem/IHouse.h>
@@ -30,30 +32,30 @@ namespace BasePlugin
       void          Validate() const;
 
     public:
-      HouseComponent(Slavs::TGameObject ih_owner, int i_component_id);
-      virtual       ~HouseComponent();
+      SLAVS_BASEPLUGIN_EXPORT                 HouseComponent(Slavs::TGameObject ih_owner, int i_component_id);
+      virtual       SLAVS_BASEPLUGIN_EXPORT   ~HouseComponent();
 
     // IComponent
     public:
-      virtual void	TickPerformed() override;
-      virtual bool	HandleMessage(const Telegram& msg) override;
+      virtual void	SLAVS_BASEPLUGIN_EXPORT   TickPerformed() override;
+      virtual bool	SLAVS_BASEPLUGIN_EXPORT   HandleMessage(const Telegram& msg) override;
 
-      virtual void	GetState(GameObjectState& i_state) const override;
-      virtual bool	Probe() override;
+      virtual void	SLAVS_BASEPLUGIN_EXPORT   GetState(GameObjectState& i_state) const override;
+      virtual bool	SLAVS_BASEPLUGIN_EXPORT   Probe() override;
 
     // IHouse
     public:
-      virtual size_t	GetPopulation() const override;
+      virtual size_t	SLAVS_BASEPLUGIN_EXPORT GetPopulation() const override;
 
-      virtual size_t	GetUnemployedPopulation() const override;
-      virtual void		GetUnemployedPopulation(Slavs::Humans& o_unemployed) const override;
+      virtual size_t	SLAVS_BASEPLUGIN_EXPORT GetUnemployedPopulation() const override;
+      virtual void		SLAVS_BASEPLUGIN_EXPORT GetUnemployedPopulation(Slavs::Humans& o_unemployed) const override;
 
-      virtual size_t	GetFreePlaces() const;
+      virtual size_t	SLAVS_BASEPLUGIN_EXPORT GetFreePlaces() const;
 
-      virtual bool		AddInhabitant(Slavs::HumanPtr ip_inhabitant) override;
-      virtual void    RemoveInhabitant(Slavs::HumanPtr ip_inhabitant) override;
+      virtual bool		SLAVS_BASEPLUGIN_EXPORT AddInhabitant(Slavs::HumanPtr ip_inhabitant) override;
+      virtual void    SLAVS_BASEPLUGIN_EXPORT RemoveInhabitant(Slavs::HumanPtr ip_inhabitant) override;
 
-      virtual void    HumanStateChanged() override;
+      virtual void    SLAVS_BASEPLUGIN_EXPORT HumanStateChanged() override;
     };
 
   class HouseComponentSerializer : public IComponentSerializer

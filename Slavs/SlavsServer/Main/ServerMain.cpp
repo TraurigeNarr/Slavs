@@ -24,6 +24,7 @@
 //net
 #include <Net.h>
 //standard
+#include <iostream>
 #include <ostream>
 #include <cassert>
 //boost

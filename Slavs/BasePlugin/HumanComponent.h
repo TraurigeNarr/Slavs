@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SlavsBasePluginAPI.h"
+
 #include "IComponentSerializer.h"
 
 #include <SlavsServer/PluginSystem/IHuman.h>
@@ -26,24 +28,24 @@ namespace BasePlugin
       Slavs::HousePtr mp_home;
 
     public:
-                    HumanComponent(Slavs::TGameObject ih_owner, int i_component_id);
-      virtual       ~HumanComponent();
+                    SLAVS_BASEPLUGIN_EXPORT           HumanComponent(Slavs::TGameObject ih_owner, int i_component_id);
+      virtual       SLAVS_BASEPLUGIN_EXPORT           ~HumanComponent();
 
     // IComponent
     public:
-      virtual void	TickPerformed() override;
-      virtual bool	HandleMessage(const Telegram& msg) override;
+      virtual void	SLAVS_BASEPLUGIN_EXPORT           TickPerformed() override;
+      virtual bool	SLAVS_BASEPLUGIN_EXPORT           HandleMessage(const Telegram& msg) override;
 
-      virtual void	GetState(GameObjectState& i_state) const override;
+      virtual void	SLAVS_BASEPLUGIN_EXPORT           GetState(GameObjectState& i_state) const override;
 
-      virtual bool	Probe() override;
+      virtual bool	SLAVS_BASEPLUGIN_EXPORT           Probe() override;
 
     // IHouse 
     public:
-      virtual void            SetHome(Slavs::HousePtr ip_home) override;
-      virtual Slavs::HousePtr GetHome() const override;
+      virtual void            SLAVS_BASEPLUGIN_EXPORT SetHome(Slavs::HousePtr ip_home) override;
+      virtual Slavs::HousePtr SLAVS_BASEPLUGIN_EXPORT GetHome() const override;
 
-      virtual bool            HasWork() const override;
+      virtual bool            SLAVS_BASEPLUGIN_EXPORT HasWork() const override;
     };
 
   class HumanComponentSerializer : public IComponentSerializer

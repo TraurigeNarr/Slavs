@@ -37,9 +37,15 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server.Tests", "Server.Test
 		{A72FD430-58A6-4564-B40A-4100DE356C9E} = {A72FD430-58A6-4564-B40A-4100DE356C9E}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasePlugin.Tests", "BasePlugin.Tests\BasePlugin.Tests.vcxproj", "{38B87F55-AC2D-47F2-8FD0-CEC5EF3E6025}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A72FD430-58A6-4564-B40A-4100DE356C9E} = {A72FD430-58A6-4564-B40A-4100DE356C9E}
+		{8DC453EC-219A-4208-885D-216E87CE808C} = {8DC453EC-219A-4208-885D-216E87CE808C}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://shcherbina.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -73,6 +79,10 @@ Global
 		SccProjectTopLevelParentUniqueName8 = Slavs.sln
 		SccProjectName8 = Server.Tests
 		SccLocalPath8 = Server.Tests
+		SccProjectUniqueName9 = BasePlugin.Tests\\BasePlugin.Tests.vcxproj
+		SccProjectTopLevelParentUniqueName9 = Slavs.sln
+		SccProjectName9 = BasePlugin.Tests
+		SccLocalPath9 = BasePlugin.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -111,6 +121,10 @@ Global
 		{62690693-45AA-4C36-8477-55BE3C835039}.Debug|Win32.Build.0 = Debug|Win32
 		{62690693-45AA-4C36-8477-55BE3C835039}.Release|Win32.ActiveCfg = Release|Win32
 		{62690693-45AA-4C36-8477-55BE3C835039}.Release|Win32.Build.0 = Release|Win32
+		{38B87F55-AC2D-47F2-8FD0-CEC5EF3E6025}.Debug|Win32.ActiveCfg = Debug|Win32
+		{38B87F55-AC2D-47F2-8FD0-CEC5EF3E6025}.Debug|Win32.Build.0 = Debug|Win32
+		{38B87F55-AC2D-47F2-8FD0-CEC5EF3E6025}.Release|Win32.ActiveCfg = Release|Win32
+		{38B87F55-AC2D-47F2-8FD0-CEC5EF3E6025}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,5 +137,6 @@ Global
 		{A72FD430-58A6-4564-B40A-4100DE356C9E} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{8DC453EC-219A-4208-885D-216E87CE808C} = {0D88E7F7-3DA4-400B-B3B0-8B96639F569D}
 		{62690693-45AA-4C36-8477-55BE3C835039} = {13815CFB-1F6F-4FBC-AF00-B169CFE2DEA8}
+		{38B87F55-AC2D-47F2-8FD0-CEC5EF3E6025} = {13815CFB-1F6F-4FBC-AF00-B169CFE2DEA8}
 	EndGlobalSection
 EndGlobal
