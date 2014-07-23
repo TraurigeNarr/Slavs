@@ -57,7 +57,7 @@ bool GameResourceContainer::AddResource(GameResourceBox* gr)
 	gr->GetResources(added);
 	UpdateAccordingToList();
 	m_bStateChanged = true;
-	return true;
+	return gr->Empty();
 }
 
 size_t GameResourceContainer::PeekResource(size_t number)
@@ -66,19 +66,21 @@ size_t GameResourceContainer::PeekResource(size_t number)
 	UpdateAccordingToList();
 	if(0 != m_uiCurrentNumber)
 	{
-		size_t neededNumber = number;
-		while(!m_lResourceList.empty() && 0 < number)
+		size_t peeked_number = 0;
+		while(!m_lResourceList.empty())
 		{
-			number -= (*m_lResourceList.begin())->GetResources(number);
+			peeked_number += (*m_lResourceList.begin())->GetResources(number);
 			if((*m_lResourceList.begin())->Empty())
 			{
 				delete m_lResourceList.front();
 				m_lResourceList.pop_front();
 			}
+      if (peeked_number == number)
+        break;
 		}
 		m_bStateChanged = true;
 
-		return neededNumber - number;
+		return peeked_number;
 	}
 	return 0;
 }
@@ -102,10 +104,11 @@ size_t GameResourceContainer::GetResourceNumber() const
 	return number;
 }
 
-void GameResourceContainer::UpdateAccordingToList()
-{
-	m_uiCurrentNumber = GetResourceNumber();
-}
+void GameResourceContainer::UpdateAccordingToList() const
+  {
+  if (m_bStateChanged)
+    m_uiCurrentNumber = GetResourceNumber();
+  }
 
 void GameResourceContainer::ExpandContainer(size_t number)
 {
@@ -127,7 +130,7 @@ size_t GameResourceContainer::Serialize(char* buf_end, size_t size) const
 {
 	if(NeededSize() > size)
 		return 0;
-	const_cast<GameResourceContainer*>(this)->UpdateAccordingToList();
+	this->UpdateAccordingToList();
 	ToChar(m_ResType, buf_end, sizeof(m_ResType));
 	buf_end += sizeof(m_ResType);
 	ToChar(m_uiCurrentNumber, buf_end, sizeof(m_uiCurrentNumber));
@@ -182,8 +185,7 @@ size_t GameResourceBox::GetResources(size_t number)
 
 	size_t wereResources = m_uiResNumber;
 	m_uiResNumber = 0;
-	return number - wereResources;
-	return 0;
+	return wereResources;
 }
 
 void GameResourceBox::ParseElelement(const TiXmlElement* i_config_element)

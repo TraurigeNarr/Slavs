@@ -19,7 +19,7 @@
 #include <cassert>
 
 SStoreHouseCom::SStoreHouseCom(SGameObject* owner, const TiXmlElement* componentElement)
-	: m_pOwner(owner), m_pBuilding(NULL)
+	: IStore(owner, 0), m_pBuilding(NULL)
 {
 	assert(componentElement &&
 		"SHouseComponent::SHouseComponent: NULL parameter of config element.");

@@ -33,5 +33,8 @@
     <ClCompile Include="HouseComponentTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="StoreComponentTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

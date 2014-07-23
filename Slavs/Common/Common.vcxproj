@@ -61,6 +61,7 @@
     <ClInclude Include="Utilities\StringUtilities.h" />
     <ClInclude Include="Utilities\TemplateFunctions.h" />
     <ClInclude Include="Utilities\XmlUtilities.h" />
+    <ClInclude Include="_Link.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6BEE3135-A395-4594-B8A9-AA3E11F8C295}</ProjectGuid>

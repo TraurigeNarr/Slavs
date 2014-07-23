@@ -4,3 +4,5 @@
 #include <BasePlugin/_Link.h>
 
 #include <Server.Tests.Base/_Link.h>
+
+#include <Common/_Link.h>

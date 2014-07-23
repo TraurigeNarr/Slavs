@@ -173,5 +173,8 @@
     <ClInclude Include="Game\IMovable.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="_Link.h">
+      <Filter>Maintanance</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

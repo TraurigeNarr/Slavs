@@ -1,8 +1,10 @@
 #pragma once
 
+#include "SlavsBasePluginAPI.h"
+
 #include "IComponentSerializer.h"
 
-#include <Game/IComponent.h>
+
 #include <Game/GameResources.h>
 
 #include <SlavsServer/Game/GameObject.h>
@@ -13,8 +15,7 @@ namespace BasePlugin
   {
   class StoreComponentSerializer;
 
-  class StoreComponent : public IComponent
-                       , public Slavs::IStore
+  class StoreComponent : public Slavs::IStore
     {
     friend StoreComponentSerializer;
 
@@ -26,8 +27,8 @@ namespace BasePlugin
       std::vector<std::shared_ptr<GameResourceContainer>> m_resource_containers;
 
     public:
-      StoreComponent(Slavs::TGameObject ih_owner, int i_component_id);
-      virtual       ~StoreComponent();
+                    SLAVS_BASEPLUGIN_EXPORT StoreComponent(Slavs::TGameObject ih_owner, int i_component_id);
+      virtual       SLAVS_BASEPLUGIN_EXPORT ~StoreComponent();
     
     // IComponent
     public:
@@ -40,16 +41,18 @@ namespace BasePlugin
 
     // IStore
     public:
-      virtual bool    AddResource (GameResourceBox& i_resource_box) override;
-      virtual void    AddResource (int i_type, size_t i_number) override;
+      virtual bool    SLAVS_BASEPLUGIN_EXPORT AddResource (GameResourceBox& i_resource_box) override;
+      virtual bool    SLAVS_BASEPLUGIN_EXPORT AddResource (int i_type, size_t i_number) override;
+      virtual size_t  SLAVS_BASEPLUGIN_EXPORT AddResourceForcely (int i_type, size_t i_number) override;
+      virtual bool    SLAVS_BASEPLUGIN_EXPORT AddResourceContainer(std::shared_ptr<GameResourceContainer> ip_container) override;
 
-      virtual bool    PeekResource (int i_type, size_t i_number) override;
-      virtual size_t  GetResource (int i_type, size_t i_number) override;
-      virtual size_t  GetResourceForcely (int i_type, size_t i_number) override;
+      virtual size_t  SLAVS_BASEPLUGIN_EXPORT PeekResource (int i_type, size_t i_number) const override;
+      virtual size_t  SLAVS_BASEPLUGIN_EXPORT GetResource (int i_type, size_t i_number) override;
+      virtual size_t  SLAVS_BASEPLUGIN_EXPORT GetResourceForcely (int i_type, size_t i_number) override;
 
       virtual const std::vector<std::shared_ptr<GameResourceContainer>>& GetResources() const override;
     };
-
+  
   class StoreComponentSerializer : public IComponentSerializer
     {
     private:

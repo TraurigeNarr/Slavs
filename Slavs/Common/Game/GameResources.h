@@ -77,12 +77,12 @@ protected:
 class GameResourceContainer
 {
 	std::list<GameResourceBox*>			m_lResourceList;
-	GameResourceType					m_ResType;
-	size_t								m_uiMaxNumber;
-	size_t								m_uiCurrentNumber;
+	GameResourceType					      m_ResType;
+	size_t								          m_uiMaxNumber;
+	mutable size_t								  m_uiCurrentNumber;
 	//true then some resources were added or removed
-	mutable bool						m_bStateChanged;
-	bool								m_bHumans;
+	mutable bool						        m_bStateChanged;
+	bool								            m_bHumans;
 public:
 										GameResourceContainer(GameResourceType grType, size_t maxNum, size_t num = 0);
 										~GameResourceContainer();
@@ -96,9 +96,13 @@ public:
 	GameResourceType					GetResType() const { return m_ResType; }
 	
 	std::list<GameResourceBox*>&		GetResourceList();
-	void								UpdateAccordingToList();
+	void								UpdateAccordingToList() const;
 
-	size_t								GetResNumber() const { return m_uiCurrentNumber; }
+	size_t								GetResNumber() const 
+    { 
+    UpdateAccordingToList();
+    return m_uiCurrentNumber; 
+    }
 	size_t								GetResMaxNumber() const { return m_uiMaxNumber; }
 	bool								AvailableToAdd();
 	bool								HasChanges() const { return m_bStateChanged; }
