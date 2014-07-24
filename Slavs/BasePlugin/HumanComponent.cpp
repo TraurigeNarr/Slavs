@@ -1,7 +1,10 @@
 #include "stdafx.h"
 
 #include "HumanComponent.h"
+
+#include "BaseObjectComposer.h"
 #include "TypeNames.h"
+#include "TypeEnumerations.h"
 
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
@@ -11,8 +14,8 @@ namespace BasePlugin
   {
   //////////////////////////////////////////////////////////////////////////
   // Human Component Serializer 
-  HumanComponentSerializer::HumanComponentSerializer(int i_component_id)
-    : IComponentSerializer(i_component_id)
+  HumanComponentSerializer::HumanComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer)
+    : IComponentSerializer(i_component_global_id, i_composer)
     {
 
     }
@@ -59,7 +62,7 @@ namespace BasePlugin
 
   IComponent* HumanComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
     {
-    HumanComponent* p_human = new HumanComponent(ip_object, m_component_global_id);
+    HumanComponent* p_human = new HumanComponent(ip_object, m_component_global_id, m_object_composer);
     ApplyTo(*p_human);
     return p_human;
     }
@@ -67,9 +70,10 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Human Component
 
-  HumanComponent::HumanComponent(Slavs::TGameObject ih_owner, int i_component_id)
+  HumanComponent::HumanComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer)
     : IHuman(ih_owner, i_component_id)
     , m_needed_calories(0)
+    , m_object_composer(i_composer)
     {
 
     }
@@ -96,7 +100,8 @@ namespace BasePlugin
 
   bool HumanComponent::Probe()
     {
-    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_component_id);
+    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_HUMAN))
+        && static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_COMPONENT));
     }
 
   //////////////////////////////////////////////////////////////////////////

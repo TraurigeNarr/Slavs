@@ -67,6 +67,9 @@
     <ClInclude Include="_Link.h">
       <Filter>_Maintanance</Filter>
     </ClInclude>
+    <ClInclude Include="ManufactureComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -97,6 +100,9 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="StoreComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ManufactureComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

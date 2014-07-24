@@ -8,6 +8,8 @@
 #include <SlavsServer/Game/GameObject.h>
 #include <SlavsServer/include/Types.h>
 
+class BaseObjectComposer;
+
 namespace BasePlugin
   {
   class IMovementStrategy;
@@ -21,6 +23,7 @@ namespace BasePlugin
       typedef DynamicObjectComponentSerializer TSerializer;
 
     private:
+      const BaseObjectComposer& m_object_composer;
       Vector2D  m_velocity;
       //a normalized vector pointing in the direction the entity is heading
       Vector2D	m_heading;
@@ -36,7 +39,7 @@ namespace BasePlugin
       IMovementStrategy* mp_movement_strategy;
 
     public:
-      DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id);
+      DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer);
       ~DynamicObjectComponent();
 
       virtual void	TickPerformed() override;
@@ -58,7 +61,7 @@ namespace BasePlugin
       float m_maximum_turnrate;
 
     public:
-      DynamicObjectComponentSerializer(int i_component_id);
+      DynamicObjectComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer);
       ~DynamicObjectComponentSerializer();
 
       virtual void        Parse(const TiXmlElement& i_configuration_node) override;

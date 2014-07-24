@@ -59,7 +59,7 @@ public:
 
   virtual void     SetPosition(const Vector2D& i_position) override {}
   virtual Vector2D GetPosition() const override { return Vector2D(); }
-  virtual Vector2D& AccessPosition() override { return Vector2D(); }
+  virtual Vector2D& AccessPosition() override { throw std::logic_error("Call IGameObject::AccessPosition. Not implemented."); }
 };
 
 template<typename T>

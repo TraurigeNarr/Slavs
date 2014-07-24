@@ -1,7 +1,10 @@
 #include "stdafx.h"
 
 #include "HouseComponent.h"
+
+#include "BaseObjectComposer.h"
 #include "TypeNames.h"
+#include "TypeEnumerations.h"
 
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
@@ -16,8 +19,8 @@ namespace BasePlugin
   {
   //////////////////////////////////////////////////////////////////////////
   // Human Component Serializer 
-  HouseComponentSerializer::HouseComponentSerializer(int i_component_id)
-    : IComponentSerializer(i_component_id)
+  HouseComponentSerializer::HouseComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer)
+    : IComponentSerializer(i_component_global_id, i_composer)
     {
 
     }
@@ -57,7 +60,7 @@ namespace BasePlugin
 
   IComponent* HouseComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
     {
-    HouseComponent* p_house = new HouseComponent(ip_object, m_component_global_id);
+    HouseComponent* p_house = new HouseComponent(ip_object, m_component_global_id, m_object_composer);
     ApplyTo(*p_house);
     return p_house;
     }
@@ -65,13 +68,15 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Human Component
 
-  HouseComponent::HouseComponent(Slavs::TGameObject ih_owner, int i_component_id)
+  HouseComponent::HouseComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer)
     : IHouse(ih_owner, i_component_id)
     , m_max_population(0)
     , m_valid(false)
+    , m_object_composer(i_composer)
     {
-    if (nullptr != ih_owner)
-      ih_owner->GetController()->GetGoverment().GetSocietyManager()->RegisterHouse(this);
+    if (nullptr == ih_owner)
+      throw std::logic_error("Owner cannot be nullptr");
+    ih_owner->GetController()->GetGoverment().GetSocietyManager()->RegisterHouse(this);
     }
 
   HouseComponent::~HouseComponent()
@@ -119,7 +124,8 @@ namespace BasePlugin
 
   bool HouseComponent::Probe()
     {
-    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_component_id);
+    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_HOUSE)) 
+        && static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_STATIC_COMPONENT));
     }
 
 //////////////////////////////////////////////////////////////////////////

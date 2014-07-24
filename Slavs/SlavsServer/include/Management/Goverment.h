@@ -12,7 +12,7 @@ Economy; Military; Technology; Society (in country);
 Relationships (out of country)
 */
 
-class SLAVS_SERVER_EXPORT Goverment
+class Goverment
 {
 private:
   IController*           mp_owner;
@@ -23,17 +23,20 @@ private:
   Slavs::TTechnologies   m_technologies;
 
 public:
-    Goverment(IController* ip_owner, Slavs::TEconomy i_economy, 
-    Slavs::TMilitary i_military, Slavs::TRelashionships i_relashionships, 
-    Slavs::TSociety i_society, Slavs::TTechnologies i_technologies);
-  ~Goverment();
+  SLAVS_SERVER_EXPORT Goverment(IController* ip_owner, 
+                                Slavs::TEconomy i_economy, 
+                                Slavs::TMilitary i_military, 
+                                Slavs::TRelashionships i_relashionships, 
+                                Slavs::TSociety i_society, 
+                                Slavs::TTechnologies i_technologies);
+  SLAVS_SERVER_EXPORT ~Goverment();
 
   //initializes all managers
-  bool                  Initialize();
+  bool                  SLAVS_SERVER_EXPORT  Initialize();
 
-  Slavs::TEconomy        GetEconomyManager();
-  Slavs::TMilitary       GetMilitaryManager();
-  Slavs::TRelashionships GetRelationshipManager();
-  Slavs::TSociety        GetSocietyManager();
-  Slavs::TTechnologies   GetTechnologyManager();
+  Slavs::TEconomy        SLAVS_SERVER_EXPORT GetEconomyManager();
+  Slavs::TMilitary       SLAVS_SERVER_EXPORT GetMilitaryManager();
+  Slavs::TRelashionships SLAVS_SERVER_EXPORT GetRelationshipManager();
+  Slavs::TSociety        SLAVS_SERVER_EXPORT GetSocietyManager();
+  Slavs::TTechnologies   SLAVS_SERVER_EXPORT GetTechnologyManager();
 };

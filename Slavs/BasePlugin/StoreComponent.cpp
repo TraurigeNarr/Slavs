@@ -2,7 +2,9 @@
 
 #include "StoreComponent.h"
 
+#include "BaseObjectComposer.h"
 #include "TypeNames.h"
+#include "TypeEnumerations.h"
 
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
@@ -18,8 +20,8 @@ namespace BasePlugin
   {
   //////////////////////////////////////////////////////////////////////////
   // Store Component Serializer 
-  StoreComponentSerializer::StoreComponentSerializer(int i_component_id)
-    : IComponentSerializer(i_component_id)
+  StoreComponentSerializer::StoreComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer)
+    : IComponentSerializer(i_component_global_id, i_composer)
     {
 
     }
@@ -90,7 +92,7 @@ namespace BasePlugin
 
   IComponent* StoreComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
     {
-    StoreComponent* p_house = new StoreComponent(ip_object, m_component_global_id);
+    StoreComponent* p_house = new StoreComponent(ip_object, m_component_global_id, m_object_composer);
     ApplyTo(*p_house);
     return p_house;
     }
@@ -98,8 +100,9 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Store Component
 
-  StoreComponent::StoreComponent(Slavs::TGameObject ih_owner, int i_component_id)
+  StoreComponent::StoreComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer)
     : IStore(ih_owner, i_component_id)
+    , m_object_composer(i_composer)
     {
     ih_owner->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->Register(this);
     }
@@ -129,7 +132,8 @@ namespace BasePlugin
 
   bool StoreComponent::Probe()
     {
-    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_component_id);
+    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_STORE)) 
+        && static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_STATIC_COMPONENT));
     }
 
   //////////////////////////////////////////////////////////////////////////

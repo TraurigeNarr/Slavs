@@ -25,6 +25,8 @@ namespace
       return BasePlugin::ObjectType::OT_HIZHINA;
     if (i_type == BasePlugin::Object_ProductionStore)
       return BasePlugin::ObjectType::OT_PRODUCTION_STORE;
+    if (i_type == BasePlugin::Object_Manufacture)
+      return BasePlugin::ObjectType::OT_MANUFACTURE;
 
     return BasePlugin::ObjectType::OT_NONE;
     }
@@ -73,15 +75,18 @@ void BaseObjectComposer::DeclareSupportedTypes()
   // production store
   global_type_id = factory.RegisterType(BasePlugin::ConstructBasePluginName(BasePlugin::Object_ProductionStore));
   m_types_map[global_type_id] = BasePlugin::ObjectType::OT_PRODUCTION_STORE;
+  // manufacture
+  global_type_id = factory.RegisterType(BasePlugin::ConstructBasePluginName(BasePlugin::Object_Manufacture));
+  m_types_map[global_type_id] = BasePlugin::ObjectType::OT_MANUFACTURE;
 #pragma endregion
 
 #pragma region Components
   // static
   global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Static));
-  m_components_map[global_type_id] = BasePlugin::ComponentType::CT_STATIC_OBJECT;
+  m_components_map[global_type_id] = BasePlugin::ComponentType::CT_STATIC_COMPONENT;
   // dynamic
   global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Dynamic));
-  m_components_map[global_type_id] = BasePlugin::ComponentType::CT_DYNAMIC_OBJECT;
+  m_components_map[global_type_id] = BasePlugin::ComponentType::CT_DYNAMIC_COMPONENT;
   // human
   global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Human));
   m_components_map[global_type_id] = BasePlugin::ComponentType::CT_HUMAN;
@@ -91,6 +96,9 @@ void BaseObjectComposer::DeclareSupportedTypes()
   // store
   global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Store));
   m_components_map[global_type_id] = BasePlugin::ComponentType::CT_STORE;
+  // manufacture
+  global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Manufacture));
+  m_components_map[global_type_id] = BasePlugin::ComponentType::CT_MANUFACTURE;
 #pragma endregion
   }
 

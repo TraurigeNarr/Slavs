@@ -25,9 +25,10 @@ namespace BasePlugin
     private:
       size_t                                              m_workers_number;
       std::vector<std::shared_ptr<GameResourceContainer>> m_resource_containers;
+      const BaseObjectComposer&                           m_object_composer;
 
     public:
-                    SLAVS_BASEPLUGIN_EXPORT StoreComponent(Slavs::TGameObject ih_owner, int i_component_id);
+                    SLAVS_BASEPLUGIN_EXPORT StoreComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer);
       virtual       SLAVS_BASEPLUGIN_EXPORT ~StoreComponent();
     
     // IComponent
@@ -50,7 +51,7 @@ namespace BasePlugin
       virtual size_t  SLAVS_BASEPLUGIN_EXPORT GetResource (int i_type, size_t i_number) override;
       virtual size_t  SLAVS_BASEPLUGIN_EXPORT GetResourceForcely (int i_type, size_t i_number) override;
 
-      virtual const std::vector<std::shared_ptr<GameResourceContainer>>& GetResources() const override;
+      virtual SLAVS_BASEPLUGIN_EXPORT const std::vector<std::shared_ptr<GameResourceContainer>>& GetResources() const override;
     };
   
   class StoreComponentSerializer : public IComponentSerializer
@@ -63,7 +64,7 @@ namespace BasePlugin
       void _FillResources(const TiXmlElement& i_resource_element);
 
     public:
-      StoreComponentSerializer(int i_component_id);
+      StoreComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer);
       ~StoreComponentSerializer();
 
       virtual void        Parse(const TiXmlElement& i_configuration_node) override;

@@ -9,6 +9,8 @@
 #include <SlavsServer/Game/GameObject.h>
 #include <SlavsServer/include/Types.h>
 
+class BaseObjectComposer;
+
 namespace BasePlugin
   {
   class HumanComponentSerializer;
@@ -21,14 +23,16 @@ namespace BasePlugin
       typedef HumanComponentSerializer TSerializer;
 
     private:
-      size_t m_needed_calories;
-      size_t m_eat_in;
-      size_t m_die_if_no_eat;
+      const BaseObjectComposer& m_object_composer;
 
-      Slavs::HousePtr mp_home;
+      size_t              m_needed_calories;
+      size_t              m_eat_in;
+      size_t              m_die_if_no_eat;
+
+      Slavs::HousePtr     mp_home;
 
     public:
-                    SLAVS_BASEPLUGIN_EXPORT           HumanComponent(Slavs::TGameObject ih_owner, int i_component_id);
+                    SLAVS_BASEPLUGIN_EXPORT           HumanComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_object_composer);
       virtual       SLAVS_BASEPLUGIN_EXPORT           ~HumanComponent();
 
     // IComponent
@@ -56,7 +60,7 @@ namespace BasePlugin
       size_t m_die_if_no_eat;
 
     public:
-      HumanComponentSerializer(int i_component_id);
+      HumanComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer);
       ~HumanComponentSerializer();
 
       virtual void        Parse(const TiXmlElement& i_configuration_node) override;

@@ -1,7 +1,10 @@
 #include "stdafx.h"
 
 #include "DynamicObjectComponent.h"
+
+#include "BaseObjectComposer.h"
 #include "TypeNames.h"
+#include "TypeEnumerations.h"
 #include "IMovementStrategy.h"
 
 #include <Utilities/XmlUtilities.h>
@@ -14,8 +17,8 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Dynamic Object Component Serializer
 
-  DynamicObjectComponentSerializer::DynamicObjectComponentSerializer(int i_component_id)
-    : IComponentSerializer(i_component_id)
+  DynamicObjectComponentSerializer::DynamicObjectComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer)
+    : IComponentSerializer(i_component_global_id, i_composer)
     {    }
 
   DynamicObjectComponentSerializer::~DynamicObjectComponentSerializer()
@@ -47,7 +50,7 @@ namespace BasePlugin
 
   IComponent* DynamicObjectComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
     {
-    DynamicObjectComponent* p_dynamic = new DynamicObjectComponent(ip_object, m_component_global_id);
+    DynamicObjectComponent* p_dynamic = new DynamicObjectComponent(ip_object, m_component_global_id, m_object_composer);
     ApplyTo(*p_dynamic);
     return p_dynamic;
     }
@@ -56,10 +59,11 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // Dynamic Object Component
 
-  DynamicObjectComponent::DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id)
+  DynamicObjectComponent::DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer)
     : IComponent(ih_owner, i_component_id)
     , m_bounding_box_radius(.0f)
     , mp_movement_strategy(nullptr)
+    , m_object_composer(i_composer)
     {
 
     }
@@ -94,7 +98,7 @@ namespace BasePlugin
 
   bool DynamicObjectComponent::Probe()
     {
-    return true;
+    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_COMPONENT));
     }
 
   void DynamicObjectComponent::SetMovementStrategy(IMovementStrategy* ip_movement_strategy)

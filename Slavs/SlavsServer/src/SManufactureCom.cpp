@@ -23,7 +23,7 @@
 #include <string>
 
 SManufacureCom::SManufacureCom(SGameObject* owner, const TiXmlElement* componentElement)
-	: m_pOwner(owner), m_pBoxOfResources(NULL), 
+	: IEmployer(owner, 0), m_pBoxOfResources(NULL), 
 	m_iCurrentTick(0), m_bWorking(false), m_iWorkersEndsCycle(0)
   , m_state(MS_WAITING_FOR_WORKERS)
 {

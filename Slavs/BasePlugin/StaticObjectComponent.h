@@ -22,8 +22,11 @@ namespace BasePlugin
     private:
       float     m_bounding_box_radius;
 
+    private:
+      const BaseObjectComposer& m_object_composer;
+
     public:
-      StaticObjectComponent(Slavs::TGameObject ih_owner, int i_component_id);
+      StaticObjectComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer);
       ~StaticObjectComponent();
 
       virtual void	TickPerformed() override;
@@ -39,7 +42,7 @@ namespace BasePlugin
       float m_bounding_box_radius;
 
     public:
-      StaticObjectComponentSerializer(int i_component_id);
+      StaticObjectComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer);
       ~StaticObjectComponentSerializer();
 
       virtual void        Parse(const TiXmlElement& i_configuration_node) override;

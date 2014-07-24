@@ -21,8 +21,9 @@ namespace BasePlugin
       typedef HouseComponentSerializer TSerializer;
 
     private:
-      size_t        m_max_population;
-      Slavs::Humans m_inhabitants;
+      const BaseObjectComposer&   m_object_composer;
+      size_t                m_max_population;
+      Slavs::Humans         m_inhabitants;
 
       mutable bool          m_valid;
       mutable size_t        m_unemployed_number;
@@ -32,7 +33,7 @@ namespace BasePlugin
       void          Validate() const;
 
     public:
-      SLAVS_BASEPLUGIN_EXPORT                 HouseComponent(Slavs::TGameObject ih_owner, int i_component_id);
+      SLAVS_BASEPLUGIN_EXPORT                 HouseComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer);
       virtual       SLAVS_BASEPLUGIN_EXPORT   ~HouseComponent();
 
     // IComponent
@@ -65,7 +66,7 @@ namespace BasePlugin
       size_t m_max_population;
 
     public:
-      HouseComponentSerializer(int i_component_id);
+      HouseComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer);
       ~HouseComponentSerializer();
 
       virtual void        Parse(const TiXmlElement& i_configuration_node) override;

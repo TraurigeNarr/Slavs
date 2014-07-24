@@ -3,6 +3,8 @@
 class TiXmlElement;
 class IComponent;
 
+class BaseObjectComposer;
+
 namespace Slavs
   {
   class GameObject;
@@ -22,9 +24,13 @@ See HumanComponent as example.
 class IComponentSerializer
   {
   protected:
-    int m_component_global_id;
+    int                 m_component_global_id;
+    const BaseObjectComposer& m_object_composer;
   public:
-    IComponentSerializer(int i_component_id) : m_component_global_id(i_component_id) { }
+    IComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer) 
+      : m_component_global_id(i_component_global_id) 
+      , m_object_composer(i_composer)
+      { }
     virtual ~IComponentSerializer() {}
 
     virtual void        Parse(const TiXmlElement& i_configuration_node) = 0;

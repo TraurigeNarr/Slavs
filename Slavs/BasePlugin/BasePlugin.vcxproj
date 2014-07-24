@@ -39,9 +39,11 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\..\..\ThirdParty\props\boost.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\..\..\ThirdParty\props\boost.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -101,6 +103,7 @@
     <ClInclude Include="HumanComponent.h" />
     <ClInclude Include="IComponentSerializer.h" />
     <ClInclude Include="IMovementStrategy.h" />
+    <ClInclude Include="ManufactureComponent.h" />
     <ClInclude Include="ObjectSettings.h" />
     <ClInclude Include="SlavsBasePlugin.h" />
     <ClInclude Include="SlavsBasePluginAPI.h" />
@@ -117,6 +120,7 @@
     <ClCompile Include="DynamicObjectComponent.cpp" />
     <ClCompile Include="HouseComponent.cpp" />
     <ClCompile Include="HumanComponent.cpp" />
+    <ClCompile Include="ManufactureComponent.cpp" />
     <ClCompile Include="ObjectSettings.cpp" />
     <ClCompile Include="SlavsBasePlugin.cpp" />
     <ClCompile Include="StaticObjectComponent.cpp" />

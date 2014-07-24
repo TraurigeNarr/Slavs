@@ -8,26 +8,26 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-class SLAVS_SERVER_EXPORT IEconomyManager : public IManager
+class IEconomyManager : public IManager
 {
 protected:
   Slavs::TGoldKeepers   m_employers;
   Slavs::TGoldKeepers   m_employees;
 
 public:
-  virtual ~IEconomyManager();
+  virtual SLAVS_SERVER_EXPORT         ~IEconomyManager();
 
-  virtual void    RegisterEmployee(Slavs::TGoldKeeper ip_payer);
-  virtual void    RemoveEmployee(Slavs::TGoldKeeper ip_payer);
+  virtual void    SLAVS_SERVER_EXPORT RegisterEmployee(Slavs::TGoldKeeper ip_payer);
+  virtual void    SLAVS_SERVER_EXPORT RemoveEmployee(Slavs::TGoldKeeper ip_payer);
   
-  virtual void    RegisterEmployer(Slavs::TGoldKeeper ip_payer);
-  virtual void    RemoveEmployer(Slavs::TGoldKeeper ip_payer);
+  virtual void    SLAVS_SERVER_EXPORT RegisterEmployer(Slavs::TGoldKeeper ip_payer);
+  virtual void    SLAVS_SERVER_EXPORT RemoveEmployer(Slavs::TGoldKeeper ip_payer);
   
-  virtual void    GetRegisteredPayers(Slavs::TGoldKeepers& o_payers);
-  virtual void    GetEmplyees(Slavs::TGoldKeepers& o_payers);
-  virtual void    GetEmployers(Slavs::TGoldKeepers& o_payers);
+  virtual void    SLAVS_SERVER_EXPORT GetRegisteredPayers(Slavs::TGoldKeepers& o_payers);
+  virtual void    SLAVS_SERVER_EXPORT GetEmplyees(Slavs::TGoldKeepers& o_payers);
+  virtual void    SLAVS_SERVER_EXPORT GetEmployers(Slavs::TGoldKeepers& o_payers);
 
-  virtual void    GetAvailableEmployers(Slavs::TEmployersInformation& o_available) const;
+  virtual void    SLAVS_SERVER_EXPORT GetAvailableEmployers(Slavs::TEmployersInformation& o_available) const;
 
   virtual void    Initialize() = 0;
   virtual void    Update(long i_elapsed_time) = 0;

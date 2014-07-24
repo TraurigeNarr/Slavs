@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SlavsBasePluginAPI.h"
+
 #include <PluginSystem/IObjectComposer.h>
 
 namespace BasePlugin
@@ -23,8 +25,8 @@ class BaseObjectComposer : public IObjectComposer
     std::map<BasePlugin::ObjectType, TObjectSettings> m_object_settings;
 
   public:
-    BaseObjectComposer();
-    virtual ~BaseObjectComposer();
+    SLAVS_BASEPLUGIN_EXPORT         BaseObjectComposer();
+    virtual SLAVS_BASEPLUGIN_EXPORT ~BaseObjectComposer();
 
     virtual void ComposeObject (Slavs::GameObject* ip_object) override;
     virtual bool Supports (int i_object_type) override;
@@ -32,8 +34,8 @@ class BaseObjectComposer : public IObjectComposer
     virtual void DeclareSupportedTypes() override;
     virtual bool CheckContracts() const override;
 
-    void          Initialize(const TiXmlElement& i_composer_element);
+    void         Initialize(const TiXmlElement& i_composer_element);
     
-    int           GetObjectGlobalID(BasePlugin::ObjectType i_type) const;
-    int           GetComponentGlobalID(BasePlugin::ComponentType i_type) const;
+    int          GetObjectGlobalID(BasePlugin::ObjectType i_type) const;
+    int          GetComponentGlobalID(BasePlugin::ComponentType i_type) const;
   };

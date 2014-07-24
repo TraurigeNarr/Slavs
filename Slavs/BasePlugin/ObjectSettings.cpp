@@ -6,10 +6,11 @@
 #include "TypeNames.h"
 
 //types
+#include "DynamicObjectComponent.h"
 #include "HouseComponent.h"
 #include "HumanComponent.h"
+#include "ManufactureComponent.h"
 #include "StaticObjectComponent.h"
-#include "DynamicObjectComponent.h"
 #include "StoreComponent.h"
 
 #include <Utilities/XmlUtilities.h>
@@ -25,15 +26,17 @@ namespace
     {
     using namespace BasePlugin;
     if (i_type == Component_Human)
-      return new HumanComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_HUMAN));
+      return new HumanComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_HUMAN), i_composer);
     if (i_type == Component_Static)
-      return new StaticObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_STATIC_OBJECT));
+      return new StaticObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_STATIC_COMPONENT), i_composer);
     if (i_type == Component_Dynamic)
-      return new DynamicObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_OBJECT));
+      return new DynamicObjectComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_COMPONENT), i_composer);
     if (i_type == Component_Store)
-      return new StoreComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_STORE));
+      return new StoreComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_STORE), i_composer);
     if (i_type == Component_House)
-      return new HouseComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_HOUSE));
+      return new HouseComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_HOUSE), i_composer);
+    if (i_type == Component_Manufacture)
+      return new ManufactureComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_MANUFACTURE), i_composer);
     return nullptr;
     }
   }
