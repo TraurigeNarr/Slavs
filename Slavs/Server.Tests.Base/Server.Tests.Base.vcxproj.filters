@@ -39,6 +39,9 @@
     <ClInclude Include="StoreSystemMock.h">
       <Filter>Mocks</Filter>
     </ClInclude>
+    <ClInclude Include="GovermentMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

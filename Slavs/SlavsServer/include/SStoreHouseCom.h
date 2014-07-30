@@ -19,8 +19,7 @@ Component that keep track of specific resource types.
 ---------------------------------------------------
 */
 
-class SStoreHouseCom : public IComponent
-                     , public Slavs::IStore
+class SStoreHouseCom : public Slavs::IStore
 {
 public:
 	SStoreHouseCom(SGameObject* owner, const TiXmlElement* componentElement);

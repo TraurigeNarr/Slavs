@@ -88,6 +88,8 @@ namespace Slavs
       ///                             development of technologies or smth else
       ///                             resources for each controller can be different
       const ResourcesCountSet&    GetResourcesFor (int i_type, int i_controller_mask);
+
+      GlobalEconomics&            GetGlobalEconomics() const;
     };
 
   } // Slavs

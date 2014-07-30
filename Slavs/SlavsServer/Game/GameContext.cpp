@@ -62,6 +62,7 @@ namespace Slavs
   GameContext::GameContext()
     : IGameContext("null_map")
     , m_next_object_id(0)
+    , mp_global_economics(new GlobalEconomics())
     {
 
     }
@@ -168,5 +169,9 @@ namespace Slavs
     return (*it).m_needed_resources[i_type];
     }
 
+  GlobalEconomics& GameContext::GetGlobalEconomics() const
+    {
+    return *mp_global_economics;
+    }
 
   }

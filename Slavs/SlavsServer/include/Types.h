@@ -8,17 +8,20 @@
 #include <vector>
 #include <set>
 
-class EmployerInformation;
-class GameResourceBox;
-class Goverment;
-class IController;
+
 class IEconomyManager;
 class IGoldKeeper;
 class IMilitaryManager;
 class IRelashionshipsManager;
+class IResourceManager;
 class ISocietyManager;
 class IStoreSystem;
 class ITechnologyManager;
+
+class EmployerInformation;
+class GameResourceBox;
+class Goverment;
+class IController;
 class SGameObject;
 class SHouseComponent;
 class SHumanComponent;
@@ -29,11 +32,11 @@ namespace Slavs
 {
   class GameObject;
   class GameContext;
+  class IEmployer;
   class IHouse;
   class IHuman;
   class IManufacture;
   class IStore;
-  class IEmployer;
   //////////////////////////////////////////////////////////////////////////
   typedef IHuman*                                 HumanPtr;
   typedef IHouse*                                 HousePtr;
@@ -46,12 +49,13 @@ namespace Slavs
 
   typedef GameObject*                             TGameObject;
   typedef std::unique_ptr<GameContext>            TGameContext;
-  typedef std::shared_ptr<IEconomyManager>        TEconomy;
-  typedef std::shared_ptr<IMilitaryManager>       TMilitary;
-  typedef std::shared_ptr<IRelashionshipsManager> TRelashionships;
-  typedef std::shared_ptr<ISocietyManager>        TSociety;
-  typedef std::shared_ptr<ITechnologyManager>     TTechnologies;
-  typedef std::shared_ptr<IStoreSystem>           TStoreSystem;
+  typedef IEconomyManager*                        TEconomy;
+  typedef IMilitaryManager*                       TMilitary;
+  typedef IRelashionshipsManager*                 TRelashionships;
+  typedef ISocietyManager*                        TSociety;
+  typedef ITechnologyManager*                     TTechnologies;
+  typedef IStoreSystem*                           TStoreSystem;
+  typedef IResourceManager*                       ResourceManagerPtr;
   typedef IGoldKeeper*                            TGoldKeeper;
   typedef GameResourceBox*                        TGameResourceBox;
   typedef Goverment*                              TGoverment;

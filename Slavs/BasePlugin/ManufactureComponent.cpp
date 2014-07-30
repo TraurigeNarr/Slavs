@@ -12,13 +12,13 @@
 #include <SlavsServer/include/IController.h>
 #include <SlavsServer/include/Management/Goverment.h>
 #include <SlavsServer/include/Management/IStoreSystem.h>
+#include <SlavsServer/include/Management/IResourceManager.h>
 #include <SlavsServer/include/Management/IEconomyManager.h>
 #include <SlavsServer/include/ManufactureRequest.h>
 
 #include <boost/lexical_cast.hpp>
 
 //////////////////////////////////////////////////////////////////////////
-
 namespace BasePlugin
   {
 
@@ -115,7 +115,8 @@ namespace BasePlugin
     , m_worker_type(1)
     , m_needed_workers(5)
     , m_operating_cycle(10)
-    , m_working(false)
+    , m_state(ManufactureStates::MS_WAITING_FOR_WORKERS)
+    , m_current_tick(0)
     {    
     if (ip_owner == nullptr)
       throw std::logic_error("Owner cannot be nullptr");
@@ -130,7 +131,26 @@ namespace BasePlugin
 
   void ManufactureComponent::TickPerformed()
     {
-
+    if (m_state == ManufactureStates::MS_READY_TO_WORK)
+      {
+      if (!m_workers.empty())
+        {
+        m_state = ManufactureStates::MS_WORKING;
+        m_current_tick = 0;
+        }
+      }
+    else if (m_state == ManufactureStates::MS_WORKING)
+      {
+      ++m_current_tick;
+      if (m_current_tick == m_operating_cycle)
+        {
+        size_t number = m_initial_resources_mining*m_workers.size();
+        static_cast<Slavs::GameObject*>(mp_owner)->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->Add(std::make_pair(m_mining_resource_type, number));
+        m_workers.empty();
+        m_state = ManufactureStates::MS_WAITING_FOR_WORKERS;
+        
+        }
+      }
     }
 
   bool ManufactureComponent::HandleMessage(const Telegram& msg)
@@ -164,7 +184,7 @@ namespace BasePlugin
 
   bool ManufactureComponent::NeedWorkers() const
     {
-    return false;
+    return m_state == ManufactureStates::MS_WAITING_FOR_WORKERS;
     }
 
   size_t ManufactureComponent::GetOperatingCycle() const
@@ -174,7 +194,7 @@ namespace BasePlugin
 
   bool ManufactureComponent::IsWorking() const
     {
-    return false;
+    return m_state == ManufactureStates::MS_WORKING;
     }
 
   bool ManufactureComponent::IsSuitable(Slavs::HumanPtr ip_human)
@@ -184,11 +204,16 @@ namespace BasePlugin
 
   bool ManufactureComponent::HireWorker(Slavs::HumanPtr ip_human)
     {
-    return false;
+    if (m_state == ManufactureStates::MS_WORKING || m_state == ManufactureStates::MS_WAINTING_FOR_STORE || m_workers.size() == m_needed_workers)
+      return false;
+    
+    m_state = ManufactureStates::MS_READY_TO_WORK;
+    return m_workers.insert(ip_human).second;
     }
 
   void ManufactureComponent::StoreExpanded()
     {
+    m_state = ManufactureStates::MS_WAITING_FOR_WORKERS;
     }
 
   const EmployerInformation& ManufactureComponent::GetInformation() const

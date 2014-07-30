@@ -4,16 +4,21 @@
 
 #include "PluginSystem/IEmployer.h"
 
+#include "Management/GlobalEconomics.h"
 #include "Management/Goverment.h"
+
+#include "Game/GameContext.h"
+#include "Game/GameObject.h"
 
 #include <algorithm>
 #include <vector>
 //////////////////////////////////////////////////////////////////////////
 
 IEconomyManager::~IEconomyManager()
-{
-
-}
+  {
+  if (GetGoverment())
+    GetGoverment()->GetOwner()->GetGameContext().GetGlobalEconomics().RemoveEconomy(this);
+  }
 
 void IEconomyManager::RegisterEmployer(Slavs::TGoldKeeper ip_payer)
 {

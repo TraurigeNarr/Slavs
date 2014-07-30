@@ -36,5 +36,8 @@
     <ClCompile Include="StoreComponentTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="ManufactureComponentTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,8 +1,18 @@
 #pragma once
 
-#include "../SlavsServerAPI.h"
+#include "SlavsServerAPI.h"
 
 #include "Types.h"
+
+// unique_ptr needs complete destructor of object
+// so we need to include headers for interfaces
+#include "Management/IEconomyManager.h"
+#include "Management/IMilitaryManager.h"
+#include "Management/IRelashionshipsManager.h"
+#include "Management/IStoreSystem.h"
+#include "Management/ITechnologyManager.h"
+
+#include <boost/noncopyable.hpp>
 
 #include <memory>
 
@@ -12,31 +22,32 @@ Economy; Military; Technology; Society (in country);
 Relationships (out of country)
 */
 
-class Goverment
-{
+class Goverment : boost::noncopyable
+  {
 private:
-  IController*           mp_owner;
-  Slavs::TEconomy        m_economy_manager;
-  Slavs::TMilitary       m_military;
-  Slavs::TRelashionships m_relashionships;
-  Slavs::TSociety        m_society;
-  Slavs::TTechnologies   m_technologies;
+  IController*                            mp_owner;
+  std::unique_ptr<IEconomyManager>        m_economy_manager;
+  std::unique_ptr<IMilitaryManager>       m_military;
+  std::unique_ptr<IRelashionshipsManager> m_relashionships;
+  std::unique_ptr<ISocietyManager>        m_society;
+  std::unique_ptr<ITechnologyManager>     m_technologies;
 
 public:
-  SLAVS_SERVER_EXPORT Goverment(IController* ip_owner, 
-                                Slavs::TEconomy i_economy, 
-                                Slavs::TMilitary i_military, 
-                                Slavs::TRelashionships i_relashionships, 
-                                Slavs::TSociety i_society, 
-                                Slavs::TTechnologies i_technologies);
-  SLAVS_SERVER_EXPORT ~Goverment();
+  SLAVS_SERVER_EXPORT           Goverment(IController* ip_owner, 
+                                          std::unique_ptr<IEconomyManager>&& ip_economy, 
+                                          std::unique_ptr<IMilitaryManager>&& ip_military, 
+                                          std::unique_ptr<IRelashionshipsManager>&& ip_relashionships, 
+                                          std::unique_ptr<ISocietyManager>&& ip_society, 
+                                          std::unique_ptr<ITechnologyManager>&& ip_technologies);
+  SLAVS_SERVER_EXPORT virtual    ~Goverment();
 
   //initializes all managers
-  bool                  SLAVS_SERVER_EXPORT  Initialize();
+  SLAVS_SERVER_EXPORT virtual void           Initialize();
 
-  Slavs::TEconomy        SLAVS_SERVER_EXPORT GetEconomyManager();
-  Slavs::TMilitary       SLAVS_SERVER_EXPORT GetMilitaryManager();
-  Slavs::TRelashionships SLAVS_SERVER_EXPORT GetRelationshipManager();
-  Slavs::TSociety        SLAVS_SERVER_EXPORT GetSocietyManager();
-  Slavs::TTechnologies   SLAVS_SERVER_EXPORT GetTechnologyManager();
-};
+  SLAVS_SERVER_EXPORT Slavs::TEconomy        GetEconomyManager() const;
+  SLAVS_SERVER_EXPORT Slavs::TMilitary       GetMilitaryManager() const;
+  SLAVS_SERVER_EXPORT Slavs::TRelashionships GetRelationshipManager() const;
+  SLAVS_SERVER_EXPORT Slavs::TSociety        GetSocietyManager() const;
+  SLAVS_SERVER_EXPORT Slavs::TTechnologies   GetTechnologyManager() const;
+  SLAVS_SERVER_EXPORT IController*           GetOwner() const;
+  };

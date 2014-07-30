@@ -21,8 +21,7 @@ This is houses there people are living in happiness :)
 */
 
 class SHouseComponent 
-  : public IComponent
-  , public Slavs::IHouse
+  : public Slavs::IHouse
 {
 public:
   typedef std::list<SHumanComponent*> TInhabitants;

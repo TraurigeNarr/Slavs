@@ -37,6 +37,7 @@ class IController : public TickListener
     int					                m_iMask;
     Slavs::GameContext&         m_game_context;
 
+  protected:
     std::unique_ptr<Goverment>  mp_goverment;
 
   protected:

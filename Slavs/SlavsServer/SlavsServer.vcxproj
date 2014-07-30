@@ -101,6 +101,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Management\ResourceManagerBase.cpp" />
     <ClCompile Include="Main\GameState.cpp" />
     <ClCompile Include="Game\GameContext.cpp" />
     <ClCompile Include="Game\GameObject.cpp" />
@@ -157,6 +158,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Management\IResourceManager.h" />
+    <ClInclude Include="include\Management\ResourceManagerBase.h" />
     <ClInclude Include="Main\LoadingParameters.h" />
     <ClInclude Include="PluginSystem\IBuilding.h" />
     <ClInclude Include="PluginSystem\IHouse.h" />

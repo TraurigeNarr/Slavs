@@ -77,7 +77,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SlavsServer.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network_d.dll" "$(OutputPath)" /Y /R /I</Command>
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network_d.dll" "$(OutputPath)" /Y /R /I
+"$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -102,7 +103,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network_d.dll" "$(OutputPath)"
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SlavsServer.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network.dll" "$(OutputPath)" /Y /R /I</Command>
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network.dll" "$(OutputPath)" /Y /R /I
+"$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -111,6 +113,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network.dll" "$(OutputPath)" /
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MetaFactoryTests.cpp" />
+    <ClCompile Include="ResourceManagerBaseTests.cpp" />
     <ClCompile Include="Server.Tests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

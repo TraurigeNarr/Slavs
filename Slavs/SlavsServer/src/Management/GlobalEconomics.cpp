@@ -29,8 +29,8 @@ namespace
   void _RemoveEconomy (Slavs::TEconomyManagers& i_managers, const Slavs::TEconomy ip_economy)
   {
     Slavs::TEconomyManagers::const_iterator it = _FindEconomy(i_managers, ip_economy->GetGoverment());
-    
-    i_managers.erase(it);
+    if (it != i_managers.end())
+      i_managers.erase(it);
   }
 
 } // namespace

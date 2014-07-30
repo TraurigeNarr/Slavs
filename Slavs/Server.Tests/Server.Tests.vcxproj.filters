@@ -29,5 +29,8 @@
     <ClCompile Include="_LinkingLibraries.cpp">
       <Filter>_Maintanance</Filter>
     </ClCompile>
+    <ClCompile Include="ResourceManagerBaseTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

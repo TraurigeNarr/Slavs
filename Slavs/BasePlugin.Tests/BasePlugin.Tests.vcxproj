@@ -77,7 +77,8 @@
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SlavsServer.dll" "$(OutputPath)" /Y /R /I
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network_d.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin.dll" "$(OutputPath)" /Y /R /I</Command>
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin.dll" "$(OutputPath)" /Y /R /I
+"$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -102,7 +103,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SlavsServer.dll" "$(OutputPath)" /Y /R /I
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin.dll" "$(OutputPath)" /Y /R /I</Command>
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin.dll" "$(OutputPath)" /Y /R /I
+"$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -113,6 +115,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin
     <ClCompile Include="BasePlugin.Tests.cpp" />
     <ClCompile Include="HouseComponentTests.cpp" />
     <ClCompile Include="HumanComponentTests.cpp" />
+    <ClCompile Include="ManufactureComponentTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

@@ -31,7 +31,19 @@ namespace BasePlugin
       int                                         m_worker_type;
       size_t                                      m_initial_payment;
 
-      bool                                        m_working;
+      enum class ManufactureStates
+        {
+        MS_WAITING_FOR_WORKERS,
+        MS_WAINTING_FOR_STORE,
+        MS_READY_TO_WORK,
+        MS_WORKING
+        };
+
+      ManufactureStates                           m_state;
+
+      std::set<Slavs::HumanPtr>                   m_workers;
+
+      size_t                                      m_current_tick;
 
     public:
       SLAVS_BASEPLUGIN_EXPORT                 ManufactureComponent(Slavs::TGameObject ip_owner, int i_component_id, const BaseObjectComposer& i_composer);

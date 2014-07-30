@@ -88,6 +88,7 @@
   <ItemGroup>
     <ClInclude Include="ControllerMock.h" />
     <ClInclude Include="EconomyManagerMock.h" />
+    <ClInclude Include="GovermentMock.h" />
     <ClInclude Include="HouseMock.h" />
     <ClInclude Include="HumanMock.h" />
     <ClInclude Include="SocietyManagerMock.h" />

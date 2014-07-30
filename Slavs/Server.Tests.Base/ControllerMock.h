@@ -2,12 +2,16 @@
 
 #include <SlavsServer/include/IController.h>
 
-class MockIController : public IController 
+#include "GovermentMock.h"
+
+class MockIController : public IController
   {
   public:
     MockIController(int iMask, Slavs::GameContext& i_context)
       : IController(iMask, i_context)
-      {      }
+      {
+      mp_goverment.reset(new MockGoverment(this));
+      }
     MOCK_METHOD0(TickPerformed,
       void());
     MOCK_METHOD0(Init,

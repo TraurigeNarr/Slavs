@@ -31,8 +31,7 @@ This can be sawmill, quarry, etc.
 ---------------------------------------------------
 */
 class SManufacureCom 
-  : public IComponent
-  , public Slavs::IEmployer
+  : public Slavs::IEmployer
 {
 public:
 									  SManufacureCom(SGameObject* owner, const TiXmlElement* componentElement);

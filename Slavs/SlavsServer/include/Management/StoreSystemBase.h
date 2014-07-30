@@ -4,7 +4,7 @@
 
 #include "IStoreSystem.h"
 
-class SLAVS_SERVER_EXPORT StoreSystemBase : public IStoreSystem
+class StoreSystemBase : public IStoreSystem
 {
 protected:
   Slavs::Stores m_stores;
@@ -14,25 +14,25 @@ protected:
 
   Slavs::Employers           m_store_waiting;
 public:
-  StoreSystemBase();
-  virtual ~StoreSystemBase();
+  SLAVS_SERVER_EXPORT                       StoreSystemBase();
+  virtual SLAVS_SERVER_EXPORT               ~StoreSystemBase();
 
-  virtual void          Register(Slavs::StorePtr ip_store_house) override;
-  virtual void          Remove(Slavs::StorePtr ip_store_house) override;
+  virtual void          SLAVS_SERVER_EXPORT Register(Slavs::StorePtr ip_store_house) override;
+  virtual void          SLAVS_SERVER_EXPORT Remove(Slavs::StorePtr ip_store_house) override;
 
-  virtual void          Add(Slavs::TResources& i_new_resources) override;
-  virtual void          Add(Slavs::TGameResourceBox i_new_resource) override;
+  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::TResources& i_new_resources) override;
+  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::TGameResourceBox i_new_resource) override;
 
-  virtual void          Add(Slavs::ResourcePair i_resource) override;
-  virtual void          Add(Slavs::ResourcesCountSet i_resources) override;
+  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::ResourcePair i_resource) override;
+  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::ResourcesCountSet i_resources) override;
 
-  virtual void          ProcessEvent(EconomyEvent i_event, void* ip_data = nullptr) override;
+  virtual void          SLAVS_SERVER_EXPORT ProcessEvent(EconomyEvent i_event, void* ip_data = nullptr) override;
   
-  virtual bool          PeekResources(GameResourceType i_type, size_t i_number) override;
-  virtual size_t        GetResources(GameResourceType i_type, size_t i_number) override;
+  virtual bool          SLAVS_SERVER_EXPORT PeekResources(GameResourceType i_type, size_t i_number) override;
+  virtual size_t        SLAVS_SERVER_EXPORT GetResources(GameResourceType i_type, size_t i_number) override;
   ///returns pair where first is current number and second is max number that can be stored
-  virtual TResourcePair GetResource(GameResourceType i_type) override;
+  virtual TResourcePair SLAVS_SERVER_EXPORT GetResource(GameResourceType i_type) override;
 
-  virtual Slavs::Stores&        GetStores() override;
-  virtual GeneralResourceInfo&  GetResourceInformation(GameResourceType i_resource_type) override;
+  virtual SLAVS_SERVER_EXPORT Slavs::Stores&        GetStores() override;
+  virtual SLAVS_SERVER_EXPORT GeneralResourceInfo&  GetResourceInformation(GameResourceType i_resource_type) override;
 };

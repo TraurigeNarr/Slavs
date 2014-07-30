@@ -1,6 +1,13 @@
 #include "Management/EconomyManagerBase.h"
 
+#include "IController.h"
+#include "Management/GlobalEconomics.h"
+#include "Management/Goverment.h"
 #include "Management/StoreSystemBase.h"
+#include "Management/ResourceManagerBase.h"
+
+#include "Game/GameContext.h"
+#include "Game/GameObject.h"
 
 #include "IGoldKeeper.h"
 
@@ -9,20 +16,18 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-EconomyManagerBase::EconomyManagerBase()
-{
-
-}
-
 EconomyManagerBase::~EconomyManagerBase()
-{
+  {
 
-}
+  }
 
 void EconomyManagerBase::Initialize()
-{
-  mp_store_system = std::make_shared<StoreSystemBase>();
-}
+  {
+  mp_store_system.reset(new StoreSystemBase());
+  mp_resource_manager.reset(new ResourceManagerBase(this));
+  if (GetGoverment())
+    GetGoverment()->GetOwner()->GetGameContext().GetGlobalEconomics().RegisterEconomy(this);
+  }
 
 void EconomyManagerBase::Update(long i_elapsed_time)
 {
@@ -49,8 +54,3 @@ void EconomyManagerBase::ProcessEvent(EconomyEvent i_event, void* ip_data /* = n
       break;
     }  
   }
-
-Slavs::TStoreSystem EconomyManagerBase::GetStoreSystem()
-{
-  return mp_store_system;
-}

@@ -33,5 +33,8 @@ public:
   virtual void    Update(long i_elapsed_time) = 0;
   virtual void    ProcessEvent(EconomyEvent i_event, void* ip_data = nullptr) = 0;
 
-  virtual Slavs::TStoreSystem GetStoreSystem() = 0;
+  virtual Slavs::TStoreSystem       GetStoreSystem() const = 0;
+  virtual void                      SetStoreSystem(std::unique_ptr<IStoreSystem>&& ip_store) = 0;
+  virtual Slavs::ResourceManagerPtr GetResourceManager() const = 0;
+  virtual void                      SetResourceManager(std::unique_ptr<IResourceManager>&& ip_resource_manager) = 0;
 };

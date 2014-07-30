@@ -17,7 +17,7 @@ public:
   MOCK_METHOD1(Add,
     void(Slavs::ResourcesCountSet i_resources));
   MOCK_METHOD2(ProcessEvent,
-    void(EconomyEvent, void));
+    void(EconomyEvent, void*));
   MOCK_METHOD2(PeekResources,
     bool(GameResourceType i_type, size_t i_number));
   MOCK_METHOD2(GetResources,

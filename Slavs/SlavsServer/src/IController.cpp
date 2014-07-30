@@ -8,7 +8,6 @@
 #include "Management/Goverment.h"
 #include "Management/EconomyManagerBase.h"
 #include "Management/SocietyManagerBase.h"
-#include "Management/IStoreSystem.h"
 
 #include <Net.h>
 
@@ -19,7 +18,14 @@ IController::IController(int iMask, Slavs::GameContext& i_context)
   , m_iMask(iMask)
 {
 	m_pResourceManager = new SResourceManager();
-  mp_goverment.reset(new Goverment(this, std::make_shared<EconomyManagerBase>(), nullptr, nullptr, std::make_shared<SocietyManagerBase>(), nullptr));
+  mp_goverment.reset(new Goverment(this, 
+                       std::unique_ptr<IEconomyManager>(new EconomyManagerBase()),
+                       std::unique_ptr<IMilitaryManager>(),
+                       std::unique_ptr<IRelashionshipsManager>(),
+                       std::unique_ptr<ISocietyManager>(new SocietyManagerBase()),
+                       std::unique_ptr<ITechnologyManager>()
+                       ));
+  mp_goverment->Initialize();
 }
 
 IController::~IController()
