@@ -8,6 +8,10 @@
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
 
+#include "BaseObjectComposer.h"
+#include "TypeNames.h"
+#include "TypeEnumerations.h"
+
 //////////////////////////////////////////////////////////////////////////
 
 namespace BasePlugin
@@ -83,6 +87,7 @@ namespace BasePlugin
 
   bool StaticObjectComponent::Probe()
     {
-    return true;
+    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_STATIC_COMPONENT))
+      && !static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_COMPONENT));
     }
   }

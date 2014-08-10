@@ -6,9 +6,18 @@
 #include "TypeNames.h"
 #include "TypeEnumerations.h"
 
+//////////////////////////////////////////////////////////////////////////
+// temporary solution for humans just to see they can walk somethere
+#include "DynamicObjectComponent.h"
+#include "HouseComponent.h"
+#include "MovementStrategyBase.h"
+//////////////////////////////////////////////////////////////////////////
+
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
 
+#include <SlavsServer/Game/GameObject.h>
+#include <SlavsServer/PluginSystem/IHuman.h>
 #include <SlavsServer/include/IController.h>
 #include <SlavsServer/include/Management/Goverment.h>
 #include <SlavsServer/include/Management/IStoreSystem.h>
@@ -129,6 +138,19 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // IComponent
 
+  void OrderHumansMove(std::set<Slavs::HumanPtr> i_humans, IGameObject& i_target)
+    {
+    for (Slavs::HumanPtr p_human : i_humans)
+      {
+      std::unique_ptr<IMovementStrategy<DynamicObjectComponent>> p_movement_strategy(new MovementStrategyBase());
+      p_movement_strategy->SetTarget(i_target.GetPosition());
+
+      DynamicObjectComponent* p_dynamic_component = p_human->GetOwner()->GetComponent<DynamicObjectComponent>();
+      if (p_dynamic_component)
+        p_dynamic_component->SetMovementStrategy(std::move(p_movement_strategy));
+      }
+    }
+
   void ManufactureComponent::TickPerformed()
     {
     if (m_state == ManufactureStates::MS_READY_TO_WORK)
@@ -137,6 +159,8 @@ namespace BasePlugin
         {
         m_state = ManufactureStates::MS_WORKING;
         m_current_tick = 0;
+        // set for all workers target = manufacture`s position
+        OrderHumansMove(m_workers, *this->GetOwner());
         }
       }
     else if (m_state == ManufactureStates::MS_WORKING)
@@ -146,9 +170,10 @@ namespace BasePlugin
         {
         size_t number = m_initial_resources_mining*m_workers.size();
         static_cast<Slavs::GameObject*>(mp_owner)->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->Add(std::make_pair(m_mining_resource_type, number));
-        m_workers.empty();
+        if (auto p_home = (*m_workers.begin())->GetHome())
+          OrderHumansMove(m_workers, *p_home->GetOwner());
+        m_workers.clear();
         m_state = ManufactureStates::MS_WAITING_FOR_WORKERS;
-        
         }
       }
     }
@@ -184,7 +209,7 @@ namespace BasePlugin
 
   bool ManufactureComponent::NeedWorkers() const
     {
-    return m_state == ManufactureStates::MS_WAITING_FOR_WORKERS;
+    return m_state == ManufactureStates::MS_WAITING_FOR_WORKERS && m_workers.size() < m_needed_workers;
     }
 
   size_t ManufactureComponent::GetOperatingCycle() const

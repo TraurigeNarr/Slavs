@@ -116,6 +116,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin
     <ClCompile Include="HouseComponentTests.cpp" />
     <ClCompile Include="HumanComponentTests.cpp" />
     <ClCompile Include="ManufactureComponentTests.cpp" />
+    <ClCompile Include="MovementStrategyBase.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

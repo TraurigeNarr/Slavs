@@ -16,6 +16,8 @@ using namespace BasePlugin;
 using ::testing::Return;
 using ::testing::_;
 
+const size_t DEFAULT_WORKERS_NUMBER = 5;
+
 //////////////////////////////////////////////////////////////////////////
 
 TEST(ManufactureComponent, DefaultsTest)
@@ -54,7 +56,9 @@ TEST(ManufactureComponent, WhenWorkersIsEnough_HireWorker_ShouldFails)
   EXPECT_TRUE(manufacture.HireWorker(&human_2));
   EXPECT_TRUE(manufacture.HireWorker(&human_3));
   EXPECT_TRUE(manufacture.HireWorker(&human_4));
+  
   EXPECT_FALSE(manufacture.HireWorker(&human_5));
+  EXPECT_FALSE(manufacture.NeedWorkers());
   }
 
 TEST(ManufactureComponent, WhenWorking_HireWorker_ShouldFails)
@@ -123,4 +127,35 @@ TEST(ManufactureComponent, HireWorker_StartWorkingOnNextTick)
     manufacture.TickPerformed();
 
   EXPECT_FALSE(manufacture.IsWorking());
+  }
+
+TEST(ManufactureComponent, WhenManufactureEndsCycle_NeedWorkers_ReturnTrue_WorkersFlushed)
+  {
+  BaseObjectComposer composer;
+  Slavs::GameContext game_context;
+  Slavs::GameObject game_object(game_context, 0, 0, 0);
+  MockIController controller(0, game_context);
+  game_object.SetOwner(&controller);
+
+  ManufactureComponent manufacture(&game_object, 0, composer);
+
+  MockIHuman human_0(&game_object, 1);
+  MockIHuman human_1(&game_object, 1);
+  MockIHuman human_2(&game_object, 1);
+  MockIHuman human_3(&game_object, 1);
+  MockIHuman human_4(&game_object, 1);
+  MockIHuman human_5(&game_object, 1);
+
+  EXPECT_TRUE(manufacture.HireWorker(&human_0));
+  EXPECT_TRUE(manufacture.HireWorker(&human_1));
+  EXPECT_TRUE(manufacture.HireWorker(&human_2));
+  EXPECT_TRUE(manufacture.HireWorker(&human_3));
+  EXPECT_TRUE(manufacture.HireWorker(&human_4));
+
+  // to set state = WAITING FOR WORKERS
+  manufacture.TickPerformed();
+  for (size_t i = 0; i < manufacture.GetOperatingCycle(); ++i)
+    manufacture.TickPerformed();
+
+  EXPECT_TRUE(manufacture.NeedWorkers());
   }

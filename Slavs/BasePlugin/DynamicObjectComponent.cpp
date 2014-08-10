@@ -78,10 +78,15 @@ namespace BasePlugin
     if (mp_movement_strategy == nullptr)
       return;
     
-    m_velocity = mp_movement_strategy->GetSteering();
+    mp_movement_strategy->GetSteering(m_velocity);
     m_velocity.Truncate(m_maximum_speed);
 
     mp_owner->AccessPosition() += m_velocity;
+
+    double distance_to_target = mp_owner->GetPosition().DistanceSq(mp_movement_strategy->GetTarget());
+
+    if (distance_to_target + m_bounding_box_radius <= mp_movement_strategy->GetClearance())
+      mp_movement_strategy.reset();
 
     mp_owner->StateChanged();
     }
@@ -98,12 +103,13 @@ namespace BasePlugin
 
   bool DynamicObjectComponent::Probe()
     {
-    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_COMPONENT));
+    return static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_DYNAMIC_COMPONENT))
+      && !static_cast<Slavs::GameObject*>(mp_owner)->HasComponent(m_object_composer.GetComponentGlobalID(ComponentType::CT_STATIC_COMPONENT));
     }
 
-  void DynamicObjectComponent::SetMovementStrategy(IMovementStrategy* ip_movement_strategy)
+  void DynamicObjectComponent::SetMovementStrategy(std::unique_ptr<IMovementStrategy<DynamicObjectComponent>> ip_movement_strategy)
     {
-    mp_movement_strategy = ip_movement_strategy;
+    mp_movement_strategy = std::move(ip_movement_strategy);
     }
 
   }

@@ -12,6 +12,8 @@ class BaseObjectComposer;
 
 namespace BasePlugin
   {
+
+  template<typename MovingObject>
   class IMovementStrategy;
   class DynamicObjectComponentSerializer;
 
@@ -36,7 +38,7 @@ namespace BasePlugin
       /// the maximum rate (radians per second) at which this vehicle can rotate
       float     m_maximum_turnrate;
       /// strategy will decide where to go
-      IMovementStrategy* mp_movement_strategy;
+      std::unique_ptr<IMovementStrategy<DynamicObjectComponent>> mp_movement_strategy;
 
     public:
       DynamicObjectComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_composer);
@@ -49,7 +51,7 @@ namespace BasePlugin
       virtual bool	Probe() override;
 
       /// when object does not go anywhere this should be called with nullptr
-      void          SetMovementStrategy(IMovementStrategy* ip_movement_strategy);
+      void          SetMovementStrategy(std::unique_ptr<IMovementStrategy<DynamicObjectComponent>> ip_movement_strategy);
     };
   
   class DynamicObjectComponentSerializer : public IComponentSerializer

@@ -70,6 +70,15 @@
     <ClInclude Include="ManufactureComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="MovementStrategyBase.h">
+      <Filter>Components\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingGroup.h">
+      <Filter>Components\Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingGroupImpl.h">
+      <Filter>Components\Movement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -104,6 +113,9 @@
     </ClCompile>
     <ClCompile Include="ManufactureComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementStrategyBase.cpp">
+      <Filter>Components\Movement</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
