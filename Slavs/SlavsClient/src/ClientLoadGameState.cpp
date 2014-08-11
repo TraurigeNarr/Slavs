@@ -146,6 +146,11 @@ void ClientLoadGameState::_HoldPacket(Application* ip_owner, unsigned char *pack
     break;
 	case PT_GOState:
     {
+    // because on server LoadState moves to Game State
+    //  and on first tick state of some objects changes
+    //  there is a possibility that on client LoadState is active
+    if (!mh_game_context)
+      break;
 		GameObjectState state;
 		unsigned char *buf = packet + sizeof(int);
 		state.Deserialize((char*)buf);

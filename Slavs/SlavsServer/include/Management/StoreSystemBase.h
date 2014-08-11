@@ -18,6 +18,7 @@ public:
   virtual SLAVS_SERVER_EXPORT               ~StoreSystemBase();
 
   virtual void          SLAVS_SERVER_EXPORT Register(Slavs::StorePtr ip_store_house) override;
+  virtual void          SLAVS_SERVER_EXPORT UpdateStoreInformation(Slavs::StorePtr ip_store_house) override;
   virtual void          SLAVS_SERVER_EXPORT Remove(Slavs::StorePtr ip_store_house) override;
 
   virtual void          SLAVS_SERVER_EXPORT Add(Slavs::TResources& i_new_resources) override;

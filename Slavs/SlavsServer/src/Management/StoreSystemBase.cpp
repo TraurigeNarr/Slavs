@@ -42,17 +42,30 @@ void StoreSystemBase::Register(Slavs::StorePtr ip_store_house)
     m_resource_data[res_type].uiMaxResources += resources[i]->GetResMaxNumber();
     m_resource_data[res_type].bHasChanges = true;
   }
-  //say all waiting manufactures that the store is expanded
-  while(!m_store_waiting.empty())
-  {
-    m_store_waiting.back()->StoreExpanded();
-    m_store_waiting.pop_back();
-  }
+
+  //say all waiting employers that the store is expanded
+  for (auto p_store_waiting : m_store_waiting)
+    p_store_waiting->StoreExpanded();
+  m_store_waiting.clear();
 }
+
+void StoreSystemBase::UpdateStoreInformation(Slavs::StorePtr ip_store_house)
+  {
+  assert(ip_store_house && 
+    "<StoreSystemBase::UpdateStoreInformation>: trying to add to NULL store");
+
+  auto store_it = std::find(m_stores.begin(), m_stores.end(), ip_store_house);
+
+  assert (store_it != m_stores.end() &&
+    "<StoreSystemBase::UpdateStoreInformation>: trying to update store which was not registered");
+
+  throw std::logic_error("not implemented");
+  }
 
 void StoreSystemBase::Remove(Slavs::StorePtr ip_store_house)
 {
-  std::remove(m_stores.begin(), m_stores.end(), ip_store_house);
+  auto new_end_it = std::remove(m_stores.begin(), m_stores.end(), ip_store_house);
+  m_stores.erase(new_end_it, m_stores.end());
 
   //reduce the number of resources
   const  TResourceContainers& resources = ip_store_house->GetResources();
@@ -71,7 +84,7 @@ void StoreSystemBase::ProcessEvent(EconomyEvent i_event, void* ip_data /* = null
   switch(i_event)
     {
     case EconomyEvent::EE_NEED_STORE:
-      m_store_waiting.push_back(static_cast<Slavs::EmployerPtr>(ip_data));
+      m_store_waiting.insert(static_cast<Slavs::EmployerPtr>(ip_data));
       break;
     }
 }

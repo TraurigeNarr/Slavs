@@ -99,6 +99,9 @@ void BaseObjectComposer::DeclareSupportedTypes()
   // manufacture
   global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Manufacture));
   m_components_map[global_type_id] = BasePlugin::ComponentType::CT_MANUFACTURE;
+  // primitive brain
+  global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_PrimitiveBrain));
+  m_components_map[global_type_id] = BasePlugin::ComponentType::CT_PRIMITIVE_BRAIN;
 #pragma endregion
   }
 

@@ -45,7 +45,7 @@ namespace Slavs
   typedef std::set<HumanPtr>                      Humans;
   typedef std::set<HousePtr>                      Houses;
   typedef std::vector<StorePtr>                   Stores;
-  typedef std::vector<EmployerPtr>                Employers;
+  typedef std::set<EmployerPtr>                   Employers;
 
   typedef GameObject*                             TGameObject;
   typedef std::unique_ptr<GameContext>            TGameContext;

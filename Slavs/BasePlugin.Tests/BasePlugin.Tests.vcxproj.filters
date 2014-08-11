@@ -39,7 +39,7 @@
     <ClCompile Include="ManufactureComponentTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="MovementStrategyBase.cpp">
+    <ClCompile Include="MovementStrategyBaseTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
   </ItemGroup>

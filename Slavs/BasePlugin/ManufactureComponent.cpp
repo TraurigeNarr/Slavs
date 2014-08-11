@@ -138,17 +138,22 @@ namespace BasePlugin
   //////////////////////////////////////////////////////////////////////////
   // IComponent
 
-  void OrderHumansMove(std::set<Slavs::HumanPtr> i_humans, IGameObject& i_target)
+  void OrderHumansMove(std::set<Slavs::HumanPtr> i_humans, const Vector2D& i_target)
     {
     for (Slavs::HumanPtr p_human : i_humans)
       {
       std::unique_ptr<IMovementStrategy<DynamicObjectComponent>> p_movement_strategy(new MovementStrategyBase());
-      p_movement_strategy->SetTarget(i_target.GetPosition());
+      p_movement_strategy->SetTarget(i_target);
 
       DynamicObjectComponent* p_dynamic_component = p_human->GetOwner()->GetComponent<DynamicObjectComponent>();
       if (p_dynamic_component)
         p_dynamic_component->SetMovementStrategy(std::move(p_movement_strategy));
       }
+    }
+
+  void OrderHumansMove(std::set<Slavs::HumanPtr> i_humans, IGameObject& i_target)
+    {
+    OrderHumansMove(i_humans, i_target.GetPosition());
     }
 
   void ManufactureComponent::TickPerformed()
@@ -172,6 +177,11 @@ namespace BasePlugin
         static_cast<Slavs::GameObject*>(mp_owner)->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->Add(std::make_pair(m_mining_resource_type, number));
         if (auto p_home = (*m_workers.begin())->GetHome())
           OrderHumansMove(m_workers, *p_home->GetOwner());
+        else
+          OrderHumansMove(m_workers, Vector2D(rand()%1000, rand()%1000));
+        Telegram fired_message(0, 0, 0, 2);
+        for (Slavs::HumanPtr p_human : m_workers)
+          p_human->HandleMessage(fired_message);
         m_workers.clear();
         m_state = ManufactureStates::MS_WAITING_FOR_WORKERS;
         }

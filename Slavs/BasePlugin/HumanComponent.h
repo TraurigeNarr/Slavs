@@ -31,6 +31,8 @@ namespace BasePlugin
 
       Slavs::HousePtr     mp_home;
 
+      bool                m_has_work;
+
     public:
                     SLAVS_BASEPLUGIN_EXPORT           HumanComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_object_composer);
       virtual       SLAVS_BASEPLUGIN_EXPORT           ~HumanComponent();

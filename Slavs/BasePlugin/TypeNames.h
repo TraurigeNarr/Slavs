@@ -17,6 +17,7 @@ namespace BasePlugin
   const std::string Component_Store             = "StoreComponent";
   const std::string Component_House             = "HouseComponent";
   const std::string Component_Manufacture       = "ManufactureComponent";
+  const std::string Component_PrimitiveBrain    = "PrimitiveBrain";
 
   //return BasePlugin. + i_name
   inline std::string ConstructBasePluginName(const std::string& i_name)

@@ -84,10 +84,16 @@ namespace BasePlugin
     StoreComponent& store = static_cast<StoreComponent&>(i_component);
 
     store.m_workers_number = m_workers_number;
+
+    // small hack for resource management
+    
+    static_cast<Slavs::GameObject*>(store.GetOwner())->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->Remove(&store);
     std::for_each(m_stored_resources.begin(), m_stored_resources.end(), [&store](const std::pair<GameResourceType, size_t>& resource_pair)
       {
       store.m_resource_containers.push_back(std::make_shared<GameResourceContainer>(resource_pair.first, resource_pair.second, 0));
       });
+    static_cast<Slavs::GameObject*>(store.GetOwner())->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->Register(&store);
+    //static_cast<Slavs::GameObject*>(store.GetOwner())->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->UpdateStoreInformation(&store);
     }
 
   IComponent* StoreComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const

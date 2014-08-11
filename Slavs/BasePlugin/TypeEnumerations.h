@@ -20,6 +20,7 @@ namespace BasePlugin
     CT_HUMAN,
     CT_HOUSE,
     CT_STORE,
-    CT_MANUFACTURE
+    CT_MANUFACTURE,
+    CT_PRIMITIVE_BRAIN
     };
   }

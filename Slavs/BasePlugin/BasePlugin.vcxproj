@@ -108,6 +108,7 @@
     <ClInclude Include="MovingGroup.h" />
     <ClInclude Include="MovingGroupImpl.h" />
     <ClInclude Include="ObjectSettings.h" />
+    <ClInclude Include="PrimitiveBrainComponent.h" />
     <ClInclude Include="SlavsBasePlugin.h" />
     <ClInclude Include="SlavsBasePluginAPI.h" />
     <ClInclude Include="StaticObjectComponent.h" />
@@ -126,6 +127,7 @@
     <ClCompile Include="ManufactureComponent.cpp" />
     <ClCompile Include="MovementStrategyBase.cpp" />
     <ClCompile Include="ObjectSettings.cpp" />
+    <ClCompile Include="PrimitiveBrainComponent.cpp" />
     <ClCompile Include="SlavsBasePlugin.cpp" />
     <ClCompile Include="StaticObjectComponent.cpp" />
     <ClCompile Include="stdafx.cpp">

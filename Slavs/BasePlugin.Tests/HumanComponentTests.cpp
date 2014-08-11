@@ -42,3 +42,17 @@ TEST(HumanComponent, GetHome_ReturnValidPointer)
   human.SetHome(&house);
   ASSERT_EQ(&house, human.GetHome());
   }
+
+TEST(HumanComponent, When_Message_1_HasWork_ReturnTrue_When_2_ReturnFalse)
+  {
+  BaseObjectComposer composer;
+  Slavs::GameContext game_context;
+  Slavs::GameObject game_object(game_context, 0, 0, 0);
+  HumanComponent human(&game_object, 0, composer);
+
+  human.HandleMessage(Telegram(0,0,0,1));
+  EXPECT_TRUE(human.HasWork());
+
+  human.HandleMessage(Telegram(0,0,0,2));
+  EXPECT_FALSE(human.HasWork());
+  }

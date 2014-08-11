@@ -16,6 +16,7 @@ public:
   virtual ~IStoreSystem(){}
 
   virtual void            Register(Slavs::StorePtr ip_store_house) = 0;
+  virtual void            UpdateStoreInformation(Slavs::StorePtr ip_store_house) = 0;
   virtual void            Remove(Slavs::StorePtr ip_store_house) = 0;
   
   virtual void            Add(Slavs::TResources& i_new_resources) = 0;

@@ -12,6 +12,7 @@
 #include "ManufactureComponent.h"
 #include "StaticObjectComponent.h"
 #include "StoreComponent.h"
+#include "PrimitiveBrainComponent.h"
 
 #include <Utilities/XmlUtilities.h>
 
@@ -37,6 +38,8 @@ namespace
       return new HouseComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_HOUSE), i_composer);
     if (i_type == Component_Manufacture)
       return new ManufactureComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_MANUFACTURE), i_composer);
+    if (i_type == Component_PrimitiveBrain)
+      return new PrimitiveBrainComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_PRIMITIVE_BRAIN), i_composer);
     return nullptr;
     }
   }

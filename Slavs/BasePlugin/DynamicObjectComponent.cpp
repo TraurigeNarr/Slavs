@@ -79,11 +79,12 @@ namespace BasePlugin
       return;
     
     mp_movement_strategy->GetSteering(m_velocity);
+    m_velocity = m_velocity - mp_owner->GetPosition();
     m_velocity.Truncate(m_maximum_speed);
 
     mp_owner->AccessPosition() += m_velocity;
 
-    double distance_to_target = mp_owner->GetPosition().DistanceSq(mp_movement_strategy->GetTarget());
+    double distance_to_target = mp_owner->GetPosition().Distance(mp_movement_strategy->GetTarget());
 
     if (distance_to_target + m_bounding_box_radius <= mp_movement_strategy->GetClearance())
       mp_movement_strategy.reset();

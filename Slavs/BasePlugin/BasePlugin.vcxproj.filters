@@ -79,6 +79,9 @@
     <ClInclude Include="MovingGroupImpl.h">
       <Filter>Components\Movement</Filter>
     </ClInclude>
+    <ClInclude Include="PrimitiveBrainComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -116,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="MovementStrategyBase.cpp">
       <Filter>Components\Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimitiveBrainComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

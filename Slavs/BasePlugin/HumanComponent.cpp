@@ -9,6 +9,7 @@
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
 
+#include <iostream>
 
 namespace BasePlugin
   {
@@ -74,6 +75,8 @@ namespace BasePlugin
     : IHuman(ih_owner, i_component_id)
     , m_needed_calories(0)
     , m_object_composer(i_composer)
+    , m_has_work(false)
+    , mp_home(nullptr)
     {
 
     }
@@ -90,6 +93,18 @@ namespace BasePlugin
 
   bool HumanComponent::HandleMessage(const Telegram& msg)
     {
+    if (msg.Msg == 1) // has work
+      {
+      std::cout << "[" << this->GetOwner()->GetID() << "] has a work. Temporary solution!!!" << std::endl;
+      m_has_work = true;
+      return true;
+      }
+    else if (msg.Msg == 2) // fired
+      {
+      std::cout << "[" << this->GetOwner()->GetID() << "] fired. Temporary solution!!!" << std::endl;
+      m_has_work = false;
+      return true;
+      }
     return false;
     }
 
@@ -119,7 +134,7 @@ namespace BasePlugin
 
   bool HumanComponent::HasWork() const
     {
-    return false;
+    return m_has_work;
     }
 
   } // BasePlugin

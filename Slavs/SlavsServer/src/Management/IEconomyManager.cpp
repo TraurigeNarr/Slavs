@@ -20,24 +20,24 @@ IEconomyManager::~IEconomyManager()
     GetGoverment()->GetOwner()->GetGameContext().GetGlobalEconomics().RemoveEconomy(this);
   }
 
-void IEconomyManager::RegisterEmployer(Slavs::TGoldKeeper ip_payer)
+void IEconomyManager::RegisterEmployer(Slavs::EmployerPtr ip_employer)
+  {
+  m_employers.insert(ip_employer);
+  }
+
+void IEconomyManager::RemoveEmployer(Slavs::EmployerPtr ip_employer)
+  {
+  m_employers.erase(ip_employer);
+  }
+
+void IEconomyManager::RegisterEmployee(Slavs::TGoldKeeper ip_employee)
 {
-  m_employers.insert(ip_payer);
+  m_employees.insert(ip_employee);
 }
 
-void IEconomyManager::RemoveEmployer(Slavs::TGoldKeeper ip_payer)
+void IEconomyManager::RemoveEmployee(Slavs::TGoldKeeper ip_employee)
 {
-  m_employers.erase(ip_payer);
-}
-
-void IEconomyManager::RegisterEmployee(Slavs::TGoldKeeper ip_payer)
-{
-  m_employees.insert(ip_payer);
-}
-
-void IEconomyManager::RemoveEmployee(Slavs::TGoldKeeper ip_payer)
-{
-  m_employees.erase(ip_payer);
+  m_employees.erase(ip_employee);
 }
 
 void IEconomyManager::GetRegisteredPayers(Slavs::TGoldKeepers& o_payers)
@@ -51,20 +51,17 @@ void IEconomyManager::GetEmplyees(Slavs::TGoldKeepers& o_payers)
   o_payers.insert(m_employees.begin(), m_employees.end());
 }
 
-void IEconomyManager::GetEmployers(Slavs::TGoldKeepers& o_payers)
-{
-  o_payers.insert(m_employers.begin(), m_employers.end());
-}
+void IEconomyManager::GetEmployers(Slavs::Employers& o_employers)
+  {
+  o_employers.insert(m_employers.begin(), m_employers.end());
+  }
 
 void IEconomyManager::GetAvailableEmployers(Slavs::TEmployersInformation& o_available) const
   {
-  std::for_each(m_employers.begin(), m_employers.end(), [&o_available](Slavs::TGoldKeeper i_employer)
+  std::for_each(m_employers.begin(), m_employers.end(), [&o_available](Slavs::EmployerPtr i_employer)
     {
-    if (typeid(*i_employer) == typeid(Slavs::IEmployer))
-      {
-      const EmployerInformation& information = static_cast<Slavs::IEmployer*>(i_employer)->GetInformation();
-      if (information.IsActive())
-        o_available.push_back(&information);
-      }
+    const EmployerInformation& information = i_employer->GetInformation();
+    if (information.IsActive())
+      o_available.push_back(&information);
     });
   }

@@ -8,6 +8,8 @@ public:
     void(Slavs::StorePtr ip_store_house));
   MOCK_METHOD1(Remove,
     void(Slavs::StorePtr ip_store_house));
+  MOCK_METHOD1(UpdateStoreInformation,
+    void(Slavs::StorePtr ip_store_house));
   MOCK_METHOD1(Add,
     void(Slavs::TResources& i_new_resources));
   MOCK_METHOD1(Add,
