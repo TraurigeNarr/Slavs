@@ -69,6 +69,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);</AdditionalLibraryDirectories>
       <AdditionalDependencies>SlavsServer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)..\..\Resources\server\StartServer.xml" "$(OutputPath)server\StartServer.xml" /Y /R /I</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -89,6 +92,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);</AdditionalLibraryDirectories>
       <AdditionalDependencies>SlavsServer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)..\..\Resources\server\StartServer.xml" "$(OutputPath)server\StartServer.xml" /Y /R /I</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />

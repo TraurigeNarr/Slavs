@@ -12,17 +12,27 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-int main(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
   {
   new ServerMain();
   ServerMain& server = ServerMain::GetInstance();
+  std::string configuration_xml(".\\server\\StartServer.xml");
+  if (argc < 2)
+    {
+    std::cout << "No input file have been specialized." << std::endl
+              << "ServiceStarter.exe <path_to_configuration_xml>" << std::endl
+              << "Try to use default." << std::endl
+              << "----------------------" << std::endl;
+    }
+  else
+    configuration_xml = argv[1];
 
   try
     {
     // initialize
-    if(!server.Start("F:\\Projects\\Slavs\\Resources\\server\\StartServer.xml"))
+    if(!server.Start(configuration_xml))
       {
-      throw std::runtime_error("Failed to initialize server.");
+      throw std::runtime_error("Failed to initialize server. May be path to configuration file is wrong.");
       }
     long start = 0;
     long elapsedTime = 0;
