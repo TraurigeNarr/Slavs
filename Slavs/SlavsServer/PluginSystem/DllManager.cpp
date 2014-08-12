@@ -63,6 +63,7 @@ void DllManager::DynLibraryHandle::Unload()
       return;
     shudDown();
     FreeLibrary(m_instance);
+    m_instance = nullptr;
     }
   }
 

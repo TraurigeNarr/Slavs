@@ -64,12 +64,12 @@ namespace Slavs
       GameContext();
       ~GameContext();
 
+
       virtual void TickPerformed() override;
+      virtual void  ReleaseContext() override;
 
       __declspec(deprecated)
       void Init(){}
-      __declspec(deprecated)
-      void ReleaseContext(){}
 
       //returns the object that was created or NULL
       //@param i_type - what type context should create

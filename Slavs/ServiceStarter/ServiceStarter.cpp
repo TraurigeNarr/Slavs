@@ -14,7 +14,7 @@
 
 int main(int argc, _TCHAR* argv[])
   {
-  new ServerMain;
+  new ServerMain();
   ServerMain& server = ServerMain::GetInstance();
 
   try
@@ -24,10 +24,6 @@ int main(int argc, _TCHAR* argv[])
       {
       throw std::runtime_error("Failed to initialize server.");
       }
-   /* if(!server.Initialize())
-      {
-      throw std::runtime_error("Failed to initialize server.");
-      }*/
     long start = 0;
     long elapsedTime = 0;
     DWORD sleepTime = 0;

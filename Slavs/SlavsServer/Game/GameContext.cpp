@@ -69,7 +69,6 @@ namespace Slavs
 
   GameContext::~GameContext()
     {
-    ReleaseGameObjects();
     }
 
   void GameContext::TickPerformed()
@@ -90,6 +89,13 @@ namespace Slavs
       if(p.second->Destroyed())
         m_dead_pool.insert(p.second);
       });
+    }
+
+  void GameContext::ReleaseContext()
+    {
+    ReleaseGameObjects();
+    m_controllers.clear();
+    mp_global_economics.reset();
     }
 
   TGameObject GameContext::AddObject(int i_type, const Vector2D& i_position, int i_controllers_mask /* = 0 */, int i_selection_mask /* = 0 */)

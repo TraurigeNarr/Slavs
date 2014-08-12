@@ -26,7 +26,7 @@ public:
     typedef std::unique_ptr<TServerFSM>     THServerFSM;
     typedef std::set<Plugin*>               TPlugins;
 private:
-  static std::shared_ptr<ServerMain> mh_instance;
+  static std::unique_ptr<ServerMain> mh_instance;
 
   ServerMain(const ServerMain& i_other);
   ServerMain& operator = (const ServerMain& i_other);
@@ -47,7 +47,6 @@ public:
 
   __declspec(deprecated)
 	bool Initialize();
-	void Shutdown();
 
 	void Update(long elapsedTime);
 
@@ -67,6 +66,11 @@ public:
   ///   3. Plugins which must be loaded
   ///   4. Relative or absolute path to game name
   bool                Start(const std::string& i_configuration_file);
+  /// Sets internal flag so Working will return false
+  ///   Shutdown must be call after stop
+  void                Stop();
+  void                Shutdown();
+
   MetaFactory&        GetMetaFactory();
   DllManager&         GetDllManager();
 

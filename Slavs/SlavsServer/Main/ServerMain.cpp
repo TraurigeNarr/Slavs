@@ -40,7 +40,7 @@ template<> std::shared_ptr<WaitState> Singleton<WaitState>::mp_singleton = nullp
 template<> std::shared_ptr<ServerLoadGameState> Singleton<ServerLoadGameState>::mp_singleton = nullptr;
 template<> std::shared_ptr<ServerGameState> Singleton<ServerGameState>::mp_singleton = nullptr;
 
-std::shared_ptr<ServerMain> ServerMain::mh_instance= nullptr;
+std::unique_ptr<ServerMain> ServerMain::mh_instance= nullptr;
 
 ServerMain::ServerMain()
   : mh_server_connection(nullptr)
@@ -53,10 +53,8 @@ ServerMain::ServerMain()
   }
 
 ServerMain::~ServerMain()
-{
-	net::ShutdownSockets();
-  mh_instance = nullptr;
-}
+  {
+  }
 
 bool ServerMain::Initialize()
 {
@@ -86,22 +84,27 @@ bool ServerMain::Initialize()
 }
 
 void ServerMain::Shutdown()
-{
+  {
+  // release state machine
+  mh_state_machine.reset(nullptr);
+  // release states
 	Singleton<WaitState>::ReleaseIfValid();
   Singleton<GlobalServerState>::ReleaseIfValid();
-  mh_dll_manager->ReleaseLibraries();
-}
+  // release libraries
+  mh_dll_manager.reset();
+  // free sockets
+  net::ShutdownSockets();
+  }
 
 void ServerMain::Update(long elapsedTime)
-{
-	//m_pFSM->Update(elapsedTime);
+  {
   mh_state_machine->Update(elapsedTime);
-}
+  }
 
 net::Connection* ServerMain::GetConnection () const
-{
+  {
   return mh_server_connection.get();
-}
+  }
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -244,4 +247,9 @@ bool ServerMain::Start(const std::string& i_configuration_file)
 
   m_bWorking = true;
   return true;
+  }
+
+void ServerMain::Stop()
+  {
+  m_bWorking = false;
   }

@@ -89,7 +89,12 @@ namespace Slavs
     {
     PacketType pType = (PacketType)FromChar<int>((char*)ip_packet);
     char *packetToClient = NULL;
-    
+    switch(pType)
+      {
+      case PT_EndGame:
+        ip_owner->Stop();
+        return;
+      }
     }
 
   } // Slavs

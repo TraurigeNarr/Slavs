@@ -39,7 +39,8 @@ void MetaFactory::RegisterObjectComposer(TObjectComposer ih_composer)
 
 void MetaFactory::UnregisterComposer(TObjectComposer ih_composer)
   {
-  std::remove(m_object_composers.begin(), m_object_composers.end(), ih_composer);
+  auto new_end_it = std::remove(m_object_composers.begin(), m_object_composers.end(), ih_composer);
+  m_object_composers.erase(new_end_it, m_object_composers.end());
   }
 
 bool MetaFactory::ComposeObject(Slavs::GameObject* iop_object)

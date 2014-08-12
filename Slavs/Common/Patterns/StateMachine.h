@@ -59,8 +59,12 @@ StateMachine<T, Parameter>::StateMachine(T* ip_owner)
 
 template <typename T, typename Parameter>
 StateMachine<T, Parameter>::~StateMachine()
-{
-}
+  {
+  if (mp_current_state)
+    mp_current_state->Exit(mp_owner);
+  if (mp_global_state)
+    mp_global_state->Exit(mp_owner);
+  }
 
 
 template <typename T, typename Parameter>
