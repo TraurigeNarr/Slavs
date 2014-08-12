@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
     // initialize
     if(!server.Start(configuration_xml))
       {
-      throw std::runtime_error("Failed to initialize server. May be path to configuration file is wrong.");
+      throw std::runtime_error("Failed to initialize server.");
       }
     long start = 0;
     long elapsedTime = 0;

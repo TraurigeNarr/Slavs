@@ -178,7 +178,10 @@ bool ServerMain::Start(const std::string& i_configuration_file)
 
   TiXmlDocument document;
   if (!XmlUtilities::LoadXmlDocument(i_configuration_file, document))
+    {
+    std::cout << "Loading of configuration file failed." << std::endl;
     return false;
+    }
 
   const TiXmlElement& root = *document.RootElement();
 
@@ -208,13 +211,16 @@ bool ServerMain::Start(const std::string& i_configuration_file)
 
     if ( !net::InitializeSockets() )
       {
-      printf( "failed to initialize sockets\n" );
+      std::cout << "Failed to initialize sockets." << std::endl;
       return false;
       }
 
     mh_server_connection.reset(new net::Connection(net::ProtocolId, net::TimeOut));
     if(!mh_server_connection->Start(port))
+      {
+      std::cout << "Failed to start connection." << std::endl;
       return false;
+      }
     
     mh_server_connection->Listen();
     }
