@@ -25,6 +25,11 @@ private:
   TState mp_previous_state;
   TState mp_global_state;
 
+  TState mp_next_state;
+
+private:
+  void _ChangeState();
+
 public:
   StateMachine(T* ip_owner);
   virtual ~StateMachine();
@@ -33,7 +38,7 @@ public:
   void SetCurrentState(TState ip_current);
   void SetPreviousState(TState ip_previous);
 
-  //sets previous state to current and current to ip_next_state
+  // sets previous state to current and current to ip_next_state
   void ChangeState(TState ip_next_state);
   void RevertToPreviousState();
 
@@ -54,6 +59,7 @@ StateMachine<T, Parameter>::StateMachine(T* ip_owner)
   , mp_global_state(nullptr)
   , mp_current_state(nullptr)
   , mp_previous_state(nullptr)
+  , mp_next_state(nullptr)
 {
 }
 
@@ -87,9 +93,9 @@ void StateMachine<T, Parameter>::SetCurrentState(TState ip_current)
 
 template <typename T, typename Parameter>
 void StateMachine<T, Parameter>::SetPreviousState(TState ip_previous)
-{
+  {
   mp_previous_state = ip_previous;
-}
+  }
 
 template <typename T, typename Parameter>
 void StateMachine<T, Parameter>::ChangeState(TState ip_next_state)
@@ -98,15 +104,6 @@ void StateMachine<T, Parameter>::ChangeState(TState ip_next_state)
 
   //keep a record of the previous state
 	mp_previous_state = mp_current_state;
-
-	//call the exit method of the existing state
-	mp_current_state->Exit(mp_owner);
-
-	//change state to the new state
-	mp_current_state = ip_next_state;
-
-	//call the entry method of the new state
-	mp_current_state->Enter(mp_owner);
 }
 
 template <typename T, typename Parameter>
@@ -117,7 +114,6 @@ void StateMachine<T, Parameter>::RevertToPreviousState()
 
 template <typename T, typename Parameter>
 void StateMachine<T, Parameter>::Update(Parameter i_parameter)
-
 {
   //if a global state exists, call its execute method, else do nothing
   if(nullptr != mp_global_state.get())
@@ -126,7 +122,32 @@ void StateMachine<T, Parameter>::Update(Parameter i_parameter)
   //same for the current state
   if (nullptr != mp_current_state.get())
     mp_current_state->Execute(mp_owner, i_parameter);
+
+  // after update state can change
+  if (mp_next_state)
+    {
+    if (mp_current_state)
+      mp_current_state->Exit(mp_owner);
+    _ChangeState();
+    }
 }
+
+template <typename T, typename Parameter>
+void StateMachine<T, Parameter>::_ChangeState()
+  {
+  if (mp_current_state)
+    mp_current_state->Exit(mp_owner);
+
+  SetPreviousState(mp_current_state);
+
+  //change state to the new state
+  mp_current_state = mp_next_state;
+  mp_next_state = nullptr;
+
+  //call the entry method of the new state
+  mp_current_state->Enter(mp_owner);
+
+  }
 
 template <typename T, typename Parameter>
 bool StateMachine<T, Parameter>::IsInState(TState ip_state) const
