@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="_Maintanance">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Frameworks">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{d7dd7080-684c-4e0a-9f29-d99771825650}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{f28a7d46-5885-4b9c-a950-f2f551cc5a4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{09d2a736-f274-44a2-ac9d-bad036c8170b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
+    <ClInclude Include="CEGUIFramework.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="OgreFramework.h">
+      <Filter>Frameworks</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="CeguiUtilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="CeguiEventListener.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSubscriber.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ClientApplication.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="CEGUIFramework.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="OgreFramework.cpp">
+      <Filter>Frameworks</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="CeguiEventListener.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="_LinkLibraries.cpp">
+      <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="CeguiUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

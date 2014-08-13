@@ -48,9 +48,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasePlugin.Tests", "BasePlu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server.Tests.Base", "Server.Tests.Base\Server.Tests.Base.vcxproj", "{7E0B5D50-775E-48A9-BE36-B9BADD7DA539}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientApplication", "ClientApplication\ClientApplication.vcxproj", "{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 11
+		SccNumberOfProjects = 12
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://shcherbina.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -92,6 +94,10 @@ Global
 		SccProjectTopLevelParentUniqueName10 = Slavs.sln
 		SccProjectName10 = Server.Tests.Base
 		SccLocalPath10 = Server.Tests.Base
+		SccProjectUniqueName11 = ClientApplication\\ClientApplication.vcxproj
+		SccProjectTopLevelParentUniqueName11 = Slavs.sln
+		SccProjectName11 = ClientApplication
+		SccLocalPath11 = ClientApplication
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -138,12 +144,17 @@ Global
 		{7E0B5D50-775E-48A9-BE36-B9BADD7DA539}.Debug|Win32.Build.0 = Debug|Win32
 		{7E0B5D50-775E-48A9-BE36-B9BADD7DA539}.Release|Win32.ActiveCfg = Release|Win32
 		{7E0B5D50-775E-48A9-BE36-B9BADD7DA539}.Release|Win32.Build.0 = Release|Win32
+		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}.Debug|Win32.Build.0 = Debug|Win32
+		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}.Release|Win32.ActiveCfg = Release|Win32
+		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{76567829-EE87-4F64-BC2F-0297DA8F8BAC} = {68FAFE33-049F-459B-AE6F-5BBFFB8B6139}
+		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E} = {68FAFE33-049F-459B-AE6F-5BBFFB8B6139}
 		{F95DE44F-C82D-46A7-96D9-23C5BE12BF3B} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{50DB7E14-9624-4A56-93D6-665BCEEA02A6} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{0D88E7F7-3DA4-400B-B3B0-8B96639F569D} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
