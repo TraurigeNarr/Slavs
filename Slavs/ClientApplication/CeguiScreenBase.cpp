@@ -30,7 +30,9 @@ namespace UI
 
   void  CeguiScreenBase::Update(long i_elapsed_time)
     {
-    CEGUI::System::getSingleton().injectTimePulse(TimeUtilities::ConvertTime(i_elapsed_time));
+    float elapsed_time = TimeUtilities::ConvertTime(i_elapsed_time);
+    CEGUI::System::getSingleton().injectTimePulse(elapsed_time);
+    CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(elapsed_time);
     }
 
   void  CeguiScreenBase::Destroy()
