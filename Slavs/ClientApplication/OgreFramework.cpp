@@ -31,9 +31,9 @@
 namespace
   {
 
-  const std::string PluginsPath    = ".\\client\\configs\\plugins.cfg";
-  const std::string ResourcesPath  = ".\\client\\configs\\resources.cfg";
-  const std::string LogPath        = ".\\client\\OgreLog.log";
+  const std::string PluginsPath    = ".\\configs\\plugins.cfg";
+  const std::string ResourcesPath  = ".\\configs\\resources.cfg";
+  const std::string LogPath        = ".\\OgreLog.log";
   const std::string WindowName     = "Slavs";
   
   const size_t  Width = 1024;
