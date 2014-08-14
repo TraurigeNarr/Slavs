@@ -13,13 +13,19 @@ class InputManager
   {
   private:
     std::vector<std::shared_ptr<InputSubscriber>> m_subscribers;
+    std::vector<InputSubscriber*>                 m_raw_subscribers;
     OgreFramework&                                m_ogre_framework;
+
+    std::set<InputSubscriber*>                    m_subscribers_cache;
+
+  private:
+    void ValidateCache();
 
   public:
 	  InputManager(OgreFramework& i_ogre_framework);
 	  ~InputManager();
 
-	  void Update(float ElapsedTime);
+	  void Update(long i_elapsed_time);
 
 	  bool keyPressed(const OIS::KeyEvent &keyEventRef);
 	  bool keyReleased(const OIS::KeyEvent &keyEventRef);
@@ -29,6 +35,9 @@ class InputManager
 	  bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id);
 
 	  void AddSubscriber(std::shared_ptr<InputSubscriber> subscriber);
+    void AddSubscriber(InputSubscriber* ip_subscriber);
 	  void RemoveSubscriber(std::shared_ptr<InputSubscriber> subscriber);
-	  const std::vector<std::shared_ptr<InputSubscriber>>& GetSubscribers() const { return m_subscribers; }
+    void RemoveSubscriber(InputSubscriber* ip_subscriber);
+
+	  const std::set<InputSubscriber*>& GetSubscribers() const;
   };

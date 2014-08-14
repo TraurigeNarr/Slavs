@@ -113,7 +113,7 @@ void OgreFramework::_InitializeRenderSystem()
 void OgreFramework::_InitializeRenderWindow()
   {
   mp_render_window = mp_root->createRenderWindow(
-                            "MonkeyWindow",
+                            WindowName,
                             Width,
                             Height,
                             false,

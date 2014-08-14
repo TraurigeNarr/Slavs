@@ -18,6 +18,15 @@
     <Filter Include="UI">
       <UniqueIdentifier>{09d2a736-f274-44a2-ac9d-bad036c8170b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\States">
+      <UniqueIdentifier>{28b8f114-2656-4a14-b53e-85008d7de026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Screens">
+      <UniqueIdentifier>{267cba35-01cc-4e1d-9262-b4a21b2623b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Screens\Base">
+      <UniqueIdentifier>{a9a1a272-5469-4f95-8c2f-e2e493b23a05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -47,6 +56,42 @@
     <ClInclude Include="InputSubscriber.h">
       <Filter>Application</Filter>
     </ClInclude>
+    <ClInclude Include="TimeUtilities.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Application\States</Filter>
+    </ClInclude>
+    <ClInclude Include="UIEvent.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationStateBase.h">
+      <Filter>Application\States</Filter>
+    </ClInclude>
+    <ClInclude Include="CeguiScreenBase.h">
+      <Filter>Application\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtoID.h">
+      <Filter>Application\Screens\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlData.h">
+      <Filter>Application\Screens\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlType.h">
+      <Filter>Application\Screens\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Application\Screens\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenManager.h">
+      <Filter>Application\Screens\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScreen.h">
+      <Filter>Application\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -75,6 +120,27 @@
     </ClCompile>
     <ClCompile Include="CeguiUtilities.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeUtilities.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationStateBase.cpp">
+      <Filter>Application\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Application\States</Filter>
+    </ClCompile>
+    <ClCompile Include="CeguiScreenBase.cpp">
+      <Filter>Application\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Application\Screens\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenManager.cpp">
+      <Filter>Application\Screens\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScreen.cpp">
+      <Filter>Application\Screens</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

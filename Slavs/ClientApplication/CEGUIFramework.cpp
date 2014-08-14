@@ -23,8 +23,8 @@ CEGUIFramework::~CEGUIFramework(void)
   {
   // if uncomment this -> crash on exit
   // it is a memory leak and if you resolve this give me a note ;)
-	/*if(mp_renderer)
-		CEGUI::OgreRenderer::destroySystem();*/
+	if(mp_renderer)
+		CEGUI::OgreRenderer::destroySystem();
   }
 
 bool CEGUIFramework::InitializeCEGUI()
