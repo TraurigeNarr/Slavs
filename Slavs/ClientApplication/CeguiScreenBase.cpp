@@ -59,6 +59,24 @@ namespace UI
   //////////////////////////////////////////////////////////////////////////
   // CeguiScreenBase
 
+  void CeguiScreenBase::_TryAttachButtonHandler(const CEGUI::Window& i_window, const CEGUI::String& i_string, CEGUI::uint i_id)
+    {
+    try
+      {
+      // Connect
+      CEGUI::Window* p_connect_button = i_window.getChild(i_string);
+      if (p_connect_button != nullptr)
+        {
+        p_connect_button->setID(i_id);
+        p_connect_button->subscribeEvent(CEGUI::PushButton::EventClicked,
+          CEGUI::Event::Subscriber(&CeguiScreenBase::ButtonPressedHandler, static_cast<CeguiScreenBase*>(this)));
+        }
+      }
+    catch (CEGUI::UnknownObjectException&)
+      {
+      }
+    }
+
   bool CeguiScreenBase::ButtonPressedHandler(const CEGUI::EventArgs& i_arguments)
     {
     const CEGUI::WindowEventArgs& window_arguments = static_cast<const CEGUI::WindowEventArgs&>(i_arguments);

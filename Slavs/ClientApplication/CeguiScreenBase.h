@@ -20,6 +20,9 @@ namespace UI
       virtual void  SetRootWindow(void* ip_window) override;
       virtual void* GetRootWindow() override;
 
+    protected:
+      void _TryAttachButtonHandler(const CEGUI::Window& i_window, const CEGUI::String& i_string, CEGUI::uint i_id);
+
     public:
       CeguiScreenBase (ScreenManager& i_screen_manager);
       virtual ~CeguiScreenBase ();
