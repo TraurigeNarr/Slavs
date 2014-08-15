@@ -63,12 +63,11 @@ namespace UI
     {
     try
       {
-      // Connect
-      CEGUI::Window* p_connect_button = i_window.getChild(i_string);
-      if (p_connect_button != nullptr)
+      CEGUI::Window* p_button = i_window.getChild(i_string);
+      if (p_button != nullptr)
         {
-        p_connect_button->setID(i_id);
-        p_connect_button->subscribeEvent(CEGUI::PushButton::EventClicked,
+        p_button->setID(i_id);
+        p_button->subscribeEvent(CEGUI::PushButton::EventClicked,
           CEGUI::Event::Subscriber(&CeguiScreenBase::ButtonPressedHandler, static_cast<CeguiScreenBase*>(this)));
         }
       }
