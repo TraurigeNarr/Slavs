@@ -74,7 +74,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\..\Resources\client\Media\*.*" "$(OutputPath)Media\" /Y /R /I /E
-xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPath)" /Y /R /I /E</Command>
+xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPath)" /Y /R /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,7 +99,8 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPa
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\..\Resources\client\Media\*.*" "$(OutputPath)Media\" /Y /R /I /E
-xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPath)" /Y /R /I /E</Command>
+xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPath)" /Y /R /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
