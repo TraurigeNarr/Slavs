@@ -56,16 +56,4 @@ namespace ClientStates
     return false;
     }
 
-  bool MenuState::UiEvent (const UI::ControlData& i_ui_event)
-    {
-    switch (i_ui_event.m_button_id)
-      {
-      case UI::ButtonID::BI_EXIT:
-        m_application.Shutdown();
-        break;
-      }
-
-    return false;
-    }
-
   } // ClientStates

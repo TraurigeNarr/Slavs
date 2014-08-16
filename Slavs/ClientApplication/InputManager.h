@@ -7,9 +7,8 @@
 class OgreFramework;
 class InputSubscriber;
 
-class InputManager 
-            : public OIS::MouseListener
-            , public OIS::KeyListener 
+class InputManager : public OIS::MouseListener
+                   , public OIS::KeyListener 
   {
   private:
     std::vector<std::shared_ptr<InputSubscriber>> m_subscribers;

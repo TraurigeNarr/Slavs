@@ -20,7 +20,6 @@ namespace ClientStates
     // InputSubscriber
     public:
       virtual bool KeyPressed(const OIS::KeyEvent &keyEventRef) override;
-      virtual bool UiEvent (const UI::ControlData& i_ui_event) override;
     };
 
   } // ClientStates
