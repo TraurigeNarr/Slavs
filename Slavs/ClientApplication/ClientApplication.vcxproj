@@ -104,7 +104,7 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPa
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="ApplicationStateBase.h" />
-    <ClInclude Include="ButtoID.h" />
+    <ClInclude Include="ButtonID.h" />
     <ClInclude Include="CeguiEventListener.h" />
     <ClInclude Include="CEGUIFramework.h" />
     <ClInclude Include="CeguiScreenBase.h" />
@@ -115,6 +115,7 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPa
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputSubscriber.h" />
     <ClInclude Include="MemberFunctionHandler.h" />
+    <ClInclude Include="MenuCommandHandler.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MessageHandlerBase.h" />
@@ -126,8 +127,8 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPa
     <ClInclude Include="TimeUtilities.h" />
     <ClInclude Include="TypeInfo.h" />
     <ClInclude Include="Types.h" />
-    <ClInclude Include="UIEvent.h" />
     <ClInclude Include="MessageDispatcher.h" />
+    <ClInclude Include="UiEvents.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -137,6 +138,7 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPa
     <ClCompile Include="CeguiScreenBase.cpp" />
     <ClCompile Include="ClientApplication.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MenuCommandHandler.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MessageHandlerBase.cpp" />

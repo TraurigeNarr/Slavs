@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ControlType.h"
-#include "ButtoID.h"
+#include "ButtonID.h"
 
 namespace UI
   {

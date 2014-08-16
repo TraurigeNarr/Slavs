@@ -6,7 +6,7 @@ template < class HandlerType, class EventType >
 class MemberFunctionHandler : public MessageHandlerBase
   {
   public:
-    typedef void (HandlerType::*MemberFunc)(EventType*);
+    typedef void (HandlerType::*MemberFunc)(EventType);
 
   private:
     HandlerType&  m_instance;
@@ -15,11 +15,11 @@ class MemberFunctionHandler : public MessageHandlerBase
   public:
     MemberFunctionHandler(HandlerType& i_handler_instance, MemberFunc i_member_func) 
       : m_instance(i_handler_instance)
-      , i_member_func(i_member_func) 
+      , m_function(i_member_func) 
       {        }
 
     virtual void HandleMessage(const Event& i_event) override
       {
-      (m_instance->*m_function)(static_cast< EventType& >(i_event));
+      (m_instance.*m_function)(static_cast< EventType& >(i_event));
       }
   };

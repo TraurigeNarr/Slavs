@@ -1,6 +1,7 @@
 #pragma once
 
 class InputManager;
+class MessageDispatcher;
 
 namespace UI
   {
@@ -13,6 +14,7 @@ namespace UI
       typedef std::unique_ptr<Screen> ScreenPtr;
     private:
       InputManager& m_input_manager;
+      std::unique_ptr<MessageDispatcher> mp_message_dispatcher;
 
       std::vector<ScreenPtr> m_screen_stack;
       Screen*                mp_current_screen;
@@ -26,7 +28,8 @@ namespace UI
 
       void          Update (long i_elapsed_time);
 
-      InputManager& GetInputManager ();
+      InputManager&       GetInputManager ();
+      MessageDispatcher&  GetMessageDispatcher ();
 
       /// Removes previous screen from stack and set ip_screen as current
       void SetCurrentScreen (std::unique_ptr<Screen> ip_screen);
@@ -45,6 +48,11 @@ namespace UI
   inline InputManager& ScreenManager::GetInputManager()
     {
     return m_input_manager;
+    }
+
+  inline MessageDispatcher& ScreenManager::GetMessageDispatcher()
+    {
+    return *mp_message_dispatcher;
     }
 
   inline Screen* ScreenManager::GetCurrentScreen()

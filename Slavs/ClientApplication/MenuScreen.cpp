@@ -3,7 +3,7 @@
 #include "MenuScreen.h"
 
 #include "ScreenManager.h"
-#include "ButtoID.h"
+#include "ButtonID.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -22,6 +22,7 @@ namespace UI
   void MenuScreen::Initialize()
     {
     CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
+
     mp_root_window = wmgr.loadLayoutFromFile("SlavsMenu.layout");
     CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(mp_root_window);
 

@@ -4,12 +4,15 @@
 
 #include "Screen.h"
 
+#include "MessageDispatcher.h"
+
 namespace UI
   {
 
   ScreenManager::ScreenManager(InputManager& i_input_manager)
     : m_input_manager(i_input_manager)
     , mp_current_screen(nullptr)
+    , mp_message_dispatcher(new MessageDispatcher)
     {    }
 
   ScreenManager::~ScreenManager()

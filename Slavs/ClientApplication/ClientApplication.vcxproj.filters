@@ -30,6 +30,9 @@
     <Filter Include="MessageHandler">
       <UniqueIdentifier>{ebd74975-f76f-4e25-b0a5-bf09c753127f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\States\MenuState">
+      <UniqueIdentifier>{8b5ce2bb-2e06-4510-b298-0a1791b95dee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -65,20 +68,11 @@
     <ClInclude Include="Types.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="MenuState.h">
-      <Filter>Application\States</Filter>
-    </ClInclude>
-    <ClInclude Include="UIEvent.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="ApplicationStateBase.h">
       <Filter>Application\States</Filter>
     </ClInclude>
     <ClInclude Include="CeguiScreenBase.h">
       <Filter>Application\Screens</Filter>
-    </ClInclude>
-    <ClInclude Include="ButtoID.h">
-      <Filter>Application\Screens\Base</Filter>
     </ClInclude>
     <ClInclude Include="ControlData.h">
       <Filter>Application\Screens\Base</Filter>
@@ -109,6 +103,18 @@
     </ClInclude>
     <ClInclude Include="MessageDispatcher.h">
       <Filter>MessageHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Application\States\MenuState</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuCommandHandler.h">
+      <Filter>Application\States\MenuState</Filter>
+    </ClInclude>
+    <ClInclude Include="UiEvents.h">
+      <Filter>Application\Screens\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonID.h">
+      <Filter>Application\Screens\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,9 +151,6 @@
     <ClCompile Include="ApplicationStateBase.cpp">
       <Filter>Application\States</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Application\States</Filter>
-    </ClCompile>
     <ClCompile Include="CeguiScreenBase.cpp">
       <Filter>Application\Screens</Filter>
     </ClCompile>
@@ -165,6 +168,12 @@
     </ClCompile>
     <ClCompile Include="MessageDispatcher.cpp">
       <Filter>MessageHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Application\States\MenuState</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuCommandHandler.cpp">
+      <Filter>Application\States\MenuState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,13 +1,15 @@
 #include "stdafx.h"
+
 #include "MenuState.h"
+#include "MenuCommandHandler.h"
 
 #include "Application.h"
 #include "InputManager.h"
 
 #include "MenuScreen.h"
 #include "ScreenManager.h"
-#include "ButtoID.h"
-#include "ControlData.h"
+
+#include "MessageDispatcher.h"
 
 namespace ClientStates
   {
@@ -34,6 +36,8 @@ namespace ClientStates
     using namespace UI;
     ScreenManager& screen_manager = ip_application->GetScreenManager();
     screen_manager.SetCurrentScreen(std::unique_ptr<Screen>(new MenuScreen(screen_manager)));
+
+    mp_command_handler.reset(new UI::MenuCommandHandler(m_application, screen_manager.GetMessageDispatcher()));
     }
 
   void MenuState::Execute(Application* ip_application, long i_elapsed_time)
@@ -43,7 +47,7 @@ namespace ClientStates
 
   void MenuState::Exit(Application* ip_application)
     {
-
+    mp_command_handler.reset();
     }
 
   bool MenuState::KeyPressed(const OIS::KeyEvent& keyEventRef)

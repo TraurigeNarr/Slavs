@@ -9,6 +9,10 @@
 #include "ScreenManager.h"
 #include "InputSubscriber.h"
 
+#include "UiEvents.h"
+
+#include "MessageDispatcher.h"
+
 #include <CEGUI/EventArgs.h>
 #include <CEGUI/Window.h>
 
@@ -63,11 +67,12 @@ namespace UI
     {
     try
       {
-      CEGUI::Window* p_button = i_window.getChild(i_string);
-      if (p_button != nullptr)
+      // Connect
+      CEGUI::Window* p_connect_button = i_window.getChild(i_string);
+      if (p_connect_button != nullptr)
         {
-        p_button->setID(i_id);
-        p_button->subscribeEvent(CEGUI::PushButton::EventClicked,
+        p_connect_button->setID(i_id);
+        p_connect_button->subscribeEvent(CEGUI::PushButton::EventClicked,
           CEGUI::Event::Subscriber(&CeguiScreenBase::ButtonPressedHandler, static_cast<CeguiScreenBase*>(this)));
         }
       }
@@ -79,13 +84,8 @@ namespace UI
   bool CeguiScreenBase::ButtonPressedHandler(const CEGUI::EventArgs& i_arguments)
     {
     const CEGUI::WindowEventArgs& window_arguments = static_cast<const CEGUI::WindowEventArgs&>(i_arguments);
-    ControlData control_data;
-    control_data.m_control = ControlType::CT_BUTTON;
-    control_data.m_button_id = static_cast<ButtonID>(window_arguments.window->getID());
-    const std::set<InputSubscriber*>& subscribers = m_screen_manager.GetInputManager().GetSubscribers();
-    for (InputSubscriber* subscriber : subscribers)
-      subscriber->UiEvent(control_data);
-
+    ButtonID button_id = static_cast<ButtonID>(window_arguments.window->getID());
+    m_screen_manager.GetMessageDispatcher().HandleMessage(ButtonPressed(button_id));
     return true;
     }
 
