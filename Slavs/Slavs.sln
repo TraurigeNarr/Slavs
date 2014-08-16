@@ -49,10 +49,24 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server.Tests.Base", "Server.Tests.Base\Server.Tests.Base.vcxproj", "{7E0B5D50-775E-48A9-BE36-B9BADD7DA539}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClientApplication", "ClientApplication\ClientApplication.vcxproj", "{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6BEE3135-A395-4594-B8A9-AA3E11F8C295} = {6BEE3135-A395-4594-B8A9-AA3E11F8C295}
+		{57EA8C6E-BAF9-4852-94E8-BB509E528241} = {57EA8C6E-BAF9-4852-94E8-BB509E528241}
+		{C99BA19B-E324-4C79-A8D7-302BD20B918E} = {C99BA19B-E324-4C79-A8D7-302BD20B918E}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SDK", "SDK", "{F10E9D81-32AB-40C5-A661-DDC8E9E15266}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Patterns", "Patterns\Patterns.vcxproj", "{C99BA19B-E324-4C79-A8D7-302BD20B918E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Patterns.Tests", "Patterns.Tests\Patterns.Tests.vcxproj", "{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C99BA19B-E324-4C79-A8D7-302BD20B918E} = {C99BA19B-E324-4C79-A8D7-302BD20B918E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 12
+		SccNumberOfProjects = 14
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://shcherbina.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -61,6 +75,7 @@ Global
 		SccProjectName1 = SlavsClient
 		SccLocalPath1 = SlavsClient
 		SccProjectUniqueName2 = Common\\Common.vcxproj
+		SccProjectTopLevelParentUniqueName2 = Slavs.sln
 		SccProjectName2 = Common
 		SccLocalPath2 = Common
 		SccProjectUniqueName3 = SlavsServer\\SlavsServer.vcxproj
@@ -98,6 +113,14 @@ Global
 		SccProjectTopLevelParentUniqueName11 = Slavs.sln
 		SccProjectName11 = ClientApplication
 		SccLocalPath11 = ClientApplication
+		SccProjectUniqueName12 = Patterns\\Patterns.vcxproj
+		SccProjectTopLevelParentUniqueName12 = Slavs.sln
+		SccProjectName12 = Patterns
+		SccLocalPath12 = Patterns
+		SccProjectUniqueName13 = Patterns.Tests\\Patterns.Tests.vcxproj
+		SccProjectTopLevelParentUniqueName13 = Slavs.sln
+		SccProjectName13 = Patterns.Tests
+		SccLocalPath13 = Patterns.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -146,6 +169,14 @@ Global
 		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}.Debug|Win32.Build.0 = Debug|Win32
 		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}.Release|Win32.ActiveCfg = Release|Win32
 		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}.Release|Win32.Build.0 = Release|Win32
+		{C99BA19B-E324-4C79-A8D7-302BD20B918E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C99BA19B-E324-4C79-A8D7-302BD20B918E}.Debug|Win32.Build.0 = Debug|Win32
+		{C99BA19B-E324-4C79-A8D7-302BD20B918E}.Release|Win32.ActiveCfg = Release|Win32
+		{C99BA19B-E324-4C79-A8D7-302BD20B918E}.Release|Win32.Build.0 = Release|Win32
+		{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F}.Debug|Win32.Build.0 = Debug|Win32
+		{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F}.Release|Win32.ActiveCfg = Release|Win32
+		{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -153,6 +184,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{76567829-EE87-4F64-BC2F-0297DA8F8BAC} = {68FAFE33-049F-459B-AE6F-5BBFFB8B6139}
 		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E} = {68FAFE33-049F-459B-AE6F-5BBFFB8B6139}
+		{6BEE3135-A395-4594-B8A9-AA3E11F8C295} = {F10E9D81-32AB-40C5-A661-DDC8E9E15266}
+		{C99BA19B-E324-4C79-A8D7-302BD20B918E} = {F10E9D81-32AB-40C5-A661-DDC8E9E15266}
 		{F95DE44F-C82D-46A7-96D9-23C5BE12BF3B} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{50DB7E14-9624-4A56-93D6-665BCEEA02A6} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{0D88E7F7-3DA4-400B-B3B0-8B96639F569D} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
@@ -161,5 +194,6 @@ Global
 		{62690693-45AA-4C36-8477-55BE3C835039} = {13815CFB-1F6F-4FBC-AF00-B169CFE2DEA8}
 		{38B87F55-AC2D-47F2-8FD0-CEC5EF3E6025} = {13815CFB-1F6F-4FBC-AF00-B169CFE2DEA8}
 		{7E0B5D50-775E-48A9-BE36-B9BADD7DA539} = {13815CFB-1F6F-4FBC-AF00-B169CFE2DEA8}
+		{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F} = {13815CFB-1F6F-4FBC-AF00-B169CFE2DEA8}
 	EndGlobalSection
 EndGlobal

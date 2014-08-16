@@ -5,7 +5,7 @@
 #include "Application.h"
 #include "UIEvents.h"
 
-#include "MessageDispatcher.h"
+#include <Patterns/MessageDispatcher/MessageDispatcher.h>
 
 namespace UI
   {

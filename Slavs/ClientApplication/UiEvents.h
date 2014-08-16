@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Event.h"
+#include <Patterns/MessageDispatcher/Event.h>
 
 #include "ButtonID.h"
 

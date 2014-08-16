@@ -11,7 +11,7 @@
 
 #include "UiEvents.h"
 
-#include "MessageDispatcher.h"
+#include <Patterns/MessageDispatcher/MessageDispatcher.h>
 
 #include <CEGUI/EventArgs.h>
 #include <CEGUI/Window.h>

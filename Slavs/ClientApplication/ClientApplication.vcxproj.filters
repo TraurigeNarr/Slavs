@@ -27,9 +27,6 @@
     <Filter Include="Application\Screens\Base">
       <UniqueIdentifier>{a9a1a272-5469-4f95-8c2f-e2e493b23a05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MessageHandler">
-      <UniqueIdentifier>{ebd74975-f76f-4e25-b0a5-bf09c753127f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\States\MenuState">
       <UniqueIdentifier>{8b5ce2bb-2e06-4510-b298-0a1791b95dee}</UniqueIdentifier>
     </Filter>
@@ -89,21 +86,6 @@
     <ClInclude Include="MenuScreen.h">
       <Filter>Application\Screens</Filter>
     </ClInclude>
-    <ClInclude Include="TypeInfo.h">
-      <Filter>MessageHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>MessageHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageHandlerBase.h">
-      <Filter>MessageHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="MemberFunctionHandler.h">
-      <Filter>MessageHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageDispatcher.h">
-      <Filter>MessageHandler</Filter>
-    </ClInclude>
     <ClInclude Include="MenuState.h">
       <Filter>Application\States\MenuState</Filter>
     </ClInclude>
@@ -162,12 +144,6 @@
     </ClCompile>
     <ClCompile Include="MenuScreen.cpp">
       <Filter>Application\Screens</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageHandlerBase.cpp">
-      <Filter>MessageHandler</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageDispatcher.cpp">
-      <Filter>MessageHandler</Filter>
     </ClCompile>
     <ClCompile Include="MenuState.cpp">
       <Filter>Application\States\MenuState</Filter>

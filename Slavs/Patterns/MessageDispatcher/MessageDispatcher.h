@@ -1,5 +1,7 @@
 #pragma once
 
+#include "..\PatternsAPI.h"
+
 #include "MessageHandlerBase.h"
 #include "MemberFunctionHandler.h"
 #include "TypeInfo.h"
@@ -13,8 +15,8 @@ class MessageDispatcher
     Handlers m_handlers;
 
   public:
-    MessageDispatcher();
-    ~MessageDispatcher();
+    PATTERN_EXPORT MessageDispatcher();
+    PATTERN_EXPORT ~MessageDispatcher();
 
     template < class HandlerType, class EventType >
     void RegisterHandler(HandlerType& i_instance, void (HandlerType::*member_function)(const EventType&));
@@ -22,7 +24,7 @@ class MessageDispatcher
     template < class EventType >
     void UnregisterHandler ();
 
-    void HandleMessage(const Event& i_event);
+    void PATTERN_EXPORT HandleMessage(const Event& i_event);
 
   };
 

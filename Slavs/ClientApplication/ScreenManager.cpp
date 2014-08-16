@@ -4,7 +4,7 @@
 
 #include "Screen.h"
 
-#include "MessageDispatcher.h"
+#include <Patterns/MessageDispatcher/MessageDispatcher.h>
 
 namespace UI
   {

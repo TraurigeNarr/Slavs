@@ -9,7 +9,7 @@
 #include "MenuScreen.h"
 #include "ScreenManager.h"
 
-#include "MessageDispatcher.h"
+#include <Patterns/MessageDispatcher/MessageDispatcher.h>
 
 namespace ClientStates
   {
