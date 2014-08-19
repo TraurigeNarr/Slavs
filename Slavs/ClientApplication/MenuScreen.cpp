@@ -23,6 +23,7 @@ namespace UI
     {
     CEGUI::WindowManager& wmgr = CEGUI::WindowManager::getSingleton();
 
+    CEGUI::ImageManager::getSingleton().loadImageset("SlavsMenuScreen.imageset");
     mp_root_window = wmgr.loadLayoutFromFile("SlavsMenu.layout");
     CEGUI::System::getSingleton().getDefaultGUIContext().setRootWindow(mp_root_window);
 
@@ -30,6 +31,7 @@ namespace UI
     _TryAttachButtonHandler(*mp_root_window, "Options", static_cast<CEGUI::uint>(ButtonID::BI_OPTIONS));
     _TryAttachButtonHandler(*mp_root_window, "Exit", static_cast<CEGUI::uint>(ButtonID::BI_EXIT));
     
+    CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().show();
     CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setImage("TaharezLook/MouseArrow");
     }
 

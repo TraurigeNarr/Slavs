@@ -48,6 +48,13 @@ public:
   //returns true if the current state's type is equal to the type of the
 	//class passed as a parameter. 
   bool IsInState(TState ip_state) const;
+  template <typename StateType>
+  bool IsInState() const;
+
+  TState GetCurrentState() const
+    {
+    return mp_current_state;
+    }
 
   bool HandleMessage(const Telegram& i_message);
 };
@@ -104,6 +111,7 @@ void StateMachine<T, Parameter>::ChangeState(TState ip_next_state)
 
   //keep a record of the previous state
 	mp_previous_state = mp_current_state;
+  mp_next_state = ip_next_state;
 }
 
 template <typename T, typename Parameter>
@@ -119,10 +127,6 @@ void StateMachine<T, Parameter>::Update(Parameter i_parameter)
   if(nullptr != mp_global_state.get())
     mp_global_state->Execute(mp_owner, i_parameter);
 
-  //same for the current state
-  if (nullptr != mp_current_state.get())
-    mp_current_state->Execute(mp_owner, i_parameter);
-
   // after update state can change
   if (mp_next_state)
     {
@@ -130,6 +134,10 @@ void StateMachine<T, Parameter>::Update(Parameter i_parameter)
       mp_current_state->Exit(mp_owner);
     _ChangeState();
     }
+
+  //same for the current state
+  if (nullptr != mp_current_state.get())
+    mp_current_state->Execute(mp_owner, i_parameter);  
 }
 
 template <typename T, typename Parameter>
@@ -141,6 +149,7 @@ void StateMachine<T, Parameter>::_ChangeState()
   SetPreviousState(mp_current_state);
 
   //change state to the new state
+  mp_current_state.reset();
   mp_current_state = mp_next_state;
   mp_next_state = nullptr;
 
@@ -154,6 +163,13 @@ bool StateMachine<T, Parameter>::IsInState(TState ip_state) const
 {
   return typeid(*mp_current_state.get()) == typeid(*ip_state.get());
 }
+
+template <typename T, typename Parameter>
+template <typename StateType>
+bool StateMachine<T, Parameter>::IsInState() const
+  {
+  return typeid(*mp_current_state.get()) == typeid(StateType);
+  }
 
 template <typename T, typename Parameter>
 bool StateMachine<T, Parameter>::HandleMessage(const Telegram& i_message)

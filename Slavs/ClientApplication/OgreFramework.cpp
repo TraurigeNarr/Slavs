@@ -230,8 +230,6 @@ Ogre::Camera* OgreFramework::CreateCamera(const std::string& i_name /* = "" */)
   {
   if(nullptr == mp_scene_manager)
     return nullptr;
-  if (mp_camera)
-    mp_scene_manager->destroyCamera(mp_camera);
   return mp_camera = mp_scene_manager->createCamera(i_name);
   }
 

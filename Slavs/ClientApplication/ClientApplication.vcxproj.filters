@@ -30,6 +30,12 @@
     <Filter Include="Application\States\MenuState">
       <UniqueIdentifier>{8b5ce2bb-2e06-4510-b298-0a1791b95dee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\States\LoadingState">
+      <UniqueIdentifier>{3abfc9ca-d5dc-47d8-a4d8-ea27bbf72d61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Network">
+      <UniqueIdentifier>{1933d423-1a68-4eda-9057-3b12925e2d22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -98,6 +104,24 @@
     <ClInclude Include="ButtonID.h">
       <Filter>Application\Screens\Base</Filter>
     </ClInclude>
+    <ClInclude Include="LoadingState.h">
+      <Filter>Application\States\LoadingState</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet.h">
+      <Filter>Application\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketProvider.h">
+      <Filter>Application\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketType.h">
+      <Filter>Application\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingStages.h">
+      <Filter>Application\States\LoadingState</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScreen.h">
+      <Filter>Application\Screens</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -150,6 +174,18 @@
     </ClCompile>
     <ClCompile Include="MenuCommandHandler.cpp">
       <Filter>Application\States\MenuState</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingState.cpp">
+      <Filter>Application\States\LoadingState</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketProvider.cpp">
+      <Filter>Application\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScreen.cpp">
+      <Filter>Application\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingStages.cpp">
+      <Filter>Application\States\LoadingState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

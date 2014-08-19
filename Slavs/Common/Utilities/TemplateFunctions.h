@@ -31,22 +31,48 @@ T Round(float i_value)
 }
 
 template < typename T>
-int ToChar(T val, char* buf, int size)
+int ToChar(T val, char* op_buf, int i_size)
 {
 	char *p = (char*)&val;
 	int i = 0;
-	for(i = 0; i < size; ++i)
+	for(i = 0; i < i_size; ++i)
 	{
-		buf[i] = *(p + i);
+		op_buf[i] = *(p + i);
 	}
 	return i;
 }
+
+template < typename T>
+int ToChar(T val, unsigned char* buf, int size)
+  {
+  char *p = (char*)&val;
+  int i = 0;
+  for(i = 0; i < size; ++i)
+    {
+    buf[i] = *(p + i);
+    }
+  return i;
+  }
 
 template < typename T>
 T FromChar(char* val)
 {
 	return NULL != val ? *(T*)val : NULL;
 }
+
+
+
+template < typename ConversionTarget>
+ConversionTarget ConvertTo(const void* i_buffer)
+  {
+  return nullptr != i_buffer ? *reinterpret_cast<const ConversionTarget*>(i_buffer) : ConversionTarget();
+  }
+
+template < typename ConversionTarget>
+ConversionTarget ConvertFrom(const void* i_buffer)
+  {
+  return nullptr != i_buffer ? *reinterpret_cast<const ConversionTarget*>(i_buffer) : ConversionTarget();
+  }
 
 template <class T>
 void ClearVector(std::vector<T*>& vec) 

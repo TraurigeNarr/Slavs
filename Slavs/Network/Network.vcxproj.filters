@@ -9,7 +9,7 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Maintanance">
+    <Filter Include="_Maintanance">
       <UniqueIdentifier>{31d20360-a941-47ad-b8d1-9c462371d611}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -33,10 +33,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\NetworkAPI.h">
-      <Filter>Maintanance</Filter>
+      <Filter>_Maintanance</Filter>
     </ClInclude>
     <ClInclude Include="include\Connection.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_Link.h">
+      <Filter>_Maintanance</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

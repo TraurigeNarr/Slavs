@@ -4,8 +4,15 @@
 
 #include "Application.h"
 #include "UIEvents.h"
+#include "LoadingState.h"
 
 #include <Patterns/MessageDispatcher/MessageDispatcher.h>
+
+#include <Network/include/Net.h>
+
+#include <Common/Patterns/StateMachine.h>
+
+using namespace ClientStates;
 
 namespace UI
   {
@@ -28,6 +35,12 @@ namespace UI
       {
       case ButtonID::BI_EXIT:
         m_application.Shutdown();
+        break;
+      case ButtonID::BI_CONNECT:
+        {
+        net::Address address(127, 0, 0, 1, net::ServerPort);
+        m_application.GetStateMachine().ChangeState(std::make_shared<LoadingState>(m_application, address));
+        }
         break;
       }
     }

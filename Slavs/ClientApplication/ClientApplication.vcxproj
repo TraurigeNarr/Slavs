@@ -49,12 +49,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\ClientSide</OutDir>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\ClientSide\</OutDir>
     <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\ClientSide</OutDir>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\ClientSide\</OutDir>
     <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -115,10 +115,16 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPat
     <ClInclude Include="ControlType.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputSubscriber.h" />
+    <ClInclude Include="LoadingScreen.h" />
+    <ClInclude Include="LoadingStages.h" />
+    <ClInclude Include="LoadingState.h" />
     <ClInclude Include="MenuCommandHandler.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="OgreFramework.h" />
+    <ClInclude Include="Packet.h" />
+    <ClInclude Include="PacketProvider.h" />
+    <ClInclude Include="PacketType.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -135,11 +141,15 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPat
     <ClCompile Include="CeguiScreenBase.cpp" />
     <ClCompile Include="ClientApplication.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="LoadingScreen.cpp" />
+    <ClCompile Include="LoadingStages.cpp" />
+    <ClCompile Include="LoadingState.cpp" />
     <ClCompile Include="MenuCommandHandler.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="OgreFramework.cpp" />
     <ClCompile Include="CeguiUtilities.cpp" />
+    <ClCompile Include="PacketProvider.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="stdafx.cpp">

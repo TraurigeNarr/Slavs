@@ -29,7 +29,7 @@ namespace ClientStates
     m_application.GetOgreFramework().CreateSceneManager(Ogre::ST_GENERIC, "MenuState_SceneManager");//->setAmbientLight(Ogre::ColourValue(0.5f, 0.3f, 0.3f));
 
     // set ogre settings
-    Ogre::Camera* p_camera = m_application.GetOgreFramework().CreateCamera("MonkeyCamera");
+    Ogre::Camera* p_camera = m_application.GetOgreFramework().CreateCamera("MenuCamera");
     m_application.GetOgreFramework().GetViewport()->setCamera(p_camera);
 
     // set screen
@@ -38,6 +38,8 @@ namespace ClientStates
     screen_manager.SetCurrentScreen(std::unique_ptr<Screen>(new MenuScreen(screen_manager)));
 
     mp_command_handler.reset(new UI::MenuCommandHandler(m_application, screen_manager.GetMessageDispatcher()));
+
+    m_application.GetInputManager().AddSubscriber(this);
     }
 
   void MenuState::Execute(Application* ip_application, long i_elapsed_time)
@@ -48,6 +50,7 @@ namespace ClientStates
   void MenuState::Exit(Application* ip_application)
     {
     mp_command_handler.reset();
+    m_application.GetInputManager().RemoveSubscriber(this);
     }
 
   bool MenuState::KeyPressed(const OIS::KeyEvent& keyEventRef)
