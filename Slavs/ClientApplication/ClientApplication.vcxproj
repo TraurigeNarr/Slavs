@@ -113,11 +113,13 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPat
     <ClInclude Include="CeguiUtilities.h" />
     <ClInclude Include="ControlData.h" />
     <ClInclude Include="ControlType.h" />
+    <ClInclude Include="IMessageProvider.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="InputSubscriber.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="LoadingStages.h" />
     <ClInclude Include="LoadingState.h" />
+    <ClInclude Include="LoadStateMessageProvider.h" />
     <ClInclude Include="MenuCommandHandler.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="MenuState.h" />
@@ -144,6 +146,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPat
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="LoadingStages.cpp" />
     <ClCompile Include="LoadingState.cpp" />
+    <ClCompile Include="LoadStateMessageProvider.cpp" />
     <ClCompile Include="MenuCommandHandler.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="MenuState.cpp" />

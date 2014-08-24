@@ -14,6 +14,11 @@ namespace Network
   class PacketProvicer;
   }
 
+namespace UI
+  {
+  class IMessageProvider;
+  } // UI
+
 template <typename Owner, typename Parameter>
 class StateMachine;
 
@@ -23,12 +28,14 @@ namespace ClientStates
   class LoadingState : public ApplicationStateBase
     {
     private:
-      std::unique_ptr<net::Connection>          mp_connection;
-      std::unique_ptr<Network::PacketProvicer>  mp_packet_provider;
+      std::unique_ptr<net::Connection>                      mp_connection;
 
-      std::unique_ptr< StateMachine<LoadingState, long> > mp_state_machine;
+      std::unique_ptr< StateMachine<LoadingState, long> >   mp_state_machine;
 
-      net::Address  m_connection_address;
+      net::Address                                          m_connection_address;
+
+      std::unique_ptr<Network::PacketProvicer>              mp_packet_provider;
+      std::shared_ptr<UI::IMessageProvider>                 mp_message_provider;
 
     public:
       LoadingState(Application& i_application, const net::Address& i_connection_address);
@@ -42,6 +49,7 @@ namespace ClientStates
 
       net::Address GetConnectionAddress() const;
       StateMachine<LoadingState, long>& GetStateMachine();
+      std::shared_ptr<UI::IMessageProvider> GetMessageProvider() const;
     };
 
   //////////////////////////////////////////////////////////////////////////
@@ -54,6 +62,11 @@ namespace ClientStates
   inline StateMachine<LoadingState, long>& LoadingState::GetStateMachine()
     {
     return *mp_state_machine;
+    }
+
+  inline std::shared_ptr<UI::IMessageProvider> LoadingState::GetMessageProvider() const
+    {
+    return mp_message_provider;
     }
 
   } // ClientStates

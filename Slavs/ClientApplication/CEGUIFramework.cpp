@@ -47,7 +47,8 @@ bool CEGUIFramework::InitializeCEGUI()
 	try
 	{
     CEGUI::SchemeManager::getSingleton().createFromFile("TaharezLook.scheme");
-    CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("TaharezLook/MouseArrow");
+    CEGUI::SchemeManager::getSingleton().createFromFile("Slavs.scheme");
+    CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage("SlavsLook/MouseArrow");
 		
 		//initialize tooltips
     CEGUI::GUIContext& default_context = CEGUI::System::getSingleton().getDefaultGUIContext();

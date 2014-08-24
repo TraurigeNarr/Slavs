@@ -50,11 +50,12 @@ namespace ClientStates
 
     class GettingData : public State<LoadingState, long>
       {
-      private:
+      public:
         enum class CurrentData
           {
           CD_DEFINITIONS,
           CD_OBJECTS,
+          CD_ALL_LOADED,
           CD_NOTHING
           };
 
@@ -62,7 +63,7 @@ namespace ClientStates
         Network::PacketProvicer&  m_packet_provider;
         CurrentData               m_current_data_type;
 
-        size_t                    m_content_number;
+        size_t                    m_content_to_load_number;
         size_t                    m_current_content_number;
 
       private:
@@ -76,6 +77,10 @@ namespace ClientStates
         virtual void Enter(LoadingState* ip_owner) override;
         virtual void Execute(LoadingState* ip_owner, long i_parameter) override;
         virtual void Exit(LoadingState* ip_owner) override;
+
+        size_t       GetLoadedContentNumber() const;
+        size_t       GetTotalContentNumber() const;
+        CurrentData  GetStage() const;
       };
 
     } // LoadingStages

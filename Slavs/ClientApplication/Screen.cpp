@@ -2,6 +2,7 @@
 
 #include "Screen.h"
 #include "ScreenManager.h"
+#include "IMessageProvider.h"
 
 namespace UI
   {
@@ -21,7 +22,6 @@ namespace UI
       this->SetRootWindow(mp_owner->GetRootWindow());
 
     this->Initialize();
-
     }
 
   } // UI

@@ -2,6 +2,7 @@
 
 #include "LoadingStages.h"
 #include "LoadingState.h"
+#include "IMessageProvider.h"
 
 #include "TimeUtilities.h"
 
@@ -35,12 +36,13 @@ void ConnectionState::Enter(LoadingState* ip_owner)
   std::unique_ptr<char[]> p_buffer(new char[sizeof(PacketType)]);
   ToChar(PacketType::PT_Achived, &p_buffer[0], sizeof(PacketType));
   m_packet_provider.GetConnection().SendPacket(&p_buffer[0], sizeof(PacketType));
+  ip_owner->GetMessageProvider()->Invalidate();
   }
 
 void ConnectionState::Execute(LoadingState* ip_owner, long i_parameter)
   {
   m_packet_provider.GetConnection().Update(TimeUtilities::ConvertTime(i_parameter));
-
+  m_packet_provider.GetNextPacket();
   //check for connection
   if(m_packet_provider.GetConnection().ConnectFailed())
     {
@@ -65,7 +67,9 @@ ResultsState::ResultsState (LoadingResult i_result)
   {  }
 
 void ResultsState::Enter(LoadingState* ip_owner)
-  {  }
+  {
+  ip_owner->GetMessageProvider()->Invalidate();
+  }
 
 void ResultsState::Execute(LoadingState* ip_owner, long i_parameter)
   {  }
@@ -88,8 +92,10 @@ GettingData::GettingData (Network::PacketProvicer& i_packet_provider)
 
 void GettingData::Enter(LoadingState* ip_owner)
   {
-  m_content_number = 0;
   m_current_data_type = CurrentData::CD_DEFINITIONS;
+  m_content_to_load_number = 0;
+  m_current_content_number = 0;
+  ip_owner->GetMessageProvider()->Invalidate();
   }
 
 void GettingData::Execute(LoadingState* ip_owner, long i_parameter)
@@ -102,12 +108,16 @@ void GettingData::Execute(LoadingState* ip_owner, long i_parameter)
       {
       case GettingData::CurrentData::CD_DEFINITIONS:
         _HandleDefinition(packet);
+        ip_owner->GetMessageProvider()->Invalidate();
         break;
       case GettingData::CurrentData::CD_OBJECTS:
         _HandleObject(packet);
+        ip_owner->GetMessageProvider()->Invalidate();
         break;
       }
     }
+  if (m_current_data_type == GettingData::CurrentData::CD_ALL_LOADED)
+    ip_owner->GetStateMachine().ChangeState(std::make_shared<ResultsState>(LoadingResult::LR_SUCCEEDED));
   }
 
 void GettingData::Exit(LoadingState* ip_owner)
@@ -119,12 +129,12 @@ void GettingData::_HandleDefinition(const Packet& i_packet)
   switch (i_packet.m_packet)
     {
     case PacketType::PT_ContentNumber:
-      m_content_number = ConvertTo<size_t>(i_packet.mp_data);
+      m_content_to_load_number = ConvertTo<size_t>(i_packet.mp_data);
       m_current_content_number = 0;
       break;
     case PacketType::PT_Definitions:
       ++m_current_content_number;
-      if (m_current_content_number == m_content_number)
+      if (m_current_content_number == m_content_to_load_number)
         {
         m_current_data_type = GettingData::CurrentData::CD_OBJECTS;
         _SendReadyPacket();
@@ -138,13 +148,16 @@ void GettingData::_HandleObject(const Packet& i_packet)
   switch (i_packet.m_packet)
     {
     case PacketType::PT_ContentNumber:
-      m_content_number = ConvertTo<size_t>(i_packet.mp_data);
+      m_content_to_load_number = ConvertTo<size_t>(i_packet.mp_data);
       m_current_content_number = 0;
       break;
     case PacketType::PT_GOState:
       ++m_current_content_number;
-      if (m_current_content_number == m_content_number)
+      if (m_current_content_number == m_content_to_load_number)
+        {
+        m_current_data_type = GettingData::CurrentData::CD_ALL_LOADED;
         _SendReadyPacket();
+        }
       break;
     }
   }
@@ -156,3 +169,20 @@ void GettingData::_SendReadyPacket() const
   ToChar(packet_type, &p_buf[0], sizeof(PacketType));
   m_packet_provider.GetConnection().SendPacket(p_buf.get(), sizeof(PacketType));
   }
+
+size_t GettingData::GetLoadedContentNumber() const
+  {
+  return m_current_content_number;
+  }
+
+size_t GettingData::GetTotalContentNumber() const
+  {
+  return m_content_to_load_number;
+  }
+
+GettingData::CurrentData GettingData::GetStage() const
+  {
+  return m_current_data_type;
+  }
+
+//////////////////////////////////////////////////////////////////////////

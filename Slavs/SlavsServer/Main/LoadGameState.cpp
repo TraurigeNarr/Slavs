@@ -91,7 +91,12 @@ namespace Slavs
     switch(pType)
       {
       case PT_Achived:
-          mp_loading_fsm->process_event(LoadingStages::ConfirmAchievement());
+        {
+        std::unique_ptr<char[]> p_buffer(new char[sizeof(PacketType)+1]);
+        ToChar(PT_Connects, &p_buffer[0], sizeof(PacketType));
+        ip_owner->GetConnection()->SendPacket( &p_buffer[0], sizeof(PacketType)+1);
+        mp_loading_fsm->process_event(LoadingStages::ConfirmAchievement());
+        }
         break;
       }
     }

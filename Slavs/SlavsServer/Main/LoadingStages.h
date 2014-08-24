@@ -137,7 +137,6 @@ namespace Slavs
             ToChar(PT_ContentNumber, &p_buffer[0], sizeof(PacketType));
             ToChar(definitions.size(), &p_buffer[sizeof(PacketType)], sizeof(size_t));
             mp_connection->SendPacket( &p_buffer[0], sizeof(PacketType) + sizeof(size_t) );
-            int size = FromChar<int>(&p_buffer[4]);
             
             // send definitions
             std::for_each(definitions.begin(), definitions.end(), [&p_buffer, this](std::pair<std::string, int> i_definition)

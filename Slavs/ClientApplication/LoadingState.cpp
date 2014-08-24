@@ -2,6 +2,7 @@
 
 #include "LoadingState.h"
 #include "LoadingStages.h"
+#include "LoadStateMessageProvider.h"
 
 #include "Application.h"
 
@@ -56,6 +57,10 @@ namespace ClientStates
       return;
     
     mp_packet_provider.reset(new Network::PacketProvicer(*mp_connection));
+
+    mp_message_provider = std::make_shared<LoadStateMessageProvider>(*this);
+
+    screen_manager.GetCurrentScreen()->SetMessageProvider(mp_message_provider);
 
     mp_state_machine.reset(new StateMachine<LoadingState, long>(this));
     mp_state_machine->SetCurrentState(std::make_shared<LoadingStages::ConnectionState>(*mp_packet_provider));

@@ -122,6 +122,12 @@
     <ClInclude Include="LoadingScreen.h">
       <Filter>Application\Screens</Filter>
     </ClInclude>
+    <ClInclude Include="LoadStateMessageProvider.h">
+      <Filter>Application\States\LoadingState</Filter>
+    </ClInclude>
+    <ClInclude Include="IMessageProvider.h">
+      <Filter>Application\Screens\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -185,6 +191,9 @@
       <Filter>Application\Screens</Filter>
     </ClCompile>
     <ClCompile Include="LoadingStages.cpp">
+      <Filter>Application\States\LoadingState</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadStateMessageProvider.cpp">
       <Filter>Application\States\LoadingState</Filter>
     </ClCompile>
   </ItemGroup>
