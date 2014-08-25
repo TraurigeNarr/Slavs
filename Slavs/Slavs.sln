@@ -64,9 +64,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Patterns.Tests", "Patterns.
 		{C99BA19B-E324-4C79-A8D7-302BD20B918E} = {C99BA19B-E324-4C79-A8D7-302BD20B918E}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameCore", "GameCore\GameCore.vcxproj", "{EE787F9B-DE84-49AE-9CE9-914A501E0F7B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E36F8E3-2B93-41B9-B0B7-495922B388E4} = {3E36F8E3-2B93-41B9-B0B7-495922B388E4}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "Math\Math.vcxproj", "{3E36F8E3-2B93-41B9-B0B7-495922B388E4}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utilities", "Utilities\Utilities.vcxproj", "{BD32FEB4-575F-4C1B-B2AD-B50FE827F403}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 14
+		SccNumberOfProjects = 17
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://shcherbina.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -121,6 +130,18 @@ Global
 		SccProjectTopLevelParentUniqueName13 = Slavs.sln
 		SccProjectName13 = Patterns.Tests
 		SccLocalPath13 = Patterns.Tests
+		SccProjectUniqueName14 = GameCore\\GameCore.vcxproj
+		SccProjectTopLevelParentUniqueName14 = Slavs.sln
+		SccProjectName14 = GameCore
+		SccLocalPath14 = GameCore
+		SccProjectUniqueName15 = Math\\Math.vcxproj
+		SccProjectTopLevelParentUniqueName15 = Slavs.sln
+		SccProjectName15 = Math
+		SccLocalPath15 = Math
+		SccProjectUniqueName16 = Utilities\\Utilities.vcxproj
+		SccProjectTopLevelParentUniqueName16 = Slavs.sln
+		SccProjectName16 = Utilities
+		SccLocalPath16 = Utilities
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -177,6 +198,18 @@ Global
 		{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F}.Debug|Win32.Build.0 = Debug|Win32
 		{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F}.Release|Win32.ActiveCfg = Release|Win32
 		{3D5E820F-971E-4B95-AC5C-C25AFB3A8B3F}.Release|Win32.Build.0 = Release|Win32
+		{EE787F9B-DE84-49AE-9CE9-914A501E0F7B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EE787F9B-DE84-49AE-9CE9-914A501E0F7B}.Debug|Win32.Build.0 = Debug|Win32
+		{EE787F9B-DE84-49AE-9CE9-914A501E0F7B}.Release|Win32.ActiveCfg = Release|Win32
+		{EE787F9B-DE84-49AE-9CE9-914A501E0F7B}.Release|Win32.Build.0 = Release|Win32
+		{3E36F8E3-2B93-41B9-B0B7-495922B388E4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3E36F8E3-2B93-41B9-B0B7-495922B388E4}.Debug|Win32.Build.0 = Debug|Win32
+		{3E36F8E3-2B93-41B9-B0B7-495922B388E4}.Release|Win32.ActiveCfg = Release|Win32
+		{3E36F8E3-2B93-41B9-B0B7-495922B388E4}.Release|Win32.Build.0 = Release|Win32
+		{BD32FEB4-575F-4C1B-B2AD-B50FE827F403}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BD32FEB4-575F-4C1B-B2AD-B50FE827F403}.Debug|Win32.Build.0 = Debug|Win32
+		{BD32FEB4-575F-4C1B-B2AD-B50FE827F403}.Release|Win32.ActiveCfg = Release|Win32
+		{BD32FEB4-575F-4C1B-B2AD-B50FE827F403}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +219,9 @@ Global
 		{6DA24416-1F28-49D4-9E2B-89FF74B4D83E} = {68FAFE33-049F-459B-AE6F-5BBFFB8B6139}
 		{6BEE3135-A395-4594-B8A9-AA3E11F8C295} = {F10E9D81-32AB-40C5-A661-DDC8E9E15266}
 		{C99BA19B-E324-4C79-A8D7-302BD20B918E} = {F10E9D81-32AB-40C5-A661-DDC8E9E15266}
+		{EE787F9B-DE84-49AE-9CE9-914A501E0F7B} = {F10E9D81-32AB-40C5-A661-DDC8E9E15266}
+		{3E36F8E3-2B93-41B9-B0B7-495922B388E4} = {F10E9D81-32AB-40C5-A661-DDC8E9E15266}
+		{BD32FEB4-575F-4C1B-B2AD-B50FE827F403} = {F10E9D81-32AB-40C5-A661-DDC8E9E15266}
 		{F95DE44F-C82D-46A7-96D9-23C5BE12BF3B} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{50DB7E14-9624-4A56-93D6-665BCEEA02A6} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
 		{0D88E7F7-3DA4-400B-B3B0-8B96639F569D} = {3FD6EFF7-82FA-4ACF-A213-B9653C63AD91}
