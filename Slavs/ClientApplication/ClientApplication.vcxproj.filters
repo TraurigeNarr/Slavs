@@ -36,6 +36,18 @@
     <Filter Include="Application\Network">
       <UniqueIdentifier>{1933d423-1a68-4eda-9057-3b12925e2d22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\States\GameState">
+      <UniqueIdentifier>{38bbd2fc-7b03-4a4f-9a55-547e2bd782b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Screens\GameScreen">
+      <UniqueIdentifier>{6336139e-ea58-4990-bdbf-3d4817c876a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{83a2e0b8-9644-412e-9306-92d42e7b516e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\States\GameState\CommandHandlers">
+      <UniqueIdentifier>{e547d065-f96a-49b8-9411-4a677d582f5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -128,6 +140,27 @@
     <ClInclude Include="IMessageProvider.h">
       <Filter>Application\Screens\Base</Filter>
     </ClInclude>
+    <ClInclude Include="ClientGameContext.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientGameObject.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerController.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Application\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreenMain.h">
+      <Filter>Application\Screens\GameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateMessageProvider.h">
+      <Filter>Application\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseCommandHandler.h">
+      <Filter>Application\States\GameState\CommandHandlers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -195,6 +228,27 @@
     </ClCompile>
     <ClCompile Include="LoadStateMessageProvider.cpp">
       <Filter>Application\States\LoadingState</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientGameContext.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientGameObject.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerController.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Application\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreenMain.cpp">
+      <Filter>Application\Screens\GameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateMessageProvider.cpp">
+      <Filter>Application\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseCommandHandler.cpp">
+      <Filter>Application\States\GameState\CommandHandlers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -28,7 +28,7 @@ namespace Slavs
     mp_owner = ip_controller;
     }
 
-  IController* GameObject::GetController()
+  IController* GameObject::GetController() const
     {
     return mp_owner;
     }
@@ -77,6 +77,7 @@ namespace Slavs
     {
     GameObjectState* p_state = IGameObject::GetState();
     p_state->iFlags |= GOF_Position;
+    p_state->iOwnerMask = GetController() ? GetController()->GetMask() : 0;
     p_state->pPosition = new Vector2D(m_position);
     return p_state;
     }

@@ -5,3 +5,5 @@
 #include <Patterns/_Link.h>
 
 #include <Network/_Link.h>
+
+#include <GameCore/_Link.h>

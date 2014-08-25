@@ -129,11 +129,7 @@ void StateMachine<T, Parameter>::Update(Parameter i_parameter)
 
   // after update state can change
   if (mp_next_state)
-    {
-    if (mp_current_state)
-      mp_current_state->Exit(mp_owner);
     _ChangeState();
-    }
 
   //same for the current state
   if (nullptr != mp_current_state.get())

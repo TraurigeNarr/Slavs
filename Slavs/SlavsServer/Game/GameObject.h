@@ -31,7 +31,7 @@ namespace Slavs
       bool          HasOwner() const;
       /// check if component with global id "i_id" is in components collection
       bool          HasComponent(int i_id) const;
-      IController*  GetController();
+      IController*  GetController() const;
 
       /// takes ownage of component
       void          AddComponent (std::unique_ptr<IComponent> ih_component);

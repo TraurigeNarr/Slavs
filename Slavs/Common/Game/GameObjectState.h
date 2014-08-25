@@ -58,6 +58,7 @@ public:
 	GOStateFlags						              iFlags;
 	ObjectType							              oType;
 	int									                  iMask;
+  int                                   iOwnerMask;
 	Vector2D*							                pPosition;
 	int									                  containersCount;
 	TResourceContainers                   vContainers;

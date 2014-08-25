@@ -3,8 +3,11 @@
 #include "LoadingState.h"
 #include "LoadingStages.h"
 #include "LoadStateMessageProvider.h"
+#include "ClientGameContext.h"
+#include "PlayerController.h"
 
 #include "Application.h"
+#include "GameState.h"
 
 #include "ScreenManager.h"
 #include "LoadingScreen.h"
@@ -30,10 +33,26 @@ namespace ClientStates
   LoadingState::~LoadingState()
     {    }
 
+  net::Address LoadingState::_GetClientAddress() const
+    {
+    return net::Address(127,0,0,1,net::ClientPort);
+    }
+
   void LoadingState::Enter(Application* ip_application)
     {
     // set scene manager
-    m_application.GetOgreFramework().CreateSceneManager(Ogre::ST_GENERIC, "LoadState_SceneManager");//->setAmbientLight(Ogre::ColourValue(0.5f, 0.3f, 0.3f));
+    auto& ogre_framework = m_application.GetOgreFramework();
+    Ogre::SceneManagerEnumerator::MetaDataIterator scene_mgr_it = ogre_framework.GetRoot()->getSceneManagerMetaDataIterator();
+    for ( ; scene_mgr_it.current() != scene_mgr_it.end(); scene_mgr_it.moveNext())
+      {
+      if (scene_mgr_it.peekNext()->typeName == "OctreeSceneManager")
+        break;
+      }
+
+    if (scene_mgr_it.current() != scene_mgr_it.end())
+      ogre_framework.CreateSceneManager((*scene_mgr_it.current())->sceneTypeMask, "GameSceneManager");
+    else
+      ogre_framework.CreateSceneManager(Ogre::ST_GENERIC, "GameSceneManager");
 
     // set ogre settings
     Ogre::Camera* p_camera = m_application.GetOgreFramework().CreateCamera("LoadingCamera");
@@ -60,6 +79,9 @@ namespace ClientStates
 
     mp_message_provider = std::make_shared<LoadStateMessageProvider>(*this);
 
+    mp_context.reset(new ClientGameContext("First map"));
+    mp_context->RegisterController( std::unique_ptr<IController>( new PlayerController(_GetClientAddress().GetAddress(), *mp_context) ) );
+
     screen_manager.GetCurrentScreen()->SetMessageProvider(mp_message_provider);
 
     mp_state_machine.reset(new StateMachine<LoadingState, long>(this));
@@ -77,9 +99,9 @@ namespace ClientStates
       if (mp_state_machine->IsInState<LoadingStages::ResultsState>())
         {
         if (static_cast<LoadingStages::ResultsState*>(mp_state_machine->GetCurrentState().get())->GetResult() == LoadingStages::LoadingResult::LR_FAILED)
-          throw std::runtime_error("Bad");
+          throw std::runtime_error("Failed result");
         else
-          throw std::runtime_error("Good");
+          m_application.GetStateMachine().ChangeState(std::make_shared<GameState>(m_application, std::move(mp_context), std::move(mp_packet_provider), std::move(mp_connection)));
         }
       }
     catch (std::runtime_error&)

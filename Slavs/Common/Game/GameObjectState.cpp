@@ -5,7 +5,7 @@
 
 GameObjectState::GameObjectState()
 	: m_iNeededSize(0), pPosition(NULL), iFlags(0), request_for_workers(NULL), 
-  containersCount(0), oType(OT_None), iMask(0), uiSkill(0)
+  containersCount(0), oType(OT_None), iMask(0), uiSkill(0), iOwnerMask(0)
 {}
 
 GameObjectState::~GameObjectState()
@@ -37,6 +37,9 @@ int GameObjectState::Serialize(char* buf_end, int size) const
 	//serialize mask
 	ToChar(iMask, buf_end, sizeof(int));
 	buf_end += sizeof(int);
+  // serialize owner nask
+  ToChar(iOwnerMask, buf_end, sizeof(int));
+  buf_end += sizeof(int);
 #pragma region Data
 	//serialize position
 	if(0 != (iFlags & GOF_Position))
@@ -114,6 +117,9 @@ int GameObjectState::Deserialize(char* buf)
 	//deserialize mask
 	iMask = FromChar<int>(buf + deserializeCount);
 	deserializeCount += sizeof(int);
+  // deserialize owner mask
+  iOwnerMask = FromChar<int>(buf + deserializeCount);
+  deserializeCount += sizeof(int);
 #pragma region Data
 	//deserialize position
 	if(0 != (iFlags & GOF_Position))
@@ -188,7 +194,8 @@ int GameObjectState::NeededSize() const
 	m_iNeededSize = sizeof(long)//id
 		+ sizeof(GOStateFlags)//flags
 		+ sizeof(ObjectType)//type
-		+ sizeof(int);//mask
+		+ sizeof(int)//mask
+    + sizeof(int);//owner mask
 
 	//calculates needed size
 	if(0 != (iFlags & GOF_Position))

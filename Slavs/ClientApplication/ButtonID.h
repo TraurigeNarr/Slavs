@@ -7,7 +7,9 @@ namespace UI
     {
     BI_EXIT,
     BI_OPTIONS,
-    BI_CONNECT
+    BI_CONNECT,
+    BI_BACK_TO_MENU,
+    BI_HELP
     };
 
   } // UI

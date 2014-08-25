@@ -55,7 +55,7 @@ int ToChar(T val, unsigned char* buf, int size)
   }
 
 template < typename T>
-T FromChar(char* val)
+T FromChar(const char* const val)
 {
 	return NULL != val ? *(T*)val : NULL;
 }

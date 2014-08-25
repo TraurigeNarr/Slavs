@@ -162,9 +162,12 @@ void ServerMain::RegisterPlugin(Plugin* ip_plugin)
 
 void ServerMain::UnregisterPlugin(Plugin* ip_plugin)
   {
-  m_plugins.erase(ip_plugin);
-  ip_plugin->Release();
-  ip_plugin->Uninstall();
+  if (!m_plugins.empty())
+    {
+    m_plugins.erase(ip_plugin);
+    ip_plugin->Release();
+    ip_plugin->Uninstall();
+    }
   }
 
 ServerMain::TServerFSM& ServerMain::GetStateMachine()

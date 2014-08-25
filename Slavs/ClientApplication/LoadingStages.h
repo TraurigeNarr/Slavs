@@ -66,6 +66,8 @@ namespace ClientStates
         size_t                    m_content_to_load_number;
         size_t                    m_current_content_number;
 
+        LoadingState*             mp_owner;
+
       private:
         void _HandleDefinition(const Network::Packet& i_packet);
         void _HandleObject(const Network::Packet& i_packet);

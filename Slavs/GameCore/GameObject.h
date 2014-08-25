@@ -33,40 +33,40 @@ class GameObject : public IMovable
     GAMECORE_EXPORT GameObject(long i_id, int i_type, GameContext& i_context, IController* ip_owner);
     GAMECORE_EXPORT virtual ~GameObject();
 
-    long            GetID() const;
-    int             GetType() const;
+    long                              GetID() const;
+    int                               GetType() const;
 
-    virtual void    Tick();
+    GAMECORE_EXPORT virtual void      Tick();
 
-    void            SetOwner(IController* ip_owner);
-    IController*    GetOwner() const;
-    bool            HasOwner() const;
+    void                              SetOwner(IController* ip_owner);
+    IController*                      GetOwner() const;
+    bool                              HasOwner() const;
 
-    GameContext&    GetContext();
+    GameContext&                      GetContext();
 
-    GAMECORE_EXPORT void             AddComponent (ComponentUniquePtr ip_component);
+    GAMECORE_EXPORT void              AddComponent (ComponentUniquePtr ip_component);
     /// validate state of components
     /// each component checks its state and that all
     /// dependencies are present in object
-    GAMECORE_EXPORT bool             ProbeComponents ();
+    GAMECORE_EXPORT bool              ProbeComponents ();
 
     /// check if component with global id "i_id" is in components collection
-    GAMECORE_EXPORT bool             HasComponent(int i_component_id) const;
-    GAMECORE_EXPORT IComponent*      GetComponent(long i_component_id) const;
+    GAMECORE_EXPORT bool              HasComponent(int i_component_id) const;
+    GAMECORE_EXPORT IComponent*       GetComponent(long i_component_id) const;
 
     template <typename ComponentType>
-    ComponentType*  GetComponent();
+    ComponentType*                    GetComponent();
 
-    void            Destroy();
-    bool            IsDestroyed() const;
+    void                              Destroy();
+    bool                              IsDestroyed() const;
 
-    void            Select();
-    void            Deselect();
-    bool            IsSelected() const;
+    void                              Select();
+    void                              Deselect();
+    bool                              IsSelected() const;
 
-    bool            HasChanges() const;
-    void            Validate();
-    void            StateChanged();
+    bool                              HasChanges() const;
+    void                              Validate();
+    void                              StateChanged();
   };
 
 //////////////////////////////////////////////////////////////////////////

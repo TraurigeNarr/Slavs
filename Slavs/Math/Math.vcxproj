@@ -89,7 +89,7 @@
     <ClInclude Include="MathAPI.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Vector.h" />
-    <ClInclude Include="Vector2D.h" />
+    <ClInclude Include="Vector2.h" />
     <ClInclude Include="VectorUtilities.h" />
     <ClInclude Include="_Link.h" />
   </ItemGroup>
@@ -98,7 +98,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Vector2D.cpp" />
+    <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

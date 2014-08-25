@@ -20,13 +20,13 @@
     <ClInclude Include="Vector.h">
       <Filter>Sources</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>Sources</Filter>
-    </ClInclude>
     <ClInclude Include="MathAPI.h">
       <Filter>_Maintanance</Filter>
     </ClInclude>
     <ClInclude Include="VectorUtilities.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
       <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
@@ -34,7 +34,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>_Maintanance</Filter>
     </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
+    <ClCompile Include="Vector2.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>

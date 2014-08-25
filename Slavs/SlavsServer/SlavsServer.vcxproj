@@ -73,7 +73,9 @@
       <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\..\Resources\server\*.*" "$(OutputPath)server\" /Y /R /I /E</Command>
+      <Command>xcopy "$(SolutionDir)..\..\Resources\server\*.*" "$(OutputPath)server\" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\GameCore.dll" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" /Y /R /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,7 +99,9 @@
       <ImportLibrary>$(SolutionDir)..\lib\$(Configuration)\$(ProjectName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\..\Resources\server\*.*" "$(OutputPath)server\" /Y /R /I /E</Command>
+      <Command>xcopy "$(SolutionDir)..\..\Resources\server\*.*" "$(OutputPath)server\" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\GameCore.dll" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" /Y /R /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
