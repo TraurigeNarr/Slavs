@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+#include <algorithm>
 #include <cassert>
 #include <functional>
 #include <map>
@@ -10,4 +12,4 @@
 #include <unordered_map>
 #include <vector>
 
-#define UTILITIES_EXPORTING
+#define MATH_EXPORTING

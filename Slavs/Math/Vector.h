@@ -4,7 +4,7 @@ template <typename CoordinateType, size_t Dimension>
 class Vector
   {
   private:
-    CoordinateType m_coordinates[Dimension];
+    std::array<CoordinateType,Dimension> m_coordinates;
 
   public:
     Vector()
