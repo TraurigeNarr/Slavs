@@ -63,6 +63,7 @@ namespace
       return GameResourceType::GR_IronOre;
     if (i_resource_name == "wool")
       return GameResourceType::GR_Wool;
+    return GameResourceType::GR_None;
     }
 
   void GetResourcesSetForType(Slavs::ResourcesCountSet& o_resources, const TiXmlElement& i_xml_node)

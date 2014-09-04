@@ -76,10 +76,11 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\..\Resources\client\Media\*.*" "$(OutputPath)Media\" /Y /R /I /E
+      <Command>xcopy "$(SolutionDir)..\..\Resources\client\*.*" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\GameCore.dll" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Network.dll" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" /Y /R /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -104,10 +105,11 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\..\Resources\client\Media\*.*" "$(OutputPath)Media\" /Y /R /I /E
+      <Command>xcopy "$(SolutionDir)..\..\Resources\client\*.*" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\GameCore.dll" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Network.dll" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" /Y /R /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

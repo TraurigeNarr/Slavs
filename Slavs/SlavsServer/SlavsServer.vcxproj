@@ -45,12 +45,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\</OutDir>
     <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\</OutDir>
     <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -75,7 +75,9 @@
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\..\Resources\server\*.*" "$(OutputPath)server\" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\GameCore.dll" "$(OutputPath)" /Y /R /I /E
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" /Y /R /I /E</Command>
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Network.dll" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Server\*.*" "$(OutputPath)" /Y /R /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -101,7 +103,9 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\..\Resources\server\*.*" "$(OutputPath)server\" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\GameCore.dll" "$(OutputPath)" /Y /R /I /E
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" /Y /R /I /E</Command>
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Network.dll" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Server\*.*" "$(OutputPath)" /Y /R /I /E</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -71,15 +71,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <TargetExt>.dll</TargetExt>
-    <TargetName>Network_d</TargetName>
-    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+    <TargetName>Network</TargetName>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\SDK\</OutDir>
     <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetName>Network</TargetName>
     <TargetExt>.dll</TargetExt>
-    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\SDK\</OutDir>
     <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

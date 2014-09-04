@@ -49,12 +49,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
-    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\</OutDir>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\server\plugins\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)..\Intermediates\$(ProjectName)\$(Configuration)\</IntDir>
-    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\</OutDir>
+    <OutDir>$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\server\plugins\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
