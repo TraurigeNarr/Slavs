@@ -70,6 +70,7 @@ class OgreFramework : public Ogre::WindowEventListener
     Ogre::Viewport*     GetViewport();
     Ogre::RenderTarget* GetRenderTarget();
     Ogre::SceneManager* GetSceneManager();
+    Ogre::Camera*       GetCamera();
 
   // Ogre::WindowEventListener
   public:
@@ -102,4 +103,9 @@ inline Ogre::Viewport* OgreFramework::GetViewport()
 inline Ogre::SceneManager* OgreFramework::GetSceneManager()
   {
   return mp_scene_manager;
+  }
+
+inline Ogre::Camera* OgreFramework::GetCamera()
+  {
+  return mp_camera;
   }

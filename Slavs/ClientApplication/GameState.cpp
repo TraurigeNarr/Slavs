@@ -13,6 +13,8 @@
 #include "ScreenManager.h"
 #include "GameScreenMain.h"
 
+#include "GameCamera.h"
+
 #include "PacketProvider.h"
 #include "PacketType.h"
 
@@ -53,7 +55,8 @@ namespace ClientStates
   void GameState::Enter(Application* ip_application)
     {
     // ogre customizations
-
+    mp_camera.reset(new ClientGame::Camera(m_application.GetOgreFramework(), m_application.GetInputManager()));
+    m_application.GetOgreFramework().GetViewport()->setBackgroundColour(Ogre::ColourValue(.1f, .1f, .1f, 1.f));
 
     // set screen
     using namespace UI;
@@ -97,6 +100,8 @@ namespace ClientStates
     mp_time_controller.reset();
 
     mp_context.reset();
+
+    mp_camera.reset();
 
     m_application.GetInputManager().RemoveSubscriber(this);
     }

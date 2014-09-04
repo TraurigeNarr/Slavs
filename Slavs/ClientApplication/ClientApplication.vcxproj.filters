@@ -191,6 +191,9 @@
     <ClInclude Include="ClientComposer.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="GameCamera.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -293,6 +296,9 @@
       <Filter>Game\ModelController\OgreMax</Filter>
     </ClCompile>
     <ClCompile Include="ClientComposer.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameCamera.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>

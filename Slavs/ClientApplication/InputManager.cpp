@@ -93,6 +93,18 @@ bool InputManager::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID 
 	return true;
   }
 
+void InputManager::FrameRenderingQueue(const Ogre::FrameEvent& i_event)
+  {
+  std::for_each(m_subscribers.begin(), m_subscribers.end(), [&i_event](InputSubscriberPtr subsriber)
+    {
+    subsriber->FrameRenderingQueue(i_event);
+    });
+  std::for_each(m_raw_subscribers.begin(), m_raw_subscribers.end(), [&i_event](InputSubscriber* subsriber)
+    {
+    subsriber->FrameRenderingQueue(i_event);
+    });
+  }
+
 //////////////////////////////////////////////////////////////////////////
 // Internal staff
 

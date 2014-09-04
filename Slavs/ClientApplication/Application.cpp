@@ -75,6 +75,8 @@ bool Application::frameRenderingQueued(const Ogre::FrameEvent& evt)
   if(m_shutdown)
     return false;
 
+  mp_input_manager->FrameRenderingQueue(evt);
+
   long elapsed_time = TimeUtilities::ConvertTime(evt.timeSinceLastFrame);
 
   // 18 milliseconds -> 60 fps

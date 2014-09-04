@@ -3,6 +3,7 @@
 #include <OIS.h>
 #include <OISKeyboard.h>
 #include <OISMouse.h>
+#include "OgreFrameListener.h"
 
 class OgreFramework;
 class InputSubscriber;
@@ -37,6 +38,8 @@ class InputManager : public OIS::MouseListener
     void AddSubscriber(InputSubscriber* ip_subscriber);
 	  void RemoveSubscriber(std::shared_ptr<InputSubscriber> subscriber);
     void RemoveSubscriber(InputSubscriber* ip_subscriber);
+
+    void FrameRenderingQueue (const Ogre::FrameEvent& i_event);
 
 	  const std::set<InputSubscriber*>& GetSubscribers() const;
   };

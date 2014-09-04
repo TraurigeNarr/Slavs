@@ -25,6 +25,11 @@ class StateMachine;
 
 class ClientGameContext;
 
+namespace ClientGame
+  {
+  class Camera;
+  }
+
 namespace ClientStates
   {
 
@@ -41,6 +46,8 @@ namespace ClientStates
       std::unique_ptr<ClientGameContext>                    mp_context;
       std::unique_ptr<UI::GameBaseCommandHandler>           mp_command_handler;
       std::unique_ptr<TimeController>                       mp_time_controller;
+
+      std::unique_ptr<ClientGame::Camera>                   mp_camera;
 
     public:
       GameState(Application& i_application, 
