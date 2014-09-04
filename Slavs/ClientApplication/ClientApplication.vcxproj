@@ -62,15 +62,18 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
       <AdditionalOptions>/Zm280 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);$(SolutionDir)..\SDK\$(Configuration)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\..\Resources\client\Media\*.*" "$(OutputPath)Media\" /Y /R /I /E
@@ -87,10 +90,10 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
       <AdditionalOptions>/Zm280 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;$(THIRD_PARTIES)\tinyxml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -98,6 +101,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);$(SolutionDir)..\SDK\$(Configuration)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\..\Resources\client\Media\*.*" "$(OutputPath)Media\" /Y /R /I /E
@@ -115,6 +119,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="CEGUIFramework.h" />
     <ClInclude Include="CeguiScreenBase.h" />
     <ClInclude Include="CeguiUtilities.h" />
+    <ClInclude Include="ComponentTypes.h" />
+    <ClInclude Include="ClientComposer.h" />
     <ClInclude Include="ControlData.h" />
     <ClInclude Include="ControlType.h" />
     <ClInclude Include="ClientGameContext.h" />
@@ -133,11 +139,17 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="MenuCommandHandler.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="MenuState.h" />
+    <ClInclude Include="ObjectVisibility.h" />
+    <ClInclude Include="OgreMaxModel.h" />
+    <ClInclude Include="ModelController.h" />
     <ClInclude Include="OgreFramework.h" />
+    <ClInclude Include="OgreMaxTypes.h" />
+    <ClInclude Include="OgreMaxUtilities.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="PacketProvider.h" />
     <ClInclude Include="PacketType.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="RendererComponent.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -153,6 +165,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="CEGUIFramework.cpp" />
     <ClCompile Include="CeguiScreenBase.cpp" />
     <ClCompile Include="ClientApplication.cpp" />
+    <ClCompile Include="ClientComposer.cpp" />
     <ClCompile Include="ClientGameContext.cpp" />
     <ClCompile Include="ClientGameObject.cpp" />
     <ClCompile Include="GameBaseCommandHandler.cpp" />
@@ -167,10 +180,14 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="MenuCommandHandler.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="OgreMaxModel.cpp" />
+    <ClCompile Include="ModelController.cpp" />
     <ClCompile Include="OgreFramework.cpp" />
     <ClCompile Include="CeguiUtilities.cpp" />
+    <ClCompile Include="OgreMaxUtilities.cpp" />
     <ClCompile Include="PacketProvider.cpp" />
     <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="RendererComponent.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="stdafx.cpp">

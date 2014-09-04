@@ -79,7 +79,7 @@ namespace ClientStates
 
     mp_message_provider = std::make_shared<LoadStateMessageProvider>(*this);
 
-    mp_context.reset(new ClientGameContext("First map"));
+    mp_context.reset(new ClientGameContext("First map", m_application.GetOgreFramework()));
     mp_context->RegisterController( std::unique_ptr<IController>( new PlayerController(_GetClientAddress().GetAddress(), *mp_context) ) );
 
     screen_manager.GetCurrentScreen()->SetMessageProvider(mp_message_provider);

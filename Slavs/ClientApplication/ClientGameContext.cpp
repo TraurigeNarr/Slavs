@@ -2,10 +2,18 @@
 
 #include "ClientGameContext.h"
 #include "ClientGameObject.h"
+#include "ClientComposer.h"
+#include "ModelController.h"
+#include "OgreFramework.h"
 
 #include <GameCore/IController.h>
 
 #include <Common/Game/GameObjectState.h>
+#include <Common/Utilities/FileUtilities.h>
+
+//////////////////////////////////////////////////////////////////////////
+
+const std::string OBJECT_CONFIGURATION_FILE = "configs//ObjectsConfigurations.xml";
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -28,8 +36,10 @@ namespace
 
 //////////////////////////////////////////////////////////////////////////
 
-ClientGameContext::ClientGameContext(const std::string& i_context_name)
+ClientGameContext::ClientGameContext(const std::string& i_context_name, OgreFramework& i_framework)
   : GameContext(i_context_name)
+  , mp_model_controller(new ClientGame::ModelController(i_framework))
+  , mp_composer(new ClientGame::ClientComposer(*this))
   {  }
 
 ClientGameContext::~ClientGameContext()
@@ -37,7 +47,8 @@ ClientGameContext::~ClientGameContext()
 
 void ClientGameContext::ReleaseContext()
   {
-
+  mp_model_controller.reset();
+  mp_composer.reset();
   }
 
 void ClientGameContext::_ApplyState(GameObjectState& i_state, GameObjectUniquePtr& ip_object)
@@ -55,6 +66,10 @@ void ClientGameContext::_AddObject(GameObjectState& i_state)
   long object_id = m_next_object_id++;
   std::unique_ptr<GameObject> p_game_object(new ClientGameObject(object_id, static_cast<int>(i_state.oType), *this, nullptr));
 
+
+  if (!mp_composer->Supports(i_state.oType))
+    return;
+  
   IController* p_owner = nullptr;
   if (i_state.iOwnerMask != 0)
     {
@@ -64,7 +79,7 @@ void ClientGameContext::_AddObject(GameObjectState& i_state)
     }
   p_game_object->SetOwner(p_owner);
 
-  // init object
+  mp_composer->ComposeObject(p_game_object.get());
 
   auto it = m_objects.insert(std::make_pair(object_id, std::move(p_game_object))).first;
   _ApplyState(i_state, (*it).second);
@@ -86,10 +101,10 @@ void ClientGameContext::ApplyState(GameObjectState& i_state)
 
 void ClientGameContext::AddDefinition(const std::pair<std::string, int>&& i_definition)
   {
-  m_definitions_map.insert(i_definition);
+  mp_composer->AddObjectDefinition(i_definition.first, i_definition.second);
   }
 
 void ClientGameContext::Initialize()
   {
-
+  mp_composer->Initialize(FileUtilities::JoinPath(FileUtilities::GetApplicationDirectory(), OBJECT_CONFIGURATION_FILE));
   }

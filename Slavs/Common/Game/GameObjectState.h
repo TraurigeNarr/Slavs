@@ -56,7 +56,7 @@ class GameObjectState
 public:
 	long								                  lID;
 	GOStateFlags						              iFlags;
-	ObjectType							              oType;
+	int							                      oType;
 	int									                  iMask;
   int                                   iOwnerMask;
 	Vector2D*							                pPosition;

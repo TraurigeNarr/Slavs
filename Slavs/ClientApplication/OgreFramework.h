@@ -69,6 +69,7 @@ class OgreFramework : public Ogre::WindowEventListener
     OIS::Mouse*         GetMouse();
     Ogre::Viewport*     GetViewport();
     Ogre::RenderTarget* GetRenderTarget();
+    Ogre::SceneManager* GetSceneManager();
 
   // Ogre::WindowEventListener
   public:
@@ -96,4 +97,9 @@ inline OIS::Mouse* OgreFramework::GetMouse()
 inline Ogre::Viewport* OgreFramework::GetViewport()
   {
   return mp_viewport;
+  }
+
+inline Ogre::SceneManager* OgreFramework::GetSceneManager()
+  {
+  return mp_scene_manager;
   }

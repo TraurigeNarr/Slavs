@@ -12,6 +12,9 @@
     <Filter Include="TimeManagement">
       <UniqueIdentifier>{f0074ac3-9a2e-43fc-b125-cfd4320295e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Composer">
+      <UniqueIdentifier>{f4822b5d-6bb3-48df-82df-1e9c651b97cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -44,6 +47,15 @@
     <ClInclude Include="TimeController.h">
       <Filter>TimeManagement</Filter>
     </ClInclude>
+    <ClInclude Include="Composer\ObjectSettings.h">
+      <Filter>Composer</Filter>
+    </ClInclude>
+    <ClInclude Include="Composer\IComponentSerializer.h">
+      <Filter>Composer</Filter>
+    </ClInclude>
+    <ClInclude Include="Composer\IObjectComposer.h">
+      <Filter>Composer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +72,9 @@
     </ClCompile>
     <ClCompile Include="GameContext.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Composer\ObjectSettings.cpp">
+      <Filter>Composer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

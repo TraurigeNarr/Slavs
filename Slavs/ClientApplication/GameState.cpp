@@ -16,6 +16,8 @@
 #include "PacketProvider.h"
 #include "PacketType.h"
 
+#include <GameCore/TimeController.h>
+
 #include <Common/Patterns/StateMachine.h>
 #include <Common/Utilities/TemplateFunctions.h>
 
@@ -24,6 +26,8 @@
 #include <exception>
 
 //////////////////////////////////////////////////////////////////////////
+
+const long MS_FOR_TICK = 1000 / 45;
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -48,6 +52,9 @@ namespace ClientStates
 
   void GameState::Enter(Application* ip_application)
     {
+    // ogre customizations
+
+
     // set screen
     using namespace UI;
     ScreenManager& screen_manager = ip_application->GetScreenManager();
@@ -63,12 +70,16 @@ namespace ClientStates
     // set state machine
     mp_state_machine.reset(new StateMachine<GameState, long>(this));
 
+    mp_time_controller.reset(new TimeController(MS_FOR_TICK));
+
+    mp_time_controller->AddSubscriber(mp_context.get());
+
     m_application.GetInputManager().AddSubscriber(this);
     }
 
   void GameState::Execute(Application* ip_application, long i_elapsed_time)
     {
-    
+    mp_time_controller->Update(i_elapsed_time);
     }
 
   void GameState::Exit(Application* ip_application)
@@ -81,6 +92,11 @@ namespace ClientStates
     mp_state_machine.reset();
     mp_packet_provider.reset();
     mp_command_handler.reset();
+
+    mp_time_controller->RemoveSubscriber(mp_context.get());
+    mp_time_controller.reset();
+
+    mp_context.reset();
 
     m_application.GetInputManager().RemoveSubscriber(this);
     }

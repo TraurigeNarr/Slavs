@@ -18,6 +18,8 @@ namespace UI
   class GameBaseCommandHandler;
   } // UI
 
+class TimeController;
+
 template <typename Owner, typename Parameter>
 class StateMachine;
 
@@ -31,13 +33,14 @@ namespace ClientStates
     private:
       std::unique_ptr<net::Connection>                      mp_connection;
 
-      std::unique_ptr< StateMachine<GameState, long> >   mp_state_machine;
+      std::unique_ptr< StateMachine<GameState, long> >      mp_state_machine;
 
       std::unique_ptr<Network::PacketProvicer>              mp_packet_provider;
       std::shared_ptr<UI::IMessageProvider>                 mp_message_provider;
 
       std::unique_ptr<ClientGameContext>                    mp_context;
       std::unique_ptr<UI::GameBaseCommandHandler>           mp_command_handler;
+      std::unique_ptr<TimeController>                       mp_time_controller;
 
     public:
       GameState(Application& i_application, 

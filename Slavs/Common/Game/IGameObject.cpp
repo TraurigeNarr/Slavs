@@ -38,7 +38,7 @@ GameObjectState* IGameObject::GetState() const
 		GOState->iFlags |= GOF_Destroyed;
 		return GOState;
 	}
-	GOState->oType = static_cast<ObjectType>(m_type);
+	GOState->oType = m_type;
 	GOState->iMask = m_qmMask;
 	
 	std::for_each(m_components.begin(), m_components.end(), [&GOState](IComponent* component)

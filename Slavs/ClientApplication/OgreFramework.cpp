@@ -181,6 +181,7 @@ void OgreFramework::Initialize()
   
   mp_render_window->setActive(true);
   Ogre::WindowEventUtilities::addWindowEventListener(mp_render_window, this);
+  Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
   }
 
 void OgreFramework::Release()

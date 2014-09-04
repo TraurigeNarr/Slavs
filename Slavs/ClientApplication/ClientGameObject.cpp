@@ -15,5 +15,7 @@ ClientGameObject::~ClientGameObject()
 
 void ClientGameObject::ApplyState(GameObjectState& i_state)
   {
-
+  if(nullptr != i_state.pPosition)
+    SetPosition(*i_state.pPosition);
+  StateChanged();
   }

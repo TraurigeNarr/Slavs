@@ -48,6 +48,12 @@
     <Filter Include="Application\States\GameState\CommandHandlers">
       <UniqueIdentifier>{e547d065-f96a-49b8-9411-4a677d582f5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\ModelController">
+      <UniqueIdentifier>{2bc1fa1b-878d-41c4-87d5-692b2e6046a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\ModelController\OgreMax">
+      <UniqueIdentifier>{0fe3ed16-315c-42a6-b806-704c1960f6d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -161,6 +167,30 @@
     <ClInclude Include="GameBaseCommandHandler.h">
       <Filter>Application\States\GameState\CommandHandlers</Filter>
     </ClInclude>
+    <ClInclude Include="ModelController.h">
+      <Filter>Game\ModelController</Filter>
+    </ClInclude>
+    <ClInclude Include="RendererComponent.h">
+      <Filter>Game\ModelController</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentTypes.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="OgreMaxModel.h">
+      <Filter>Game\ModelController\OgreMax</Filter>
+    </ClInclude>
+    <ClInclude Include="OgreMaxTypes.h">
+      <Filter>Game\ModelController\OgreMax</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectVisibility.h">
+      <Filter>Game\ModelController\OgreMax</Filter>
+    </ClInclude>
+    <ClInclude Include="OgreMaxUtilities.h">
+      <Filter>Game\ModelController\OgreMax</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientComposer.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -249,6 +279,21 @@
     </ClCompile>
     <ClCompile Include="GameBaseCommandHandler.cpp">
       <Filter>Application\States\GameState\CommandHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelController.cpp">
+      <Filter>Game\ModelController</Filter>
+    </ClCompile>
+    <ClCompile Include="RendererComponent.cpp">
+      <Filter>Game\ModelController</Filter>
+    </ClCompile>
+    <ClCompile Include="OgreMaxModel.cpp">
+      <Filter>Game\ModelController\OgreMax</Filter>
+    </ClCompile>
+    <ClCompile Include="OgreMaxUtilities.cpp">
+      <Filter>Game\ModelController\OgreMax</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientComposer.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

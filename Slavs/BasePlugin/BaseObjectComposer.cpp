@@ -130,7 +130,6 @@ void BaseObjectComposer::Initialize(const TiXmlElement& i_composer_element)
     if (obj_type != BasePlugin::ObjectType::OT_NONE)
       m_object_settings[obj_type] = TObjectSettings(new ObjectSettings(obj_type, *p_child, *this));
     }
-
   }
 
 int BaseObjectComposer::GetObjectGlobalID(BasePlugin::ObjectType i_type) const

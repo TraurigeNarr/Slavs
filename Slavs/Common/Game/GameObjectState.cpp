@@ -32,8 +32,8 @@ int GameObjectState::Serialize(char* buf_end, int size) const
 	if(0 != (iFlags & GOF_Destroyed))
 		return m_iNeededSize;
 	//serialize type
-	ToChar(oType, buf_end, sizeof(ObjectType));
-	buf_end += sizeof(ObjectType);
+	ToChar(oType, buf_end, sizeof(int));
+	buf_end += sizeof(int);
 	//serialize mask
 	ToChar(iMask, buf_end, sizeof(int));
 	buf_end += sizeof(int);
@@ -112,8 +112,8 @@ int GameObjectState::Deserialize(char* buf)
 	if(0 != (iFlags & GOF_Destroyed))
 		return deserializeCount;
 	//deserialize type
-	oType = (ObjectType)FromChar<int>(buf + deserializeCount);
-	deserializeCount += sizeof(ObjectType);
+	oType = FromChar<int>(buf + deserializeCount);
+	deserializeCount += sizeof(int);
 	//deserialize mask
 	iMask = FromChar<int>(buf + deserializeCount);
 	deserializeCount += sizeof(int);
@@ -193,7 +193,7 @@ int GameObjectState::NeededSize() const
 	}
 	m_iNeededSize = sizeof(long)//id
 		+ sizeof(GOStateFlags)//flags
-		+ sizeof(ObjectType)//type
+		+ sizeof(int)//type
 		+ sizeof(int)//mask
     + sizeof(int);//owner mask
 
