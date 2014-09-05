@@ -23,6 +23,8 @@ namespace ClientGame
       std::map<int, std::unique_ptr<GameCore::ObjectSettings>>  mp_object_settings;
       ClientGameContext& m_context;
 
+      int                                                       m_undefined_object_id;
+
     private:
       void _ParseComponent(const TiXmlElement& i_element);
 
@@ -45,6 +47,15 @@ namespace ClientGame
 
       virtual int  GetComponentGlobalID (int i_local_id) const override;
       virtual int  GetObjectGlobalID (int i_local_id) const override;
+
+      int          GetUndefinedObjectId () const;
     };
+
+  //////////////////////////////////////////////////////////////////////////
+
+  inline int ClientComposer::GetUndefinedObjectId() const
+    {
+    return m_undefined_object_id;
+    }
 
   } // ClientGame

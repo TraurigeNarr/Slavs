@@ -106,10 +106,12 @@ void GettingData::Enter(LoadingState* ip_owner)
 
 void GettingData::Execute(LoadingState* ip_owner, long i_parameter)
   { 
-  Packet packet = m_packet_provider.GetNextPacket();
-
-  if (packet())
+  while (true)
     {
+    Packet packet = m_packet_provider.GetNextPacket();
+    if (!packet())
+      break;
+
     switch (m_current_data_type)
       {
       case GettingData::CurrentData::CD_DEFINITIONS:

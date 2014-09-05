@@ -97,6 +97,7 @@ namespace ClientGame
 
     if (p_undefined_object)
       {
+      ++max_obj_type;
       mp_object_settings[max_obj_type] = std::unique_ptr<GameCore::ObjectSettings>(new ClientObjectSettings(m_context.GetModelControlelr(), *this));
       mp_object_settings[max_obj_type]->Initialize(max_obj_type, *p_undefined_object);
       }

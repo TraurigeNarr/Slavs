@@ -40,6 +40,7 @@ ClientGameContext::ClientGameContext(const std::string& i_context_name, OgreFram
   : GameContext(i_context_name)
   , mp_model_controller(new ClientGame::ModelController(i_framework))
   , mp_composer(new ClientGame::ClientComposer(*this))
+  , m_create_unknown_objects(true)
   {  }
 
 ClientGameContext::~ClientGameContext()
@@ -63,13 +64,16 @@ void ClientGameContext::_ApplyState(GameObjectState& i_state, GameObjectUniquePt
 
 void ClientGameContext::_AddObject(GameObjectState& i_state)
   {
-  long object_id = m_next_object_id++;
-  std::unique_ptr<GameObject> p_game_object(new ClientGameObject(object_id, static_cast<int>(i_state.oType), *this, nullptr));
-
-
-  if (!mp_composer->Supports(i_state.oType))
-    return;
   
+  int object_type = i_state.oType;
+  if (!mp_composer->Supports(object_type))
+    {
+    if (m_create_unknown_objects)
+      object_type = mp_composer->GetUndefinedObjectId();
+    }
+
+  long object_id = m_next_object_id++;
+  std::unique_ptr<GameObject> p_game_object(new ClientGameObject(object_id, object_type, *this, nullptr));
   IController* p_owner = nullptr;
   if (i_state.iOwnerMask != 0)
     {

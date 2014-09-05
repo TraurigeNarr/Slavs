@@ -14,8 +14,10 @@ namespace ClientGame
 class ClientGameContext : public GameContext
   {
   private:
-    std::unique_ptr<ClientGame::ClientComposer> mp_composer;
-    std::unique_ptr<ClientGame::ModelController> mp_model_controller;
+    std::unique_ptr<ClientGame::ClientComposer>   mp_composer;
+    std::unique_ptr<ClientGame::ModelController>  mp_model_controller;
+
+    bool                                          m_create_unknown_objects;
 
   private:
     void          _ApplyState(GameObjectState& i_state, GameObjectUniquePtr& ip_object);
@@ -28,12 +30,14 @@ class ClientGameContext : public GameContext
     ClientGameContext(const std::string& i_context_name, OgreFramework& i_framework);
     virtual ~ClientGameContext();
 
-    void          ApplyState(GameObjectState& i_state);
-    void          AddDefinition(const std::pair<std::string, int>&& i_definition);
+    void                          CreateUnknownObjects (bool i_create);
 
-    ClientGame::ModelController& GetModelControlelr();
+    void                          ApplyState(GameObjectState& i_state);
+    void                          AddDefinition(const std::pair<std::string, int>&& i_definition);
+    
+    void                          Initialize();
 
-    void          Initialize();
+    ClientGame::ModelController&  GetModelControlelr();    
   };
 
 //////////////////////////////////////////////////////////////////////////
@@ -41,4 +45,9 @@ class ClientGameContext : public GameContext
 inline ClientGame::ModelController& ClientGameContext::GetModelControlelr()
   {
   return *mp_model_controller;
+  }
+
+inline void ClientGameContext::CreateUnknownObjects(bool i_create)
+  {
+  m_create_unknown_objects = i_create;
   }

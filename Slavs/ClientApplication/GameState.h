@@ -9,7 +9,8 @@ namespace net
 
 namespace Network
   {
-  class PacketProvicer;
+  class   PacketProvicer;
+  struct  Packet;
   }
 
 namespace UI
@@ -48,6 +49,9 @@ namespace ClientStates
       std::unique_ptr<TimeController>                       mp_time_controller;
 
       std::unique_ptr<ClientGame::Camera>                   mp_camera;
+
+    private:
+      void        _HoldPacket(const Network::Packet& i_packet);
 
     public:
       GameState(Application& i_application, 

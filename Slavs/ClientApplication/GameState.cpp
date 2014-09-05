@@ -17,11 +17,13 @@
 
 #include <GameCore/TimeController.h>
 
+#include <Common/Game/GameObjectState.h>
 #include <Common/Patterns/StateMachine.h>
 #include <Common/Utilities/TemplateFunctions.h>
 
 #include <Network/PacketProvider.h>
 #include <Network/PacketType.h>
+#include <Network/Packet.h>
 #include <Network/include/Net.h>
 
 #include <exception>
@@ -82,6 +84,13 @@ namespace ClientStates
   void GameState::Execute(Application* ip_application, long i_elapsed_time)
     {
     mp_time_controller->Update(i_elapsed_time);
+    while (true)
+      {
+      Network::Packet packet = mp_packet_provider->GetNextPacket();
+      if (!packet())
+        break;
+      _HoldPacket(packet);
+      }
     }
 
   void GameState::Exit(Application* ip_application)
@@ -103,6 +112,23 @@ namespace ClientStates
     mp_camera.reset();
 
     m_application.GetInputManager().RemoveSubscriber(this);
+    }
+
+  //////////////////////////////////////////////////////////////////////////
+
+  void GameState::_HoldPacket(const Network::Packet& i_packet)
+    {
+    switch (i_packet.m_packet)
+      {
+      case Network::PacketType::PT_GOState:
+        {
+        GameObjectState state;
+        const char* const p_buffer = static_cast<const char* const>(i_packet.mp_data);
+        state.Deserialize(const_cast<char*>(p_buffer));
+        mp_context->ApplyState(state);
+        }
+        break;
+      }
     }
 
   } // ClientStates
