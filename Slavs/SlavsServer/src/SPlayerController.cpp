@@ -33,7 +33,7 @@ void SPlayerController::TickPerformed()
 
 void SPlayerController::HoldPacket(net::Connection* connection, unsigned char* packet, int bytes_read)
 {
-	PacketType pType = (PacketType)FromChar<int>((char*)packet);
+	Network::PacketType pType = (Network::PacketType)FromChar<int>((char*)packet);
 	packet += sizeof(pType);
 	bytes_read -= sizeof(pType);
 
@@ -41,12 +41,12 @@ void SPlayerController::HoldPacket(net::Connection* connection, unsigned char* p
 
 	switch(pType)
 	{
-	case PT_Command:
+	case Network::PacketType::PT_Command:
 		cData = new CommandData();
 		cData->Deserialize((char*)packet);
 		HoldCommand(cData);
 		break;
-	case PT_Selection:
+	case Network::PacketType::PT_Selection:
 		SelectObjects(packet, bytes_read);
 		break;
 	}

@@ -33,9 +33,6 @@
     <Filter Include="Application\States\LoadingState">
       <UniqueIdentifier>{3abfc9ca-d5dc-47d8-a4d8-ea27bbf72d61}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Network">
-      <UniqueIdentifier>{1933d423-1a68-4eda-9057-3b12925e2d22}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\States\GameState">
       <UniqueIdentifier>{38bbd2fc-7b03-4a4f-9a55-547e2bd782b4}</UniqueIdentifier>
     </Filter>
@@ -124,15 +121,6 @@
     </ClInclude>
     <ClInclude Include="LoadingState.h">
       <Filter>Application\States\LoadingState</Filter>
-    </ClInclude>
-    <ClInclude Include="Packet.h">
-      <Filter>Application\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="PacketProvider.h">
-      <Filter>Application\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="PacketType.h">
-      <Filter>Application\Network</Filter>
     </ClInclude>
     <ClInclude Include="LoadingStages.h">
       <Filter>Application\States\LoadingState</Filter>
@@ -249,9 +237,6 @@
     </ClCompile>
     <ClCompile Include="LoadingState.cpp">
       <Filter>Application\States\LoadingState</Filter>
-    </ClCompile>
-    <ClCompile Include="PacketProvider.cpp">
-      <Filter>Application\Network</Filter>
     </ClCompile>
     <ClCompile Include="LoadingScreen.cpp">
       <Filter>Application\Screens</Filter>

@@ -11,6 +11,8 @@
 #include <Patterns/Singleton.h>
 #include <Utilities/TemplateFunctions.h>
 
+#include <Network/Packet.h>
+#include <Network/PacketType.h>
 #include <Net.h>
 
 #include <iostream>
@@ -67,7 +69,7 @@ void WaitState::Exit(ServerMain* ip_owner)
 
 void WaitState::HoldPacket(ServerMain* ip_owner, unsigned char *packet, size_t size)
 {
-	PacketType pType = (PacketType)FromChar<int>((char*)packet);
+	Network::PacketType pType = (Network::PacketType)FromChar<int>((char*)packet);
 	char *packetBuf = NULL;
 	char *m = new char[8];
 	m[0] = 't';
@@ -80,17 +82,17 @@ void WaitState::HoldPacket(ServerMain* ip_owner, unsigned char *packet, size_t s
 	m[7] = '\0';
 	switch(pType)
 	{
-	case PT_Connects:		
+  case Network::PacketType::PT_Connects:
 		ClientConnects(ip_owner);
 		break;
-	case PT_Maps:
+	case Network::PacketType::PT_Maps:
 		packetBuf = new char[sizeof(int) + 8*sizeof(char)];
-		ToChar(PT_Maps, packetBuf, sizeof(int));
+		ToChar(Network::PacketType::PT_Maps, packetBuf, sizeof(int));
 		ToChar(*m, packetBuf + sizeof(int), 8*sizeof(char));
 		ip_owner->GetConnection()->SendPacket( packetBuf, sizeof(int) + 8*sizeof(char) );
 		printf("Need maps\n");
 		break;
-	case PT_StartGame:
+	case Network::PacketType::PT_StartGame:
 		new Singleton<ServerLoadGameState>(new ServerLoadGameState(m_pControllers));
 		packet[size] = '\0';
 		printf("Map is %s\n", (packet + sizeof(int)));

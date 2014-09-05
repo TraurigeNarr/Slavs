@@ -13,6 +13,8 @@
 #include "ServerWaitState.h"
 #include "ServerLoadGameState.h"
 
+#include <Network/PacketProvider.h>
+#include <Network/PacketType.h>
 #include <Net.h>
 
 //standard
@@ -99,17 +101,17 @@ void ServerGameState::Exit(ServerMain* ip_owner)
 
 void ServerGameState::HoldPacket(ServerMain* ip_owner, unsigned char *packet, size_t bytes_read)
 {
-	PacketType pType = (PacketType)FromChar<int>((char*)packet);
+	Network::PacketType pType = (Network::PacketType)FromChar<int>((char*)packet);
 	char *packetToClient = NULL;
 	switch(pType)
 	{
-	case PT_EndGame:
+	case Network::PacketType::PT_EndGame:
 		new Singleton<WaitState>(new WaitState());
 		m_bExitState = true;
 		ip_owner->GetFSM()->ChangeState(Singleton<WaitState>::GetInstancePtr());
 		return;
-	case PT_Command:
-	case PT_Selection:
+	case Network::PacketType::PT_Command:
+	case Network::PacketType::PT_Selection:
 		PassToController(ip_owner, packet, bytes_read);
 		break;
 	}
@@ -128,13 +130,13 @@ void ServerGameState::SendStates(ServerMain* ip_owner)
     {
       neededSize = neededSize < p.second->NeededSize() ? p.second->NeededSize() : neededSize;
     });
-    neededSize += sizeof(PacketType);
+    neededSize += sizeof(Network::PacketType);
     char *buf = new char[neededSize];
     std::for_each(sendMap.begin(), sendMap.end(), [&connection, buf](std::pair<long, GameObjectState*> p)
     {
-      size_t neededSize = p.second->NeededSize() + sizeof(PacketType);
-      ToChar(PT_GOState, buf, sizeof(PacketType));
-      char *buf_end = buf + sizeof(PacketType);
+      size_t neededSize = p.second->NeededSize() + sizeof(Network::PacketType);
+      ToChar(Network::PacketType::PT_GOState, buf, sizeof(Network::PacketType));
+      char *buf_end = buf + sizeof(Network::PacketType);
 
       p.second->Serialize(buf_end, neededSize);
       connection.SendPacket(buf, neededSize);
@@ -145,7 +147,7 @@ void ServerGameState::SendStates(ServerMain* ip_owner)
   }
 
   ++m_last_sent;
-  neededSize = m_pControllers->begin()->second->NeededSize() + sizeof(PacketType);
+  neededSize = m_pControllers->begin()->second->NeededSize() + sizeof(Network::PacketType);
   if(m_last_sent < 200 || neededSize == 0)
     return;
   m_last_sent = 0;
@@ -154,11 +156,11 @@ void ServerGameState::SendStates(ServerMain* ip_owner)
 	//send controller`s states --> currently only resources
 	std::for_each(m_pControllers->begin(), m_pControllers->end(), [&buf, &neededSize, &connection](std::pair<int, IController*> controller)
 	{
-		neededSize = controller.second->NeededSize() + sizeof(PacketType);
-		ToChar(PT_ControllerState, buf, sizeof(PacketType));
-		char *buf_end = buf + sizeof(PacketType);
+		neededSize = controller.second->NeededSize() + sizeof(Network::PacketType);
+		ToChar(Network::PacketType::PT_ControllerState, buf, sizeof(Network::PacketType));
+		char *buf_end = buf + sizeof(Network::PacketType);
 
-		if(0 != controller.second->Serialize(buf_end, neededSize))
+    if(0 != controller.second->Serialize(buf_end, neededSize))
 		{
 			connection.SendPacket(buf, neededSize);
 		}

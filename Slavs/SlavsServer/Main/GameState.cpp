@@ -8,6 +8,8 @@
 
 #include <Utilities/TemplateFunctions.h>
 
+#include <Network/PacketProvider.h>
+#include <Network/PacketType.h>
 #include <Network/include/Net.h>
 
 #include <memory>
@@ -27,10 +29,10 @@ namespace
 
       std::for_each(states_map.begin(), states_map.end(), [&i_connection, &p_buffer](std::pair<long, GameObjectState*> p)
         {
-        size_t neededSize = p.second->NeededSize() + sizeof(PacketType);
-        ToChar(PT_GOState, &p_buffer[0], sizeof(PacketType));
+        size_t neededSize = p.second->NeededSize() + sizeof(Network::PacketType);
+        ToChar(Network::PacketType::PT_GOState, &p_buffer[0], sizeof(Network::PacketType));
 
-        p.second->Serialize(&p_buffer[sizeof(PacketType)], neededSize);
+        p.second->Serialize(&p_buffer[sizeof(Network::PacketType)], neededSize);
         i_connection.SendPacket(&p_buffer[0], neededSize);
         });
 
@@ -87,11 +89,11 @@ namespace Slavs
 
   void GameState::HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read)
     {
-    PacketType pType = (PacketType)FromChar<int>((char*)ip_packet);
+    Network::PacketType pType = (Network::PacketType)FromChar<int>((char*)ip_packet);
     char *packetToClient = NULL;
     switch(pType)
       {
-      case PT_EndGame:
+      case Network::PacketType::PT_EndGame:
         ip_owner->Stop();
         return;
       }

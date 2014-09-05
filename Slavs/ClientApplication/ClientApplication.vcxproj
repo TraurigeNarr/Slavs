@@ -148,9 +148,6 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="OgreFramework.h" />
     <ClInclude Include="OgreMaxTypes.h" />
     <ClInclude Include="OgreMaxUtilities.h" />
-    <ClInclude Include="Packet.h" />
-    <ClInclude Include="PacketProvider.h" />
-    <ClInclude Include="PacketType.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="RendererComponent.h" />
     <ClInclude Include="Screen.h" />
@@ -189,7 +186,6 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="OgreFramework.cpp" />
     <ClCompile Include="CeguiUtilities.cpp" />
     <ClCompile Include="OgreMaxUtilities.cpp" />
-    <ClCompile Include="PacketProvider.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="RendererComponent.cpp" />
     <ClCompile Include="Screen.cpp" />

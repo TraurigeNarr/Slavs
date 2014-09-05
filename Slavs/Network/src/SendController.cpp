@@ -24,7 +24,7 @@ void SendController::Update(long i_elapsed_time)
 {
   std::for_each(m_senders.begin(), m_senders.end(), [i_elapsed_time](TSender ip_sender)
   {
-    Packet p(PT_None, nullptr);
+    Packet p(PacketType::PT_None, nullptr);
     ip_sender->Update(i_elapsed_time);
     if (ip_sender->HasChanges())
       ip_sender->Serialize(p);

@@ -3,7 +3,7 @@
 #include "PacketProvider.h"
 #include "Packet.h"
 
-#include <Network/include/Net.h>
+#include "include/Net.h"
 
 #include <Common/Utilities/TemplateFunctions.h>
 

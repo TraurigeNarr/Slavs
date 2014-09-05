@@ -1,5 +1,7 @@
 #pragma once
 
+#include "include\NetworkAPI.h"
+
 namespace net
   {
   class Connection;
@@ -19,11 +21,11 @@ namespace Network
       net::Connection&                  m_connection;
 
     public:
-      PacketProvicer (net::Connection& i_connection);
-      ~PacketProvicer();
+      NETWORKEXPORT                   PacketProvicer (net::Connection& i_connection);
+      NETWORKEXPORT                   ~PacketProvicer();
 
-      Packet           GetNextPacket() const;
-      net::Connection& GetConnection();
+      NETWORKEXPORT Packet            GetNextPacket() const;
+      net::Connection&                GetConnection();
     };
 
   //////////////////////////////////////////////////////////////////////////

@@ -8,9 +8,9 @@
 
 #include "TimeUtilities.h"
 
-#include "PacketProvider.h"
-#include "Packet.h"
-
+#include <Network/PacketProvider.h>
+#include <Network/PacketType.h>
+#include <Network/Packet.h>
 #include <Network/include/Connection.h>
 
 #include <Common/Utilities/TemplateFunctions.h>

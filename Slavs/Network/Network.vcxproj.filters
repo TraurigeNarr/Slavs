@@ -12,6 +12,9 @@
     <Filter Include="_Maintanance">
       <UniqueIdentifier>{31d20360-a941-47ad-b8d1-9c462371d611}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Packets">
+      <UniqueIdentifier>{f712aa6a-5c0d-4c55-817b-00e3eb0be5ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Net.h">
@@ -41,6 +44,18 @@
     <ClInclude Include="_Link.h">
       <Filter>_Maintanance</Filter>
     </ClInclude>
+    <ClInclude Include="Packet.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketProvider.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketType.h">
+      <Filter>Packets</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>_Maintanance</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Net.cpp">
@@ -63,6 +78,12 @@
     </ClCompile>
     <ClCompile Include="src\Socket.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketProvider.cpp">
+      <Filter>Packets</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>_Maintanance</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

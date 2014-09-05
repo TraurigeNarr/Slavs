@@ -92,8 +92,7 @@ namespace Slavs
           i_loading_fsm.m_game_context.RegisterController( std::unique_ptr<IController>
             (
             new SPlayerController(i_loading_fsm.mp_connection->GetAddress().GetAddress(), i_loading_fsm.m_game_context)
-            )
-            );
+            ));
 
           // load game
           GameSerializer serializer(i_loading_fsm.m_game_context);
@@ -134,18 +133,17 @@ namespace Slavs
 
             std::unique_ptr<char[]> p_buffer(new char[256]);
 
-            ToChar(PT_ContentNumber, &p_buffer[0], sizeof(PacketType));
-            ToChar(definitions.size(), &p_buffer[sizeof(PacketType)], sizeof(size_t));
-            mp_connection->SendPacket( &p_buffer[0], sizeof(PacketType) + sizeof(size_t) );
-            
+            ToChar(Network::PacketType::PT_ContentNumber, &p_buffer[0], sizeof(Network::PacketType));
+            ToChar(definitions.size(), &p_buffer[sizeof(Network::PacketType)], sizeof(size_t));
+            mp_connection->SendPacket( &p_buffer[0], sizeof(Network::PacketType) + sizeof(size_t) );
             // send definitions
             std::for_each(definitions.begin(), definitions.end(), [&p_buffer, this](std::pair<std::string, int> i_definition)
               {
-              size_t needed_size = sizeof(PacketType) + i_definition.first.size() + sizeof(int) + 1;
-              ToChar(PT_Definitions, &p_buffer[0], sizeof(PacketType));
-              i_definition.first.copy(&p_buffer[sizeof(PacketType)], i_definition.first.size());
-              p_buffer[sizeof(PacketType)+i_definition.first.size()] = ';';
-              ToChar(i_definition.second, &p_buffer[sizeof(PacketType)+i_definition.first.size()+1], sizeof(int));
+              size_t needed_size = sizeof(Network::PacketType) + i_definition.first.size() + sizeof(int) + 1;
+              ToChar(Network::PacketType::PT_Definitions, &p_buffer[0], sizeof(Network::PacketType));
+              i_definition.first.copy(&p_buffer[sizeof(Network::PacketType)], i_definition.first.size());
+              p_buffer[sizeof(Network::PacketType)+i_definition.first.size()] = ';';
+              ToChar(i_definition.second, &p_buffer[sizeof(Network::PacketType)+i_definition.first.size()+1], sizeof(int));
               mp_connection->SendPacket(&p_buffer[0], needed_size);
               });
             }
@@ -166,22 +164,22 @@ namespace Slavs
             std::unique_ptr<char[]> p_buffer(new char[256]);
 
             // send number of objects
-            ToChar(PT_ContentNumber, &p_buffer[0], sizeof(PacketType));
-            ToChar(mp_objects_states->size(), &p_buffer[sizeof(PacketType)], sizeof(size_t));
-            mp_connection->SendPacket( &p_buffer[0], sizeof(PacketType) + sizeof(size_t) );
+            ToChar(Network::PacketType::PT_ContentNumber, &p_buffer[0], sizeof(Network::PacketType));
+            ToChar(mp_objects_states->size(), &p_buffer[sizeof(Network::PacketType)], sizeof(size_t));
+            mp_connection->SendPacket( &p_buffer[0], sizeof(Network::PacketType) + sizeof(size_t) );
 
             // send objects states
             std::for_each(mp_objects_states->begin(), mp_objects_states->end(), [&p_buffer, this](std::pair<long, GameObjectState*> p)
               {
-              int packet_size = p.second->NeededSize() + sizeof(PacketType);
-              ToChar(PT_GOState, &p_buffer[0], sizeof(PacketType));
-              p.second->Serialize(&p_buffer[sizeof(PacketType)], packet_size);
+              int packet_size = p.second->NeededSize() + sizeof(Network::PacketType);
+              ToChar(Network::PacketType::PT_GOState, &p_buffer[0], sizeof(Network::PacketType));
+              p.second->Serialize(&p_buffer[sizeof(Network::PacketType)], packet_size);
               mp_connection->SendPacket(&p_buffer[0], packet_size);
               });
             
             //after sending all states send msg about server ready state
-            ToChar(PT_ServerReady, &p_buffer[0], sizeof(PacketType));
-            mp_connection->SendPacket( &p_buffer[0], sizeof(PacketType) );
+            ToChar(Network::PacketType::PT_ServerReady, &p_buffer[0], sizeof(Network::PacketType));
+            mp_connection->SendPacket( &p_buffer[0], sizeof(Network::PacketType) );
             }
 
           };

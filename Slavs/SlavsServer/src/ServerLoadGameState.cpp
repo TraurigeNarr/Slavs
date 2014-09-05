@@ -10,7 +10,8 @@
 #include "PluginSystem/MetaFactory.h"
 
 #include <Net.h>
-
+#include <Network/Packet.h>
+#include <Network/PacketType.h>
 //common
 #include <Game/Enumerations.h>
 #include <Game/GameObjectState.h>
@@ -62,10 +63,10 @@ void ServerLoadGameState::Enter(ServerMain* ip_owner)
 	net::Connection &connection = *ip_owner->GetConnection();
 	std::for_each(sendMap.begin(), sendMap.end(), [&neededSize, &connection](std::pair<long, GameObjectState*> p)
 	{
-		neededSize = p.second->NeededSize() + sizeof(PacketType);
+		neededSize = p.second->NeededSize() + sizeof(Network::PacketType);
 		char *buf = new char[neededSize];
-		ToChar(PT_GOState, buf, sizeof(PacketType));
-		char *buf_end = buf + sizeof(PacketType);
+    ToChar(Network::PacketType::PT_GOState, buf, sizeof(Network::PacketType));
+		char *buf_end = buf + sizeof(Network::PacketType);
 
 		p.second->Serialize(buf_end, neededSize);
 		connection.SendPacket(buf, neededSize);
@@ -74,9 +75,9 @@ void ServerLoadGameState::Enter(ServerMain* ip_owner)
 	//clear map
 	ClearSTLMap(sendMap);
 	//after sending all states send msg about server ready state
-	char *packetToClient = new char[sizeof(PacketType)];
-	ToChar(PT_ServerReady, packetToClient, sizeof(PacketType));
-	ip_owner->GetConnection()->SendPacket( packetToClient, sizeof( PacketType ) );
+	char *packetToClient = new char[sizeof(Network::PacketType)];
+	ToChar(Network::PacketType::PT_ServerReady, packetToClient, sizeof(Network::PacketType));
+	ip_owner->GetConnection()->SendPacket( packetToClient, sizeof( Network::PacketType ) );
 	//wait for respond of client that it receives the packet
 	delete packetToClient;
 	printf("Begin update load\n");
@@ -103,11 +104,11 @@ void ServerLoadGameState::Exit(ServerMain* ip_owner)
 
 void ServerLoadGameState::HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read)
 {
-	PacketType pType = (PacketType)FromChar<int>((char*)ip_packet);
+	Network::PacketType pType = (Network::PacketType)FromChar<int>((char*)ip_packet);
 	char *packetToClient = NULL;
 	switch(pType)
 	{
-	case PT_ClientReady:
+	case Network::PacketType::PT_ClientReady:
 		if(!Singleton<ServerGameState>::IsValid())
 		{
 			new Singleton<ServerGameState>(new ServerGameState(m_pGameContext, m_pControllers));

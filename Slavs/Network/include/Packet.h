@@ -1,10 +1,11 @@
 #ifndef Packet_h
 #define Packet_h
 
-#include <Game/Enumerations.h>
+#include "Network/PacketType.h"
 
 namespace net
 {
+using namespace Network;
 	class Packet
 	{
 		PacketType m_PacketType;

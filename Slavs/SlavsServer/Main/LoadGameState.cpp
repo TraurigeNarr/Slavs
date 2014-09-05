@@ -86,15 +86,15 @@ namespace Slavs
 
   void LoadGameState::HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read)
     {
-    PacketType pType = (PacketType)FromChar<int>((char*)ip_packet);
+    Network::PacketType pType = (Network::PacketType)FromChar<int>((char*)ip_packet);
     char *packetToClient = NULL;
     switch(pType)
       {
-      case PT_Achived:
+      case Network::PacketType::PT_Achived:
         {
-        std::unique_ptr<char[]> p_buffer(new char[sizeof(PacketType)+1]);
-        ToChar(PT_Connects, &p_buffer[0], sizeof(PacketType));
-        ip_owner->GetConnection()->SendPacket( &p_buffer[0], sizeof(PacketType)+1);
+        std::unique_ptr<char[]> p_buffer(new char[sizeof(Network::PacketType)+1]);
+        ToChar(Network::PacketType::PT_Connects, &p_buffer[0], sizeof(Network::PacketType));
+        ip_owner->GetConnection()->SendPacket( &p_buffer[0], sizeof(Network::PacketType)+1);
         mp_loading_fsm->process_event(LoadingStages::ConfirmAchievement());
         }
         break;

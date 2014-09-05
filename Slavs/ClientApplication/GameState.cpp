@@ -15,14 +15,13 @@
 
 #include "GameCamera.h"
 
-#include "PacketProvider.h"
-#include "PacketType.h"
-
 #include <GameCore/TimeController.h>
 
 #include <Common/Patterns/StateMachine.h>
 #include <Common/Utilities/TemplateFunctions.h>
 
+#include <Network/PacketProvider.h>
+#include <Network/PacketType.h>
 #include <Network/include/Net.h>
 
 #include <exception>

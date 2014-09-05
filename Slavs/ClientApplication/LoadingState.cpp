@@ -12,10 +12,10 @@
 #include "ScreenManager.h"
 #include "LoadingScreen.h"
 
-#include "PacketProvider.h"
-
 #include <Common/Patterns/StateMachine.h>
 
+
+#include <Network/PacketProvider.h>
 #include <Network/include/Net.h>
 
 #include <exception>
