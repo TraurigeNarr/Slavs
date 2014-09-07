@@ -51,6 +51,9 @@
     <Filter Include="Game\ModelController\OgreMax">
       <UniqueIdentifier>{0fe3ed16-315c-42a6-b806-704c1960f6d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\States\GameState\SceneController">
+      <UniqueIdentifier>{f16ceefa-8b93-42f2-9d50-aff7ce5fe99e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -182,6 +185,9 @@
     <ClInclude Include="GameCamera.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="SceneController.h">
+      <Filter>Application\States\GameState\SceneController</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -285,6 +291,9 @@
     </ClCompile>
     <ClCompile Include="GameCamera.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneController.cpp">
+      <Filter>Application\States\GameState\SceneController</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

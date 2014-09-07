@@ -150,6 +150,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="OgreMaxUtilities.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="RendererComponent.h" />
+    <ClInclude Include="SceneController.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -188,6 +189,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="OgreMaxUtilities.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="RendererComponent.cpp" />
+    <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="stdafx.cpp">

@@ -9,6 +9,7 @@ namespace ClientGame
   {
   class ClientComposer;
   class ModelController;
+  class SceneController;
   }
 
 class ClientGameContext : public GameContext
@@ -18,6 +19,8 @@ class ClientGameContext : public GameContext
     std::unique_ptr<ClientGame::ModelController>  mp_model_controller;
 
     bool                                          m_create_unknown_objects;
+
+    std::unique_ptr<ClientGame::SceneController>  mp_scene_controller;
 
   private:
     void          _ApplyState(GameObjectState& i_state, GameObjectUniquePtr& ip_object);
@@ -36,6 +39,8 @@ class ClientGameContext : public GameContext
     void                          AddDefinition(const std::pair<std::string, int>&& i_definition);
     
     void                          Initialize();
+
+    virtual void                  TickPerformed() override;
 
     ClientGame::ModelController&  GetModelControlelr();    
   };

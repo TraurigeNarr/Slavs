@@ -5,6 +5,7 @@
 #include "ClientComposer.h"
 #include "ModelController.h"
 #include "OgreFramework.h"
+#include "SceneController.h"
 
 #include <GameCore/IController.h>
 
@@ -39,6 +40,7 @@ namespace
 ClientGameContext::ClientGameContext(const std::string& i_context_name, OgreFramework& i_framework)
   : GameContext(i_context_name)
   , mp_model_controller(new ClientGame::ModelController(i_framework))
+  , mp_scene_controller(new ClientGame::SceneController(i_framework))
   , mp_composer(new ClientGame::ClientComposer(*this))
   , m_create_unknown_objects(true)
   {  }
@@ -50,6 +52,7 @@ void ClientGameContext::ReleaseContext()
   {
   mp_model_controller.reset();
   mp_composer.reset();
+  mp_scene_controller.reset();
   }
 
 void ClientGameContext::_ApplyState(GameObjectState& i_state, GameObjectUniquePtr& ip_object)
@@ -108,7 +111,14 @@ void ClientGameContext::AddDefinition(const std::pair<std::string, int>&& i_defi
   mp_composer->AddObjectDefinition(i_definition.first, i_definition.second);
   }
 
+void ClientGameContext::TickPerformed()
+  {
+  __super::TickPerformed();
+  mp_scene_controller->Update(10);
+  }
+
 void ClientGameContext::Initialize()
   {
   mp_composer->Initialize(FileUtilities::JoinPath(FileUtilities::GetApplicationDirectory(), OBJECT_CONFIGURATION_FILE));
+  mp_scene_controller->Initialize();
   }
