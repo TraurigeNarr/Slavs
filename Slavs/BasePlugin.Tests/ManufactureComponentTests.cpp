@@ -120,13 +120,51 @@ TEST(ManufactureComponent, HireWorker_StartWorkingOnNextTick)
   MockIEconomyManager* economy_manager = static_cast<MockIEconomyManager*>(goverment_mock.GetEconomyManager());
   MockIStoreSystem*    store_system = static_cast<MockIStoreSystem*>(economy_manager->GetStoreSystem());
   Slavs::ResourcePair res_pair(static_cast<GameResourceType>(0), 10);
-  EXPECT_CALL(*store_system, Add(res_pair))
+  EXPECT_CALL(*store_system, AddMock(res_pair))
     .Times(1);
 
   for (size_t i = 0; i < manufacture.GetOperatingCycle(); ++i)
     manufacture.TickPerformed();
 
   EXPECT_FALSE(manufacture.IsWorking());
+  EXPECT_TRUE(manufacture.HireWorker(&human));
+  }
+
+TEST(ManufactureComponent, AddResourcesFails_Should_WaitingForSotreState)
+  {
+  BaseObjectComposer composer;
+  Slavs::GameContext game_context;
+  Slavs::GameObject game_object(game_context, 0, 0, 0);
+  MockIController controller(0, game_context);
+  game_object.SetOwner(&controller);
+
+  ManufactureComponent manufacture(&game_object, 0, composer);
+
+  MockIHuman human(&game_object, 1);
+
+  EXPECT_TRUE(manufacture.IsSuitable(&human));
+  EXPECT_TRUE(manufacture.HireWorker(&human));
+
+  manufacture.TickPerformed();
+
+  EXPECT_TRUE(manufacture.IsWorking());
+
+  MockGoverment& goverment_mock         = static_cast<MockGoverment&>(controller.GetGoverment());
+  MockIEconomyManager* economy_manager  = static_cast<MockIEconomyManager*>(goverment_mock.GetEconomyManager());
+  MockIStoreSystem*    store_system     = static_cast<MockIStoreSystem*>(economy_manager->GetStoreSystem());
+  store_system->m_flush_resources       = false;
+  Slavs::ResourcePair res_pair(static_cast<GameResourceType>(0), 10);
+  EXPECT_CALL(*store_system, AddMock(res_pair))
+    .Times(1);
+
+  EXPECT_CALL(*economy_manager, ProcessEvent(EconomyEvent::EE_NEED_STORE, &manufacture))
+    .Times(1);
+
+  for (size_t i = 0; i < manufacture.GetOperatingCycle(); ++i)
+    manufacture.TickPerformed();
+
+  EXPECT_FALSE(manufacture.IsWorking());
+  EXPECT_FALSE(manufacture.HireWorker(&human));
   }
 
 TEST(ManufactureComponent, WhenManufactureEndsCycle_NeedWorkers_ReturnTrue_WorkersFlushed)

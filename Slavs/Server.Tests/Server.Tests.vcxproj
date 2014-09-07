@@ -76,9 +76,7 @@
       <AdditionalDependencies>gtestd.lib;gmock.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SlavsServer.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network_d.dll" "$(OutputPath)" /Y /R /I
-"$(TargetPath)"</Command>
+      <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\SlavsServer.dll" "$(OutputPath)" /Y /R /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -102,9 +100,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network_d.dll" "$(OutputPath)"
       <AdditionalDependencies>gtest.lib;gmock.lib;</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SlavsServer.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network.dll" "$(OutputPath)" /Y /R /I
-"$(TargetPath)"</Command>
+      <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\SlavsServer.dll" "$(OutputPath)" /Y /R /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

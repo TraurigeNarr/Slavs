@@ -75,9 +75,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SlavsServer.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network_d.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin.dll" "$(OutputPath)" /Y /R /I
+      <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\SlavsServer.dll" "$(OutputPath)" /Y /R /I
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Network.dll" "$(OutputPath)" /Y /R /I
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\server\plugins\SlavsBasePlugin.dll" "$(OutputPath)" /Y /R /I
 "$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -101,9 +101,9 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\$(Configuration);</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SlavsServer.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\Network.dll" "$(OutputPath)" /Y /R /I
-xcopy "$(SolutionDir)..\Binaries\$(Configuration)\server\plugins\SlavsBasePlugin.dll" "$(OutputPath)" /Y /R /I
+      <Command>xcopy "$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\SlavsServer.dll" "$(OutputPath)" /Y /R /I
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Network.dll" "$(OutputPath)" /Y /R /I
+xcopy "$(SolutionDir)..\Binaries\$(Configuration)\ServerSide\server\plugins\SlavsBasePlugin.dll" "$(OutputPath)" /Y /R /I
 "$(TargetPath)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

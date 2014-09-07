@@ -4,6 +4,20 @@
 
 class MockIStoreSystem : public IStoreSystem {
 public:
+
+  bool m_flush_resources;
+
+  MockIStoreSystem (bool i_flush_resources = true)
+    : m_flush_resources(i_flush_resources)
+    {    }
+
+  virtual void Add(Slavs::ResourcePair& io_resource) override
+    {
+    AddMock(io_resource);
+    if (m_flush_resources)
+      io_resource.second = 0;
+    }
+
   MOCK_METHOD1(Register,
     void(Slavs::StorePtr ip_store_house));
   MOCK_METHOD1(Remove,
@@ -11,13 +25,13 @@ public:
   MOCK_METHOD1(UpdateStoreInformation,
     void(Slavs::StorePtr ip_store_house));
   MOCK_METHOD1(Add,
-    void(Slavs::TResources& i_new_resources));
+    void(Slavs::TResources& io_new_resources));
   MOCK_METHOD1(Add,
-    void(Slavs::TGameResourceBox i_new_resource));
+    void(Slavs::TGameResourceBox iop_new_resource));
+  MOCK_METHOD1(AddMock,
+    void(Slavs::ResourcePair& io_resource));
   MOCK_METHOD1(Add,
-    void(Slavs::ResourcePair i_resource));
-  MOCK_METHOD1(Add,
-    void(Slavs::ResourcesCountSet i_resources));
+    void(Slavs::ResourcesCountSet& i_resources));
   MOCK_METHOD2(ProcessEvent,
     void(EconomyEvent, void*));
   MOCK_METHOD2(PeekResources,

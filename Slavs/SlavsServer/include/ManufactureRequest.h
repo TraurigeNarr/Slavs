@@ -21,9 +21,9 @@ public:
 
   SLAVS_SERVER_EXPORT Slavs::EmployerPtr          GetOwner() const;
 
-  bool IsActive() const;
-  void Activate();
-  void Deactivate();
+  SLAVS_SERVER_EXPORT bool                        IsActive() const;
+  void                                            Activate();
+  void                                            Deactivate();
 };
 
 typedef std::map<Slavs::EmployerPtr, const EmployerInformation&>	EmployersInformation;
