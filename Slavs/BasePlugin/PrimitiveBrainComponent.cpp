@@ -97,9 +97,8 @@ namespace BasePlugin
 
     for (const EmployerInformation* p_employer_information : available_employers)
       {
-      if (p_employer_information->IsActive() && p_employer_information->GetOwner()->IsSuitable(mp_human_component))
+      if (p_employer_information->IsActive() && p_employer_information->GetOwner()->IsSuitable(mp_human_component) && p_employer_information->GetOwner()->HireWorker(mp_human_component))
         {
-        p_employer_information->GetOwner()->HireWorker(mp_human_component);
         mp_human_component->HandleMessage(Telegram(0, 0, 0, 1));
         m_period_without_work = 0;
         m_vaccation = true;

@@ -22,12 +22,14 @@ namespace BasePlugin
 
     private:
       const BaseObjectComposer&   m_object_composer;
-      size_t                m_max_population;
-      Slavs::Humans         m_inhabitants;
+      size_t                      m_max_population;
+      long                        m_new_inhabitant_ticks;
+      long                        m_current_tick;
+      Slavs::Humans               m_inhabitants;
 
-      mutable bool          m_valid;
-      mutable size_t        m_unemployed_number;
-      mutable Slavs::Humans m_unemployed;
+      mutable bool                m_valid;
+      mutable size_t              m_unemployed_number;
+      mutable Slavs::Humans       m_unemployed;
 
     private:
       void          Validate() const;
@@ -63,7 +65,8 @@ namespace BasePlugin
   class HouseComponentSerializer : public IComponentSerializer
     {
     private:
-      size_t m_max_population;
+      size_t  m_max_population;
+      long    m_new_inhabitant_ticks;
 
     public:
       HouseComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer);

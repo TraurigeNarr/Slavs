@@ -40,6 +40,11 @@ namespace Slavs
       /// dependencies are present in object
       bool          ProbeComponents ();
 
+      GameContext&  GetContext()
+        {
+        return m_context;
+        }
+
     // IMovable
     public:
       virtual void                    SetPosition(const Vector2D& i_position);

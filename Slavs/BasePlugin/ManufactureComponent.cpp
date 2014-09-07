@@ -174,7 +174,17 @@ namespace BasePlugin
       if (m_current_tick == m_operating_cycle)
         {
         size_t number = m_initial_resources_mining*m_workers.size();
-        static_cast<Slavs::GameObject*>(mp_owner)->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->Add(std::make_pair(m_mining_resource_type, number));
+        auto& resources = std::make_pair(m_mining_resource_type, number);
+
+        static_cast<Slavs::GameObject*>(mp_owner)->GetController()->GetGoverment().GetEconomyManager()->GetStoreSystem()->Add(resources);
+        if (resources.second != 0)
+          {
+          m_state = ManufactureStates::MS_WAINTING_FOR_STORE;
+          static_cast<Slavs::GameObject*>(mp_owner)->GetController()->GetGoverment().GetEconomyManager()->ProcessEvent(EconomyEvent::EE_NEED_STORE, this);
+          }
+        else
+          m_state = ManufactureStates::MS_WAITING_FOR_WORKERS;
+
         if (auto p_home = (*m_workers.begin())->GetHome())
           OrderHumansMove(m_workers, *p_home->GetOwner());
         else
@@ -183,7 +193,6 @@ namespace BasePlugin
         for (Slavs::HumanPtr p_human : m_workers)
           p_human->HandleMessage(fired_message);
         m_workers.clear();
-        m_state = ManufactureStates::MS_WAITING_FOR_WORKERS;
         }
       }
     }

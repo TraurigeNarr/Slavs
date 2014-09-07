@@ -2,6 +2,8 @@
 
 #include "HouseComponent.h"
 
+#include "HumanComponent.h"
+
 #include "BaseObjectComposer.h"
 #include "TypeNames.h"
 #include "TypeEnumerations.h"
@@ -9,6 +11,7 @@
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
 
+#include <SlavsServer/Game/GameContext.h>
 #include <SlavsServer/PluginSystem/IHuman.h>
 #include <SlavsServer/include/IController.h>
 #include <SlavsServer/include/Management/Goverment.h>
@@ -21,6 +24,8 @@ namespace BasePlugin
   // Human Component Serializer 
   HouseComponentSerializer::HouseComponentSerializer(int i_component_global_id, const BaseObjectComposer& i_composer)
     : IComponentSerializer(i_component_global_id, i_composer)
+    , m_max_population(2)
+    , m_new_inhabitant_ticks(1000)
     {
 
     }
@@ -40,22 +45,16 @@ namespace BasePlugin
     elementName = "";
 #endif
 
-    const TiXmlElement* childElement = 0;
-    const TiXmlElement*	foodElement = 0;
-
-    while (childElement = XmlUtilities::IterateChildElements(&i_configuration_node, childElement))
-      {
-      elementName = childElement->Value();
-      // food preferences
-      m_max_population = XmlUtilities::GetIntAttribute(childElement, "max_population", 8);
-      }
+    m_max_population        = XmlUtilities::GetIntAttribute(&i_configuration_node, "max_population", 2);
+    m_new_inhabitant_ticks  = XmlUtilities::GetIntAttribute(&i_configuration_node, "new_inhabitant_ticks", 1000);
     }
 
   void HouseComponentSerializer::ApplyTo(IComponent& i_component) const 
     {
     assert (typeid(HouseComponent) == typeid(i_component));
     HouseComponent& house = static_cast<HouseComponent&>(i_component);
-    house.m_max_population = m_max_population;
+    house.m_max_population        = m_max_population;
+    house.m_new_inhabitant_ticks  = m_new_inhabitant_ticks;
     }
 
   IComponent* HouseComponentSerializer::CreateComponent(Slavs::GameObject* ip_object) const
@@ -73,6 +72,8 @@ namespace BasePlugin
     , m_max_population(0)
     , m_valid(false)
     , m_object_composer(i_composer)
+    , m_current_tick(0)
+    , m_new_inhabitant_ticks(0)
     {
     if (nullptr == ih_owner)
       throw std::logic_error("Owner cannot be nullptr");
@@ -81,7 +82,7 @@ namespace BasePlugin
 
   HouseComponent::~HouseComponent()
     {
-
+    m_inhabitants.clear();
     }
 
   void HouseComponent::Validate() const
@@ -109,7 +110,26 @@ namespace BasePlugin
 
   void HouseComponent::TickPerformed()
     {
+    if (m_inhabitants.size() >= m_max_population)
+      return;
 
+    if (m_current_tick < m_new_inhabitant_ticks)
+      {
+      ++m_current_tick;
+      return;
+      }
+
+    Slavs::GameObject* p_owner = static_cast<Slavs::GameObject*>(mp_owner);
+    Vector2D& house_position = p_owner->GetPosition();
+    Slavs::GameObject* p_new_human = static_cast<Slavs::GameContext&>(p_owner->GetContext()).AddObject(
+                                                        m_object_composer.GetObjectGlobalID(ObjectType::OT_HUMAN), 
+                                                        Vector2D(house_position.x - rand()%1000, house_position.y + rand()%1000), 
+                                                        p_owner->GetController()->GetMask(), 
+                                                        p_owner->GetQueryMask());
+    HumanComponent* p_component = p_new_human->GetComponent<HumanComponent>();
+    p_component->SetHome(this);
+    m_inhabitants.insert(p_component);
+    m_current_tick = 0;
     }
 
   bool HouseComponent::HandleMessage(const Telegram& msg)

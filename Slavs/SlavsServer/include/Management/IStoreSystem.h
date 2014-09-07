@@ -19,11 +19,11 @@ public:
   virtual void            UpdateStoreInformation(Slavs::StorePtr ip_store_house) = 0;
   virtual void            Remove(Slavs::StorePtr ip_store_house) = 0;
   
-  virtual void            Add(Slavs::TResources& i_new_resources) = 0;
-  virtual void            Add(Slavs::TGameResourceBox i_new_resource) = 0;
+  virtual void            Add(Slavs::TResources& io_new_resources) = 0;
+  virtual void            Add(Slavs::TGameResourceBox iop_new_resource) = 0;
 
-  virtual void            Add(Slavs::ResourcePair i_resource) = 0;
-  virtual void            Add(Slavs::ResourcesCountSet i_resources) = 0;
+  virtual void            Add(Slavs::ResourcePair& io_resource) = 0;
+  virtual void            Add(Slavs::ResourcesCountSet& io_resources) = 0;
 
   virtual void            ProcessEvent(EconomyEvent i_event, void* ip_data = nullptr) = 0;
 

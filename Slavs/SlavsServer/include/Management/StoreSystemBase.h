@@ -21,11 +21,11 @@ public:
   virtual void          SLAVS_SERVER_EXPORT UpdateStoreInformation(Slavs::StorePtr ip_store_house) override;
   virtual void          SLAVS_SERVER_EXPORT Remove(Slavs::StorePtr ip_store_house) override;
 
-  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::TResources& i_new_resources) override;
-  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::TGameResourceBox i_new_resource) override;
+  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::TResources& io_new_resources) override;
+  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::TGameResourceBox iop_new_resource) override;
 
-  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::ResourcePair i_resource) override;
-  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::ResourcesCountSet i_resources) override;
+  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::ResourcePair& io_resource) override;
+  virtual void          SLAVS_SERVER_EXPORT Add(Slavs::ResourcesCountSet& io_resources) override;
 
   virtual void          SLAVS_SERVER_EXPORT ProcessEvent(EconomyEvent i_event, void* ip_data = nullptr) override;
   

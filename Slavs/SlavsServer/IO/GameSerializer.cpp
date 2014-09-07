@@ -63,6 +63,8 @@ namespace
       return GameResourceType::GR_IronOre;
     if (i_resource_name == "wool")
       return GameResourceType::GR_Wool;
+    if (i_resource_name == "bread")
+      return GameResourceType::GR_Bread;
     return GameResourceType::GR_None;
     }
 

@@ -123,48 +123,48 @@ size_t StoreSystemBase::GetResources(GameResourceType i_type, size_t i_number)
   return std::make_pair(it_res->second.uiCurrentResources, it_res->second.uiMaxResources);
   }
 
-void StoreSystemBase::Add(Slavs::TResources& i_new_resources)
+void StoreSystemBase::Add(Slavs::TResources& io_new_resources)
 {
-  while(!i_new_resources.empty())
+  while(!io_new_resources.empty())
 	{
-    Add(i_new_resources.back());
-		i_new_resources.pop_back();
+    Add(io_new_resources.back());
+    if (io_new_resources.back()->Empty())
+      io_new_resources.pop_back();
 	}
 }
 
-void StoreSystemBase::Add(Slavs::TGameResourceBox i_new_resource)
+void StoreSystemBase::Add(Slavs::TGameResourceBox iop_new_resource)
 {
-  GameResourceType res_type = i_new_resource->GetGRType();
-  size_t initial_resources = i_new_resource->GetNumber();
+  GameResourceType res_type = iop_new_resource->GetGRType();
+  size_t initial_resources = iop_new_resource->GetNumber();
 
   for(size_t i = 0; i < m_stores.size(); ++i)
   {
-    m_stores[i]->AddResource(*i_new_resource);
-    if(i_new_resource->GetNumber() == 0)
+    m_stores[i]->AddResource(*iop_new_resource);
+    if(iop_new_resource->GetNumber() == 0)
     {
       assert(m_resource_data.end() != m_resource_data.find(res_type) && 
         "SResourceManager::Add[0]: there is no such container");
       break;//we put all resources to store
     }
   }
-  m_resource_data[res_type].uiCurrentResources += (initial_resources - i_new_resource->GetNumber());
-  m_resource_data[res_type].bHasChanges = i_new_resource->GetNumber() != initial_resources;
+  m_resource_data[res_type].uiCurrentResources += (initial_resources - iop_new_resource->GetNumber());
+  m_resource_data[res_type].bHasChanges = iop_new_resource->GetNumber() != initial_resources;
 }
 
-void StoreSystemBase::Add(Slavs::ResourcePair i_resource)
+void StoreSystemBase::Add(Slavs::ResourcePair& io_resource)
   {
-  GameResourceType res_type = static_cast<GameResourceType>(i_resource.first);
-  size_t initial_resources = i_resource.second;
+  GameResourceType res_type = static_cast<GameResourceType>(io_resource.first);
+  size_t initial_resources = io_resource.second;
   
-  // TODO: refactor when Manufacture component will be changed
-
-  GameResourceBox box(res_type, initial_resources, 0, 0);
+  GameResourceBox box(res_type, io_resource.second, 0, 0);
   Add(&box);
+  io_resource.second = box.GetNumber();
   }
 
-void StoreSystemBase::Add(Slavs::ResourcesCountSet i_resources)
+void StoreSystemBase::Add(Slavs::ResourcesCountSet& io_resources)
   {
-  for (Slavs::ResourcePair resource : i_resources)
+  for (Slavs::ResourcePair& resource : io_resources)
     Add(resource);
   }
 

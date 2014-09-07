@@ -28,3 +28,8 @@ Slavs::EmployerPtr EmployerInformation::GetOwner() const
 {
   return mp_employer;
 }
+
+bool EmployerInformation::IsActive() const
+  {
+  return mp_employer->NeedWorkers();
+  }

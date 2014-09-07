@@ -38,8 +38,3 @@ inline void EmployerInformation::Deactivate()
   {
   m_active = false;
   }
-
-inline bool EmployerInformation::IsActive() const
-  {
-  return m_active;
-  }
