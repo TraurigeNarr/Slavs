@@ -37,7 +37,7 @@ namespace ClientStates
       net::Address                                          m_connection_address;
 
       std::unique_ptr<Network::PacketProvicer>              mp_packet_provider;
-      std::shared_ptr<UI::IMessageProvider>                 mp_message_provider;
+      std::unique_ptr<UI::IMessageProvider>                 mp_message_provider;
 
       std::unique_ptr<ClientGameContext>                    mp_context;
 
@@ -56,7 +56,7 @@ namespace ClientStates
 
       net::Address GetConnectionAddress() const;
       StateMachine<LoadingState, long>& GetStateMachine();
-      std::shared_ptr<UI::IMessageProvider> GetMessageProvider() const;
+      UI::IMessageProvider* GetMessageProvider() const;
       ClientGameContext& GetContext();
     };
 
@@ -72,9 +72,9 @@ namespace ClientStates
     return *mp_state_machine;
     }
 
-  inline std::shared_ptr<UI::IMessageProvider> LoadingState::GetMessageProvider() const
+  inline UI::IMessageProvider* LoadingState::GetMessageProvider() const
     {
-    return mp_message_provider;
+    return mp_message_provider.get();
     }
 
   inline ClientGameContext& LoadingState::GetContext()

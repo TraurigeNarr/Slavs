@@ -10,6 +10,7 @@ class EconomyManagerBase : public IEconomyManager
 protected:
   std::unique_ptr<IStoreSystem>             mp_store_system;
   std::unique_ptr<IResourceManager>         mp_resource_manager;
+  bool                                      m_waiting_for_store;
 
 public:
   virtual SLAVS_SERVER_EXPORT                           ~EconomyManagerBase();
@@ -22,6 +23,9 @@ public:
   virtual void                                          SetStoreSystem(std::unique_ptr<IStoreSystem>&& ip_store) override;
   virtual Slavs::ResourceManagerPtr                     GetResourceManager() const override;
   virtual void                                          SetResourceManager(std::unique_ptr<IResourceManager>&& ip_resource_manager) override;
+
+  virtual void                                          Serialize(Network::SerializableData& i_data) const override;
+  virtual void                                          Deserialize(const Network::SerializableData& i_packet) override;
 };
 
 //////////////////////////////////////////////////////////////////////////

@@ -1,11 +1,12 @@
 #include "stdafx.h"
 
+#include "GameStateMessageProvider.h"
 #include "GameState.h"
 
 #include "ClientGameContext.h"
 #include "PlayerController.h"
 #include "GameBaseCommandHandler.h"
-#include "GameStateMessageProvider.h"
+
 
 #include "Application.h"
 #include "InputManager.h"
@@ -65,8 +66,8 @@ namespace ClientStates
     screen_manager.SetCurrentScreen(std::unique_ptr<Screen>(new GameScreenMain(screen_manager)));
 
     // set message provider
-    mp_message_provider = std::make_shared<GameStateMessageProvider>(*this);
-    screen_manager.GetCurrentScreen()->SetMessageProvider(mp_message_provider);
+    mp_message_provider.reset(new GameStateMessageProvider(*this));
+    screen_manager.GetCurrentScreen()->SetMessageProvider(mp_message_provider.get());
 
     // set message handler
     mp_command_handler.reset(new GameBaseCommandHandler(*this, m_application, screen_manager.GetMessageDispatcher()));
@@ -99,6 +100,9 @@ namespace ClientStates
     ToChar(Network::PacketType::PT_EndGame, &p_buffer[0], sizeof(Network::PacketType));
     mp_connection->SendPacket( &p_buffer[0], sizeof(Network::PacketType)+1);
 
+    mp_message_provider.reset();
+    ip_application->GetScreenManager().GetCurrentScreen()->SetMessageProvider(nullptr);
+
     mp_connection.reset();
     mp_state_machine.reset();
     mp_packet_provider.reset();
@@ -118,6 +122,9 @@ namespace ClientStates
 
   void GameState::_HoldPacket(const Network::Packet& i_packet)
     {
+    if (mp_message_provider->HandlePacket(i_packet))
+      return;
+
     switch (i_packet.m_packet)
       {
       case Network::PacketType::PT_GOState:

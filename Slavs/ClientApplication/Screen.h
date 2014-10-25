@@ -9,11 +9,11 @@ namespace UI
   class Screen
     {
     private:
-      Screen*        mp_owner;
+      Screen*               mp_owner;
 
     protected:
-      ScreenManager&              m_screen_manager;
-      std::weak_ptr<IMessageProvider> mp_message_provider;
+      ScreenManager&        m_screen_manager;
+      IMessageProvider*     mp_message_provider;
 
     private:
       virtual void  SetRootWindow(void* ip_window) = 0;
@@ -28,10 +28,10 @@ namespace UI
       void                              Create (Screen* ip_owner = nullptr);
 
       Screen*                           GetOwner();
-      void                              SetMessageProvider(std::shared_ptr<IMessageProvider> ip_message_provider);
+      void                              SetMessageProvider(IMessageProvider* ip_message_provider);
 
       template <typename ProviderType>
-      std::shared_ptr<ProviderType> GetMessageProvider() const;
+      ProviderType* GetMessageProvider() const;
     public:
       virtual void Destroy() = 0;
       virtual void Update(long i_elapsed_time) {}
@@ -46,16 +46,16 @@ namespace UI
     return mp_owner;
     }
 
-  inline void Screen::SetMessageProvider(std::shared_ptr<IMessageProvider> ip_message_provider)
+  inline void Screen::SetMessageProvider(IMessageProvider* ip_message_provider)
     {
     mp_message_provider = ip_message_provider;
     }
 
   template <typename ProviderType>
-  std::shared_ptr<ProviderType> Screen::GetMessageProvider() const
+  ProviderType* Screen::GetMessageProvider() const
     {
-    if (auto p_provider = mp_message_provider.lock())
-      return std::dynamic_pointer_cast<ProviderType>(p_provider);
+    if (mp_message_provider)
+      return dynamic_cast<ProviderType*>(mp_message_provider);
     return nullptr;
     }
   

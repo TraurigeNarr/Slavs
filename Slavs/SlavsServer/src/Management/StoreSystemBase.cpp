@@ -1,5 +1,7 @@
 #include "Management/StoreSystemBase.h"
 
+#include "Management/IEconomyManager.h"
+
 #include "PluginSystem/IStore.h"
 #include "PluginSystem/IEmployer.h"
 
@@ -11,10 +13,9 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-StoreSystemBase::StoreSystemBase()
-{
-
-}
+StoreSystemBase::StoreSystemBase(IEconomyManager& i_manager)
+  : IStoreSystem(i_manager)
+  {  }
 
 StoreSystemBase::~StoreSystemBase()
 {
@@ -47,6 +48,8 @@ void StoreSystemBase::Register(Slavs::StorePtr ip_store_house)
   for (auto p_store_waiting : m_store_waiting)
     p_store_waiting->StoreExpanded();
   m_store_waiting.clear();
+
+  m_manager.Invalidate();
 }
 
 void StoreSystemBase::UpdateStoreInformation(Slavs::StorePtr ip_store_house)
@@ -77,6 +80,8 @@ void StoreSystemBase::Remove(Slavs::StorePtr ip_store_house)
     m_resource_data[res_type].uiMaxResources -= resources[i]->GetResMaxNumber();
     m_resource_data[res_type].bHasChanges = true;
   }
+
+  m_manager.Invalidate();
 }
 
 void StoreSystemBase::ProcessEvent(EconomyEvent i_event, void* ip_data /* = nullptr */)
@@ -112,6 +117,7 @@ size_t StoreSystemBase::GetResources(GameResourceType i_type, size_t i_number)
     }
 
   it_res->second.uiCurrentResources -= i_number;
+  m_manager.Invalidate();
   return i_number;
   }
 
@@ -131,6 +137,7 @@ void StoreSystemBase::Add(Slavs::TResources& io_new_resources)
     if (io_new_resources.back()->Empty())
       io_new_resources.pop_back();
 	}
+  m_manager.Invalidate();
 }
 
 void StoreSystemBase::Add(Slavs::TGameResourceBox iop_new_resource)
@@ -150,6 +157,7 @@ void StoreSystemBase::Add(Slavs::TGameResourceBox iop_new_resource)
   }
   m_resource_data[res_type].uiCurrentResources += (initial_resources - iop_new_resource->GetNumber());
   m_resource_data[res_type].bHasChanges = iop_new_resource->GetNumber() != initial_resources;
+  m_manager.Invalidate();
 }
 
 void StoreSystemBase::Add(Slavs::ResourcePair& io_resource)
@@ -160,12 +168,14 @@ void StoreSystemBase::Add(Slavs::ResourcePair& io_resource)
   GameResourceBox box(res_type, io_resource.second, 0, 0);
   Add(&box);
   io_resource.second = box.GetNumber();
+  m_manager.Invalidate();
   }
 
 void StoreSystemBase::Add(Slavs::ResourcesCountSet& io_resources)
   {
   for (Slavs::ResourcePair& resource : io_resources)
     Add(resource);
+  m_manager.Invalidate();
   }
 
 Slavs::Stores& StoreSystemBase::GetStores()

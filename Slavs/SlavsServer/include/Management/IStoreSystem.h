@@ -6,13 +6,18 @@
 #include "Types.h"
 
 class SStoreHouseCom;
+class IEconomyManager;
 
 class SLAVS_SERVER_EXPORT IStoreSystem
 {
 public:
   typedef std::pair<size_t, size_t> TResourcePair;
 
+protected:
+  IEconomyManager& m_manager;
+
 public:
+  IStoreSystem (IEconomyManager& i_manager):m_manager(i_manager){}
   virtual ~IStoreSystem(){}
 
   virtual void            Register(Slavs::StorePtr ip_store_house) = 0;

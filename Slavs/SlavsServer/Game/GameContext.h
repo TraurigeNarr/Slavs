@@ -90,6 +90,11 @@ namespace Slavs
       const ResourcesCountSet&    GetResourcesFor (int i_type, int i_controller_mask);
 
       GlobalEconomics&            GetGlobalEconomics() const;
+
+      const std::vector<ControllerInformation>& GetControllers() const
+        {
+        return m_controllers;
+        }
     };
 
   } // Slavs

@@ -31,10 +31,10 @@ T Round(float i_value)
 }
 
 template < typename T>
-int ToChar(T val, char* op_buf, int i_size)
+size_t ToChar(T val, char* op_buf, size_t i_size)
 {
 	char *p = (char*)&val;
-	int i = 0;
+	size_t i = 0;
 	for(i = 0; i < i_size; ++i)
 	{
 		op_buf[i] = *(p + i);
@@ -43,7 +43,20 @@ int ToChar(T val, char* op_buf, int i_size)
 }
 
 template < typename T>
-int ToChar(T val, unsigned char* buf, int size)
+size_t ToChar(const T* val, void* op_buf, size_t i_size)
+  {
+  const char* p_source = reinterpret_cast<const char*>(val);
+  char* p_dest  = static_cast<char*>(op_buf);
+  size_t i = 0;
+  for(i = 0; i < i_size; ++i)
+    {
+    *(p_dest + i) = *(p_source + i);
+    }
+  return i;
+  }
+
+template < typename T>
+int ToChar(T& val, unsigned char* buf, int size)
   {
   char *p = (char*)&val;
   int i = 0;
@@ -60,7 +73,19 @@ T FromChar(const char* const val)
 	return NULL != val ? *(T*)val : NULL;
 }
 
+template < typename T>
+size_t FromChar(const char* const ip_source, T& o_destination)
+  {
+  o_destination = *reinterpret_cast<const T*>(ip_source);
+  return sizeof(T);
+  }
 
+template < typename T>
+size_t FromChar(const unsigned char* const ip_source, T& o_destination)
+  {
+  memcpy(&o_destination, ip_source, sizeof(T));
+  return sizeof(T);
+  }
 
 template < typename ConversionTarget>
 ConversionTarget ConvertTo(const void* i_buffer)

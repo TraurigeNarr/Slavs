@@ -15,6 +15,9 @@
     <Filter Include="Packets">
       <UniqueIdentifier>{f712aa6a-5c0d-4c55-817b-00e3eb0be5ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Serializable">
+      <UniqueIdentifier>{83d1295d-97a7-4921-9939-f90d8bc727ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Net.h">
@@ -56,6 +59,12 @@
     <ClInclude Include="stdafx.h">
       <Filter>_Maintanance</Filter>
     </ClInclude>
+    <ClInclude Include="SerializableData.h">
+      <Filter>Serializable</Filter>
+    </ClInclude>
+    <ClInclude Include="ISerializable.h">
+      <Filter>Serializable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Net.cpp">
@@ -84,6 +93,9 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>_Maintanance</Filter>
+    </ClCompile>
+    <ClCompile Include="SerializableData.cpp">
+      <Filter>Serializable</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

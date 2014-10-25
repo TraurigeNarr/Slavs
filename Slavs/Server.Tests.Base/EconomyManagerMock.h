@@ -10,7 +10,7 @@ class MockIEconomyManager : public IEconomyManager
     std::unique_ptr<IStoreSystem> mp_store_system;
   public:
     MockIEconomyManager()
-      : mp_store_system(new MockIStoreSystem())
+      : mp_store_system(new MockIStoreSystem(*this))
       {      }
     MOCK_METHOD1(RegisterEmployee,
       void SLAVS_SERVER_EXPORT(Slavs::TGoldKeeper ip_payer));

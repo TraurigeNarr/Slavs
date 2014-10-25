@@ -61,9 +61,9 @@ class IController : public TickListener
 
 	  void				        SetContext(SGameContext *context);
 
-    inline Slavs::GameContext&        GetGameContext();
-    inline int					              GetMask()	const;
-    inline Goverment&                 GetGoverment();
+    Slavs::GameContext&  GetGameContext();
+    int					         GetMask()	const;
+    Goverment&           GetGoverment();
 
 	  SGameContext*		    GetContext()const { return m_pContext; }
 	  
@@ -76,17 +76,17 @@ class IController : public TickListener
 
 //////////////////////////////////////////////////////////////////////////
 
-Slavs::GameContext& IController::GetGameContext()
+inline Slavs::GameContext& IController::GetGameContext()
   {
   return m_game_context;
   }
 
-int IController::GetMask() const
+inline int IController::GetMask() const
   {
   return m_iMask;
   }
 
-Goverment& IController::GetGoverment()
+inline Goverment& IController::GetGoverment()
   {
   return *mp_goverment;
   }

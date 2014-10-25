@@ -27,6 +27,11 @@ bool IManager::HasChanges() const
   return m_has_changes;
   }
 
+void IManager::Invalidate()
+  {
+  m_has_changes = true;
+  }
+
 void IManager::ValidateChanges()
   {
   m_has_changes = false;

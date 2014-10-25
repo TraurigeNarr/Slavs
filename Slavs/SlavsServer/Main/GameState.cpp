@@ -6,10 +6,14 @@
 #include "ServerMain.h"
 #include "misc\ServerEnums.h"
 
+#include "IController.h"
+
+#include "Management/Goverment.h"
+
 #include <Utilities/TemplateFunctions.h>
 
-#include <Network/PacketProvider.h>
-#include <Network/PacketType.h>
+#include <Network/Packet.h>
+#include <Network/SerializableData.h>
 #include <Network/include/Net.h>
 
 #include <memory>
@@ -19,15 +23,46 @@
 namespace
   {
 
+  void SendPacket (const Network::Packet& i_packet, net::Connection& i_connection)
+    {
+    i_connection.SendPacket(i_packet.mp_data, i_packet.m_size+sizeof(Network::PacketType));
+    }
+
+  void SendControllerStates (const Slavs::GameContext& i_context, net::Connection& i_connection)
+    {
+    static std::unique_ptr<char[]> p_buffer(new char[PACKET_SIZE]);
+    for (size_t i = 0; i < PACKET_SIZE; ++i)
+      p_buffer[i] = 'x';
+
+    ToChar(Network::PacketType::PT_GovermentState, &p_buffer[0], sizeof(Network::PacketType));
+
+    Network::SerializableData data(10, sizeof(float));
+    Network::Packet packet(Network::PacketType::PT_GovermentState, PACKET_SIZE, &p_buffer[sizeof(Network::PacketType)]);
+
+    auto& controllers = i_context.GetControllers();
+    for (auto& controller : controllers)
+      {
+      auto& p_goverment = controller.mp_controller->GetGoverment();
+      auto* p_economy_manager = p_goverment.GetEconomyManager();
+
+      if (p_economy_manager->HasChanges())
+        {        
+        p_economy_manager->Serialize(data);
+        p_economy_manager->ValidateChanges();
+        data.Serialize(packet);
+        i_connection.SendPacket(&p_buffer[0], data.GetSize()+sizeof(Network::PacketType));
+        }
+      }
+    }
+
   void SendStates(const Slavs::GameContext& i_context, net::Connection& i_connection)
     {
+    static std::unique_ptr<char[]> p_buffer(new char[PACKET_SIZE]);
     ObjectStateMap states_map;
     i_context.GetAllGameObjectsState(states_map);
     if (!states_map.empty())
       {
-      std::unique_ptr<char[]> p_buffer(new char[PACKET_SIZE]);
-
-      std::for_each(states_map.begin(), states_map.end(), [&i_connection, &p_buffer](std::pair<long, GameObjectState*> p)
+      std::for_each(states_map.begin(), states_map.end(), [&i_connection](std::pair<long, GameObjectState*> p)
         {
         size_t neededSize = p.second->NeededSize() + sizeof(Network::PacketType);
         ToChar(Network::PacketType::PT_GOState, &p_buffer[0], sizeof(Network::PacketType));
@@ -35,10 +70,9 @@ namespace
         p.second->Serialize(&p_buffer[sizeof(Network::PacketType)], neededSize);
         i_connection.SendPacket(&p_buffer[0], neededSize);
         });
-
+      ClearSTLMap(states_map);
       }
-    ClearSTLMap(states_map);
-    }
+    } 
 
   } // namespace
 
@@ -77,6 +111,16 @@ namespace Slavs
       }
     mp_time_controller->Update(i_elapsed_time);
     SendStates(*mh_game_context, *ip_owner->GetConnection());
+
+    // move to tick listener
+    //      one state in 100 ticks
+    static long time_from_last_send = 0;
+    time_from_last_send += i_elapsed_time;
+    if (time_from_last_send > MS_FOR_TICK*100)
+      {
+      SendControllerStates(*mh_game_context, *ip_owner->GetConnection());
+      time_from_last_send = 0;
+      }
     }
 
   void GameState::Exit(ServerMain* ip_owner)

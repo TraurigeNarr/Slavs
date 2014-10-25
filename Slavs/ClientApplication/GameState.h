@@ -34,6 +34,8 @@ namespace ClientGame
 namespace ClientStates
   {
 
+  class GameStateBaseMessageProvider;
+
   class GameState : public ApplicationStateBase
     {
     private:
@@ -42,7 +44,7 @@ namespace ClientStates
       std::unique_ptr< StateMachine<GameState, long> >      mp_state_machine;
 
       std::unique_ptr<Network::PacketProvicer>              mp_packet_provider;
-      std::shared_ptr<UI::IMessageProvider>                 mp_message_provider;
+      std::unique_ptr<GameStateBaseMessageProvider>         mp_message_provider;
 
       std::unique_ptr<ClientGameContext>                    mp_context;
       std::unique_ptr<UI::GameBaseCommandHandler>           mp_command_handler;
@@ -67,7 +69,7 @@ namespace ClientStates
       virtual void Exit(Application* ip_owner) override;
 
       StateMachine<GameState, long>& GetStateMachine();
-      std::shared_ptr<UI::IMessageProvider> GetMessageProvider() const;
+      GameStateBaseMessageProvider* GetMessageProvider() const;
       ClientGameContext& GetContext();
     };
 
@@ -78,9 +80,9 @@ namespace ClientStates
     return *mp_state_machine;
     }
 
-  inline std::shared_ptr<UI::IMessageProvider> GameState::GetMessageProvider() const
+  inline GameStateBaseMessageProvider* GameState::GetMessageProvider() const
     {
-    return mp_message_provider;
+    return mp_message_provider.get();
     }
 
   inline ClientGameContext& GameState::GetContext()

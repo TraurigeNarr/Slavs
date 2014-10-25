@@ -12,10 +12,14 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6DA24416-1F28-49D4-9E2B-89FF74B4D83E}</ProjectGuid>
-    <SccProjectName>SAK</SccProjectName>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ClientApplication</RootNamespace>
   </PropertyGroup>
@@ -127,10 +131,12 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="ControlType.h" />
     <ClInclude Include="ClientGameContext.h" />
     <ClInclude Include="ClientGameObject.h" />
+    <ClInclude Include="EconomySystemMessageProvider.h" />
     <ClInclude Include="GameBaseCommandHandler.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameScreenMain.h" />
+    <ClInclude Include="GameStateBaseMessageProvider.h" />
     <ClInclude Include="GameStateMessageProvider.h" />
     <ClInclude Include="IMessageProvider.h" />
     <ClInclude Include="InputManager.h" />
@@ -149,6 +155,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="OgreMaxTypes.h" />
     <ClInclude Include="OgreMaxUtilities.h" />
     <ClInclude Include="PlayerController.h" />
+    <ClInclude Include="GovermentMessageProvider.h" />
+    <ClInclude Include="GovermentPanel.h" />
     <ClInclude Include="RendererComponent.h" />
     <ClInclude Include="SceneController.h" />
     <ClInclude Include="Screen.h" />
@@ -169,6 +177,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="ClientComposer.cpp" />
     <ClCompile Include="ClientGameContext.cpp" />
     <ClCompile Include="ClientGameObject.cpp" />
+    <ClCompile Include="EconomySystemMessageProvider.cpp" />
     <ClCompile Include="GameBaseCommandHandler.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameScreenMain.cpp" />
@@ -188,6 +197,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="CeguiUtilities.cpp" />
     <ClCompile Include="OgreMaxUtilities.cpp" />
     <ClCompile Include="PlayerController.cpp" />
+    <ClCompile Include="GovermentPanel.cpp" />
+    <ClCompile Include="GovermentMessageProvider.cpp" />
     <ClCompile Include="RendererComponent.cpp" />
     <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="Screen.cpp" />

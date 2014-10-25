@@ -14,7 +14,7 @@ protected:
 
   Slavs::Employers           m_store_waiting;
 public:
-  SLAVS_SERVER_EXPORT                       StoreSystemBase();
+  SLAVS_SERVER_EXPORT                       StoreSystemBase(IEconomyManager& i_manager);
   virtual SLAVS_SERVER_EXPORT               ~StoreSystemBase();
 
   virtual void          SLAVS_SERVER_EXPORT Register(Slavs::StorePtr ip_store_house) override;

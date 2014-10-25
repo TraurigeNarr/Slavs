@@ -12,21 +12,19 @@ namespace CEGUI
 namespace UI
   {
 
-  class GameScreenMain : public CeguiScreenBase
+  enum class ButtonID;
+
+  class GovermentPanel : public CeguiScreenBase
     {
-    public:
-      typedef std::unique_ptr<CeguiScreenBase> ChildScreenPtr;
-
     private:
-      std::vector<ChildScreenPtr> m_child_screens;
-
+      std::map<ButtonID, CEGUI::Window*> m_plugin_buttons;
 
     private:
       virtual void Initialize() override;
 
     public:
-      GameScreenMain(ScreenManager& i_screen_manager);
-      ~GameScreenMain();
+      GovermentPanel(ScreenManager& i_screen_manager);
+      ~GovermentPanel();
 
       virtual void Update (long i_elapsed_time) override;
     };

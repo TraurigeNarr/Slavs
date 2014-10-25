@@ -9,6 +9,7 @@ namespace UI
 
   Screen::Screen(ScreenManager& i_screen_manager, Screen* ip_owner /* = nullptr */)
     : m_screen_manager(i_screen_manager)
+    , mp_message_provider(nullptr)
     {    }
 
   Screen::~Screen()

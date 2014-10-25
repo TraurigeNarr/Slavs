@@ -19,9 +19,11 @@
     <ClInclude Include="include\Net.h" />
     <ClInclude Include="include\SendController.h" />
     <ClInclude Include="include\Socket.h" />
+    <ClInclude Include="ISerializable.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="PacketProvider.h" />
     <ClInclude Include="PacketType.h" />
+    <ClInclude Include="SerializableData.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="_Link.h" />
   </ItemGroup>
@@ -32,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PacketProvider.cpp" />
+    <ClCompile Include="SerializableData.cpp" />
     <ClCompile Include="src\Address.cpp" />
     <ClCompile Include="src\Connection.cpp" />
     <ClCompile Include="src\ISendable.cpp" />
@@ -48,10 +51,14 @@
     <ProjectGuid>{57EA8C6E-BAF9-4852-94E8-BB509E528241}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Network</RootNamespace>
-    <SccProjectName>SAK</SccProjectName>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -7,8 +7,9 @@ public:
 
   bool m_flush_resources;
 
-  MockIStoreSystem (bool i_flush_resources = true)
-    : m_flush_resources(i_flush_resources)
+  MockIStoreSystem (IEconomyManager& i_owner, bool i_flush_resources = true)
+    : IStoreSystem(i_owner)
+    , m_flush_resources(i_flush_resources)
     {    }
 
   virtual void Add(Slavs::ResourcePair& io_resource) override

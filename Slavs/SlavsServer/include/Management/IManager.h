@@ -4,6 +4,13 @@
 
 #include "Types.h"
 
+#include <Network/ISerializable.h>
+
+namespace Network
+  {
+  struct SerializableData;
+  }
+
 //////////////////////////////////////////////////////////////////////////
 
 class SLAVS_SERVER_EXPORT IManager
@@ -22,6 +29,11 @@ class SLAVS_SERVER_EXPORT IManager
 
     void              SetGoverment(Slavs::TGoverment ip_goverment);
     Slavs::TGoverment GetGoverment() const;
+
     bool              HasChanges() const;
+    virtual void      Invalidate();
     void              ValidateChanges();
+
+    virtual void Serialize (Network::SerializableData& i_data) const {}
+    virtual void Deserialize (const Network::SerializableData& i_data) {}
   };

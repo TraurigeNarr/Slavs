@@ -38,6 +38,8 @@ namespace UI
         break;
       case ButtonID::BI_HELP:
         break;
+      case ButtonID::BI_ECONOMY_PLUGIN_STATUS:
+        break;
       }
     }
 

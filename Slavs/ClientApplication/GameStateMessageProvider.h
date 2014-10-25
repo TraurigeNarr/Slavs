@@ -1,22 +1,23 @@
 #pragma once
 
-#include "IMessageProvider.h"
+#include "GameStateBaseMessageProvider.h"
 
 namespace ClientStates
   {
 
   class GameState;
 
-  class GameStateMessageProvider : public UI::IMessageProvider
+  class GameStateMessageProvider : public GameStateBaseMessageProvider
     {
     private:
-      GameState&    m_state;
+      void _CreateProviders ();
 
     public:
       GameStateMessageProvider (GameState& i_state);
       virtual ~GameStateMessageProvider ();
 
       virtual void  Invalidate() override;
+      virtual bool  HandlePacket(const Network::Packet& i_packet) override;
     };
 
   } // ClientStates

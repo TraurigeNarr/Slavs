@@ -54,6 +54,18 @@
     <Filter Include="Application\States\GameState\SceneController">
       <UniqueIdentifier>{f16ceefa-8b93-42f2-9d50-aff7ce5fe99e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\States\GameState\CommandProviders">
+      <UniqueIdentifier>{cd5f3dc0-a33e-40d1-b0b9-5778e1d6ff54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Screens\MenuScreen">
+      <UniqueIdentifier>{7649ff4f-b30a-4df5-8775-e7015204115d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Screens\LoadScreen">
+      <UniqueIdentifier>{d52c7c1f-ab79-4b33-b3dd-c205394bfebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\States\GameState\CommandProviders\Base">
+      <UniqueIdentifier>{af808316-76fa-4e69-8ced-bb04cb10c74a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -107,9 +119,6 @@
     <ClInclude Include="ScreenManager.h">
       <Filter>Application\Screens\Base</Filter>
     </ClInclude>
-    <ClInclude Include="MenuScreen.h">
-      <Filter>Application\Screens</Filter>
-    </ClInclude>
     <ClInclude Include="MenuState.h">
       <Filter>Application\States\MenuState</Filter>
     </ClInclude>
@@ -127,9 +136,6 @@
     </ClInclude>
     <ClInclude Include="LoadingStages.h">
       <Filter>Application\States\LoadingState</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadingScreen.h">
-      <Filter>Application\Screens</Filter>
     </ClInclude>
     <ClInclude Include="LoadStateMessageProvider.h">
       <Filter>Application\States\LoadingState</Filter>
@@ -151,9 +157,6 @@
     </ClInclude>
     <ClInclude Include="GameScreenMain.h">
       <Filter>Application\Screens\GameScreen</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStateMessageProvider.h">
-      <Filter>Application\States\GameState</Filter>
     </ClInclude>
     <ClInclude Include="GameBaseCommandHandler.h">
       <Filter>Application\States\GameState\CommandHandlers</Filter>
@@ -187,6 +190,27 @@
     </ClInclude>
     <ClInclude Include="SceneController.h">
       <Filter>Application\States\GameState\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScreen.h">
+      <Filter>Application\Screens\MenuScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScreen.h">
+      <Filter>Application\Screens\LoadScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="GovermentPanel.h">
+      <Filter>Application\Screens\GameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="GovermentMessageProvider.h">
+      <Filter>Application\States\GameState\CommandProviders</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateMessageProvider.h">
+      <Filter>Application\States\GameState\CommandProviders\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateBaseMessageProvider.h">
+      <Filter>Application\States\GameState\CommandProviders\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="EconomySystemMessageProvider.h">
+      <Filter>Application\States\GameState\CommandProviders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -232,9 +256,6 @@
     <ClCompile Include="ScreenManager.cpp">
       <Filter>Application\Screens\Base</Filter>
     </ClCompile>
-    <ClCompile Include="MenuScreen.cpp">
-      <Filter>Application\Screens</Filter>
-    </ClCompile>
     <ClCompile Include="MenuState.cpp">
       <Filter>Application\States\MenuState</Filter>
     </ClCompile>
@@ -243,9 +264,6 @@
     </ClCompile>
     <ClCompile Include="LoadingState.cpp">
       <Filter>Application\States\LoadingState</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadingScreen.cpp">
-      <Filter>Application\Screens</Filter>
     </ClCompile>
     <ClCompile Include="LoadingStages.cpp">
       <Filter>Application\States\LoadingState</Filter>
@@ -267,9 +285,6 @@
     </ClCompile>
     <ClCompile Include="GameScreenMain.cpp">
       <Filter>Application\Screens\GameScreen</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStateMessageProvider.cpp">
-      <Filter>Application\States\GameState</Filter>
     </ClCompile>
     <ClCompile Include="GameBaseCommandHandler.cpp">
       <Filter>Application\States\GameState\CommandHandlers</Filter>
@@ -294,6 +309,24 @@
     </ClCompile>
     <ClCompile Include="SceneController.cpp">
       <Filter>Application\States\GameState\SceneController</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScreen.cpp">
+      <Filter>Application\Screens\MenuScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScreen.cpp">
+      <Filter>Application\Screens\LoadScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="GovermentPanel.cpp">
+      <Filter>Application\Screens\GameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="GovermentMessageProvider.cpp">
+      <Filter>Application\States\GameState\CommandProviders</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateMessageProvider.cpp">
+      <Filter>Application\States\GameState\CommandProviders\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="EconomySystemMessageProvider.cpp">
+      <Filter>Application\States\GameState\CommandProviders</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
