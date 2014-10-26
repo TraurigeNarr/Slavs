@@ -1,0 +1,10 @@
+<Game>
+  <BasePlugin.HumanComponent>
+    <Position></Position>
+    <Owner>
+      <Name>Jester</Name>
+      <Address>12333</Address>
+    </Owner>
+    <SelectionMask>1</SelectionMask>
+  </BasePlugin.HumanComponent>
+</Game>

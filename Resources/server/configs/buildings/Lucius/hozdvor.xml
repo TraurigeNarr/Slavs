@@ -1,0 +1,8 @@
+<hozdvor name="hozdvor" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\Lucius\hozdvor" file="hozdvor.model" group="Buildings" type="FileSystem"/>
+
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+    </abilities>
+</hozdvor>

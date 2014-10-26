@@ -1,0 +1,8 @@
+<HOTD name="hallOfTheDeath" author="Ivan Shcherbina" application="Slavs">
+
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+      <ability name="create_obedient"/>
+    </abilities>
+</HOTD>

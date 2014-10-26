@@ -1,0 +1,10 @@
+<hizhina name="hizhina" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\Lucius\hizhina" file="hizhina.model" group="Buildings" type="FileSystem"/>
+
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+      <ability name="create_volhv"/>
+      <ability name="create_opyr"/>
+    </abilities>
+</hizhina>

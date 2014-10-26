@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<GUIScheme version="5" name="SlavsLook">
+	<Imageset filename="SlavsLook.imageset" />
+	<Font filename="DejaVuSans-12.font" />
+	<LookNFeel filename="SlavsLook.looknfeel" />
+	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
+
+	<FalagardMapping windowType="SlavsLook/Label"       targetType="DefaultWindow"     renderer="Core/Default"      lookNFeel="SlavsLook/Label" />
+	<FalagardMapping windowType="SlavsLook/Button"      targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="SlavsLook/Button" />
+	<FalagardMapping windowType="SlavsLook/Checkbox"    targetType="CEGUI/ToggleButton"    renderer="Core/ToggleButton" lookNFeel="SlavsLook/Checkbox" />
+	<FalagardMapping windowType="SlavsLook/ImageButton" targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="SlavsLook/ImageButton" />
+	<FalagardMapping windowType="SlavsLook/RadioButton" targetType="CEGUI/RadioButton" renderer="Core/ToggleButton" lookNFeel="SlavsLook/RadioButton" />
+	<FalagardMapping windowType="SlavsLook/FrameWindow"  targetType="CEGUI/FrameWindow" renderer="Core/FrameWindow"  lookNFeel="SlavsLook/FrameWindow" />
+	<FalagardMapping windowType="SlavsLook/Titlebar"     targetType="CEGUI/Titlebar"    renderer="Core/Titlebar"     lookNFeel="SlavsLook/Titlebar" />
+	<FalagardMapping windowType="SlavsLook/Editbox"          targetType="CEGUI/Editbox"          renderer="Core/Editbox"          lookNFeel="SlavsLook/Editbox" />
+	<FalagardMapping windowType="SlavsLook/MultiLineEditbox" targetType="CEGUI/MultiLineEditbox" renderer="Core/MultiLineEditbox" lookNFeel="SlavsLook/MultiLineEditbox" />
+	<FalagardMapping windowType="SlavsLook/Menubar"   targetType="CEGUI/Menubar"   renderer="Core/Menubar"   lookNFeel="SlavsLook/Menubar" />
+	<FalagardMapping windowType="SlavsLook/PopupMenu" targetType="CEGUI/PopupMenu" renderer="Core/PopupMenu" lookNFeel="SlavsLook/PopupMenu" />
+	<FalagardMapping windowType="SlavsLook/MenuItem"  targetType="CEGUI/MenuItem"  renderer="Core/MenuItem"  lookNFeel="SlavsLook/MenuItem" />
+	<FalagardMapping windowType="SlavsLook/AlternateProgressBar" targetType="CEGUI/ProgressBar" renderer="Core/ProgressBar" lookNFeel="SlavsLook/AltProgressBar" />
+	<FalagardMapping windowType="SlavsLook/ProgressBar"          targetType="CEGUI/ProgressBar" renderer="Core/ProgressBar" lookNFeel="SlavsLook/ProgressBar" />
+	<FalagardMapping windowType="SlavsLook/VUMeter"              targetType="CEGUI/ProgressBar" renderer="Core/ProgressBar" lookNFeel="SlavsLook/VUMeter" />
+	<FalagardMapping windowType="SlavsLook/VerticalScrollbar"   targetType="CEGUI/Scrollbar" renderer="Core/Scrollbar" lookNFeel="SlavsLook/VerticalScrollbar" />
+	<FalagardMapping windowType="SlavsLook/HorizontalScrollbar" targetType="CEGUI/Scrollbar" renderer="Core/Scrollbar" lookNFeel="SlavsLook/HorizontalScrollbar" />
+	<FalagardMapping windowType="SlavsLook/VerticalScrollbarThumb"   targetType="CEGUI/Thumb" renderer="Core/Button" lookNFeel="SlavsLook/VerticalScrollbarThumb" />
+	<FalagardMapping windowType="SlavsLook/HorizontalScrollbarThumb" targetType="CEGUI/Thumb" renderer="Core/Button" lookNFeel="SlavsLook/HorizontalScrollbarThumb" />
+	<FalagardMapping windowType="SlavsLook/LargeVerticalScrollbar"      targetType="CEGUI/Scrollbar" renderer="Core/Scrollbar" lookNFeel="SlavsLook/LargeVerticalScrollbar" />
+	<FalagardMapping windowType="SlavsLook/LargeVerticalScrollbarThumb" targetType="CEGUI/Thumb"     renderer="Core/Button"    lookNFeel="SlavsLook/LargeVerticalScrollbarThumb" />
+	<FalagardMapping windowType="SlavsLook/TabButton"  targetType="CEGUI/TabButton"  renderer="Core/TabButton"  lookNFeel="SlavsLook/TabButton" />
+	<FalagardMapping windowType="SlavsLook/TabControl" targetType="CEGUI/TabControl" renderer="Core/TabControl" lookNFeel="SlavsLook/TabControl" />
+	<FalagardMapping windowType="SlavsLook/TabContentPane"    targetType="DefaultWindow"    renderer="Core/Default"    lookNFeel="SlavsLook/TabContentPane" />
+	<FalagardMapping windowType="SlavsLook/TabButtonPane"    targetType="DefaultWindow"    renderer="Core/Default"    lookNFeel="SlavsLook/TabButtonPane" />
+	<FalagardMapping windowType="SlavsLook/ComboDropList" targetType="CEGUI/ComboDropList" renderer="Core/Listbox" lookNFeel="SlavsLook/ComboDropList" />
+	<FalagardMapping windowType="SlavsLook/ComboEditbox"  targetType="CEGUI/Editbox"	 renderer="Core/Editbox" lookNFeel="SlavsLook/ComboEditbox" />
+	<FalagardMapping windowType="SlavsLook/Combobox" targetType="CEGUI/Combobox"	 renderer="Core/Default" lookNFeel="SlavsLook/Combobox" />
+	<FalagardMapping windowType="SlavsLook/Listbox"           targetType="CEGUI/Listbox"           renderer="Core/Listbox"           lookNFeel="SlavsLook/Listbox" />
+	<FalagardMapping windowType="SlavsLook/ListHeader"        targetType="CEGUI/ListHeader"        renderer="Core/ListHeader"        lookNFeel="SlavsLook/ListHeader" />
+	<FalagardMapping windowType="SlavsLook/ListHeaderSegment" targetType="CEGUI/ListHeaderSegment" renderer="Core/ListHeaderSegment" lookNFeel="SlavsLook/ListHeaderSegment" />
+	<FalagardMapping windowType="SlavsLook/MultiColumnList"   targetType="CEGUI/MultiColumnList"   renderer="Core/MultiColumnList"   lookNFeel="SlavsLook/MultiColumnList" />
+	<FalagardMapping windowType="SlavsLook/Slider"      targetType="CEGUI/Slider"      renderer="Core/Slider"  lookNFeel="SlavsLook/Slider" />
+	<FalagardMapping windowType="SlavsLook/SliderThumb" targetType="CEGUI/Thumb" renderer="Core/Button"  lookNFeel="SlavsLook/SliderThumb" />
+	<FalagardMapping windowType="SlavsLook/ScrollablePane" targetType="CEGUI/ScrollablePane" renderer="Core/ScrollablePane" lookNFeel="SlavsLook/ScrollablePane" />
+	<FalagardMapping windowType="SlavsLook/Spinner" targetType="CEGUI/Spinner" renderer="Core/Default" lookNFeel="SlavsLook/Spinner" />
+	<FalagardMapping windowType="SlavsLook/Tooltip" targetType="CEGUI/Tooltip" renderer="Core/Tooltip" lookNFeel="SlavsLook/Tooltip" />
+	<FalagardMapping windowType="SlavsLook/StaticImage" targetType="DefaultWindow" renderer="Core/StaticImage" lookNFeel="SlavsLook/StaticImage" />
+	<FalagardMapping windowType="SlavsLook/StaticText"  targetType="DefaultWindow" renderer="Core/StaticText"  lookNFeel="SlavsLook/StaticText" />
+	<FalagardMapping windowType="SlavsLook/ItemListbox" targetType="CEGUI/ItemListbox" renderer="Core/ItemListbox" lookNFeel="SlavsLook/ItemListbox" />
+	<FalagardMapping windowType="SlavsLook/ListboxItem" targetType="CEGUI/ItemEntry"   renderer="Core/ItemEntry"   lookNFeel="SlavsLook/ListboxItem" />
+	<FalagardMapping windowType="SlavsLook/GroupBox" targetType="DefaultWindow"   renderer="Core/Default"   lookNFeel="SlavsLook/GroupBox" />
+      <FalagardMapping windowType="SlavsLook/Tree" targetType="CEGUI/Tree"   renderer="Core/Tree"   lookNFeel="SlavsLook/Tree" />
+</GUIScheme>

@@ -1,0 +1,4 @@
+<tree name="tree" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="Data\resources\Environment\tree" file="tree.model" group="Environment" type="FileSystem"/>
+    <scale x="100" y="100" z="100" />
+</tree>

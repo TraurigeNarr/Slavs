@@ -1,0 +1,155 @@
+<objects>
+  <terrain file="client\configs\game\environment\terrain.xml" />
+
+  <tree>
+    <component type="static_object" bRadius="10"/>
+    <component type="resource" resType="tree" resNum="10" oneTimeRes="5"/>
+  </tree>
+
+  <human>
+    <component type="dynamic_object" bRadius="20" maxSpeed="50" maxForce="400" maxTurnRate="50"/>
+    <component type="human" money="100">
+      <food calories="10" eatInTicks="1000" dieInTicks="10000">
+        <meat prefBottom="0.1" prefUpper="1.0"/>
+        <bread vakue="1"/>
+        <fruits value="1"/>
+        <vegetables value="1"/>
+      </food>
+    </component>
+  </human>
+
+  <detinets wood="100" stone="150">
+    <component type="static_object" bRadius="500"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="house" population="10" period="400"/>
+  </detinets>
+  <hizhina>
+    <component type="static_object" bRadius="200"/>
+    <component type="building" hp="10" armor="1"/>
+    <!--Period in ticks.-->
+    <component type="house" population="8" period="300"/>
+  </hizhina>
+
+  <casern>
+    <component type="static_object" bRadius="200"/>
+  </casern>
+<!--Max skill is set to asymptote value considering learning coefficient (lesser coefficient -> bigger max skill)-->
+  <!--growth period is in operating cycles-->
+  <sawmill>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" resType="wood" workerType="lumberjack" payment="10" initialSkill="0.8" maxSkill="1.5" learningCoef="0.15" skillGrowth="0.1" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </sawmill>
+  <stoneQuarry stone="150">
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" resType="stone" workerType="mason" payment="8" initialSkill="1.5" maxSkill="1.8" learningCoef="0.1" skillGrowth="0.05" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </stoneQuarry>
+
+  <wheatField>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" resType="wheat" workerType="farmer" payment="8" initialSkill="1.5" maxSkill="1.5" learningCoef="0.15" skillGrowth="0.05" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </wheatField>
+  <vegetableGarden>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" resType="vegetables" workerType="farmer" payment="8" initialSkill="1.5" maxSkill="1.8" learningCoef="0.1" skillGrowth="0.05" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </vegetableGarden>
+  <garden>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" resType="fruits" workerType="gardener" payment="8" initialSkill="1.5" maxSkill="1.5" learningCoef="0.15" skillGrowth="0.05" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </garden>
+  <farm>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" resType="meat" workerType="farmer" payment="8" initialSkill="1.5" maxSkill="1.8" learningCoef="0.1" skillGrowth="0.05" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </farm>
+
+  <mill>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" money="10000" resType="wheatFlour" workerType="miller" payment="8" initialSkill="1.5" maxSkill="1.5" learningCoef="0.1" skillGrowth="0.05" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </mill>
+  <tannery>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" resType="skin" workerType="skinner" payment="8" initialSkill="1.5" maxSkill="1.8" learningCoef="0.1" skillGrowth="0.05" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </tannery>
+  <bakery>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="manufacture" resType="bread" workerType="baker" payment="8" initialSkill="1.5" maxSkill="1.5" learningCoef="0.1" skillGrowth="0.05" neededWorkers="10" growthPeriod="2" iniResMines="10" operatingCycle="200"/>
+  </bakery>
+
+  <treasury>
+    <component type="static_object" bRadius="20"/>
+    <component type="building" hp="10" armor="1"/>
+  </treasury>
+  <rationStore>
+    <component type="static_object" bRadius="500"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="store_house">
+      <resource type="bread" maxNumber="1500"/>
+      <resource type="milk" maxNumber="250"/>
+      <resource type="milk" maxNumber="750"/>
+      <resource type="meat" maxNumber="800"/>
+      <resource type="vegetables" maxNumber="800"/>
+      <resource type="fruits" maxNumber="800"/>
+      <resource type="wheat" maxNumber="800"/>
+      <resource type="wheatFlour" maxNumber="800"/>
+    </component>
+  </rationStore>
+  <storeHouse>
+    <component type="static_object" bRadius="500"/>
+    <component type="building" hp="10" armor="1"/>
+    <component type="store_house">
+      <resource type="stone" maxNumber="1500"/>
+      <resource type="stone" maxNumber="725"/>
+      <resource type="wood" maxNumber="1000"/>
+      <resource type="wood" maxNumber="1500"/>
+      <resource type="skin" maxNumber="1500"/>
+    </component>
+  </storeHouse>
+
+  <resources>
+    <wood/>
+    <stone/>
+    <skin/>
+    <wheat/>
+    <wheatFlour/>
+    <milk price="1" calories="2"/>
+    <vegetables price="1" calories="2"/>
+    <fruits price="1" calories="2"/>
+    <bread price="1" calories="5"/>
+    <meat price="1" calories="10"/>
+    <cheas/>
+  </resources>
+  
+  <Uncorrect>
+    <peasent1 name="peasent" file="configs\game\characters\Lucius\peasent.xml" gold="100" lumber="10" food="1"/>
+    <archer name="archer" file="configs\game\characters\Lucius\archer.xml" gold="100" lumber="10" food="5"/>
+
+    <obedient name="obedient" file="configs\game\characters\DarkObedient\obedient.xml" gold="100" lumber="10" food="1"/>
+    <werewolf name="werewolf" file="configs\game\characters\DarkObedient\werewolf.xml" gold="100" lumber="10" food="5"/>
+
+
+    <detinets1 name="detinets" file="configs\game\buildings\Lucius\detinets.xml" gold="100" lumber="10" food="-10"/>
+    <casern1 name="casern" file="configs\game\buildings\Lucius\casern.xml" gold="100" lumber="10"/>
+    <hizhina1 name="hizhina" file="configs\game\buildings\Lucius\hizhina.xml" gold="100" lumber="10"/>
+    <hovel name="hovel" file="configs\game\buildings\Lucius\hovel.xml" gold="100" lumber="10"/>
+    <hozdvor name="hozdvor" file="configs\game\buildings\Lucius\hozdvor.xml" gold="100" lumber="10" food="-10"/>
+    <izba name="izba" file="configs\game\buildings\Lucius\izba.xml" gold="100" lumber="10"/>
+    <zemlyanka name="zemlyanka" file="configs\game\buildings\Lucius\zemlyanka.xml" gold="100" lumber="10"/>
+    <hovel name="hovel" file="configs\game\buildings\Lucius\hovel.xml" gold="100" lumber="10"/>
+
+    <HOTD name="HOTD" file="configs\game\buildings\DarkObedient\hallOfTheDeath.xml" gold="100" lumber="10" food="-10"/>
+    <HOD name="HOD" file="configs\game\buildings\DarkObedient\hovelOfDead.xml" gold="100" lumber="10"/>
+    <kurgan name="kurgan" file="configs\game\buildings\DarkObedient\kurgan.xml" gold="100" lumber="10"/>
+    <lachuga name="lachuga" file="configs\game\buildings\DarkObedient\lachuga.xml" gold="100" lumber="10"/>
+    <nora name="nora" file="configs\game\buildings\DarkObedient\nora.xml" gold="100" lumber="10"/>
+    <sklep name="sklep" file="configs\game\buildings\DarkObedient\sklep.xml" gold="100" lumber="10" food="-10"/>
+    <prison name="prison" file="configs\game\buildings\DarkObedient\prison.xml" gold="100" lumber="10"/>
+  </Uncorrect>
+</objects>

@@ -1,0 +1,11 @@
+<zemlyanka name="zemlyanka" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\Lucius\zemlyanka" file="zemlyanka.model" group="Buildings" type="FileSystem"/>
+
+    <scale x="10" y="10" z="10"/>
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+      <ability name="create_voinVedun"/>
+      <ability name="create_druid"/>
+    </abilities>
+</zemlyanka>

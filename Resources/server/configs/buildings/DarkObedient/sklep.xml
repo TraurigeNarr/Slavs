@@ -1,0 +1,9 @@
+<sklep name="sklep" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\DarkObedient\sklep" file="sklep.model" group="Buildings" type="FileSystem"/>
+
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+      <ability name="create_upyr"/>
+    </abilities>
+</sklep>

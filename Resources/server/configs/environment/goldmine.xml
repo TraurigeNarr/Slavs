@@ -1,0 +1,5 @@
+<goldMine name="goldMine" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="Data\resources\Environment\GoldMine" file="GoldMine.model" group="Environment" type="FileSystem"/>
+    <scale x="5" y="5" z="5" />
+    <resources gold="15000"/>
+</goldMine>

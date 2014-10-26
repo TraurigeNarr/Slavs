@@ -1,0 +1,13 @@
+<!-- These objects and resources are initial for players and AIs at the beginning. -->
+<Initial>
+  <detinets/>
+  <rationStore/>
+  <storeHouse/>
+  <!--Resources-->
+  <resources>
+    <wood number="1000"/>
+    <stone number="1000"/>
+    <meat number="1000"/>
+    <bread number="1000"/>
+  </resources>
+</Initial>

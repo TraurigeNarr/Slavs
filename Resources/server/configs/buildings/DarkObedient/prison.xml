@@ -1,0 +1,8 @@
+<prison name="prison" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\DarkObedient\prison" file="prison.model" group="Buildings" type="FileSystem"/>
+
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+    </abilities>
+</prison>

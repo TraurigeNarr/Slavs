@@ -1,0 +1,10 @@
+<kurgan name="kurgan" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\DarkObedient\kurgan" file="kurgan.model" group="Buildings" type="FileSystem"/>
+
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+      <ability name="create_umrun"/>
+      <ability name="create_vurdalak"/>
+    </abilities>
+</kurgan>

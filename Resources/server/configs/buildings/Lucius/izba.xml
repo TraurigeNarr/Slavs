@@ -1,0 +1,10 @@
+<izba name="izba" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\Lucius\izba" file="izba.model" group="Buildings" type="FileSystem"/>
+
+    <scale x="5" y="5" z="5" />
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+      <ability name="create_bogatyr"/>
+    </abilities>
+</izba>

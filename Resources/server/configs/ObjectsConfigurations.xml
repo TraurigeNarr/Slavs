@@ -1,0 +1,8 @@
+<Objects>
+	<BasePlugin.HumanObject/><!--No resources needed. Comes when he wants-->
+	<BasePlugin.TreeObject/><!--No resources needed. Environment object-->
+	<BasePlugin.Hizhina>
+		<wood value="100"/>
+		<stone value="50"/>
+	</BasePlugin.Hizhina>
+</Objects>

@@ -1,0 +1,10 @@
+<casern name="casern" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\Lucius\casern" file="casern.model" group="Buildings" type="FileSystem"/>
+
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+      <ability name="create_vityaz"/>
+      <ability name="create_archer"/>
+    </abilities>
+</casern>

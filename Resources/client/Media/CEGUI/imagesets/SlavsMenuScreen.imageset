@@ -1,0 +1,3 @@
+<Imageset autoScaled="true" imagefile="MenuScreenBackground.png" name="SlavsMenuScreen" nativeHorzRes="640" nativeVertRes="464" version="2">
+    <Image height="464" name="Background" width="640" xPos="0" yPos="0" />
+</Imageset>

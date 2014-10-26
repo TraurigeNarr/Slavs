@@ -1,0 +1,16 @@
+<peasent name="peasent" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\characters\Lucius\peasent" file="peasent.model" group="Characters" type="FileSystem"/>
+
+    <scale x="15" y="15" z="15" />
+    <actor hp="800" mp="400" armor="1" attack="30" atype="melee" ms="300" as="1000"/>
+
+    <builder_abilities>
+      <ability   name="create_detinets"   />
+      <ability   name="create_casern"     />
+      <ability   name="create_hizhina"    />
+      <ability   name="create_hovel"      />
+      <ability   name="create_hozDvor"    />
+      <ability   name="create_izba"       />
+      <ability   name="create_zemlyanka"  />
+    </builder_abilities>
+</peasent>

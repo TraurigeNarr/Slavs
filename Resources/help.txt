@@ -1,0 +1,9 @@
+Interface are devided in 5 groups: resource panel, building and command boxes, information field and help window which you are reading now.
+In building box there are 5 groups of buildings that you can select for creating. They are general - here you can find houses and stores;
+Military - cassern, now it is not implemented at all; resources - manufactures that gives to your store resources like wood, stone, iron ore, vegetables or fruits and
+processing resources - these are manufactures that can process one resouce to another (e.x. weat to weat flour).
+The important thing is the order of building you creating. First you should build some from last two groups. This give your humans opportunity to work and earn money.
+After that you can build store so that you have more space to store resources. 
+After that you can decide on building stores, houses or manufactures.
+
+After closing application you can find information about intelligent agents in file server\data\data.txt

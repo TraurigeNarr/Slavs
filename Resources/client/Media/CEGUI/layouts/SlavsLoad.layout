@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="SlavsLook/StaticImage" name="LoadBackground" >
+        <Property name="Area" value="{{0,1},{0,0},{1,1},{1,0}}" />
+        <Property name="Image" value="SlavsLoadScreen/Background" />
+
+     <Window type="SlavsLook/ProgressBar" name="GeneralProgress" >
+            <Property name="Area" value="{{0,40},{0,602},{0,984},{0,634}}" />
+            <Property name="StepSize" value="0.01" />
+        </Window>
+        <Window type="SlavsLook/StaticText" name="InformationLabel" >
+            <Property name="Area" value="{{0,44},{0,547},{0,488},{0,579}}" />
+        </Window>
+        <Window type="SlavsLook/ProgressBar" name="CurrentStageProgress" >
+            <Property name="Area" value="{{0,38},{0,652},{0,986},{0,684}}" />
+            <Property name="StepSize" value="0.01" />
+        </Window>
+    </Window>
+</GUILayout>

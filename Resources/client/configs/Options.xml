@@ -1,0 +1,6 @@
+<Options>
+  <fullscreen value="false"/>
+  <resolution value="1024x768"/>
+  <vsync value="false"/>
+  <server a="127" b="0" c="0" d="1" port="30000"/>
+</Options>

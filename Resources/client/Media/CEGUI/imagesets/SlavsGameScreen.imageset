@@ -1,0 +1,5 @@
+<Imageset autoScaled="true" imagefile="GameScreenImageSet.png" name="SlavsGameScreen" nativeHorzRes="640" nativeVertRes="640" version="2">
+    <Image height="36" name="EconomyPluginStatus_Good" width="36" xPos="1" yPos="1" />
+    <Image height="36" name="EconomyPluginStatus_Intermediate" width="36" xPos="38" yPos="1" />
+    <Image height="36" name="EconomyPluginStatus_Bad" width="36" xPos="75" yPos="1" />
+</Imageset>

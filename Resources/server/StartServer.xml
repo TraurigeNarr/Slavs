@@ -1,0 +1,16 @@
+<ServerConfiguration>
+  <Network>
+    <Port>30000</Port>
+  </Network>
+  <Plugins Directory="server/plugins">
+    <Plugin>SlavsBasePlugin</Plugin>
+  </Plugins>
+  <Players>
+    <Player Address="127.0.0.1:30001" Name="Jester"/>
+    <!--List of other players-->
+  </Players>
+  <Game>
+    <GamePath Type="Relative" File="server/maps/test.game"/>
+    <ConfigurationsPath Type="Relative" File="server/configs/ObjectsConfigurations.xml"/>
+  </Game>
+</ServerConfiguration>

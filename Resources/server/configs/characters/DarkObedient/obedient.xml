@@ -1,0 +1,16 @@
+<obedient name="obedientf" author="Ivan Shcherbina" application="Slavs">
+   <modelFile location="data\resources\characters\DarkObedient\obedient" file="obedient.model" group="Characters" type="FileSystem"/>
+
+   <scale x="10" y="10" z="10" />
+   <actor hp="200" anger="300" armor="1" attack="30" atype="melee" ms="300" as="1000"/>
+
+   <abilities>
+      <ability   name="create_HOTD"    />
+      <ability   name="create_HOD"     />
+      <ability   name="create_kurgan"  />
+      <ability   name="create_lachuga" />
+      <ability   name="create_nora"    />
+      <ability   name="create_prison"  />
+      <ability   name="create_sklep"   />
+   </abilities>
+</obedient>

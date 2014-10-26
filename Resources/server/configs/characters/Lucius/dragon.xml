@@ -1,0 +1,9 @@
+<dragon name="dragon" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\characters\Lucius\dragon" file="dragon.model" group="Characters" type="FileSystem"/>
+
+    <scale x="40" y="40" z="40" />
+    <actor hp="800" mp="400" armor="1" attack="30" atype="melee" ms="300" as="1000"/>
+
+    <abilities>
+    </abilities>
+</dragon>

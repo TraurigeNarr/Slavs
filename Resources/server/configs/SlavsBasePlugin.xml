@@ -1,0 +1,40 @@
+<BasePlugin>
+  <Composer>
+    <HumanObject>
+      <component type="DynamicComponent" bbox_radius="20" max_speed="50" max_force="400" max_turnrate="50"/>
+      <component type="HumanComponent" money="100">
+        <Food Calories ="10" EatIn ="1000" DieIfNoEat ="10000"/>
+      </component>
+      <component type="PrimitiveBrain" retire_period="200"/>
+    </HumanObject>
+    <HizhinaObject>
+      <component type="StaticComponent" bbox_radius="20"/>
+      <component type="HouseComponent" max_population="8" new_inhabitant_ticks="1000"/>
+    </HizhinaObject>
+    <ProductionStoreObject>
+      <component type="StaticComponent" bbox_radius="50"/>
+      <component type="StoreComponent" workers="5">
+        <resources>
+          <resource type="stone" max_number="1500"/>
+          <resource type="stone" max_number="725"/>
+          <resource type="wood"  max_number="1000"/>
+          <resource type="wood"  max_number="1500"/>
+          <resource type="skin"  max_number="1500"/>
+        </resources>
+      </component>
+    </ProductionStoreObject>
+    <ManufactureObject stone="150">
+      <component type="StaticComponent" bbox_radius="100"/>
+      <component type="ManufactureComponent">
+        <worker type="HumanComponent" initial_skill="1.1" max_skill="2.0" learning_coefficient="0.1" skill_growth="0.05"/>
+        <manufacture>
+          <needed_workers>10</needed_workers>
+          <initial_resources_mining>10</initial_resources_mining>
+          <operating_cycle>500</operating_cycle>
+          <mining_resource_type>stone</mining_resource_type>
+          <initial_payment>8</initial_payment>
+        </manufacture>
+      </component> 
+    </ManufactureObject>
+  </Composer>
+</BasePlugin>

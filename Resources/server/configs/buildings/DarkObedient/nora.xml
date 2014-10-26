@@ -1,0 +1,9 @@
+<nora name="nora" author="Ivan Shcherbina" application="Slavs">
+    <modelFile location="data\resources\buildings\DarkObedient\nora" file="nora.model" group="Buildings" type="FileSystem"/>
+
+    <actor hp="500" armor="1"/>
+
+    <abilities>
+      <ability name="create_werewolf"/>
+    </abilities>
+</nora>

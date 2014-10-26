@@ -1,0 +1,15 @@
+<node>
+    <position x="0" y="0" z="0" />
+    <scale x="70" y="70" z="70" />
+    <rotation qx="0" qy="0" qz="0" qw="1" />
+    <node name="Peasent">
+        <position x="0" y="0" z="0" />
+        <scale x="5" y="5" z="5" />
+        <rotation qx="0" qy="0" qz="0" qw="1" />
+        <entity name="Peasent" castShadows="true" receiveShadows="true" meshFile="Human.mesh">
+            <subentities>
+                <subentity index="0" materialName="Human" />
+            </subentities>
+        </entity>
+    </node>
+</node>

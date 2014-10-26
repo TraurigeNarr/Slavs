@@ -1,0 +1,4 @@
+<tree name="terrain" author="Ivan Shcherbina" application="Slavs">
+    <mesh file="ground.material" group="General"/>
+    <scale x="50000" y="1" z="50000" />
+</tree>

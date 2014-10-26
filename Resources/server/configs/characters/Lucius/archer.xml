@@ -1,0 +1,9 @@
+<werewolf name="werewolf" author="Ivan Shcherbina" application="Slavs">
+   <modelFile location="data\resources\characters\Lucius\archer" file="archer.model" group="Characters" type="FileSystem"/>
+
+   <scale x="10" y="10" z="10" />
+   <actor hp="200" anger="300" armor="1" attack="30" atype="melee" ms="300" as="1000" ar="1000"/>
+
+   <abilities>
+   </abilities>
+</werewolf>
