@@ -34,7 +34,7 @@ namespace ClientStates
     data.Deserialize(i_packet);
 
     m_economy_state = static_cast<ManagerState>(data.GetDataWithType<char>(0));
-    m_number_of_stores = data.GetDataWithType<size_t>(1);
+    m_number_of_stores = 5;// bug with casting of this data type data.GetDataWithType<size_t>(1);
     Invalidate();
     return true;
     }

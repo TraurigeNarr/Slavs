@@ -9,6 +9,7 @@
 #include "ScreenManager.h"
 #include "ButtonID.h"
 
+#include <Common/Utilities/StringUtilities.h>
 
 namespace
   {
@@ -90,6 +91,8 @@ namespace UI
           _SetButtonImages (*m_plugin_buttons[ButtonID::BI_ECONOMY_PLUGIN_STATUS], ButtonState::Bad, "SlavsGameScreen/EconomyPluginStatus");
           break;
         }
+      auto p_number_of_stores = mp_root_window->getChild("NumberOfStores");
+      p_number_of_stores->setText(StringUtilities::t_to_string(p_economy->GetNumberOfStores()));
       }
 
     p_message_provider->Validate();

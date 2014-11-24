@@ -14,5 +14,8 @@
         <Window type="SlavsLook/ImageButton" name="EconomyPluginStatus" >
             <Property name="Area" value="{{0.683594,0},{0,0},{0.683594,36},{0,36}}" />
         </Window>
+        <Window type="SlavsLook/StaticText" name="NumberOfStores" >
+            <Property name="Area" value="{{0.730469,0},{0,0},{0.730469,75},{0,36}}" />
+        </Window>
     </Window>
 </GUILayout>
