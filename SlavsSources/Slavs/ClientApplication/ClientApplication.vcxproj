@@ -81,7 +81,7 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\..\Resources\client\*.*" "$(OutputPath)" /Y /R /I /E
-xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Client\*.*" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\GameCore.dll" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Network.dll" "$(OutputPath)" /Y /R /I /E
@@ -110,7 +110,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)..\..\Resources\client\*.*" "$(OutputPath)" /Y /R /I /E
-xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)\Client\*.*" "$(OutputPath)" /Y /R /I /E
+xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Client\*.*" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Patterns.dll" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\GameCore.dll" "$(OutputPath)" /Y /R /I /E
 xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Network.dll" "$(OutputPath)" /Y /R /I /E

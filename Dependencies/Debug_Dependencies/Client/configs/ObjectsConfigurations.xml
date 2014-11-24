@@ -1,0 +1,45 @@
+<Objects>
+  <terrain file="configs\game\terrain.xml" />
+  <Undefined>
+    <component type="renderer">
+      <model location="Media\Models\Environment\tree" file="tree.model" group="Environment" type="FileSystem"/>
+    </component>
+  </Undefined>
+
+  <!-- Characters -->
+  <BasePlugin.HumanObject>
+    <component type="renderer">
+      <model location="Media\Models\Characters\Human" file="Human.model" group="Characters" type="FileSystem"/>
+      <scale x="5" y="5" z="5"/>
+    </component>
+  </BasePlugin.HumanObject>
+
+  <!--Buildings-->
+  <BasePlugin.HizhinaObject size="500">
+    <component type="renderer">
+      <model location="Media\Models\Buildings\Hizhina" file="hizhina.model" group="Buildings" type="FileSystem"/>
+      <scale x="50" y="50" z="50"/>
+    </component>
+  </BasePlugin.HizhinaObject>
+
+  <BasePlugin.ProductionStoreObject size="1000">
+    <component type="renderer">
+      <model location="Media\Models\Buildings\ProductionStore" file="ProductionStore.model" group="Buildings" type="FileSystem"/>
+      <scale x="100" y="100" z="100"/>
+    </component>
+  </BasePlugin.ProductionStoreObject>
+  
+  <BasePlugin.ManufactureObject size="1500">
+    <component type="renderer">
+      <model location="Media\Models\Buildings\ManufactureObject" file="ManufactureObject.model" group="Buildings" type="FileSystem"/>
+      <scale x="150" y="150" z="150"/>
+    </component>
+  </BasePlugin.ManufactureObject>
+
+  <!-- Environment -->
+  <tree>
+    <component type="renderer">
+      <model location="Media\Models\Environment\tree" file="tree.model" group="Environment" type="FileSystem"/>
+    </component>
+  </tree>
+</Objects>
