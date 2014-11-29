@@ -22,6 +22,7 @@ namespace UI
     , m_application(i_application)
     {
     m_dispatcher.RegisterHandler<GameBaseCommandHandler, const ButtonPressed&>(*this, &GameBaseCommandHandler::ButtonPressedHandler);
+    m_dispatcher.RegisterHandler<GameBaseCommandHandler, const CommandButtonPressed&>(*this, &GameBaseCommandHandler::CommandButtonPressedHandler);
     }
 
   GameBaseCommandHandler::~GameBaseCommandHandler()
@@ -41,6 +42,11 @@ namespace UI
       case ButtonID::BI_ECONOMY_PLUGIN_STATUS:
         break;
       }
+    }
+
+  void GameBaseCommandHandler::CommandButtonPressedHandler(const CommandButtonPressed& i_command_button_pressed)
+    {
+    // depends on command perform action
     }
 
   } // UI

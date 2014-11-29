@@ -13,6 +13,7 @@ namespace UI
   {
 
   struct ButtonPressed;
+  struct CommandButtonPressed;
 
   class GameBaseCommandHandler
     {
@@ -25,6 +26,7 @@ namespace UI
       ~GameBaseCommandHandler();
 
       void ButtonPressedHandler (const ButtonPressed& i_button_pressed);
+      void CommandButtonPressedHandler(const CommandButtonPressed& i_command_button_pressed);
     };
 
   } // UI

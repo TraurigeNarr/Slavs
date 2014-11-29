@@ -8,6 +8,7 @@
 #include "GameStateMessageProvider.h"
 
 #include "GovermentPanel.h"
+#include "CommandsPanel.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -42,13 +43,15 @@ namespace UI
     //////////////////////////////////////////////////////////////////////////
     // initialize child screens
     m_child_screens.push_back(ChildScreenPtr(new GovermentPanel(m_screen_manager)));
-    
+    m_child_screens.push_back(ChildScreenPtr(new CommandsPanel(m_screen_manager)));
+
     for (ChildScreenPtr& p_screen : m_child_screens)
       p_screen->Create (this);
     }
 
   void GameScreenMain::Update(long i_elapsed_time)
     {
+    __super::Update(i_elapsed_time);
     auto p_message_provider = GetMessageProvider<ClientStates::GameStateMessageProvider>();
     if (p_message_provider == nullptr || p_message_provider->IsValid())
       return;

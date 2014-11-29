@@ -21,7 +21,8 @@ namespace UI
       virtual void* GetRootWindow() override;
 
     protected:
-      void _TryAttachButtonHandler(const CEGUI::Window& i_window, const CEGUI::String& i_string, CEGUI::uint i_id);
+      void _TryAttachButtonHandler(const CEGUI::Window& i_window, const CEGUI::String& i_name_path, CEGUI::uint i_id);
+      void _TryAttachButtonHandler(const CEGUI::Window& i_window, const CEGUI::String& i_name_path, CEGUI::uint i_id, bool i_command_button);
 
     public:
       CeguiScreenBase (ScreenManager& i_screen_manager);
@@ -32,6 +33,7 @@ namespace UI
 
     public:
       virtual bool ButtonPressedHandler(const CEGUI::EventArgs& i_arguments);
+      virtual bool CommandButtonPressedHandler(const CEGUI::EventArgs& i_arguments);
     };
 
   } // UI

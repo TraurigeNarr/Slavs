@@ -125,6 +125,9 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="CEGUIFramework.h" />
     <ClInclude Include="CeguiScreenBase.h" />
     <ClInclude Include="CeguiUtilities.h" />
+    <ClInclude Include="CommandsPanel.h" />
+    <ClInclude Include="ElementsPanel.h" />
+    <ClInclude Include="ElementsBox.h" />
     <ClInclude Include="ComponentTypes.h" />
     <ClInclude Include="ClientComposer.h" />
     <ClInclude Include="ControlData.h" />
@@ -177,7 +180,10 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="ClientComposer.cpp" />
     <ClCompile Include="ClientGameContext.cpp" />
     <ClCompile Include="ClientGameObject.cpp" />
+    <ClCompile Include="CommandsPanel.cpp" />
     <ClCompile Include="EconomySystemMessageProvider.cpp" />
+    <ClCompile Include="ElementsPanel.cpp" />
+    <ClCompile Include="ElmentsBox.cpp" />
     <ClCompile Include="GameBaseCommandHandler.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameScreenMain.cpp" />

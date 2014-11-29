@@ -2,7 +2,7 @@
 
 <GUILayout version="4" >
     <Window type="DefaultWindow" name="GameScreenRoot" >
-        <Property name="Area" value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Property name="Area" value="{{0,1},{0,0},{1,0},{1,0}}" />
         <Window type="SlavsLook/Button" name="Menu" >
             <Property name="Area" value="{{0,9},{0,22},{0,105},{0,54}}" />
             <Property name="Text" value="Menu" />
@@ -16,6 +16,28 @@
         </Window>
         <Window type="SlavsLook/StaticText" name="NumberOfStores" >
             <Property name="Area" value="{{0.730469,0},{0,0},{0.730469,75},{0,36}}" />
+        </Window>
+        <Window type="DefaultWindow" name="CommandsPanel.List" >
+            <Property name="Area" value="{{0.42,0},{0.9,0},{0.96,0},{0.99,0}}" />
+        </Window>
+        <Window type="SlavsLook/Button" name="CommandsPanel.List.Left" >
+            <Property name="Area" value="{{0.39,0},{0.9,0},{0.42,0},{0.99,0}}" />
+            <Property name="Text" value="L" />
+        </Window>
+        <Window type="SlavsLook/Button" name="CommandsPanel.List.Right" >
+            <Property name="Area" value="{{0.96,0},{0.9,0},{0.99,0},{0.99,0}}" />
+            <Property name="Text" value="R" />
+        </Window>
+        <Window type="DefaultWindow" name="CommandsPanel.Commands" >
+            <Property name="Area" value="{{0.42,0},{0.7,0},{0.96,0},{0.9,0}}" />
+        </Window>
+        <Window type="SlavsLook/Button" name="CommandsPanel.Commands.Left" >
+            <Property name="Area" value="{{0.39,0},{0.7,0},{0.42,0},{0.9,0}}" />
+            <Property name="Text" value="L" />
+        </Window>
+        <Window type="SlavsLook/Button" name="CommandsPanel.Commands.Right" >
+            <Property name="Area" value="{{0.96,0},{0.7,0},{0.99,0},{0.9,0}}" />
+            <Property name="Text" value="R" />
         </Window>
     </Window>
 </GUILayout>

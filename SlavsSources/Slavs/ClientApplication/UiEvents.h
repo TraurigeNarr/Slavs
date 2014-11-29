@@ -14,7 +14,15 @@ namespace UI
     ButtonPressed(ButtonID i_id)
       : m_button(i_id)
       {      }
+    };
 
+  struct CommandButtonPressed : public Event
+    {
+    const int       m_command_id;
+
+    CommandButtonPressed(int i_command_id)
+      : m_command_id(i_command_id)
+      {      }
     };
 
   } // UI

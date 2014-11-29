@@ -66,6 +66,9 @@
     <Filter Include="Application\States\GameState\CommandProviders\Base">
       <UniqueIdentifier>{af808316-76fa-4e69-8ced-bb04cb10c74a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Screens\GameScreen\Base">
+      <UniqueIdentifier>{fa42accf-569a-43e5-a567-37b20af5b854}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -212,6 +215,15 @@
     <ClInclude Include="EconomySystemMessageProvider.h">
       <Filter>Application\States\GameState\CommandProviders</Filter>
     </ClInclude>
+    <ClInclude Include="ElementsPanel.h">
+      <Filter>Application\Screens\GameScreen\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandsPanel.h">
+      <Filter>Application\Screens\GameScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementsBox.h">
+      <Filter>Application\Screens\GameScreen\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -327,6 +339,15 @@
     </ClCompile>
     <ClCompile Include="EconomySystemMessageProvider.cpp">
       <Filter>Application\States\GameState\CommandProviders</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandsPanel.cpp">
+      <Filter>Application\Screens\GameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementsPanel.cpp">
+      <Filter>Application\Screens\GameScreen\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ElmentsBox.cpp">
+      <Filter>Application\Screens\GameScreen\Base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
