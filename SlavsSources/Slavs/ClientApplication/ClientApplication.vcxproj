@@ -141,6 +141,11 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="EconomySystemMessageProvider.h" />
     <ClInclude Include="GameBaseCommandHandler.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="IMouse.h" />
+    <ClInclude Include="MouseManager.h" />
+    <ClInclude Include="MouseTypes.h" />
+    <ClInclude Include="PlaceBuildingMouse.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="UISettings.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameScreenMain.h" />
@@ -196,6 +201,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="GameScreenMain.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMessageProvider.cpp" />
+    <ClCompile Include="IMouse.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="LoadingStages.cpp" />
@@ -204,11 +210,13 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="MenuCommandHandler.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="OgreMaxModel.cpp" />
     <ClCompile Include="ModelController.cpp" />
     <ClCompile Include="OgreFramework.cpp" />
     <ClCompile Include="CeguiUtilities.cpp" />
     <ClCompile Include="OgreMaxUtilities.cpp" />
+    <ClCompile Include="PlaceBuildingMouse.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="GovermentPanel.cpp" />
     <ClCompile Include="GovermentMessageProvider.cpp" />

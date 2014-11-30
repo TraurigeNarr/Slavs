@@ -10,6 +10,9 @@
 #include "ScreenManager.h"
 #include "UISettings.h"
 
+#include "MouseManager.h"
+#include "PlaceBuildingMouse.h"
+
 #include <Common/Patterns/StateMachine.h>
 
 //////////////////////////////////////////////////////////////////////////
@@ -17,6 +20,14 @@
 namespace ClientGame
   {
   Application appInstance;
+  }
+
+namespace
+  {
+  void RegisterMice(GameCore::UI::MouseManager& i_mouse_manager)
+    {
+    i_mouse_manager.RegisterMouse(std::unique_ptr<GameCore::UI::IMouse>(new UI::PlaceBuildingMouse()));
+    }
   }
 
 //////////////////////////////////////////////////////////////////////////
@@ -46,6 +57,8 @@ void Application::Start()
   mp_state_machine->SetCurrentState(std::make_shared<ClientStates::MenuState>(*this));
 
   mp_ui_settings.reset(new UI::UISettings());
+  mp_mouse_manager.reset(new GameCore::UI::MouseManager());
+  RegisterMice(*mp_mouse_manager);
 
   m_shutdown = false;
   //start rendering

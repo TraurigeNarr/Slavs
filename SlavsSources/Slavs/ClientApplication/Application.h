@@ -5,7 +5,11 @@
 class OgreFramework;
 class CEGUIFramework;
 class InputManager;
-class MonkeyScene;
+
+namespace GameCore { namespace UI {
+  class MouseManager;
+    } // UI
+  } // GameCore
 
 namespace UI
   {
@@ -25,6 +29,8 @@ class Application : public Ogre::FrameListener
     std::unique_ptr<UI::ScreenManager>        mp_screen_manager;
     std::unique_ptr<UI::UISettings>           mp_ui_settings;
 
+    std::unique_ptr<GameCore::UI::MouseManager> mp_mouse_manager;
+
   // Ogre::FrameListener
   protected:
     virtual bool frameRenderingQueued(const Ogre::FrameEvent& evt);
@@ -43,6 +49,7 @@ class Application : public Ogre::FrameListener
     ApplicationStateMachine&  GetStateMachine();
     UI::ScreenManager&        GetScreenManager();
     UI::UISettings&           GetUISettings();
+    GameCore::UI::MouseManager& GetMouseManager();
   };
 
 //////////////////////////////////////////////////////////////////////////
@@ -75,6 +82,11 @@ inline UI::ScreenManager& Application::GetScreenManager()
 inline UI::UISettings& Application::GetUISettings()
   {
   return *mp_ui_settings;
+  }
+
+inline GameCore::UI::MouseManager& Application::GetMouseManager()
+  {
+  return *mp_mouse_manager;
   }
 
 namespace ClientGame

@@ -25,11 +25,13 @@ namespace ClientGame
       OgreFramework&                            m_framework;
       InputManager&                             m_input_manager;
       std::unique_ptr<OgreBites::SdkCameraMan>  mp_camera_man;
+      bool                                      m_active_fps_mode;
 
     public:
       CameraImpl(OgreFramework& i_framework, InputManager& i_input_manager)
         : m_framework(i_framework)
         , m_input_manager(i_input_manager)
+        , m_active_fps_mode(false)
         {
         Ogre::Camera* p_camera = m_framework.GetCamera();
         p_camera->setPosition(Ogre::Vector3(-660, 1750, 2650));
@@ -53,7 +55,9 @@ namespace ClientGame
         { 
         mp_camera_man->injectKeyDown(keyEventRef);
         if (keyEventRef.key == OIS::KeyCode::KC_T)
-          mp_camera_man->setTopSpeed(mp_camera_man->getTopSpeed()+10);
+          mp_camera_man->setTopSpeed(mp_camera_man->getTopSpeed() + 10);
+        else if (keyEventRef.key == OIS::KeyCode::KC_LSHIFT)
+          m_active_fps_mode = !m_active_fps_mode;
         return true;
         }
 
@@ -64,18 +68,21 @@ namespace ClientGame
         }
 
       virtual bool MouseMoved(const OIS::MouseEvent &evt) override 
-        { 
-        mp_camera_man->injectMouseMove(evt);
+        {
+        if (m_active_fps_mode)
+          mp_camera_man->injectMouseMove(evt);
         return true;
         }
       virtual bool MousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id) override 
         {
-        mp_camera_man->injectMouseDown(evt, id);
+        if (m_active_fps_mode)
+          mp_camera_man->injectMouseDown(evt, id);
         return true;
         }
       virtual bool MouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID id) override 
         {
-        mp_camera_man->injectMouseUp(evt, id);
+        if (m_active_fps_mode)
+          mp_camera_man->injectMouseUp(evt, id);
         return true;
         }
 

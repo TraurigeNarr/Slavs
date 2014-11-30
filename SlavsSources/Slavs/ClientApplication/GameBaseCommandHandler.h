@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Task.h"
+
 class MessageDispatcher;
 
 class Application;
@@ -21,6 +23,9 @@ namespace UI
       MessageDispatcher&                m_dispatcher;
       Application&                      m_application;
       ClientStates::GameState&          m_game_state;
+
+      std::vector<SDK::TaskPtr>         m_tasks;
+
     public:
       GameBaseCommandHandler(ClientStates::GameState& i_state, Application& i_application, MessageDispatcher& i_dispatcher);
       ~GameBaseCommandHandler();

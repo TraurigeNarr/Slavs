@@ -21,6 +21,7 @@ namespace ClientGame
     {
     mp_light = m_framework.GetSceneManager()->createLight("MainLight"); //create pointer to light object
     mp_light->setType(Ogre::Light::LT_POINT);                           // make this light a point light <=> sun like
+    mp_light->setPosition(Ogre::Vector3(0, 1500, 0));
     mp_light->setDiffuseColour(1.0, .5, 0.0);                           //color the light orange 
     mp_light->setSpecularColour(1.0, 1.0, 0.0);                         //yellow highlights
     }

@@ -10,6 +10,7 @@
 
 #include "Application.h"
 #include "InputManager.h"
+#include "MouseManager.h"
 
 #include "ScreenManager.h"
 #include "GameScreenMain.h"
@@ -80,6 +81,7 @@ namespace ClientStates
     mp_time_controller->AddSubscriber(mp_context.get());
 
     m_application.GetInputManager().AddSubscriber(this);
+    m_application.GetMouseManager().PopAllMice();
     }
 
   void GameState::Execute(Application* ip_application, long i_elapsed_time)
@@ -116,6 +118,7 @@ namespace ClientStates
     mp_camera.reset();
 
     m_application.GetInputManager().RemoveSubscriber(this);
+    m_application.GetMouseManager().PopAllMice();
     }
 
   //////////////////////////////////////////////////////////////////////////

@@ -69,6 +69,15 @@
     <Filter Include="Application\Screens\GameScreen\Base">
       <UniqueIdentifier>{fa42accf-569a-43e5-a567-37b20af5b854}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mice">
+      <UniqueIdentifier>{b02daadb-5992-4078-8952-640c63af876e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tasks">
+      <UniqueIdentifier>{a077e704-020a-4df9-8986-bc3b3315c904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mice\Base">
+      <UniqueIdentifier>{96c3f87d-d9c4-4476-84e8-7fd2ff0818cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -233,6 +242,21 @@
     <ClInclude Include="CommandInfo.h">
       <Filter>Application\Screens\GameScreen\Base</Filter>
     </ClInclude>
+    <ClInclude Include="MouseManager.h">
+      <Filter>Mice\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="IMouse.h">
+      <Filter>Mice\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaceBuildingMouse.h">
+      <Filter>Mice</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseTypes.h">
+      <Filter>Mice</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -366,6 +390,15 @@
     </ClCompile>
     <ClCompile Include="CmmandInfo.cpp">
       <Filter>Application\Screens\GameScreen\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="IMouse.cpp">
+      <Filter>Mice\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseManager.cpp">
+      <Filter>Mice\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaceBuildingMouse.cpp">
+      <Filter>Mice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

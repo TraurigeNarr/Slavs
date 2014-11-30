@@ -43,6 +43,7 @@ class ClientGameContext : public GameContext
     virtual void                  TickPerformed() override;
 
     ClientGame::ModelController&  GetModelControlelr();    
+    ClientGame::SceneController&  GetSceneController();
   };
 
 //////////////////////////////////////////////////////////////////////////
@@ -50,6 +51,11 @@ class ClientGameContext : public GameContext
 inline ClientGame::ModelController& ClientGameContext::GetModelControlelr()
   {
   return *mp_model_controller;
+  }
+
+inline ClientGame::SceneController& ClientGameContext::GetSceneController()
+  {
+  return *mp_scene_controller;
   }
 
 inline void ClientGameContext::CreateUnknownObjects(bool i_create)

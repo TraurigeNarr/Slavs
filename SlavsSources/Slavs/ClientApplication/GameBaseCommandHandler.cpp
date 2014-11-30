@@ -7,15 +7,63 @@
 #include "GameState.h"
 #include "MenuState.h"
 
-#include <Network/include/Connection.h>
-#include <Network/PacketType.h>
+#include "Task.h"
+
+#include "Application.h"
+#include "MouseManager.h"
+#include "MouseTypes.h"
 
 #include <Patterns/MessageDispatcher/MessageDispatcher.h>
 
 #include <Common/Patterns/StateMachine.h>
 #include <Common/Utilities/TemplateFunctions.h>
 
+#include <Network/include/Connection.h>
+#include <Network/PacketType.h>
+
 using namespace ClientStates;
+
+namespace Tasks
+  {
+  class PlaceBuilding : public SDK::Task
+    {
+    private:
+      const int m_building_id;
+      net::Connection& m_connection;
+
+    public:
+      PlaceBuilding(int i_task_id, int i_building_id, net::Connection& i_connection)
+        : Task(i_task_id)
+        , m_building_id(i_building_id)
+        , m_connection(i_connection)
+        {}
+
+      virtual ~PlaceBuilding(){}
+
+      virtual void CompleteImpl(const boost::any& i_value) override
+        {
+        net::Connection& connection = reinterpret_cast<ClientStates::GameState*>(ClientGame::appInstance.GetStateMachine().GetCurrentState().get())->GetConnection();
+        Ogre::Vector3 position = boost::any_cast<Ogre::Vector3>(i_value);
+
+        const size_t packet_size = sizeof(Network::PacketType) + sizeof(int) + sizeof(float) + sizeof(float);
+        std::unique_ptr<char[]> p_buffer(new char[packet_size]);
+        size_t offset = 0;
+        ToChar(Network::PacketType::PT_Command, &p_buffer[0], sizeof(Network::PacketType));
+        offset += sizeof(Network::PacketType);
+        ToChar(m_building_id, &p_buffer[offset], sizeof(int));
+        offset += sizeof(int);
+        ToChar(position.x, &p_buffer[offset], sizeof(float));
+        offset += sizeof(float);
+        ToChar(position.z, &p_buffer[offset], sizeof(float));
+        connection.SendPacket(&p_buffer[0], packet_size);
+        }
+
+      virtual void DiscardImpl(const boost::any& i_value) override
+        {
+        // we should do nothing here
+        }
+    };
+  }
 
 namespace UI
   {
@@ -50,22 +98,9 @@ namespace UI
 
   void GameBaseCommandHandler::CommandButtonPressedHandler(const CommandButtonPressed& i_command_button_pressed)
     {
-    net::Connection& connection = m_game_state.GetConnection();
-
-    float x_pos = 1000.f;
-    float y_pos = 1000.f;
-
-    const size_t packet_size = sizeof(Network::PacketType) + sizeof(int) + sizeof(float) + sizeof(float);
-    std::unique_ptr<char[]> p_buffer(new char[packet_size]);
-    size_t offset = 0;
-    ToChar(Network::PacketType::PT_Command, &p_buffer[0], sizeof(Network::PacketType));
-    offset += sizeof(Network::PacketType);
-    ToChar(i_command_button_pressed.m_command_id, &p_buffer[offset], sizeof(int));
-    offset += sizeof(int);
-    ToChar(x_pos, &p_buffer[offset], sizeof(float));
-    offset += sizeof(float);
-    ToChar(y_pos, &p_buffer[offset], sizeof(float));
-    connection.SendPacket(&p_buffer[0], packet_size);
+    auto p_task = SDK::TaskPtr(new Tasks::PlaceBuilding(m_tasks.size(), i_command_button_pressed.m_command_id, m_game_state.GetConnection()));
+    ClientGame::appInstance.GetMouseManager().SetActiveMouse(static_cast<int>(MouseType::PlaceBuilding), p_task.get());
+    m_tasks.push_back(std::move(p_task));
     }
 
   } // UI
