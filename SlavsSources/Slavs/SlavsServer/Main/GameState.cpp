@@ -133,13 +133,27 @@ namespace Slavs
 
   void GameState::HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read)
     {
-    Network::PacketType pType = (Network::PacketType)FromChar<int>((char*)ip_packet);
-    char *packetToClient = NULL;
-    switch(pType)
+    Network::PacketType packet_type = (Network::PacketType)FromChar<int>(reinterpret_cast<char*>(ip_packet));
+    switch (packet_type)
       {
       case Network::PacketType::PT_EndGame:
         ip_owner->Stop();
         return;
+        break;
+      case Network::PacketType::PT_Command:
+        // hold
+        {
+        int controllers_mask = ip_owner->GetConnection()->GetAddress().GetAddress();
+        auto& controllers = mh_game_context->GetControllers();
+        auto it = std::find_if(controllers.begin(), controllers.end(), [controllers_mask](const GameContext::ControllerInformation& controller_info)
+          {
+          return controller_info.mp_controller->GetMask() == controllers_mask;
+          });
+        if (it != controllers.end())
+          it->mp_controller->HoldPacket(ip_owner->GetConnection(), ip_packet, i_bytes_read);
+        return;
+        }
+        break;
       }
     }
 

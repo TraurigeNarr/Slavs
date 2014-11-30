@@ -71,6 +71,7 @@ namespace ClientStates
       StateMachine<GameState, long>& GetStateMachine();
       GameStateBaseMessageProvider* GetMessageProvider() const;
       ClientGameContext& GetContext();
+      net::Connection&   GetConnection();
     };
 
   //////////////////////////////////////////////////////////////////////////
@@ -88,6 +89,11 @@ namespace ClientStates
   inline ClientGameContext& GameState::GetContext()
     {
     return *mp_context;
+    }
+
+  inline net::Connection& GameState::GetConnection()
+    {
+    return *mp_connection;
     }
 
   } // ClientStates

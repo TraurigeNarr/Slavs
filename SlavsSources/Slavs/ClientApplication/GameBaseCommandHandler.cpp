@@ -7,9 +7,13 @@
 #include "GameState.h"
 #include "MenuState.h"
 
+#include <Network/include/Connection.h>
+#include <Network/PacketType.h>
+
 #include <Patterns/MessageDispatcher/MessageDispatcher.h>
 
 #include <Common/Patterns/StateMachine.h>
+#include <Common/Utilities/TemplateFunctions.h>
 
 using namespace ClientStates;
 
@@ -46,7 +50,22 @@ namespace UI
 
   void GameBaseCommandHandler::CommandButtonPressedHandler(const CommandButtonPressed& i_command_button_pressed)
     {
-    // depends on command perform action
+    net::Connection& connection = m_game_state.GetConnection();
+
+    float x_pos = 1000.f;
+    float y_pos = 1000.f;
+
+    const size_t packet_size = sizeof(Network::PacketType) + sizeof(int) + sizeof(float) + sizeof(float);
+    std::unique_ptr<char[]> p_buffer(new char[packet_size]);
+    size_t offset = 0;
+    ToChar(Network::PacketType::PT_Command, &p_buffer[0], sizeof(Network::PacketType));
+    offset += sizeof(Network::PacketType);
+    ToChar(i_command_button_pressed.m_command_id, &p_buffer[offset], sizeof(int));
+    offset += sizeof(int);
+    ToChar(x_pos, &p_buffer[offset], sizeof(float));
+    offset += sizeof(float);
+    ToChar(y_pos, &p_buffer[offset], sizeof(float));
+    connection.SendPacket(&p_buffer[0], packet_size);
     }
 
   } // UI

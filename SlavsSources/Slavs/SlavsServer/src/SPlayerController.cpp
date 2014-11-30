@@ -6,6 +6,7 @@
 
 #include "Game/GameContext.h"
 #include "Game/GameObject.h"
+#include "Main/ServerMain.h"
 //common
 #include <Game/CommandData.h>
 #include <Game/Enumerations.h>
@@ -32,27 +33,37 @@ void SPlayerController::TickPerformed()
 }
 
 void SPlayerController::HoldPacket(net::Connection* connection, unsigned char* packet, int bytes_read)
-{
-	Network::PacketType pType = (Network::PacketType)FromChar<int>((char*)packet);
-	packet += sizeof(pType);
-	bytes_read -= sizeof(pType);
+  {
+  enum Commands
+    {
+    CreateManufacture = 0,
+    CreateStore = 3
+    };
+  char* p_packet = reinterpret_cast<char*>(packet);
+  Network::PacketType packet_type = (Network::PacketType)FromChar<int>(p_packet);
+  p_packet += sizeof(Network::PacketType);
+  bytes_read -= sizeof(Network::PacketType);
 
-	CommandData* cData = NULL;
+  if (packet_type == Network::PacketType::PT_Command)
+    {
+    size_t offset = 0;
+    int command_id = FromChar<int>(p_packet);
+    offset += sizeof(int);
+    float x_pos = FromChar<float>(p_packet + offset);
+    offset += sizeof(float);
+    float y_pos = FromChar<float>(p_packet + offset);
 
-	switch(pType)
-	{
-	case Network::PacketType::PT_Command:
-		cData = new CommandData();
-		cData->Deserialize((char*)packet);
-		HoldCommand(cData);
-		break;
-	case Network::PacketType::PT_Selection:
-		SelectObjects(packet, bytes_read);
-		break;
-	}
-	if(NULL != cData)
-		delete cData;
-}
+    MetaFactory& factory = ServerMain::GetInstance().GetMetaFactory();
+    int type_id = -1;
+    if (command_id == Commands::CreateManufacture)
+      type_id = factory.GetObjectID("BasePlugin.ManufactureObject");
+    else if (command_id == Commands::CreateStore)
+      type_id = factory.GetObjectID("BasePlugin.ProductionStoreObject");
+
+    if (type_id != -1)
+      GetGameContext().AddObject(type_id, Vector2D(x_pos, y_pos), GetMask());
+    }
+  }
 
 void SPlayerController::HoldCommand(CommandData* cData)
 {	
