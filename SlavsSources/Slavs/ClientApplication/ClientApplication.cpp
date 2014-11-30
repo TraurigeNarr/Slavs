@@ -8,11 +8,10 @@
 
 INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT)
   {
-  Application app;
   try
     {
-    app.Start();
-    app.Release();
+    ClientGame::appInstance.Start();
+    ClientGame::appInstance.Release();
     }
   catch(std::exception& e)
     {

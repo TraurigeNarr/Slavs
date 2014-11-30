@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 /////////////////////////////////////////////////////
 
 class StringUtilities : boost::noncopyable
@@ -21,6 +22,8 @@ public:
   static bool         ParseBool(const std::string& i_value);
   template <typename T>
   static std::string t_to_string(T&& i_value);
+
+  static std::vector<std::string> Tokenize(const std::string& i_input_string, const std::string& i_separators = ";:() ");
 };
 
 template <typename T>

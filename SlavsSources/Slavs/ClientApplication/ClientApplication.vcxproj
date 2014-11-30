@@ -44,11 +44,13 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\..\..\ThirdParty\props\OGRE.props" />
     <Import Project="..\..\..\..\..\ThirdParty\props\CEGUI.props" />
+    <Import Project="..\..\..\..\..\ThirdParty\props\boost.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\..\..\..\ThirdParty\props\OGRE.props" />
     <Import Project="..\..\..\..\..\ThirdParty\props\CEGUI.props" />
+    <Import Project="..\..\..\..\..\ThirdParty\props\boost.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -125,6 +127,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="CEGUIFramework.h" />
     <ClInclude Include="CeguiScreenBase.h" />
     <ClInclude Include="CeguiUtilities.h" />
+    <ClInclude Include="ButtonInfo.h" />
+    <ClInclude Include="CommandInfo.h" />
     <ClInclude Include="CommandsPanel.h" />
     <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="ElementsBox.h" />
@@ -137,6 +141,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="EconomySystemMessageProvider.h" />
     <ClInclude Include="GameBaseCommandHandler.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="UISettings.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameScreenMain.h" />
     <ClInclude Include="GameStateBaseMessageProvider.h" />
@@ -180,6 +185,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="ClientComposer.cpp" />
     <ClCompile Include="ClientGameContext.cpp" />
     <ClCompile Include="ClientGameObject.cpp" />
+    <ClCompile Include="ButtonInfo.cpp" />
+    <ClCompile Include="CmmandInfo.cpp" />
     <ClCompile Include="CommandsPanel.cpp" />
     <ClCompile Include="EconomySystemMessageProvider.cpp" />
     <ClCompile Include="ElementsPanel.cpp" />
@@ -214,6 +221,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TimeUtilities.cpp" />
+    <ClCompile Include="UISettings.cpp" />
     <ClCompile Include="_LinkLibraries.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -43,9 +43,9 @@ namespace UI
     m_current_shown_boxes.reserve(i_elements_number);
     }
 
-  ElementsBox* ElementsPanel::AddBox(const std::string& i_display_name)
+  ElementsBox* ElementsPanel::AddBox(int i_type_id)
     {
-    m_element_boxes.push_back(ElementPtr(new ElementsBox(*this, i_display_name, m_next_id)));
+    m_element_boxes.push_back(ElementPtr(new ElementsBox(*this, i_type_id, m_next_id)));
     ++m_next_id;
     ElementsBox* p_box = m_element_boxes.back().get();
     if (m_current_shown_boxes.size() < m_simoltaneously_shown_elements)
@@ -53,17 +53,6 @@ namespace UI
     if (m_element_boxes.size() == 1)
       mp_current_box = p_box;
     return p_box;
-    }
-
-  void ElementsPanel::AddElement(int i_box_id, const std::string& i_display_name, int i_command)
-    {
-    auto it = std::find_if(m_element_boxes.begin(), m_element_boxes.end(), BoxComparer(i_box_id));
-    if (it == m_element_boxes.end())
-      {
-      assert(false);
-      return;
-      }
-    (*it)->AddCommand(i_display_name, i_command);
     }
 
   bool ElementsPanel::CanShiftRght() const

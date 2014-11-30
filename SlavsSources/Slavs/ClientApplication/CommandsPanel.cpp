@@ -5,56 +5,9 @@
 #include "ElementsBox.h"
 #include "CeguiUtilities.h"
 
-namespace Dummy
-  {
-  enum class CommandType
-    {
-    None = -1,
-    Building_Production = 0,
-    Building_Society
-    };
+#include "UISettings.h"
 
-  // get it from server
-  struct CommandInfo
-    {
-    CommandType m_type;
-    int         m_id;
-    std::string m_name;
-    std::string m_tooltip;
-
-    CommandInfo(CommandType i_type, int i_id, const std::string& i_name, const std::string& i_tooltip = std::string())
-      : m_type(i_type)
-      , m_id(i_id)
-      , m_name(i_name)
-      , m_tooltip(i_tooltip)
-      {}
-    };
-
-  std::vector<CommandInfo> m_commands;
-
-  void CreateDummyCommands()
-    {
-    m_commands.push_back(CommandInfo(CommandType::Building_Production, 0, "Store", "Build Store"));
-    m_commands.push_back(CommandInfo(CommandType::Building_Production, 1, "Mill", "Build Mill"));
-
-    m_commands.push_back(CommandInfo(CommandType::Building_Society, 2, "House", "Build House"));
-    m_commands.push_back(CommandInfo(CommandType::Building_Society, 3, "Hizhina", "Build Hizhina"));
-    }
-
-  std::string GetNameFromType(CommandType i_type)
-    {
-    switch (i_type)
-      {
-      case CommandType::Building_Production:
-        return "Production";
-      case CommandType::Building_Society:
-        return "Society";
-      }
-    throw std::exception();
-    }
-
-  bool created = false;
-  }
+#include "Application.h"
 
 namespace UI
   {
@@ -70,11 +23,6 @@ namespace UI
   CommandsPanel::CommandsPanel(ScreenManager& i_screen_manager)
     : CeguiScreenBase(i_screen_manager)
     {
-    if (!Dummy::created)
-      {
-      Dummy::created = true;
-      Dummy::CreateDummyCommands();
-      }
     }
 
   CommandsPanel::~CommandsPanel()
@@ -84,22 +32,24 @@ namespace UI
     {
     // TODO: move this to GameScreenMain
     //CEGUI::ImageManager::getSingleton().loadImageset("SlavsGameCommands.imageset");
-
-    std::vector<std::pair<Dummy::CommandType, int>> categories;
-    using namespace Dummy;
-    CommandType current_type = m_commands[0].m_type;
+    UISettings& ui_settings = ClientGame::appInstance.GetUISettings();
+    const Commands_& commands = ui_settings.GetServerCommands();
+    if (commands.size() == 0)
+      return;
+    int current_type = commands[0].m_type_id;
     ElementsBox* p_box = nullptr;
-    for (CommandInfo& info : m_commands)
+    for (const CommandInfo& info : commands)
       {
-      if (info.m_type != current_type)
-        {
+      if (info.m_type_id != current_type)
         p_box = nullptr;
-        current_type = info.m_type;
-        }
-      if (p_box == nullptr)
-        p_box = m_panel.AddBox(GetNameFromType(current_type));
 
-      p_box->AddCommand(info.m_name, info.m_id);
+      if (p_box == nullptr)
+        {
+        p_box = m_panel.AddBox(info.m_type_id);
+        current_type = info.m_type_id;
+        }
+
+      p_box->AddCommand(info);
       }
 
     RedrawAll();
@@ -136,45 +86,78 @@ namespace UI
     CeguiUtilities::ClearWindow(*p_list_root);
 
     const auto& shown_boxes = m_panel.GetCurrentShownBoxes();
+    if (shown_boxes.size() == 0)
+      return;
     const float button_size = 1.f / shown_boxes.size();
     for (size_t i = 0; i < shown_boxes.size(); ++i)
       {
       const ElementsBox* p_box = shown_boxes[i];
-      CEGUI::Window* p_box_button = CEGUI::WindowManager::getSingletonPtr()->createWindow("SlavsLook/Button");
-      p_box_button->setID(p_box->GetId());
-      p_box_button->setText(p_box->GetName());
-      p_box_button->setSize(CEGUI::USize(CEGUI::UDim(button_size, 0.f), CEGUI::UDim(1.f, 0.f)));
-      p_box_button->setPosition(CEGUI::UVector2(CEGUI::UDim(i*button_size, 0.f), CEGUI::UDim(0.f, 0.f)));
+      try
+        {
+        const ButtonInfo& button_info = ClientGame::appInstance.GetUISettings().GetButtonInfoFromType(p_box->GetTypeId());
 
-      p_box_button->subscribeEvent(CEGUI::PushButton::EventClicked,
-        CEGUI::Event::Subscriber(&CommandsPanel::ListButtonPressed, this));
+        CEGUI::Window* p_box_button = CEGUI::WindowManager::getSingletonPtr()->createWindow(button_info.m_button_type);
+        p_box_button->setID(p_box->GetId());
+        p_box_button->setText(button_info.m_display_name);
+        p_box_button->setTooltipText(button_info.m_tooltip);
 
-      p_list_root->addChild(p_box_button);
+        p_box_button->setSize(CEGUI::USize(CEGUI::UDim(button_size, 0.f), CEGUI::UDim(1.f, 0.f)));
+        p_box_button->setPosition(CEGUI::UVector2(CEGUI::UDim(i*button_size, 0.f), CEGUI::UDim(0.f, 0.f)));
+
+        p_box_button->subscribeEvent(CEGUI::PushButton::EventClicked,
+          CEGUI::Event::Subscriber(&CommandsPanel::ListButtonPressed, this));
+
+        p_list_root->addChild(p_box_button);
+        }
+      catch (std::logic_error&)
+        {
+        // TODO trace
+        continue;
+        }
       }
     }
 
   void CommandsPanel::RedrawCommands()
     {
     auto p_current_box = m_panel.GetCurrentBox();
+
+    if (p_current_box == nullptr)
+      return;
+
     auto p_commands_root = mp_root_window->getChild("CommandsPanel.Commands");
     CeguiUtilities::ClearWindow(*p_commands_root);
 
     const auto& shown_commands = p_current_box->GetCurrentShownCommands();
+    if (shown_commands.size() == 0)
+      return;
     const float button_size = 1.f / shown_commands.size();
     for (size_t i = 0; i < shown_commands.size(); ++i)
       {
-      const ElementsBox::Command& command = shown_commands[i];
-      CEGUI::Window* p_box_button = CEGUI::WindowManager::getSingletonPtr()->createWindow("SlavsLook/Button");
+      const CommandInfo& command = shown_commands[i];
 
-      p_box_button->setID(command.m_id);
-      p_box_button->setText(command.m_name);
-      p_box_button->setSize(CEGUI::USize(CEGUI::UDim(button_size, 0.f), CEGUI::UDim(1.f, 0.f)));
-      p_box_button->setPosition(CEGUI::UVector2(CEGUI::UDim(i*button_size, 0.f), CEGUI::UDim(0.f, 0.f)));
+      try
+        {
+        const ButtonInfo& button_info = ClientGame::appInstance.GetUISettings().GetButtonInfo(command.m_ui_id);
 
-      p_box_button->subscribeEvent(CEGUI::PushButton::EventClicked,
-        CEGUI::Event::Subscriber(&CeguiScreenBase::CommandButtonPressedHandler, static_cast<CeguiScreenBase*>(this)));
+        CEGUI::Window* p_box_button = CEGUI::WindowManager::getSingletonPtr()->createWindow(button_info.m_button_type);
 
-      p_commands_root->addChild(p_box_button);
+        p_box_button->setID(command.m_id);
+        p_box_button->setText(button_info.m_display_name);
+        p_box_button->setTooltipText(button_info.m_tooltip);
+
+        p_box_button->setSize(CEGUI::USize(CEGUI::UDim(button_size, 0.f), CEGUI::UDim(1.f, 0.f)));
+        p_box_button->setPosition(CEGUI::UVector2(CEGUI::UDim(i*button_size, 0.f), CEGUI::UDim(0.f, 0.f)));
+
+        p_box_button->subscribeEvent(CEGUI::PushButton::EventClicked,
+          CEGUI::Event::Subscriber(&CeguiScreenBase::CommandButtonPressedHandler, static_cast<CeguiScreenBase*>(this)));
+
+        p_commands_root->addChild(p_box_button);
+        }
+      catch (std::logic_error&)
+        {
+        // TODO trace
+        continue;
+        }
       }
     }
 

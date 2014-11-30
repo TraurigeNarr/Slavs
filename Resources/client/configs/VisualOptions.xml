@@ -1,0 +1,29 @@
+<VisualOptions>
+	<Buttons>
+		<Undefined>
+			<ButtonType>SlavsLook/Button</ButtonType>
+			<Tooltip>Define image for this button</Tooltip>	
+			<DisplayName>No name button</DisplayName>
+		</Undefined>
+		<Create.Production.Store>
+			<ButtonType>SlavsLook/Button</ButtonType>
+			<Tooltip>Create production store to keep resources in it</Tooltip>	
+			<DisplayName>Production Store</DisplayName>
+		</Create.Production.Store>
+		<Create.Manufacture>
+			<ButtonType>SlavsLook/Button</ButtonType>
+			<Tooltip>Manfacture hires humans and gives them money for production of resources.</Tooltip>	
+			<DisplayName>Manufacture</DisplayName>
+		</Create.Manufacture>
+		<Create.House>
+			<ButtonType>SlavsLook/Button</ButtonType>
+			<Tooltip>Humans live in house.</Tooltip>	
+			<DisplayName>House</DisplayName>
+		</Create.House>
+		<Production>
+			<ButtonType>SlavsLook/Button</ButtonType>
+			<Tooltip>Production of resources</Tooltip>	
+			<DisplayName>Production</DisplayName>
+		</Production>
+	</Buttons>
+</VisualOptions>

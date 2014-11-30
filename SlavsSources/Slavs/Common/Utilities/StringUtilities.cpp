@@ -1,6 +1,7 @@
 #include "StringUtilities.h"
 
 #include <algorithm>
+#include <vector>
 /////////////////////////////////////////////////////////
 
 StringUtilities::StringUtilities()
@@ -67,3 +68,27 @@ bool StringUtilities::ParseBool(const std::string& i_value)
 	else
 		return true;
 }
+
+std::vector<std::string> StringUtilities::Tokenize(const std::string& i_input_string, const std::string& i_separators)
+  {
+  std::vector<std::string> tokens;
+
+  std::string input(i_input_string);
+  std::string::size_type idx = 0;
+
+  idx = input.find_first_not_of(i_separators);
+  // nothing found here
+  if (idx == std::string::npos)
+    return tokens;
+
+  while (idx != std::string::npos)
+    {
+    std::string::size_type token_end_idx = input.find_first_of(i_separators, idx + 1);
+    tokens.push_back(input.substr(idx, token_end_idx - idx));
+    if (token_end_idx == std::string::npos)
+      break;
+    idx = input.find_first_not_of(i_separators, token_end_idx + 1);
+    }
+
+  return tokens;
+  }

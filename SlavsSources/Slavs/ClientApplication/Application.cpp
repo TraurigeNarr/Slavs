@@ -8,8 +8,16 @@
 #include "MenuState.h"
 #include "TimeUtilities.h"
 #include "ScreenManager.h"
+#include "UISettings.h"
 
 #include <Common/Patterns/StateMachine.h>
+
+//////////////////////////////////////////////////////////////////////////
+
+namespace ClientGame
+  {
+  Application appInstance;
+  }
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -36,6 +44,9 @@ void Application::Start()
 
   mp_state_machine.reset(new StateMachine<Application, long>(this));
   mp_state_machine->SetCurrentState(std::make_shared<ClientStates::MenuState>(*this));
+
+  mp_ui_settings.reset(new UI::UISettings());
+
   m_shutdown = false;
   //start rendering
   mp_ogre_framework->GetRoot()->startRendering();

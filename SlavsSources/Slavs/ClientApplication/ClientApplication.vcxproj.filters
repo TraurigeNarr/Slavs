@@ -224,6 +224,15 @@
     <ClInclude Include="ElementsBox.h">
       <Filter>Application\Screens\GameScreen\Base</Filter>
     </ClInclude>
+    <ClInclude Include="UISettings.h">
+      <Filter>Application\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonInfo.h">
+      <Filter>Application\Screens\GameScreen\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandInfo.h">
+      <Filter>Application\Screens\GameScreen\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -347,6 +356,15 @@
       <Filter>Application\Screens\GameScreen\Base</Filter>
     </ClCompile>
     <ClCompile Include="ElmentsBox.cpp">
+      <Filter>Application\Screens\GameScreen\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="UISettings.cpp">
+      <Filter>Application\Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonInfo.cpp">
+      <Filter>Application\Screens\GameScreen\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="CmmandInfo.cpp">
       <Filter>Application\Screens\GameScreen\Base</Filter>
     </ClCompile>
   </ItemGroup>

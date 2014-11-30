@@ -10,6 +10,7 @@ class MonkeyScene;
 namespace UI
   {
   class ScreenManager;
+  class UISettings;
   }
 
 class Application : public Ogre::FrameListener
@@ -22,6 +23,7 @@ class Application : public Ogre::FrameListener
 
     std::unique_ptr<ApplicationStateMachine>  mp_state_machine;
     std::unique_ptr<UI::ScreenManager>        mp_screen_manager;
+    std::unique_ptr<UI::UISettings>           mp_ui_settings;
 
   // Ogre::FrameListener
   protected:
@@ -40,6 +42,7 @@ class Application : public Ogre::FrameListener
     InputManager&             GetInputManager();
     ApplicationStateMachine&  GetStateMachine();
     UI::ScreenManager&        GetScreenManager();
+    UI::UISettings&           GetUISettings();
   };
 
 //////////////////////////////////////////////////////////////////////////
@@ -69,3 +72,12 @@ inline UI::ScreenManager& Application::GetScreenManager()
   return *mp_screen_manager;
   }
 
+inline UI::UISettings& Application::GetUISettings()
+  {
+  return *mp_ui_settings;
+  }
+
+namespace ClientGame
+  {
+  extern Application appInstance;
+  }

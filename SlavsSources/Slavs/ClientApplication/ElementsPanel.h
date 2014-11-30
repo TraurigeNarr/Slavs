@@ -35,8 +35,7 @@ namespace UI
       ElementsPanel();
       virtual ~ElementsPanel();
 
-      ElementsBox*        AddBox(const std::string& i_display_name);
-      void                AddElement(int i_box_id, const std::string& i_display_name, int i_command);
+      ElementsBox*        AddBox(int i_type_id);
 
       bool                CanShiftRght() const;
       bool                CanShiftLeft() const;
