@@ -16,7 +16,7 @@ namespace UI
     , m_display_name(i_name)
     , m_button_type(i_button_type)
     , m_tooltip(i_tooltip)
-		, m_display_text(Uri_DISPLAY_IDN_HOST)
+		, m_display_text(i_dsplay_text)
     {}
 
   ButtonInfo::ButtonInfo(const std::string& i_string_id)
