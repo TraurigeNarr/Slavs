@@ -30,8 +30,6 @@ namespace UI
 
   void CommandsPanel::Initialize()
     {
-    // TODO: move this to GameScreenMain
-    //CEGUI::ImageManager::getSingleton().loadImageset("SlavsGameCommands.imageset");
     UISettings& ui_settings = ClientGame::appInstance.GetUISettings();
     const Commands_& commands = ui_settings.GetServerCommands();
     if (commands.size() == 0)
@@ -142,7 +140,8 @@ namespace UI
         CEGUI::Window* p_box_button = CEGUI::WindowManager::getSingletonPtr()->createWindow(button_info.m_button_type);
 
         p_box_button->setID(command.m_id);
-        p_box_button->setText(button_info.m_display_name);
+				if (button_info.m_display_text)
+					p_box_button->setText(button_info.m_display_name);
         p_box_button->setTooltipText(button_info.m_tooltip);
 
         p_box_button->setSize(CEGUI::USize(CEGUI::UDim(button_size, 0.f), CEGUI::UDim(1.f, 0.f)));

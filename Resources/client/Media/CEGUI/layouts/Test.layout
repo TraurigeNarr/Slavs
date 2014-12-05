@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="TaharezLook/StaticImage" name="MenuRoot" >
+        <Property name="Area" value="{{0,1},{0,-3},{1,1},{1,-3}}" />
+        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+    </Window>
+</GUILayout>

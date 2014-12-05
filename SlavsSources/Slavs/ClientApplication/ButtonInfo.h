@@ -11,12 +11,14 @@ namespace UI
     std::string m_display_name;
     std::string m_tooltip;
     std::string m_button_type;
+		bool				m_display_text;
 
     ButtonInfo(int i_ui_id,
               const std::string& i_string_id,
               const std::string& i_name,
               const std::string& i_button_type,
-              const std::string& i_tooltip = std::string());
+              const std::string& i_tooltip = std::string(),
+							bool i_display_text = true);
     
     ButtonInfo(const std::string& i_string_id);
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<GUIScheme version="5" name="SlavsGameCommands">
+	<Imageset filename="SlavsGameCommands.imageset" />
+	<Font filename="DejaVuSans-12.font" />
+	<LookNFeel filename="SlavsGameCommands.looknfeel" />
+	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
+
+	<FalagardMapping windowType="SlavsGameCommands/CreateProductionStore" targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="SlavsGameCommands/CreateProductionStore" />
+</GUIScheme>

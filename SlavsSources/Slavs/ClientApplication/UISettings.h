@@ -25,6 +25,8 @@ namespace UI
 
     private:
       void ParseButtons(const TiXmlElement* ip_buttons_root);
+			void ParseSchemes(const TiXmlElement* ip_schemes_root);
+			void ParseImageSets(const TiXmlElement* ip_imagesets_root);
 
       // adds undefined command
       ButtonInfo& AddUndefinedCommand(int i_id, const std::string& i_string_id);

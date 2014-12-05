@@ -1,29 +1,41 @@
 <VisualOptions>
+	<!--Image sets that will be loaded-->
+	<ImageSets>
+		<ImageSet path="SlavsGameCommands.imageset"/>
+	</ImageSets>
+	<Schemes>
+		<Scheme path="SlavsGameCommands.scheme"/>
+	</Schemes>
 	<Buttons>
 		<Undefined>
 			<ButtonType>SlavsLook/Button</ButtonType>
 			<Tooltip>Define image for this button</Tooltip>	
 			<DisplayName>No name button</DisplayName>
+			<DisplayText>true</DisplayText>
 		</Undefined>
 		<Create.Production.Store>
-			<ButtonType>SlavsLook/Button</ButtonType>
+			<ButtonType>SlavsGameCommands/CreateProductionStore</ButtonType>
 			<Tooltip>Create production store to keep resources in it</Tooltip>	
 			<DisplayName>Production Store</DisplayName>
+			<DisplayText>false</DisplayText>
 		</Create.Production.Store>
 		<Create.Manufacture>
 			<ButtonType>SlavsLook/Button</ButtonType>
 			<Tooltip>Manfacture hires humans and gives them money for production of resources.</Tooltip>	
 			<DisplayName>Manufacture</DisplayName>
+			<DisplayText>true</DisplayText>
 		</Create.Manufacture>
 		<Create.House>
 			<ButtonType>SlavsLook/Button</ButtonType>
 			<Tooltip>Humans live in house.</Tooltip>	
 			<DisplayName>House</DisplayName>
+			<DisplayText>true</DisplayText>
 		</Create.House>
 		<Production>
 			<ButtonType>SlavsLook/Button</ButtonType>
 			<Tooltip>Production of resources</Tooltip>	
 			<DisplayName>Production</DisplayName>
+			<DisplayText>true</DisplayText>
 		</Production>
 	</Buttons>
 </VisualOptions>

@@ -30,7 +30,7 @@ namespace UI
 
     const TiXmlElement* p_child = nullptr;
     const TiXmlElement* p_undefined_object = nullptr;
-    while ((p_child = XmlUtilities::IterateChildElements(ip_buttons_root, p_child)))
+    while (p_child = XmlUtilities::IterateChildElements(ip_buttons_root, p_child))
       {
       std::string button_string_id = p_child->Value();
 
@@ -40,7 +40,15 @@ namespace UI
       // TODO create method for extracting values from node
       //    <Node>Value</Node>
       p_info->m_display_name = p_child->FirstChild("DisplayName")->FirstChild()->Value();
-      p_info->m_tooltip= p_child->FirstChild("Tooltip")->FirstChild()->Value();
+      p_info->m_tooltip = p_child->FirstChild("Tooltip")->FirstChild()->Value();
+
+			if (auto p_display_text = p_child->FirstChild("DisplayText"))
+				{
+				std::string str = p_display_text->FirstChild()->Value();
+				p_info->m_display_text = str.compare("true") == 0;
+				}
+			else
+				p_info->m_display_text = false;
 
       if (auto p_button_type = p_child->FirstChild("ButtonType"))
         p_info->m_button_type = p_button_type->FirstChild()->Value();
@@ -49,6 +57,45 @@ namespace UI
       }
     }
 
+	void UISettings::ParseSchemes(const TiXmlElement* ip_schemes_root)
+		{
+		const TiXmlElement* p_child = nullptr;
+		const TiXmlElement* p_undefined_object = nullptr;
+		while (p_child = XmlUtilities::IterateChildElements(ip_schemes_root, p_child))
+			{
+			auto path = XmlUtilities::GetStringAttribute(p_child, "path", "");
+			try
+				{
+				CEGUI::SchemeManager::getSingleton().createFromFile(path);
+				}
+			catch (std::exception& e)
+				{
+				// TODO log
+				}
+
+			}
+		}
+
+	void UISettings::ParseImageSets(const TiXmlElement* ip_imagesets_root)
+		{
+		CEGUI::SchemeManager::getSingleton().createFromFile("SlavsGameCommands.scheme");
+		const TiXmlElement* p_child = nullptr;
+		const TiXmlElement* p_undefined_object = nullptr;
+		while (p_child = XmlUtilities::IterateChildElements(ip_imagesets_root, p_child))
+			{
+			auto path = XmlUtilities::GetStringAttribute(p_child, "path", "");
+			try
+				{
+				CEGUI::ImageManager::getSingleton().loadImageset(path);
+				}
+			catch (Ogre::FileNotFoundException& e)
+				{
+				// TODO log
+				}
+			
+			}
+		}
+
   void UISettings::LoadFromFile(const std::string& i_file_path)
     {
     TiXmlDocument document;
@@ -56,9 +103,19 @@ namespace UI
     if (!XmlUtilities::LoadXmlDocument(i_file_path, document))
       throw std::invalid_argument("Can not load file");
 
-    const TiXmlElement* p_root_buttons = document.RootElement()->FirstChildElement("Buttons");
+		const TiXmlElement* p_root = document.RootElement();
+
+    const TiXmlElement* p_root_buttons = p_root->FirstChildElement("Buttons");
     if (p_root_buttons)
       ParseButtons(p_root_buttons);
+
+		const TiXmlElement* p_root_schemes = p_root->FirstChildElement("Schemes");
+		if (p_root_schemes)
+			ParseSchemes(p_root_schemes);
+
+		const TiXmlElement* p_root_imagesets = p_root->FirstChildElement("ImageSets");
+		if (p_root_imagesets)
+			ParseImageSets(p_root_imagesets);
     }
 
   void UISettings::ClearCommands()

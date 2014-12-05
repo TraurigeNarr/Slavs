@@ -9,12 +9,14 @@ namespace UI
     const std::string& i_string_id,
     const std::string& i_name,
     const std::string& i_button_type,
-    const std::string& i_tooltip /* = std::string()*/)
+    const std::string& i_tooltip /* = std::string()*/,
+		bool i_dsplay_text /* = true*/)
     : m_ui_id(i_ui_id)
     , m_string_id(i_string_id)
     , m_display_name(i_name)
     , m_button_type(i_button_type)
     , m_tooltip(i_tooltip)
+		, m_display_text(Uri_DISPLAY_IDN_HOST)
     {}
 
   ButtonInfo::ButtonInfo(const std::string& i_string_id)
@@ -23,6 +25,7 @@ namespace UI
     , m_display_name()
     , m_button_type()
     , m_tooltip()
+		, m_display_text(true)
     {}
 
   bool ButtonInfo::IsValid() const
