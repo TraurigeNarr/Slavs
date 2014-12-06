@@ -1,6 +1,8 @@
 #include "stdafx.h"
 
 #include "CommandExecutor.h"
+#include "Commands.h"
+
 #include "BaseObjectComposer.h"
 #include "TypeEnumerations.h"
 
@@ -39,13 +41,13 @@ namespace BasePlugin
 	void CommandExecutor::Initialize()
 		{
 		// Production
-		m_categories.push_back(GameCore::CommandCategory(0, "Production"));
-		m_commands.push_back(GameCore::CommandInformation(CreateProductionStore, 0, "Create.Production.Store"));
-		m_commands.push_back(GameCore::CommandInformation(CreateManufacture, 0, "Create.Manufacture"));
+		m_categories.push_back(GameCore::CommandCategory(CommandCategories::Poduction, Names::CATEGORY_PRODUCTION));
+		m_commands.push_back(GameCore::CommandInformation(Commands::CreateProductionStore, 0, Names::COMMAND_CREATE_PRODUCTIONSTORE));
+		m_commands.push_back(GameCore::CommandInformation(Commands::CreateManufacture, 0, Names::COMMAND_CREATE_MANUFACTURE));
 
 		// Society
-		m_categories.push_back(GameCore::CommandCategory(1, "Society"));
-		m_commands.push_back(GameCore::CommandInformation(CreateHouse, 1, "Create.Hizhina"));
+		m_categories.push_back(GameCore::CommandCategory(CommandCategories::Society, Names::CATEGORY_SOCIETY));
+		m_commands.push_back(GameCore::CommandInformation(Commands::CreateHizhina, 1, Names::COMMAND_CREATE_HIZHINA));
 		}
 
 	std::vector<SDK::GameCore::CommandInformation> CommandExecutor::GetCommands(IController* ip_controller) const
@@ -82,11 +84,10 @@ namespace BasePlugin
 			case Commands::CreateManufacture:
 				global_id = m_base_composer.GetObjectGlobalID(BasePlugin::ObjectType::OT_MANUFACTURE);
 				break;
-			case Commands::CreateHouse:
+			case Commands::CreateHizhina:
 				global_id = m_base_composer.GetObjectGlobalID(BasePlugin::ObjectType::OT_HIZHINA);
 				break;
 			}
-
 
 		if (global_id != -1)
 			{
