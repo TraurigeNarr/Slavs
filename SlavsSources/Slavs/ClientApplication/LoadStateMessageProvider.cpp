@@ -45,7 +45,7 @@ namespace ClientStates
         m_general_progress = 0.33f;
         }
       
-      float laoded_progress = p_current_state->GetTotalContentNumber() != 0 
+      float loaded_progress = p_current_state->GetTotalContentNumber() != 0 
                                                 ? static_cast<float>(p_current_state->GetLoadedContentNumber()) / static_cast<float>(p_current_state->GetTotalContentNumber()) 
                                                 : 0;
       
@@ -57,12 +57,19 @@ namespace ClientStates
           starting_value = .0f;
           break;
         case LoadingStages::GettingData::CurrentData::CD_OBJECTS:
-          starting_value = .5f;
+          starting_value = .25f;
+					break;
+				case LoadingStages::GettingData::CurrentData::CD_CATEGORIES:
+					starting_value = .5f;
+					break;
+				case LoadingStages::GettingData::CurrentData::CD_COMMANDS:
+					starting_value = .75f;
+					break;
         }
 
-      m_current_progress = starting_value + .5f * laoded_progress;
+			m_current_progress = starting_value + .25f * loaded_progress;
 
-      m_general_progress = 0.33f + m_current_progress/3;
+      m_general_progress = 0.33f + m_current_progress/5;
       }
     else if (m_state.GetStateMachine().IsInState<LoadingStages::ResultsState>())
       {

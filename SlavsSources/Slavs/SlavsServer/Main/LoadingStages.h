@@ -52,6 +52,7 @@ namespace Slavs
       std::unique_ptr<ObjectStateMap>               mp_objects_states;
       GameContext&                                  m_game_context;
       LoadingParameters                             m_loading_parameters;
+			IController*																	mp_controller_to_send;
 
       loading_(GameContext& io_game_context, 
                 const LoadingParameters& i_loading_parameters,
@@ -62,6 +63,7 @@ namespace Slavs
         , mp_objects_states(new ObjectStateMap)
         , m_game_context(io_game_context)
         , m_loading_parameters(i_loading_parameters)
+				, mp_controller_to_send(nullptr)
         {
         }
 
@@ -93,7 +95,7 @@ namespace Slavs
             (
             new SPlayerController(i_loading_fsm.mp_connection->GetAddress().GetAddress(), i_loading_fsm.m_game_context)
             ));
-
+					i_loading_fsm.mp_controller_to_send = i_loading_fsm.m_game_context.GetControllers().begin()->mp_controller.get();
           // load game
           GameSerializer serializer(i_loading_fsm.m_game_context);
           serializer.LoadConfigurations(i_loading_fsm.m_loading_parameters.m_configurations_path);
@@ -112,6 +114,7 @@ namespace Slavs
         net::Connection*                    mp_connection;
         ServerMain*                         mp_owner;
         ObjectStateMap*                     mp_objects_states;
+				IController*												mp_controller_to_send;
 
         template <typename Event, typename FSM>
         void on_entry(const Event& i_evt, FSM& i_loading_fsm)
@@ -119,6 +122,7 @@ namespace Slavs
           mp_owner            = i_loading_fsm.mp_owner;
           mp_connection       = i_loading_fsm.mp_connection;
           mp_objects_states   = i_loading_fsm.mp_objects_states.get();
+					mp_controller_to_send = i_loading_fsm.mp_controller_to_send;
           }
 
         struct send_definitions_ : public msm::front::state<> 
@@ -176,13 +180,67 @@ namespace Slavs
               p.second->Serialize(&p_buffer[sizeof(Network::PacketType)], packet_size);
               mp_connection->SendPacket(&p_buffer[0], packet_size);
               });
-            
-            //after sending all states send msg about server ready state
-            ToChar(Network::PacketType::PT_ServerReady, &p_buffer[0], sizeof(Network::PacketType));
-            mp_connection->SendPacket( &p_buffer[0], sizeof(Network::PacketType) );
             }
 
           };
+
+				struct send_categories_ : public msm::front::state<>
+					{
+					net::Connection*                    mp_connection;
+
+					template <typename Event, typename FSM>
+					void on_entry(const Event& i_evt, FSM& i_send_definitions_fsm)
+						{
+						mp_connection = i_send_definitions_fsm.mp_connection;
+						std::vector<std::string> categories = i_send_definitions_fsm.mp_owner->GetMetaFactory().GetCommandManager().GetCommandCategories();
+
+						std::unique_ptr<char[]> p_buffer(new char[256]);
+						// send number of objects
+						ToChar(Network::PacketType::PT_ContentNumber, &p_buffer[0], sizeof(Network::PacketType));
+						ToChar(categories.size(), &p_buffer[sizeof(Network::PacketType)], sizeof(size_t));
+						mp_connection->SendPacket(&p_buffer[0], sizeof(Network::PacketType) + sizeof(size_t));
+
+						for (auto& category : categories)
+							{
+							const size_t needed_size = sizeof(Network::PacketType) + category.size() + 1;
+							ToChar(Network::PacketType::PT_CategoryDefinition, &p_buffer[0], sizeof(Network::PacketType));
+							category.copy(&p_buffer[sizeof(Network::PacketType)], category.size());
+							p_buffer[sizeof(Network::PacketType) + category.size()] = '\0';
+							mp_connection->SendPacket(&p_buffer[0], needed_size);
+							}
+						}
+
+					};
+
+				struct send_commands_ : public msm::front::state<>
+					{
+					net::Connection*                    mp_connection;
+
+					template <typename Event, typename FSM>
+					void on_entry(const Event& i_evt, FSM& i_send_definitions_fsm)
+						{
+						mp_connection = i_send_definitions_fsm.mp_connection;
+						IController* p_controller = i_send_definitions_fsm.mp_controller_to_send;
+						std::vector<std::string> commands = i_send_definitions_fsm.mp_owner->GetMetaFactory().GetCommandManager().GetCommandStrings(p_controller);
+
+						std::unique_ptr<char[]> p_buffer(new char[256]);
+						// send number of objects
+						ToChar(Network::PacketType::PT_ContentNumber, &p_buffer[0], sizeof(Network::PacketType));
+						ToChar(commands.size(), &p_buffer[sizeof(Network::PacketType)], sizeof(size_t));
+						mp_connection->SendPacket(&p_buffer[0], sizeof(Network::PacketType) + sizeof(size_t));
+
+						for (auto& command : commands)
+							{
+							const size_t needed_size = sizeof(Network::PacketType) + command.size() + 1;
+							ToChar(Network::PacketType::PT_CommandDefinition, &p_buffer[0], sizeof(Network::PacketType));
+							command.copy(&p_buffer[sizeof(Network::PacketType)], command.size());
+							p_buffer[sizeof(Network::PacketType) + command.size()] = '\0';
+							mp_connection->SendPacket(&p_buffer[0], needed_size);
+							}
+						}
+
+					};
+
 
         // the initial state of sending_data FSM
         typedef send_definitions_ initial_state;
@@ -191,7 +249,9 @@ namespace Slavs
         struct transition_table : mpl::vector<
           //      Start                     Event                   Next                    Action               Guard
           //    +--------------------------+-----------------------+----------------------+---------------------+----------------------+
-          _row < send_definitions_,         ConfirmAchievement,     send_objects_>
+          _row < send_definitions_,         ConfirmAchievement,     send_objects_>,
+					_row < send_objects_,							ConfirmAchievement,			send_categories_>,
+					_row < send_categories_,					ConfirmAchievement,			send_commands_>
         >{};
         };
       // back-end
@@ -202,7 +262,10 @@ namespace Slavs
         template <typename Event, typename FSM>
         void on_entry(const Event& i_evt, FSM& i_loading_fsm)
           {
-          
+					net::Connection* p_connection = i_loading_fsm.mp_connection;
+					char buffer[sizeof(Network::PacketType)];
+					ToChar(Network::PacketType::PT_ServerReady, buffer, sizeof(Network::PacketType));
+					p_connection->SendPacket(&buffer, sizeof(Network::PacketType));
           }
         };
 

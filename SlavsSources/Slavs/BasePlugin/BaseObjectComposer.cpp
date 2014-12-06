@@ -11,7 +11,7 @@
 #include <Utilities/TemplateFunctions.h>
 
 #include <Main/ServerMain.h>
-#include <PluginSystem\MetaFactory.h>
+#include <PluginSystem/MetaFactory.h>
 
 //////////////////////////////////////////////////////////////////////////
 

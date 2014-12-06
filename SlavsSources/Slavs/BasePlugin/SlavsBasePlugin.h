@@ -7,9 +7,18 @@
 
 class BaseObjectComposer;
 
+namespace SDK
+	{
+	namespace GameCore
+		{
+		class ICommandExecutor;
+		}
+	}
+
 class SlavsBasePlugin : public Plugin
   {
   std::shared_ptr<BaseObjectComposer> mh_object_composer;
+	SDK::GameCore::ICommandExecutor*		mp_command_executor;
 
   public:
     SlavsBasePlugin ();

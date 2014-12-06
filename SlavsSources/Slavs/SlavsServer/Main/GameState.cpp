@@ -131,6 +131,27 @@ namespace Slavs
     ip_owner->GetConnection()->Disconnect();
     }
 
+	void HandleCommand(SDK::GameCore::CommandManager& i_command_manager, IController* ip_controller, unsigned char* ip_packet, size_t i_bytes_read)
+		{
+		char* p_packet = reinterpret_cast<char*>(ip_packet);
+		Network::PacketType packet_type = (Network::PacketType)FromChar<int>(p_packet);
+		p_packet += sizeof(Network::PacketType);
+		i_bytes_read -= sizeof(Network::PacketType);
+
+		size_t offset = 0;
+		int global_command_id = FromChar<int>(p_packet);
+		offset += sizeof(int);
+
+		if (auto p_executor = i_command_manager.CanExecute(ip_controller, global_command_id))
+			{
+			float x_pos = FromChar<float>(p_packet + offset);
+			offset += sizeof(float);
+			float y_pos = FromChar<float>(p_packet + offset);
+			i_command_manager.Execute(ip_controller, p_executor, global_command_id, Vector2D(x_pos, y_pos));
+			}
+
+		}
+
   void GameState::HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read)
     {
     Network::PacketType packet_type = (Network::PacketType)FromChar<int>(reinterpret_cast<char*>(ip_packet));
@@ -141,7 +162,6 @@ namespace Slavs
         return;
         break;
       case Network::PacketType::PT_Command:
-        // hold
         {
         int controllers_mask = ip_owner->GetConnection()->GetAddress().GetAddress();
         auto& controllers = mh_game_context->GetControllers();
@@ -149,8 +169,8 @@ namespace Slavs
           {
           return controller_info.mp_controller->GetMask() == controllers_mask;
           });
-        if (it != controllers.end())
-          it->mp_controller->HoldPacket(ip_owner->GetConnection(), ip_packet, i_bytes_read);
+				if (it != controllers.end())
+					HandleCommand(ip_owner->GetMetaFactory().GetCommandManager(), it->mp_controller.get(), ip_packet, i_bytes_read);
         return;
         }
         break;

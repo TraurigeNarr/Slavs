@@ -31,7 +31,7 @@ namespace UI
   void CommandsPanel::Initialize()
     {
     UISettings& ui_settings = ClientGame::appInstance.GetUISettings();
-    const Commands_& commands = ui_settings.GetServerCommands();
+    const CommandsInfrmation& commands = ui_settings.GetServerCommands();
     if (commands.size() == 0)
       return;
     int current_type = commands[0].m_type_id;

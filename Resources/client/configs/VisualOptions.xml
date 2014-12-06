@@ -25,12 +25,12 @@
 			<DisplayName>Manufacture</DisplayName>
 			<DisplayText>true</DisplayText>
 		</Create.Manufacture>
-		<Create.House>
+		<Create.Hizhina>
 			<ButtonType>SlavsLook/Button</ButtonType>
 			<Tooltip>Humans live in house.</Tooltip>	
-			<DisplayName>House</DisplayName>
+			<DisplayName>Hizhina</DisplayName>
 			<DisplayText>true</DisplayText>
-		</Create.House>
+		</Create.Hizhina>
 		<Production>
 			<ButtonType>SlavsLook/Button</ButtonType>
 			<Tooltip>Production of resources</Tooltip>	

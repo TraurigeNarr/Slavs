@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseObjectComposer.h" />
+    <ClInclude Include="CommandExecutor.h" />
     <ClInclude Include="DynamicObjectComponent.h" />
     <ClInclude Include="HouseComponent.h" />
     <ClInclude Include="HumanComponent.h" />
@@ -125,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="BaseObjectComposer.cpp" />
     <ClCompile Include="BasePlugin.cpp" />
+    <ClCompile Include="CommandExecutor.cpp" />
     <ClCompile Include="DynamicObjectComponent.cpp" />
     <ClCompile Include="HouseComponent.cpp" />
     <ClCompile Include="HumanComponent.cpp" />

@@ -111,6 +111,9 @@
     <Filter Include="Game\Management.Base">
       <UniqueIdentifier>{c7970f73-8e5b-4a4e-a5a6-8f3cd2241dab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Factories\Commands">
+      <UniqueIdentifier>{d221f2c6-597f-4e71-a6c0-073be4777b31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ServerLoadGameState.cpp">
@@ -253,6 +256,15 @@
     </ClCompile>
     <ClCompile Include="src\Management\ResourceManagerBase.cpp">
       <Filter>Source Files\Game\Management</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandManager.cpp">
+      <Filter>Factories\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandInformation.cpp">
+      <Filter>Factories\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ICommandExecutor.cpp">
+      <Filter>Factories\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -498,6 +510,15 @@
     </ClInclude>
     <ClInclude Include="include\Management\IResourceManager.h">
       <Filter>Game\Management.Base</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandManager.h">
+      <Filter>Factories\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ICommandExecutor.h">
+      <Filter>Factories\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandInformation.h">
+      <Filter>Factories\Commands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

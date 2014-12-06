@@ -2,6 +2,8 @@
 
 #include "SlavsServerAPI.h"
 
+#include "SlavsServer/CommandManager.h"
+
 #include <boost/noncopyable.hpp>
 
 #include <map>
@@ -54,6 +56,8 @@ class MetaFactory : boost::noncopyable
     /// this list should be transferred to client so it
     /// will be able to render all objects properly
     TDefinitionsMap          m_type_definitions;
+
+		SDK::GameCore::CommandManager m_command_manager;
     
   public:
     SLAVS_SERVER_EXPORT MetaFactory();
@@ -99,9 +103,16 @@ class MetaFactory : boost::noncopyable
     int  SLAVS_SERVER_EXPORT GetObjectID(const std::string& i_type) const;
 
     inline const TDefinitionsMap& GetDefinitions() const;
+
+		SDK::GameCore::CommandManager& GetCommandManager();
   };
 
-const MetaFactory::TDefinitionsMap& MetaFactory::GetDefinitions() const
+inline const MetaFactory::TDefinitionsMap& MetaFactory::GetDefinitions() const
   {
   return m_type_definitions;
   }
+
+inline SDK::GameCore::CommandManager& MetaFactory::GetCommandManager()
+	{
+	return m_command_manager;
+	}

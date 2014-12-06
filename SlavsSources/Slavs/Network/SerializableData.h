@@ -94,11 +94,7 @@ namespace Network
     {
     for (const DataHolder& holder : m_data_holders)
       if (holder.m_type == i_type)
-        {
-        DataType data;
-        FromChar<DataType>(holder.mp_data.get(), data);
-        return data;
-        }
+				return ConvertTo<DataType>(holder.mp_data.get());
     return DataType();
     }
 

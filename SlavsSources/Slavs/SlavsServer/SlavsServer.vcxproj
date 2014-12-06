@@ -113,6 +113,9 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Server\*.*
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommandInformation.cpp" />
+    <ClCompile Include="CommandManager.cpp" />
+    <ClCompile Include="ICommandExecutor.cpp" />
     <ClCompile Include="src\Management\ResourceManagerBase.cpp" />
     <ClCompile Include="Main\GameState.cpp" />
     <ClCompile Include="Game\GameContext.cpp" />
@@ -170,6 +173,9 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Server\*.*
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommandInformation.h" />
+    <ClInclude Include="ICommandExecutor.h" />
+    <ClInclude Include="CommandManager.h" />
     <ClInclude Include="include\Management\IResourceManager.h" />
     <ClInclude Include="include\Management\ResourceManagerBase.h" />
     <ClInclude Include="Main\LoadingParameters.h" />

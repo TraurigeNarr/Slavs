@@ -2,6 +2,7 @@
 
 #include "SlavsBasePlugin.h"
 #include "BaseObjectComposer.h"
+#include "CommandExecutor.h"
 
 #include <Main/ServerMain.h>
 #include <PluginSystem/MetaFactory.h>
@@ -20,6 +21,8 @@ const std::string PLUGIN_CONFIGURATION_FILE = "server\\configs\\SlavsBasePlugin.
 //////////////////////////////////////////////////////////////////////////
 
 SlavsBasePlugin::SlavsBasePlugin()
+	: mp_command_executor(nullptr)
+	, mh_object_composer(nullptr)
   {
 
   }
@@ -45,8 +48,15 @@ void SlavsBasePlugin::Install()
 void SlavsBasePlugin::Initialize()
   {
   std::cout << "Plugin: " << PLUGIN_NAME << " initialized." << std::endl;
-  ServerMain::GetInstance().GetMetaFactory().RegisterObjectComposer(mh_object_composer);  
 
+	auto& meta_factory = ServerMain::GetInstance().GetMetaFactory();
+
+  meta_factory.RegisterObjectComposer(mh_object_composer);  
+
+	auto& command_manager = meta_factory.GetCommandManager();
+	auto p_command_executor = std::unique_ptr<SDK::GameCore::ICommandExecutor>(new BasePlugin::CommandExecutor(command_manager, meta_factory, *mh_object_composer));
+	mp_command_executor = p_command_executor.get();
+	command_manager.RegisterCommandExecutor(std::move(p_command_executor));
 
   TiXmlDocument document;
 
@@ -73,6 +83,9 @@ void SlavsBasePlugin::Release()
   {
   std::cout << "Plugin: " << PLUGIN_NAME << " released." << std::endl;
   ServerMain::GetInstance().GetMetaFactory().UnregisterComposer(mh_object_composer);  
+	auto& command_manager = ServerMain::GetInstance().GetMetaFactory().GetCommandManager();
+	if (mp_command_executor)
+		command_manager.UnregisterCommandExecutor(mp_command_executor);
   }
 
 /// performs memory and resources deletion

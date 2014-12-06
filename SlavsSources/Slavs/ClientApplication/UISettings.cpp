@@ -143,7 +143,7 @@ namespace UI
     return m_commands.back();
     }
 
-  void UISettings::AddCommandTypeFromString(const std::string& i_string)
+  void UISettings::AddCommandCategoryFromString(const std::string& i_string)
     {
     auto tokens = StringUtilities::Tokenize(i_string, ";:()");
     if (tokens.size() != 2)

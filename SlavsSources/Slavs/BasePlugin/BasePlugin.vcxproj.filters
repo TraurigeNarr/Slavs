@@ -17,6 +17,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{86774e03-a501-4a1c-a238-7b136b6b0929}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -82,6 +85,9 @@
     <ClInclude Include="PrimitiveBrainComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="CommandExecutor.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -122,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="PrimitiveBrainComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandExecutor.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,16 +9,16 @@ class TiXmlElement;
 namespace UI
   {
 
-  typedef std::vector<ButtonInfo> Commands;
-  typedef std::vector<CommandInfo> Commands_;
+  typedef std::vector<ButtonInfo> ButtonsInformation;
+  typedef std::vector<CommandInfo> CommandsInfrmation;
 
   class UISettings
     {
     private:
       typedef std::pair<int/*command_type*/, int/*ui_id*/> CommandTypeInformation;
     private:
-      Commands_ m_server_commands;
-      Commands m_commands;
+			CommandsInfrmation m_server_commands;
+			ButtonsInformation m_commands;
       std::vector<CommandTypeInformation> m_command_types;
 
       size_t m_next_command_id;
@@ -42,7 +42,7 @@ namespace UI
       //    as int and name as string
       // Format: <CommandTypeSting>;<CommandTypeID>
       //  SocialBuilding;1
-      void AddCommandTypeFromString(const std::string& i_string);
+			void AddCommandCategoryFromString(const std::string& i_string);
       // Format: <CommandType>;<CommandStringId>;<CommandID>;<DisplayName>;<Tooltip>
       //  1;Build.Store;12;Store;Build store for getting place for goods
       //    If there is no DisplayName -> gets same as CommandStringId with spaces instead '.'
@@ -52,10 +52,10 @@ namespace UI
       const ButtonInfo& GetButtonInfo(int i_ui_id) const;
       const ButtonInfo& GetButtonInfoFromType(int i_type_id) const;
 
-      const Commands_& GetServerCommands() const;
+			const CommandsInfrmation& GetServerCommands() const;
     };
 
-  inline const Commands_& UISettings::GetServerCommands() const
+	inline const CommandsInfrmation& UISettings::GetServerCommands() const
     {
     return m_server_commands;
     }

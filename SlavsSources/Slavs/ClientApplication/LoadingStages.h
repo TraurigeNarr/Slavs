@@ -55,6 +55,8 @@ namespace ClientStates
           {
           CD_DEFINITIONS,
           CD_OBJECTS,
+					CD_CATEGORIES,
+					CD_COMMANDS,
           CD_ALL_LOADED,
           CD_NOTHING
           };
@@ -71,6 +73,8 @@ namespace ClientStates
       private:
         void _HandleDefinition(const Network::Packet& i_packet);
         void _HandleObject(const Network::Packet& i_packet);
+				void _HandleCategory(const Network::Packet& i_packet);
+				void _HandleCommand(const Network::Packet& i_packet);				
         void _SendReadyPacket() const;
 
       public:

@@ -2,7 +2,7 @@
 
 namespace Network
   {
-
+	
   enum class PacketType
     {
     PT_NO_PACKETS       = 1000,
@@ -24,6 +24,8 @@ namespace Network
     PT_Achived          = 14,
     PT_ContentNumber    = 15,
     PT_GovermentState   = 16,
+		PT_CategoryDefinition	= 17,
+		PT_CommandDefinition	= 18
     };
 
   } // Network

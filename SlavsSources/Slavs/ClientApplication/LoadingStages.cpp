@@ -99,6 +99,7 @@ GettingData::GettingData (Network::PacketProvicer& i_packet_provider)
 
 void GettingData::Enter(LoadingState* ip_owner)
   {
+	ClientGame::appInstance.GetUISettings().LoadFromFile(".\\configs\\VisualOptions.xml");
   m_current_data_type = CurrentData::CD_DEFINITIONS;
   m_content_to_load_number = 0;
   m_current_content_number = 0;
@@ -124,14 +125,20 @@ void GettingData::Execute(LoadingState* ip_owner, long i_parameter)
         _HandleObject(packet);
         ip_owner->GetMessageProvider()->Invalidate();
         break;
+			case GettingData::CurrentData::CD_CATEGORIES:
+				_HandleCategory(packet);
+				ip_owner->GetMessageProvider()->Invalidate();
+				break;
+			case GettingData::CurrentData::CD_COMMANDS:
+				_HandleCommand(packet);
+				ip_owner->GetMessageProvider()->Invalidate();
+				break;
       }
     }
   if (m_current_data_type == GettingData::CurrentData::CD_ALL_LOADED)
     {
-    ClientGame::appInstance.GetUISettings().LoadFromFile(".\\configs\\VisualOptions.xml");
-
     // set dummy commands
-    ClientGame::appInstance.GetUISettings().AddCommandTypeFromString("Production;0");
+    /*ClientGame::appInstance.GetUISettings().AddCommandTypeFromString("Production;0");
     ClientGame::appInstance.GetUISettings().AddCommandTypeFromString("Society;1");
     ClientGame::appInstance.GetUISettings().AddCommandTypeFromString("Blabla;2");
 
@@ -143,8 +150,8 @@ void GettingData::Execute(LoadingState* ip_owner, long i_parameter)
     ClientGame::appInstance.GetUISettings().AddCommandFromString("1;Create.Hizhina;5;Create hizhina");
     ClientGame::appInstance.GetUISettings().AddCommandFromString("1;Create.Townhall;6");
 
-    ClientGame::appInstance.GetUISettings().AddCommandFromString("2;Create.Blabla;7;Create bbbb;Creates a different types of blabla");
-
+    ClientGame::appInstance.GetUISettings().AddCommandFromString("2;Create.Blabla;7;Create bbbb;Creates a different types of blabla");*/
+		_SendReadyPacket();
     ip_owner->GetStateMachine().ChangeState(std::make_shared<ResultsState>(LoadingResult::LR_SUCCEEDED));
     }
   }
@@ -208,15 +215,62 @@ void GettingData::_HandleObject(const Packet& i_packet)
       mp_owner->GetContext().ApplyState(state);
 
       ++m_current_content_number;
-      if (m_current_content_number == m_content_to_load_number)
-        {
-        m_current_data_type = GettingData::CurrentData::CD_ALL_LOADED;
-        _SendReadyPacket();
-        }
+			if (m_current_content_number == m_content_to_load_number)
+				{
+				m_current_data_type = GettingData::CurrentData::CD_CATEGORIES;
+				_SendReadyPacket();
+				}
       }
       break;
     }
   }
+
+void GettingData::_HandleCategory(const Network::Packet& i_packet)
+	{
+	switch (i_packet.m_packet)
+		{
+		case Network::PacketType::PT_ContentNumber:
+			m_content_to_load_number = ConvertTo<size_t>(i_packet.mp_data);
+			m_current_content_number = 0;
+			break;
+		case Network::PacketType::PT_CategoryDefinition:
+			{
+			const char* const p_buffer = static_cast<const char* const>(i_packet.mp_data);
+			std::string category(p_buffer);
+			ClientGame::appInstance.GetUISettings().AddCommandCategoryFromString(category);
+			++m_current_content_number;
+			if (m_current_content_number == m_content_to_load_number)
+				{
+				m_current_data_type = GettingData::CurrentData::CD_COMMANDS;
+				_SendReadyPacket();
+				}
+			}
+			break;
+		}
+	}
+
+void GettingData::_HandleCommand(const Network::Packet& i_packet)
+	{
+	switch (i_packet.m_packet)
+		{
+		case Network::PacketType::PT_ContentNumber:
+			m_content_to_load_number = ConvertTo<size_t>(i_packet.mp_data);
+			m_current_content_number = 0;
+			break;
+		case Network::PacketType::PT_CommandDefinition:
+			{
+			const char* const p_buffer = static_cast<const char* const>(i_packet.mp_data);
+			ClientGame::appInstance.GetUISettings().AddCommandFromString(p_buffer);
+			++m_current_content_number;
+			if (m_current_content_number == m_content_to_load_number)
+				{
+				m_current_data_type = GettingData::CurrentData::CD_ALL_LOADED;
+				_SendReadyPacket();
+				}
+			}
+			break;
+		}
+	}
 
 void GettingData::_SendReadyPacket() const
   {
