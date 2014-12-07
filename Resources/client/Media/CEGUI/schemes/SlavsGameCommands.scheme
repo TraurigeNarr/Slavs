@@ -6,4 +6,6 @@
 	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
 
 	<FalagardMapping windowType="SlavsGameCommands/CreateProductionStore" targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="SlavsGameCommands/CreateProductionStore" />
+	<FalagardMapping windowType="SlavsGameCommands/CreateManufacture" targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="SlavsGameCommands/CreateManufacture" />
+  <FalagardMapping windowType="SlavsGameCommands/CreateHizhina" targetType="CEGUI/PushButton"  renderer="Core/Button"       lookNFeel="SlavsGameCommands/CreateHizhina" />
 </GUIScheme>

@@ -88,6 +88,9 @@
     <ClInclude Include="CommandExecutor.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

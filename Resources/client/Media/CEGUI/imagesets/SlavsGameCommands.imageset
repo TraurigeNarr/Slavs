@@ -1,6 +1,14 @@
 <Imageset autoScaled="true" imagefile="SlavsGameCommands.png" name="SlavsGameCommands" nativeHorzRes="512" nativeVertRes="512" version="2">
-    <Image height="64" name="CreateProductionStore_Normal" width="64" xPos="0" yPos="0" />
-    <Image height="64" name="CreateProductionStore_Hover" width="64" xPos="0" yPos="66" />
-    <Image height="64" name="CreateProductionStore_Pushed" width="64" xPos="0" yPos="130" />
-    <Image height="64" name="CreateProductionStore_Disabled" width="64" xPos="0" yPos="194" />
+  <Image height="64" name="CreateProductionStore_Normal" width="64" xPos="0" yPos="0" />
+  <Image height="64" name="CreateProductionStore_Hover" width="64" xPos="0" yPos="66" />
+  <Image height="64" name="CreateProductionStore_Pushed" width="64" xPos="0" yPos="130" />
+  <Image height="64" name="CreateProductionStore_Disabled" width="64" xPos="0" yPos="194" />
+  <Image height="64" name="CreateManufacture_Normal" width="64" xPos="64" yPos="0" />
+  <Image height="64" name="CreateManufacture_Hover" width="64" xPos="64" yPos="66" />
+  <Image height="64" name="CreateManufacture_Pushed" width="64" xPos="64" yPos="130" />
+  <Image height="64" name="CreateManufacture_Disabled" width="64" xPos="64" yPos="194" />
+  <Image height="64" name="CreateHizhina_Normal" width="64" xPos="128" yPos="0" />
+  <Image height="64" name="CreateHizhina_Hover" width="64" xPos="128" yPos="66" />
+  <Image height="64" name="CreateHizhina_Pushed" width="64" xPos="128" yPos="130" />
+  <Image height="64" name="CreateHizhina_Disabled" width="64" xPos="128" yPos="194" />
 </Imageset>

@@ -20,16 +20,16 @@
 			<DisplayText>false</DisplayText>
 		</Create.Production.Store>
 		<Create.Manufacture>
-			<ButtonType>SlavsLook/Button</ButtonType>
+			<ButtonType>SlavsGameCommands/CreateManufacture</ButtonType>
 			<Tooltip>Manfacture hires humans and gives them money for production of resources.</Tooltip>	
 			<DisplayName>Manufacture</DisplayName>
-			<DisplayText>true</DisplayText>
+			<DisplayText>false</DisplayText>
 		</Create.Manufacture>
 		<Create.Hizhina>
-			<ButtonType>SlavsLook/Button</ButtonType>
+			<ButtonType>SlavsGameCommands/CreateHizhina</ButtonType>
 			<Tooltip>Humans live in house.</Tooltip>	
 			<DisplayName>Hizhina</DisplayName>
-			<DisplayText>true</DisplayText>
+			<DisplayText>false</DisplayText>
 		</Create.Hizhina>
 		<Production>
 			<ButtonType>SlavsLook/Button</ButtonType>
@@ -37,5 +37,11 @@
 			<DisplayName>Production</DisplayName>
 			<DisplayText>true</DisplayText>
 		</Production>
+		<Society>
+			<ButtonType>SlavsLook/Button</ButtonType>
+			<Tooltip>Production of resources</Tooltip>	
+			<DisplayName>Society</DisplayName>
+			<DisplayText>true</DisplayText>
+		</Society>
 	</Buttons>
 </VisualOptions>
