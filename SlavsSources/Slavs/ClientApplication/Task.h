@@ -11,14 +11,17 @@ namespace SDK
     private:
       const int m_task_id;
       bool      m_completed;
+			bool			m_recurrent;
 
     private:
       virtual void CompleteImpl(const boost::any& i_value) = 0;
       virtual void DiscardImpl(const boost::any& i_value) = 0;
 
     public:
-      Task(int i_task_id)
+      Task(int i_task_id, bool i_recurrent = false)
         : m_task_id(i_task_id)
+				, m_recurrent(i_recurrent)
+				, m_completed(false)
         {}
       virtual ~Task(){}
 
@@ -32,14 +35,18 @@ namespace SDK
         return m_completed;
         }
 
+			void SetRecurrent(bool i_recurrent) { m_recurrent = i_recurrent; }
+
       virtual void Complete(const boost::any& i_value)
         {
-        m_completed = true;
+				if (m_recurrent == false)
+					m_completed = true;
         CompleteImpl(i_value);
         }
       virtual void Discard(const boost::any& i_value)
         {
-        m_completed = true;
+				if (m_recurrent == false)
+					m_completed = true;
         DiscardImpl(i_value);
         }
     };

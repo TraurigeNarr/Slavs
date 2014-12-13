@@ -56,7 +56,7 @@ class IController : public TickListener
 	  virtual SLAVS_SERVER_EXPORT ~IController();
 
 	  virtual void		    Init() = 0;
-    virtual void	      HoldPacket(net::Connection* connection, unsigned char* packet, int bytes_read){}
+    virtual void	      HoldPacket(unsigned char* packet, int bytes_read){}
     virtual void        NotifyObjectChanges(const std::map<long, GameObjectState*>& ip_object_states) {};
 
 	  void				        SetContext(SGameContext *context);

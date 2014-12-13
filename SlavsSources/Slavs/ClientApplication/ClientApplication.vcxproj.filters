@@ -257,6 +257,15 @@
     <ClInclude Include="Task.h">
       <Filter>Tasks</Filter>
     </ClInclude>
+    <ClInclude Include="SelectionMouse.h">
+      <Filter>Mice</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectionBox.h">
+      <Filter>Mice</Filter>
+    </ClInclude>
+    <ClInclude Include="SendSelectionTask.h">
+      <Filter>Application\States\GameState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -399,6 +408,15 @@
     </ClCompile>
     <ClCompile Include="PlaceBuildingMouse.cpp">
       <Filter>Mice</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectionBox.cpp">
+      <Filter>Mice</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectionMouse.cpp">
+      <Filter>Mice</Filter>
+    </ClCompile>
+    <ClCompile Include="SendSelectionTask.cpp">
+      <Filter>Application\States\GameState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

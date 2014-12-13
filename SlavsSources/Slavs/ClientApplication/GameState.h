@@ -2,6 +2,8 @@
 
 #include "ApplicationStateBase.h"
 
+#include "SendSelectionTask.h"
+
 namespace net
   {
   class Connection;
@@ -51,6 +53,8 @@ namespace ClientStates
       std::unique_ptr<TimeController>                       mp_time_controller;
 
       std::unique_ptr<ClientGame::Camera>                   mp_camera;
+
+			Tasks::SendSelcetionTask															m_send_selection_task;
 
     private:
       void        _HoldPacket(const Network::Packet& i_packet);

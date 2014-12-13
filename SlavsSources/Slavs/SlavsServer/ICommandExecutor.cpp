@@ -21,7 +21,7 @@ namespace SDK
 			return categories;
 			}
 
-		bool ICommandExecutor::CanExecute(IController* ip_controller, int i_command_id) const
+		bool ICommandExecutor::GetExecutor(IController* ip_controller, int i_command_id) const
 			{
 			auto it = std::find_if(m_commands.begin(), m_commands.end(), CommandInformation::Comparer_GlobalId(i_command_id));
 			if (it == m_commands.end())

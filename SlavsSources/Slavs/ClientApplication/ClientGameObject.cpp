@@ -17,5 +17,8 @@ void ClientGameObject::ApplyState(GameObjectState& i_state)
   {
   if(nullptr != i_state.pPosition)
     SetPosition(*i_state.pPosition);
+	
+	m_selected = (i_state.iFlags & GOF_Selected) == GOF_Selected;
+
   StateChanged();
   }

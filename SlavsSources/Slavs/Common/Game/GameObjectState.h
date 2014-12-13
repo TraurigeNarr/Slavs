@@ -46,6 +46,7 @@ enum
   GOF_RequestForWorkers = 1<<7,
   GOF_HasSkill = 1<<6,
   GOF_HouseInformation = 1 << 5,
+	GOF_Selected = 1 << 4
 };
 
 

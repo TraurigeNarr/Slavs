@@ -145,6 +145,9 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="MouseTypes.h" />
     <ClInclude Include="PlaceBuildingMouse.h" />
+    <ClInclude Include="SelectionBox.h" />
+    <ClInclude Include="SelectionMouse.h" />
+    <ClInclude Include="SendSelectionTask.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="UISettings.h" />
     <ClInclude Include="GameState.h" />
@@ -224,6 +227,9 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="SceneController.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
+    <ClCompile Include="SelectionMouse.cpp" />
+    <ClCompile Include="SelectionBox.cpp" />
+    <ClCompile Include="SendSelectionTask.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

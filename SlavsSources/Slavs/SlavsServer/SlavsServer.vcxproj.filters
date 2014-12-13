@@ -266,6 +266,9 @@
     <ClCompile Include="ICommandExecutor.cpp">
       <Filter>Factories\Commands</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectSelectorHandler.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ServerGameState.h">
@@ -519,6 +522,9 @@
     </ClInclude>
     <ClInclude Include="CommandInformation.h">
       <Filter>Factories\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectSelectorHandler.h">
+      <Filter>Header Files\Controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

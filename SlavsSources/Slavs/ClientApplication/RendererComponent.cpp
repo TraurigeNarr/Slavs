@@ -113,6 +113,12 @@ namespace ClientGame
       return;
 
     mp_scene_node->setPosition(mp_owner->GetPosition()[0], 0, mp_owner->GetPosition()[1]);
+
+		if (mp_owner->IsSelected())
+			mp_scene_node->showBoundingBox(true);
+		else
+			mp_scene_node->showBoundingBox(false);
+
     mp_owner->Validate();
     }
 

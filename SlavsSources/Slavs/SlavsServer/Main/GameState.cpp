@@ -142,7 +142,7 @@ namespace Slavs
 		int global_command_id = FromChar<int>(p_packet);
 		offset += sizeof(int);
 
-		if (auto p_executor = i_command_manager.CanExecute(ip_controller, global_command_id))
+		if (auto p_executor = i_command_manager.GetExecutor(ip_controller, global_command_id))
 			{
 			float x_pos = FromChar<float>(p_packet + offset);
 			offset += sizeof(float);
@@ -173,6 +173,18 @@ namespace Slavs
 					HandleCommand(ip_owner->GetMetaFactory().GetCommandManager(), it->mp_controller.get(), ip_packet, i_bytes_read);
         return;
         }
+			case Network::PacketType::PT_Selection:
+				{
+				int controllers_mask = ip_owner->GetConnection()->GetAddress().GetAddress();
+				auto& controllers = mh_game_context->GetControllers();
+				auto it = std::find_if(controllers.begin(), controllers.end(), [controllers_mask](const GameContext::ControllerInformation& controller_info)
+					{
+					return controller_info.mp_controller->GetMask() == controllers_mask;
+					});
+				if (it != controllers.end())
+					it->mp_controller->HoldPacket(ip_packet, i_bytes_read);
+				return;
+				}
         break;
       }
     }

@@ -70,17 +70,17 @@ namespace SDK
 			return categories;
 			}
 
-		ICommandExecutor* CommandManager::CanExecute(IController* ip_controller, int i_command_id) const
+		ICommandExecutor* CommandManager::GetExecutor(IController* ip_controller, int i_command_id) const
 			{
 			for (const auto& p_executor : m_executors)
-				if (p_executor->CanExecute(ip_controller, i_command_id))
+				if (p_executor->GetExecutor(ip_controller, i_command_id))
 					return p_executor.get();
 			return nullptr;
 			}
 
 		void CommandManager::Execute(IController* ip_controller, int i_command_id, const boost::any& i_data)
 			{
-			if (auto p_executor = CanExecute(ip_controller, i_command_id))
+			if (auto p_executor = GetExecutor(ip_controller, i_command_id))
 				Execute(ip_controller, p_executor, i_command_id, i_data);
 			else
 				throw std::logic_error("<CommandManager> No executor for command");

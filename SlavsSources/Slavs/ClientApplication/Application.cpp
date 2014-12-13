@@ -12,6 +12,7 @@
 
 #include "MouseManager.h"
 #include "PlaceBuildingMouse.h"
+#include "SelectionMouse.h"
 
 #include <Common/Patterns/StateMachine.h>
 
@@ -27,6 +28,7 @@ namespace
   void RegisterMice(GameCore::UI::MouseManager& i_mouse_manager)
     {
     i_mouse_manager.RegisterMouse(std::unique_ptr<GameCore::UI::IMouse>(new UI::PlaceBuildingMouse()));
+		i_mouse_manager.RegisterMouse(std::unique_ptr<GameCore::UI::IMouse>(new UI::SelectionMouse()));
     }
   }
 

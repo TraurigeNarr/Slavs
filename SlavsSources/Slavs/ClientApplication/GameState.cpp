@@ -7,10 +7,11 @@
 #include "PlayerController.h"
 #include "GameBaseCommandHandler.h"
 
-
 #include "Application.h"
 #include "InputManager.h"
 #include "MouseManager.h"
+#include "MouseTypes.h"
+#include "SelectionMouse.h"
 
 #include "ScreenManager.h"
 #include "GameScreenMain.h"
@@ -50,7 +51,10 @@ namespace ClientStates
     , mp_state_machine(nullptr)
     , mp_message_provider(nullptr)
     , mp_command_handler(nullptr)
-    {    }
+		, m_send_selection_task(0, ip_connection ? *ip_connection : *mp_connection, mp_context ? *mp_context : *ip_game_context)
+    {
+		m_send_selection_task.SetRecurrent(true);
+		}
 
   GameState::~GameState()
     {    }
@@ -77,11 +81,12 @@ namespace ClientStates
     mp_state_machine.reset(new StateMachine<GameState, long>(this));
 
     mp_time_controller.reset(new TimeController(MS_FOR_TICK));
-
     mp_time_controller->AddSubscriber(mp_context.get());
 
     m_application.GetInputManager().AddSubscriber(this);
+
     m_application.GetMouseManager().PopAllMice();
+		m_application.GetMouseManager().SetActiveMouse(static_cast<int>(UI::MouseType::Selection), &m_send_selection_task);
     }
 
   void GameState::Execute(Application* ip_application, long i_elapsed_time)
@@ -113,6 +118,7 @@ namespace ClientStates
     mp_time_controller->RemoveSubscriber(mp_context.get());
     mp_time_controller.reset();
 
+		mp_context->Release();
     mp_context.reset();
 
     mp_camera.reset();

@@ -50,8 +50,8 @@ public:
 
 	bool							              Destroyed()const { return m_bDestroyed; }
 	bool							              Selected() const { return m_bSelected; }
-	virtual void					          Select(){ m_bSelected = true; }
-	virtual void					          Deselect() { m_bSelected = false; }
+	virtual void					          Select(){ m_bSelected = true; StateChanged(); }
+	virtual void					          Deselect() { m_bSelected = false; StateChanged(); }
 
 	static std::string				      ToString(int oType);
 	static int      				        GetGameObjectType(const std::string& oType);

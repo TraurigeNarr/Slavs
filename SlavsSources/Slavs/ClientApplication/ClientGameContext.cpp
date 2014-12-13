@@ -55,14 +55,14 @@ void ClientGameContext::ReleaseContext()
   mp_scene_controller.reset();
   }
 
-void ClientGameContext::_ApplyState(GameObjectState& i_state, GameObjectUniquePtr& ip_object)
+void ClientGameContext::_ApplyState(GameObjectState& i_state, GameObject* ip_object)
   {
   if(0 != (i_state.iFlags & GOF_Destroyed))
     {
-    RemoveObject(ip_object.get());
+    RemoveObject(ip_object);
     return;
     }
-  static_cast<ClientGameObject*>(ip_object.get())->ApplyState(i_state);
+  static_cast<ClientGameObject*>(ip_object)->ApplyState(i_state);
   }
 
 void ClientGameContext::_AddObject(GameObjectState& i_state)
@@ -75,8 +75,7 @@ void ClientGameContext::_AddObject(GameObjectState& i_state)
       object_type = mp_composer->GetUndefinedObjectId();
     }
 
-  long object_id = m_next_object_id++;
-  std::unique_ptr<GameObject> p_game_object(new ClientGameObject(object_id, object_type, *this, nullptr));
+  std::unique_ptr<GameObject> p_game_object(new ClientGameObject(i_state.lID, object_type, *this, nullptr));
   IController* p_owner = nullptr;
   if (i_state.iOwnerMask != 0)
     {
@@ -88,8 +87,8 @@ void ClientGameContext::_AddObject(GameObjectState& i_state)
 
   mp_composer->ComposeObject(p_game_object.get());
 
-  auto it = m_objects.insert(std::make_pair(object_id, std::move(p_game_object))).first;
-  _ApplyState(i_state, (*it).second);
+	auto it = m_objects.insert(std::make_pair(i_state.lID, std::move(p_game_object))).first;
+  _ApplyState(i_state, (*it).second.get());
   }
 
 void ClientGameContext::ApplyState(GameObjectState& i_state)
@@ -98,7 +97,7 @@ void ClientGameContext::ApplyState(GameObjectState& i_state)
 
   if ( object_it != m_objects.end() )
     {
-    _ApplyState(i_state, (*object_it).second);
+    _ApplyState(i_state, (*object_it).second.get());
     }
   else
     {
@@ -122,3 +121,19 @@ void ClientGameContext::Initialize()
   mp_composer->Initialize(FileUtilities::JoinPath(FileUtilities::GetApplicationDirectory(), OBJECT_CONFIGURATION_FILE));
   mp_scene_controller->Initialize();
   }
+
+std::vector<long> ClientGameContext::GetObjcetsInBox(const Vector2D& i_top_left, const Vector2D& i_bottom_right) const
+	{
+	std::vector<long> objects_ids;
+
+	for (auto& obj_pair : m_objects)
+		{
+		auto p_object = obj_pair.second.get();
+		auto position = p_object->GetPosition();
+		if (position[0] > i_top_left[0] && position[1] > i_top_left[1]
+			&& position[0] < i_bottom_right[0] && position[1] < i_bottom_right[1])
+			objects_ids.push_back(p_object->GetID());
+		}
+
+	return objects_ids;
+	}

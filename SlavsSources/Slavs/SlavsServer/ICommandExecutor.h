@@ -41,7 +41,7 @@ namespace SDK
 				SLAVS_SERVER_EXPORT std::vector<std::string>		GetCommandCategories() const;
 				const std::vector<CommandInformation>&					GetCommands() const;
 				const std::vector<CommandCategory>&							GetCategories() const;
-				SLAVS_SERVER_EXPORT bool												CanExecute(IController* ip_controller, int i_command_id) const;
+				SLAVS_SERVER_EXPORT bool												GetExecutor(IController* ip_controller, int i_command_id) const;
 				SLAVS_SERVER_EXPORT void												Execute(IController* ip_controller, int i_command_id, const boost::any& i_value);
 
 				virtual std::vector<std::string>								GetCommandsStrings(IController* ip_controller) const = 0;

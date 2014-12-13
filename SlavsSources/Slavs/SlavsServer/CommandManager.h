@@ -38,9 +38,9 @@ namespace SDK
 				SLAVS_SERVER_EXPORT std::vector<std::string> GetCommandCategories() const;
 
 				// typical usage
-				// if (auto p_executor = CanExecute(id))
+				// if (auto p_executor = GetExecutor(id))
 				//		Execute(p_executor, id, data);
-				SLAVS_SERVER_EXPORT ICommandExecutor* CanExecute(IController* ip_controller, int i_command_id) const;
+				SLAVS_SERVER_EXPORT ICommandExecutor* GetExecutor(IController* ip_controller, int i_command_id) const;
 				// throws exception if there is no executor which can handle this command
 				SLAVS_SERVER_EXPORT void Execute(IController* ip_controller, int i_command_id, const boost::any& i_data);
 				// thriw exception if ip_executor = nullptr 

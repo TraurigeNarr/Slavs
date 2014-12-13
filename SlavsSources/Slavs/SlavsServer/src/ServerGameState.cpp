@@ -170,8 +170,4 @@ void ServerGameState::SendStates(ServerMain* ip_owner)
 
 void ServerGameState::PassToController(ServerMain* ip_owner, unsigned char *packet, size_t bytes_read)
 {
-	std::map<int, IController*>::const_iterator iter = m_pControllers->find(ip_owner->GetConnection()->GetAddress().GetAddress());
-
-	if(m_pControllers->end() != iter)
-		iter->second->HoldPacket(ip_owner->GetConnection(), packet, bytes_read);
 }

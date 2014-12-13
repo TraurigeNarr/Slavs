@@ -77,6 +77,8 @@ namespace Slavs
     {
     GameObjectState* p_state = IGameObject::GetState();
     p_state->iFlags |= GOF_Position;
+		if (Selected())
+			p_state->iFlags |= GOF_Selected;
     p_state->iOwnerMask = GetController() ? GetController()->GetMask() : 0;
     p_state->pPosition = new Vector2D(m_position);
     return p_state;

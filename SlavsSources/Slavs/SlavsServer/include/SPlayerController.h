@@ -4,6 +4,8 @@
 #include "IController.h"
 #include "Game/CommandData.h"
 
+#include "ObjectSelectorHandler.h"
+
 #include <vector>
 
 #include <ISendable.h>
@@ -20,6 +22,10 @@ class SGameObject;
 class SPlayerController 
   : public IController
 {
+private:
+	Slavs::ObjectSelectorHandler m_object_selector;
+	std::vector<Slavs::GameObject*> m_selected_objects;
+
 public:
 	SPlayerController(int iMask, Slavs::GameContext& i_context);
 	~SPlayerController();
@@ -27,12 +33,7 @@ public:
 	void Init();
 	void TickPerformed();
 
-	void HoldPacket(net::Connection* connection, unsigned char* packet, int bytes_read);
-protected:
-	void HoldCommand(CommandData* cData);
-	void SelectObjects(unsigned char* packet, int bytes_read);
-	//objects that were selected by user
-	std::vector<SGameObject*> m_vSelectedObjects;
+	virtual void HoldPacket(unsigned char* packet, int bytes_read) override;
 };
 
 #endif

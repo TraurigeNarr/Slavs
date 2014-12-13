@@ -5,6 +5,8 @@
 class GameObjectState;
 class Ogreframework;
 
+class Vector2D;
+
 namespace ClientGame
   {
   class ClientComposer;
@@ -23,7 +25,7 @@ class ClientGameContext : public GameContext
     std::unique_ptr<ClientGame::SceneController>  mp_scene_controller;
 
   private:
-    void          _ApplyState(GameObjectState& i_state, GameObjectUniquePtr& ip_object);
+		void          _ApplyState(GameObjectState& i_state, GameObject* ip_object);
     void          _AddObject(GameObjectState& i_state);
 
   protected:
@@ -41,6 +43,8 @@ class ClientGameContext : public GameContext
     void                          Initialize();
 
     virtual void                  TickPerformed() override;
+
+		std::vector<long>							GetObjcetsInBox(const Vector2D& i_top_left, const Vector2D& i_bottom_right) const;
 
     ClientGame::ModelController&  GetModelControlelr();    
     ClientGame::SceneController&  GetSceneController();

@@ -74,6 +74,7 @@ namespace GameCore
         if (mp_previous_mouse)
           {
           mp_current_mouse = mp_previous_mouse;
+					mp_current_mouse->Activate(nullptr);
           // TODO make Pause and Resume methods
           // mp_current_mouse->Activate();
           mp_previous_mouse = nullptr;
