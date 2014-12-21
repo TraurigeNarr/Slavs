@@ -40,5 +40,13 @@
       <component type="ResourceComponent" resource_type="tree" resource_number="10"/>
       <component type="StaticComponent" bbox_radius="10"/>
     </TreeObject>
+    <LesovikObject>
+      <component type="DynamicComponent" bbox_radius="30" max_speed="70" max_force="500" max_turnrate="100"/>
+      <component type="LesovikComponent" dig_slowing="0.5" wood_recreating_modifier="0.2">
+        <lakomstva>
+          <lakomstvo resource="bread" number="10" use_period="400"/>
+        </lakomstva>
+      </component>
+    </LesovikObject>
   </Composer>
 </BasePlugin>

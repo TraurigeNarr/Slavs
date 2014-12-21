@@ -27,10 +27,6 @@ namespace BasePlugin
 		private:
 			const BaseObjectComposer& m_object_composer;
 
-			int m_resource_type;
-			size_t m_initial_resources;
-			size_t m_current_resources;
-
 		public:
 			SLAVS_BASEPLUGIN_EXPORT													ResourceComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_object_composer);
 			virtual       SLAVS_BASEPLUGIN_EXPORT           ~ResourceComponent();

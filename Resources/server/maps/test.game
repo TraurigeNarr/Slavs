@@ -43,10 +43,19 @@
     </Owner>
     <SelectionMask>1</SelectionMask>
   </BasePlugin.ManufactureObject>
+
+  <BasePlugin.LesovikObject>
+    <Position>
+      <x>4200</x>
+      <y>4200</y>
+    </Position>
+    <SelectionMask>0</SelectionMask>
+  </BasePlugin.LesovikObject>
+
   <BasePlugin.TreeObject>
     <Position>
-      <x>2000</x>
-      <y>2000</y>
+      <x>4000</x>
+      <y>4000</y>
     </Position>
     <SelectionMask>0</SelectionMask>
   </BasePlugin.TreeObject>

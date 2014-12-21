@@ -13,7 +13,7 @@ namespace Slavs
   {
   class GameContext;
 
-  class SLAVS_SERVER_EXPORT GameObject : public IGameObject
+  class GameObject : public IGameObject
     {
     private:
       GameContext& m_context;
@@ -24,21 +24,21 @@ namespace Slavs
       Vector2D         m_position;
 
     public:
-      GameObject(GameContext& i_context, long i_id, int i_type, int i_selection_mask);
-      ~GameObject();
+      SLAVS_SERVER_EXPORT GameObject(GameContext& i_context, long i_id, int i_type, int i_selection_mask);
+      SLAVS_SERVER_EXPORT ~GameObject();
 
-      void          SetOwner(IController* ip_controller);
-      bool          HasOwner() const;
+      SLAVS_SERVER_EXPORT void          SetOwner(IController* ip_controller);
+      SLAVS_SERVER_EXPORT bool          HasOwner() const;
       /// check if component with global id "i_id" is in components collection
-      bool          HasComponent(int i_id) const;
-      IController*  GetController() const;
+      SLAVS_SERVER_EXPORT bool          HasComponent(int i_id) const;
+      SLAVS_SERVER_EXPORT IController*  GetController() const;
 
       /// takes ownage of component
-      void          AddComponent (std::unique_ptr<IComponent> ih_component);
+			SLAVS_SERVER_EXPORT void          AddComponent(std::unique_ptr<IComponent> ih_component);
       /// validate state of components
       /// each component checks its state and that all
       /// dependencies are present in object
-      bool          ProbeComponents ();
+			SLAVS_SERVER_EXPORT bool          ProbeComponents();
 
       GameContext&  GetContext()
         {
@@ -47,15 +47,15 @@ namespace Slavs
 
     // IMovable
     public:
-      virtual void                    SetPosition(const Vector2D& i_position);
-      virtual Vector2D                GetPosition() const;
-      virtual Vector2D&               AccessPosition();
+      SLAVS_SERVER_EXPORT virtual void                    SetPosition(const Vector2D& i_position);
+      SLAVS_SERVER_EXPORT virtual Vector2D                GetPosition() const;
+      SLAVS_SERVER_EXPORT virtual Vector2D&               AccessPosition();
 
       //IGameObject overrides
     public:
-      virtual void                    TickPerformed() override;
-      virtual void                    Init() override;
-      virtual GameObjectState*		    GetState() const override;
+      SLAVS_SERVER_EXPORT virtual void                    TickPerformed() override;
+      SLAVS_SERVER_EXPORT virtual void                    Init() override;
+      SLAVS_SERVER_EXPORT virtual GameObjectState*		    GetState() const override;
 
       //use methods for transferring commands and notifications
 //      virtual bool	ProcessCommand(const CommandData& cData) override;

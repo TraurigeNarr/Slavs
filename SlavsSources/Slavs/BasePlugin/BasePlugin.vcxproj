@@ -109,7 +109,7 @@
     <ClInclude Include="HumanComponent.h" />
     <ClInclude Include="IComponentSerializer.h" />
     <ClInclude Include="IMovementStrategy.h" />
-    <ClInclude Include="Lesovik.h" />
+    <ClInclude Include="LesovikComponent.h" />
     <ClInclude Include="ManufactureComponent.h" />
     <ClInclude Include="MovementStrategyBase.h" />
     <ClInclude Include="MovingGroup.h" />
@@ -133,6 +133,7 @@
     <ClCompile Include="DynamicObjectComponent.cpp" />
     <ClCompile Include="HouseComponent.cpp" />
     <ClCompile Include="HumanComponent.cpp" />
+    <ClCompile Include="LesovikComponent.cpp" />
     <ClCompile Include="ManufactureComponent.cpp" />
     <ClCompile Include="MovementStrategyBase.cpp" />
     <ClCompile Include="ObjectSettings.cpp" />

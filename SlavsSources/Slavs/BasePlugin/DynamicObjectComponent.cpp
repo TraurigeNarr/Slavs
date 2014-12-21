@@ -86,7 +86,7 @@ namespace BasePlugin
 
     double distance_to_target = mp_owner->GetPosition().Distance(mp_movement_strategy->GetTarget());
 
-    if (distance_to_target + m_bounding_box_radius <= mp_movement_strategy->GetClearance())
+    if (distance_to_target - m_bounding_box_radius <= mp_movement_strategy->GetClearance())
       mp_movement_strategy.reset();
 
     mp_owner->StateChanged();

@@ -52,6 +52,7 @@ namespace BasePlugin
 
       /// when object does not go anywhere this should be called with nullptr
       void          SetMovementStrategy(std::unique_ptr<IMovementStrategy<DynamicObjectComponent>> ip_movement_strategy);
+			bool					Moving() const { return mp_movement_strategy; }
     };
   
   class DynamicObjectComponentSerializer : public IComponentSerializer

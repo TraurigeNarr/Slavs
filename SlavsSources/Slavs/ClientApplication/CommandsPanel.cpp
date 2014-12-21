@@ -38,6 +38,10 @@ namespace UI
     ElementsBox* p_box = nullptr;
     for (const CommandInfo& info : commands)
       {
+			// here we want only create commands
+			if (info.m_string_id.substr(0, 6) != "Create")
+				continue;
+
       if (info.m_type_id != current_type)
         p_box = nullptr;
 

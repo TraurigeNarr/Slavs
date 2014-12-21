@@ -29,6 +29,8 @@ namespace
       return BasePlugin::ObjectType::OT_MANUFACTURE;
 		if (i_type == BasePlugin::Object_Tree)
 			return BasePlugin::ObjectType::OT_TREE;
+		if (i_type == BasePlugin::Object_Lesovik)
+			return BasePlugin::ObjectType::OT_LESOVIK;
     return BasePlugin::ObjectType::OT_NONE;
     }
   } // namespace
@@ -79,9 +81,13 @@ void BaseObjectComposer::DeclareSupportedTypes()
   // manufacture
   global_type_id = factory.RegisterType(BasePlugin::ConstructBasePluginName(BasePlugin::Object_Manufacture));
   m_types_map[global_type_id] = BasePlugin::ObjectType::OT_MANUFACTURE;
+	// lesovik
+	global_type_id = factory.RegisterType(BasePlugin::ConstructBasePluginName(BasePlugin::Object_Lesovik));
+	m_types_map[global_type_id] = BasePlugin::ObjectType::OT_LESOVIK;
 	// tree
 	global_type_id = factory.RegisterType(BasePlugin::ConstructBasePluginName(BasePlugin::Object_Tree));
 	m_types_map[global_type_id] = BasePlugin::ObjectType::OT_TREE;
+
 #pragma endregion
 
 #pragma region Components
@@ -109,6 +115,9 @@ void BaseObjectComposer::DeclareSupportedTypes()
 	// resource
 	global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Resource));
 	m_components_map[global_type_id] = BasePlugin::ComponentType::CT_RESOURCE;
+	// lesovik
+	global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Lesovik));
+	m_components_map[global_type_id] = BasePlugin::ComponentType::CT_LESOVIK;
 #pragma endregion
   }
 

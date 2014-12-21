@@ -19,7 +19,7 @@ namespace net
   class Connection;
   }
 
-class SLAVS_SERVER_EXPORT ServerMain
+class ServerMain
   {
 public:
     typedef StateMachine<ServerMain, long>  TServerFSM;
@@ -42,17 +42,17 @@ private:
   bool                              m_bWorking;
 
 public:
-	ServerMain();
-	~ServerMain();
+	SLAVS_SERVER_EXPORT ServerMain();
+	SLAVS_SERVER_EXPORT ~ServerMain();
 
   __declspec(deprecated)
-	bool Initialize();
+		SLAVS_SERVER_EXPORT bool Initialize();
 
-	void Update(long elapsedTime);
+	SLAVS_SERVER_EXPORT void Update(long elapsedTime);
 
 	bool Working(){ return m_bWorking; }
 
-	net::Connection* GetConnection() const;
+	SLAVS_SERVER_EXPORT net::Connection* GetConnection() const;
 	StateMachine<ServerMain, long>* GetFSM() const { return m_pFSM; }
 	bool FromGame;
 
@@ -65,20 +65,20 @@ public:
   ///   2. Addresses of connected players
   ///   3. Plugins which must be loaded
   ///   4. Relative or absolute path to game name
-  bool                Start(const std::string& i_configuration_file);
+	SLAVS_SERVER_EXPORT bool                Start(const std::string& i_configuration_file);
   /// Sets internal flag so Working will return false
   ///   Shutdown must be call after stop
-  void                Stop();
-  void                Shutdown();
+  SLAVS_SERVER_EXPORT void                Stop();
+  SLAVS_SERVER_EXPORT void                Shutdown();
 
-  MetaFactory&        GetMetaFactory();
-  DllManager&         GetDllManager();
+  SLAVS_SERVER_EXPORT MetaFactory&        GetMetaFactory();
+  SLAVS_SERVER_EXPORT DllManager&         GetDllManager();
 
-  void                RegisterPlugin(Plugin* ip_plugin);
-  void                UnregisterPlugin(Plugin* ip_plugin);
-  TServerFSM&         GetStateMachine();
+  SLAVS_SERVER_EXPORT void                RegisterPlugin(Plugin* ip_plugin);
+  SLAVS_SERVER_EXPORT void                UnregisterPlugin(Plugin* ip_plugin);
+  SLAVS_SERVER_EXPORT TServerFSM&         GetStateMachine();
 //////////////////////////////////////////////////////////////////////////
-  static ServerMain&  GetInstance();
+	SLAVS_SERVER_EXPORT static ServerMain&  GetInstance();
   };
 
 #endif

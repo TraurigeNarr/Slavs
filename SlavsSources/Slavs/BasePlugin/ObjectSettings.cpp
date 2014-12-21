@@ -14,6 +14,7 @@
 #include "StoreComponent.h"
 #include "PrimitiveBrainComponent.h"
 #include "ResourceComponent.h"
+#include "LesovikComponent.h"
 
 #include <Utilities/XmlUtilities.h>
 
@@ -43,6 +44,8 @@ namespace
       return new PrimitiveBrainComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_PRIMITIVE_BRAIN), i_composer);
 		if (i_type == Component_Resource)
 			return new ResourceComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_RESOURCE), i_composer);
+		if (i_type == Component_Lesovik)
+			return new Lesovik::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_LESOVIK), i_composer);
     return nullptr;
     }
   }

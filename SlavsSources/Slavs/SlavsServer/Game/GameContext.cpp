@@ -175,9 +175,4 @@ namespace Slavs
     return (*it).m_needed_resources[i_type];
     }
 
-  GlobalEconomics& GameContext::GetGlobalEconomics() const
-    {
-    return *mp_global_economics;
-    }
-
   }
