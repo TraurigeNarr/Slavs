@@ -27,7 +27,8 @@ namespace
       return BasePlugin::ObjectType::OT_PRODUCTION_STORE;
     if (i_type == BasePlugin::Object_Manufacture)
       return BasePlugin::ObjectType::OT_MANUFACTURE;
-
+		if (i_type == BasePlugin::Object_Tree)
+			return BasePlugin::ObjectType::OT_TREE;
     return BasePlugin::ObjectType::OT_NONE;
     }
   } // namespace
@@ -78,6 +79,9 @@ void BaseObjectComposer::DeclareSupportedTypes()
   // manufacture
   global_type_id = factory.RegisterType(BasePlugin::ConstructBasePluginName(BasePlugin::Object_Manufacture));
   m_types_map[global_type_id] = BasePlugin::ObjectType::OT_MANUFACTURE;
+	// tree
+	global_type_id = factory.RegisterType(BasePlugin::ConstructBasePluginName(BasePlugin::Object_Tree));
+	m_types_map[global_type_id] = BasePlugin::ObjectType::OT_TREE;
 #pragma endregion
 
 #pragma region Components
@@ -102,6 +106,9 @@ void BaseObjectComposer::DeclareSupportedTypes()
   // primitive brain
   global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_PrimitiveBrain));
   m_components_map[global_type_id] = BasePlugin::ComponentType::CT_PRIMITIVE_BRAIN;
+	// resource
+	global_type_id = factory.RegisterComponent(BasePlugin::ConstructBasePluginName(BasePlugin::Component_Resource));
+	m_components_map[global_type_id] = BasePlugin::ComponentType::CT_RESOURCE;
 #pragma endregion
   }
 

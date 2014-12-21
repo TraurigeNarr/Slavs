@@ -36,5 +36,9 @@
         </manufacture>
       </component> 
     </ManufactureObject>
+    <TreeObject>
+      <component type="ResourceComponent" resource_type="tree" resource_number="10"/>
+      <component type="StaticComponent" bbox_radius="10"/>
+    </TreeObject>
   </Composer>
 </BasePlugin>

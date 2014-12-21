@@ -13,6 +13,7 @@
 #include "StaticObjectComponent.h"
 #include "StoreComponent.h"
 #include "PrimitiveBrainComponent.h"
+#include "ResourceComponent.h"
 
 #include <Utilities/XmlUtilities.h>
 
@@ -40,6 +41,8 @@ namespace
       return new ManufactureComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_MANUFACTURE), i_composer);
     if (i_type == Component_PrimitiveBrain)
       return new PrimitiveBrainComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_PRIMITIVE_BRAIN), i_composer);
+		if (i_type == Component_Resource)
+			return new ResourceComponent::TSerializer(i_composer.GetComponentGlobalID(ComponentType::CT_RESOURCE), i_composer);
     return nullptr;
     }
   }

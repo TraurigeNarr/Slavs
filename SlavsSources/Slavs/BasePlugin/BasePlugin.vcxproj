@@ -109,12 +109,14 @@
     <ClInclude Include="HumanComponent.h" />
     <ClInclude Include="IComponentSerializer.h" />
     <ClInclude Include="IMovementStrategy.h" />
+    <ClInclude Include="Lesovik.h" />
     <ClInclude Include="ManufactureComponent.h" />
     <ClInclude Include="MovementStrategyBase.h" />
     <ClInclude Include="MovingGroup.h" />
     <ClInclude Include="MovingGroupImpl.h" />
     <ClInclude Include="ObjectSettings.h" />
     <ClInclude Include="PrimitiveBrainComponent.h" />
+    <ClInclude Include="ResourceComponent.h" />
     <ClInclude Include="SlavsBasePlugin.h" />
     <ClInclude Include="SlavsBasePluginAPI.h" />
     <ClInclude Include="StaticObjectComponent.h" />
@@ -135,6 +137,7 @@
     <ClCompile Include="MovementStrategyBase.cpp" />
     <ClCompile Include="ObjectSettings.cpp" />
     <ClCompile Include="PrimitiveBrainComponent.cpp" />
+    <ClCompile Include="ResourceComponent.cpp" />
     <ClCompile Include="SlavsBasePlugin.cpp" />
     <ClCompile Include="StaticObjectComponent.cpp" />
     <ClCompile Include="stdafx.cpp">

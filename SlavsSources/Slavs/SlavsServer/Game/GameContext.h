@@ -3,6 +3,8 @@
 #include "SlavsServerAPI.h"
 #include "Types.h"
 
+#include "GameWorld.h"
+
 #include <Common/Game/IGameContext.h>
 #include <Common/Game/TimeController.h>
 
@@ -60,6 +62,8 @@ namespace Slavs
       std::vector<ControllerInformation>  m_controllers;
       std::unique_ptr<GlobalEconomics>    mp_global_economics;
 
+			GameWorld									m_game_world;
+
     public:
       GameContext();
       ~GameContext();
@@ -95,6 +99,11 @@ namespace Slavs
         {
         return m_controllers;
         }
+
+			GameWorld& GetGameWorld()
+				{
+				return m_game_world;
+				}
     };
 
   } // Slavs

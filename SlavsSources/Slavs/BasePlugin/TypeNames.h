@@ -8,6 +8,7 @@ namespace BasePlugin
   const std::string Object_Hiszhina             = "HizhinaObject";
   const std::string Object_ProductionStore      = "ProductionStoreObject";
   const std::string Object_Manufacture          = "ManufactureObject";
+	const std::string Object_Tree									= "TreeObject";
 
   // components
   const std::string Component_Static            = "StaticComponent";
@@ -18,6 +19,8 @@ namespace BasePlugin
   const std::string Component_House             = "HouseComponent";
   const std::string Component_Manufacture       = "ManufactureComponent";
   const std::string Component_PrimitiveBrain    = "PrimitiveBrain";
+
+	const std::string Component_Resource					= "ResourceComponent";
 
   //return BasePlugin. + i_name
   inline std::string ConstructBasePluginName(const std::string& i_name)

@@ -115,6 +115,7 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Server\*.*
   <ItemGroup>
     <ClCompile Include="CommandInformation.cpp" />
     <ClCompile Include="CommandManager.cpp" />
+    <ClCompile Include="Game\GameWorld.cpp" />
     <ClCompile Include="ICommandExecutor.cpp" />
     <ClCompile Include="ObjectSelectorHandler.cpp" />
     <ClCompile Include="src\Management\ResourceManagerBase.cpp" />
@@ -175,10 +176,12 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Server\*.*
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandInformation.h" />
+    <ClInclude Include="Game\GameWorld.h" />
     <ClInclude Include="ICommandExecutor.h" />
     <ClInclude Include="CommandManager.h" />
     <ClInclude Include="include\Management\IResourceManager.h" />
     <ClInclude Include="include\Management\ResourceManagerBase.h" />
+    <ClInclude Include="PluginSystem\IResource.h" />
     <ClInclude Include="Main\LoadingParameters.h" />
     <ClInclude Include="ObjectSelectorHandler.h" />
     <ClInclude Include="PluginSystem\IBuilding.h" />

@@ -91,6 +91,12 @@
     <ClInclude Include="Commands.h">
       <Filter>SlavsBasePlugin</Filter>
     </ClInclude>
+    <ClInclude Include="Lesovik.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -134,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="CommandExecutor.cpp">
       <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

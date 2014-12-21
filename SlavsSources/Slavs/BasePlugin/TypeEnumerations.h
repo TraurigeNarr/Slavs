@@ -9,7 +9,8 @@ namespace BasePlugin
     OT_HIZHINA,
     OT_MILL,
     OT_PRODUCTION_STORE,
-    OT_MANUFACTURE
+    OT_MANUFACTURE,
+		OT_TREE
     };
 
   enum class ComponentType : char
@@ -21,6 +22,7 @@ namespace BasePlugin
     CT_HOUSE,
     CT_STORE,
     CT_MANUFACTURE,
-    CT_PRIMITIVE_BRAIN
+    CT_PRIMITIVE_BRAIN,
+		CT_RESOURCE
     };
   }

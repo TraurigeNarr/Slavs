@@ -37,9 +37,9 @@
   </BasePlugin.ManufactureObject>
 
   <!-- Environment -->
-  <tree>
+  <BasePlugin.TreeObject>
     <component type="renderer">
       <model location="client\Media\resources\Environment\tree" file="tree.model" group="Environment" type="FileSystem"/>
     </component>
-  </tree>
+  </BasePlugin.TreeObject>
 </Objects>

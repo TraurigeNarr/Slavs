@@ -43,4 +43,11 @@
     </Owner>
     <SelectionMask>1</SelectionMask>
   </BasePlugin.ManufactureObject>
+  <BasePlugin.TreeObject>
+    <Position>
+      <x>2000</x>
+      <y>2000</y>
+    </Position>
+    <SelectionMask>0</SelectionMask>
+  </BasePlugin.TreeObject>
 </Game>

@@ -46,8 +46,8 @@ namespace BasePlugin
 
       virtual bool	SLAVS_BASEPLUGIN_EXPORT           Probe() override;
 
-    // IHouse 
-    public:
+    // IHuman
+		public:
       virtual void            SLAVS_BASEPLUGIN_EXPORT SetHome(Slavs::HousePtr ip_home) override;
       virtual Slavs::HousePtr SLAVS_BASEPLUGIN_EXPORT GetHome() const override;
 
