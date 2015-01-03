@@ -29,6 +29,8 @@ namespace Slavs
       GameState(TGameContext ih_game_context);
       ~GameState();
 
+			GameContext* GetContext() const { return mh_game_context.get(); }
+
     // State
     public:
       virtual void          Enter(ServerMain* ip_owner) override;

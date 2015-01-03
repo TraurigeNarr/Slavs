@@ -3,6 +3,8 @@
     <Items>
         <Item name="imagesets" type="folder">
             <Item path="imagesets/GameScreenImageSet.png" type="file" />
+            <Item path="imagesets/Lesovik.imageset" type="file" />
+            <Item path="imagesets/Lesovik.png" type="file" />
             <Item path="imagesets/LoadScreenBackground.png" type="file" />
             <Item path="imagesets/SlavsGameCommands.imageset" type="file" />
             <Item path="imagesets/SlavsGameCommands.png" type="file" />
@@ -12,15 +14,14 @@
             <Item path="imagesets/SlavsLook.png" type="file" />
             <Item path="imagesets/SlavsMenuScreen.imageset" type="file" />
             <Item path="imagesets/SlavsMenuScreenBackground.png" type="file" />
-            <Item path="imagesets/Lesovik.imageset" type="file" />
-            <Item path="imagesets/Lesovik.png" type="file" />
         </Item>
         <Item name="layouts" type="folder">
+            <Item path="layouts/InformationView.layout" type="file" />
             <Item path="layouts/SlavsGame.layout" type="file" />
             <Item path="layouts/SlavsLoad.layout" type="file" />
             <Item path="layouts/SlavsMenu.layout" type="file" />
             <Item path="layouts/Test.layout" type="file" />
-            <Item path="layouts/InformationView.layout" type="file" />
+            <Item path="layouts/EndGameView.layout" type="file" />
         </Item>
         <Item name="looknfeel" type="folder">
             <Item path="looknfeel/SlavsGameCommands.looknfeel" type="file" />

@@ -261,6 +261,7 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Server\*.*
     <ClInclude Include="PluginSystem\IObjectComposer.h" />
     <ClInclude Include="PluginSystem\Plugin.h" />
     <ClInclude Include="IO\GameSerializer.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="_Link.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

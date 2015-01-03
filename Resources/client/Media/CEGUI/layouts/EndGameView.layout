@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="SlavsLook/FrameWindow" name="EndGameRoot" >
+        <Property name="Area" value="{{0.1,1},{0.15,1},{0.9,1},{0.85,1}}" />
+        <Property name="CloseButtonEnabled" value="False" />
+        <Window type="SlavsLook/StaticImage" name="Background" >
+            <Property name="Area" value="{{0,0},{0,0},{1,0},{1,0}}" />
+            <Window type="SlavsLook/Button" name="Menu" >
+                <Property name="Area" value="{{0.3,0},{0.8,0},{0.7,0},{0.95,0}}" />
+                <Property name="Text" value="Menu" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

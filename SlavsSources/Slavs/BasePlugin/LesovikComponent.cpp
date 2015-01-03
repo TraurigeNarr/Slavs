@@ -100,9 +100,10 @@ namespace BasePlugin
 		{
 
 		}
-
+	static bool tick = false;
 	void Lesovik::TickPerformed()
 		{
+		tick = true;
 		DynamicObjectComponent* p_dynamic_component = this->GetOwner()->GetComponent<DynamicObjectComponent>();
 		if (!p_dynamic_component->Moving())
 			{
@@ -125,7 +126,12 @@ namespace BasePlugin
 
 	void Lesovik::GetState(GameObjectState& i_state) const
 		{
-
+		static bool show = false;
+		if (show || !tick)
+			return;
+		show = true;
+		i_state.informationToShow = InformationToShow::Information;
+		i_state.informationId = 0;
 		}
 
 	bool Lesovik::Probe()

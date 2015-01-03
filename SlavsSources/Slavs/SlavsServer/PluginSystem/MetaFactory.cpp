@@ -158,3 +158,44 @@ void MetaFactory::CheckContracts()
       throw std::runtime_error("Bad contract");
     });
   }
+
+void MetaFactory::RegisterTask(SDK::TaskPtr ip_task)
+	{
+	m_tasks_for_win.push_back(std::move(ip_task));
+	}
+
+void MetaFactory::UnregisterTask(int i_id)
+	{
+	auto new_end = std::remove_if(m_tasks_for_win.begin(), m_tasks_for_win.end(), [i_id](const SDK::TaskPtr& p_task)
+		{
+		return p_task->GetTaskId() == i_id;
+		});
+
+	m_tasks_for_win.erase(new_end, m_tasks_for_win.end());
+	}
+
+bool MetaFactory::IsAllTasksCompleted() const
+	{
+	for (auto& p_task : m_tasks_for_win)
+		{
+		// temporary
+		p_task->Update(1);
+		if (!p_task->IsComplete())
+			return false;
+		}
+	return true;
+	}
+
+SDK::Task* MetaFactory::GetTask(int i_id) const
+	{
+	auto it = std::find_if(m_tasks_for_win.begin(), m_tasks_for_win.end(), [i_id](const SDK::TaskPtr& p_task)
+		{
+		return p_task->GetTaskId() == i_id;
+		});
+
+	if (it == m_tasks_for_win.end())
+		return nullptr;
+
+	return it->get();
+
+	}

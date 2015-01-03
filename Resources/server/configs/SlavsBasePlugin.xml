@@ -31,7 +31,7 @@
           <needed_workers>10</needed_workers>
           <initial_resources_mining>10</initial_resources_mining>
           <operating_cycle>500</operating_cycle>
-          <mining_resource_type>stone</mining_resource_type>
+          <mining_resource_type>tree</mining_resource_type>
           <initial_payment>8</initial_payment>
         </manufacture>
       </component> 

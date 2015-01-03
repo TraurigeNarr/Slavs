@@ -5,6 +5,7 @@
 #include "BaseObjectComposer.h"
 #include "TypeNames.h"
 #include "TypeEnumerations.h"
+#include "Profession.h"
 
 #include <Utilities/XmlUtilities.h>
 #include <Game/GameObjectState.h>
@@ -77,6 +78,8 @@ namespace BasePlugin
     , m_object_composer(i_composer)
     , m_has_work(false)
     , mp_home(nullptr)
+		, mp_current_profession(nullptr)
+		, m_state_machine(this)
     {
 
     }
@@ -88,7 +91,7 @@ namespace BasePlugin
 
   void HumanComponent::TickPerformed()
     {
-    
+		m_state_machine.Update(10);
     }
 
   bool HumanComponent::HandleMessage(const Telegram& msg)

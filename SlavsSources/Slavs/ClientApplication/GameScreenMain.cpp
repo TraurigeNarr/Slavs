@@ -10,6 +10,7 @@
 #include "GovermentPanel.h"
 #include "CommandsPanel.h"
 #include "InformationScreen.h"
+#include "EndGameScreen.h"
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -46,6 +47,7 @@ namespace UI
     m_child_screens.push_back(ChildScreenPtr(new GovermentPanel(m_screen_manager)));
     m_child_screens.push_back(ChildScreenPtr(new CommandsPanel(m_screen_manager)));
 		m_child_screens.push_back(ChildScreenPtr(new InformationScreen(m_screen_manager)));
+		m_child_screens.push_back(ChildScreenPtr(new EndGameScreen(m_screen_manager)));
 
     for (ChildScreenPtr& p_screen : m_child_screens)
       p_screen->Create (this);

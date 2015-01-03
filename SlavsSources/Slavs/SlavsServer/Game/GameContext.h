@@ -122,6 +122,11 @@ namespace Slavs
 				{
 				return m_game_world;
 				}
+
+			const std::map<long, GameObject*>& GetAllObjects() const
+				{
+				return m_mGameObjects;
+				}
     };
 
   } // Slavs

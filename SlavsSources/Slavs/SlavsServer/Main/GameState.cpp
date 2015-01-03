@@ -71,6 +71,15 @@ namespace
       }
     } 
 
+	void SendEndGameMessage(net::Connection& i_connection, bool i_win)
+		{
+		static std::unique_ptr<char[]> p_buffer(new char[sizeof(Network::PacketType) + sizeof(bool)]);
+
+		ToChar(Network::PacketType::PT_EndGame, &p_buffer[0], sizeof(Network::PacketType));
+		ToChar(i_win, &p_buffer[sizeof(Network::PacketType)], sizeof(bool));
+		i_connection.SendPacket(&p_buffer[0], sizeof(Network::PacketType) + sizeof(bool));
+		}
+
   } // namespace
 
 //////////////////////////////////////////////////////////////////////////
@@ -117,6 +126,9 @@ namespace Slavs
       {
       SendControllerStates(*mh_game_context, *ip_owner->GetConnection());
       time_from_last_send = 0;
+
+			if (ip_owner->GetMetaFactory().IsAllTasksCompleted())
+				SendEndGameMessage(*ip_owner->GetConnection(), true);
       }
     }
 

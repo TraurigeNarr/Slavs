@@ -3,6 +3,8 @@
 #include "SlavsBasePlugin.h"
 #include "BaseObjectComposer.h"
 #include "CommandExecutor.h"
+#include "PrimitiveWinTask.h"
+#include "TypeEnumerations.h"
 
 #include <Main/ServerMain.h>
 #include <PluginSystem/MetaFactory.h>
@@ -52,7 +54,7 @@ void SlavsBasePlugin::Initialize()
 	auto& meta_factory = ServerMain::GetInstance().GetMetaFactory();
 
   meta_factory.RegisterObjectComposer(mh_object_composer);  
-
+	
 	auto& command_manager = meta_factory.GetCommandManager();
 	auto p_command_executor = std::unique_ptr<SDK::GameCore::ICommandExecutor>(new BasePlugin::CommandExecutor(command_manager, meta_factory, *mh_object_composer));
 	mp_command_executor = p_command_executor.get();
@@ -76,13 +78,16 @@ void SlavsBasePlugin::Initialize()
       mh_object_composer->Initialize(*p_child);
       }
     }
+
+	meta_factory.RegisterTask(SDK::TaskPtr(new BasePlugin::PrimitiveWinTask(0, mh_object_composer->GetObjectGlobalID(BasePlugin::ObjectType::OT_MANUFACTURE))));
   }
 
 /// performs logical releasing 
 void SlavsBasePlugin::Release()
   {
   std::cout << "Plugin: " << PLUGIN_NAME << " released." << std::endl;
-  ServerMain::GetInstance().GetMetaFactory().UnregisterComposer(mh_object_composer);  
+  ServerMain::GetInstance().GetMetaFactory().UnregisterComposer(mh_object_composer);
+	ServerMain::GetInstance().GetMetaFactory().UnregisterTask(0);
 	auto& command_manager = ServerMain::GetInstance().GetMetaFactory().GetCommandManager();
 	if (mp_command_executor)
 		command_manager.UnregisterCommandExecutor(mp_command_executor);

@@ -140,6 +140,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="ClientGameContext.h" />
     <ClInclude Include="ClientGameObject.h" />
     <ClInclude Include="EconomySystemMessageProvider.h" />
+    <ClInclude Include="EndGameInformationProvider.h" />
+    <ClInclude Include="EndGameScreen.h" />
     <ClInclude Include="GameBaseCommandHandler.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="IMouse.h" />
@@ -203,6 +205,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="EconomySystemMessageProvider.cpp" />
     <ClCompile Include="ElementsPanel.cpp" />
     <ClCompile Include="ElmentsBox.cpp" />
+    <ClCompile Include="EndGameInformationProvider.cpp" />
+    <ClCompile Include="EndGameScreen.cpp" />
     <ClCompile Include="GameBaseCommandHandler.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameScreenMain.cpp" />

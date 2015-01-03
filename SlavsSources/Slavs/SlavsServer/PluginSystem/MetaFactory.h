@@ -6,6 +6,8 @@
 
 #include <boost/noncopyable.hpp>
 
+#include "SlavsServer/Task.h"
+
 #include <map>
 #include <memory>
 #include <vector>
@@ -58,6 +60,8 @@ class MetaFactory : boost::noncopyable
     TDefinitionsMap          m_type_definitions;
 
 		SDK::GameCore::CommandManager m_command_manager;
+
+		std::vector<SDK::TaskPtr> m_tasks_for_win;
     
   public:
     SLAVS_SERVER_EXPORT MetaFactory();
@@ -105,6 +109,13 @@ class MetaFactory : boost::noncopyable
     inline const TDefinitionsMap& GetDefinitions() const;
 
 		SDK::GameCore::CommandManager& GetCommandManager();
+
+		// should be in task manager
+		void SLAVS_SERVER_EXPORT RegisterTask(SDK::TaskPtr ip_task);
+		void SLAVS_SERVER_EXPORT UnregisterTask(int i_id);
+		// more sophisticated task management for win conditions (maybe only one of the task should be completed)
+		bool SLAVS_SERVER_EXPORT IsAllTasksCompleted() const;
+		SLAVS_SERVER_EXPORT SDK::Task* GetTask(int i_id) const;
   };
 
 inline const MetaFactory::TDefinitionsMap& MetaFactory::GetDefinitions() const

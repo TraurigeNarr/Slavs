@@ -20,6 +20,15 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{86774e03-a501-4a1c-a238-7b136b6b0929}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{ab1441d9-105b-495d-8302-c867520a7efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components\AI">
+      <UniqueIdentifier>{b47dafc4-f523-4a30-ab36-5a14669bb6d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tasks">
+      <UniqueIdentifier>{d3909982-198f-4608-9845-ad52998b2942}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -82,20 +91,26 @@
     <ClInclude Include="MovingGroupImpl.h">
       <Filter>Components\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="PrimitiveBrainComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="CommandExecutor.h">
       <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="Commands.h">
-      <Filter>SlavsBasePlugin</Filter>
     </ClInclude>
     <ClInclude Include="ResourceComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="LesovikComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Profession.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveBrainComponent.h">
+      <Filter>Components\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveWinTask.h">
+      <Filter>Tasks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -135,9 +150,6 @@
     <ClCompile Include="MovementStrategyBase.cpp">
       <Filter>Components\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="PrimitiveBrainComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="CommandExecutor.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
@@ -146,6 +158,12 @@
     </ClCompile>
     <ClCompile Include="LesovikComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimitiveBrainComponent.cpp">
+      <Filter>Components\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimitiveWinTask.cpp">
+      <Filter>Tasks</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

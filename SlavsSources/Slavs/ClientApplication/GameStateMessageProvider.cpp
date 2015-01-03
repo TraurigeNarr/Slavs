@@ -5,6 +5,7 @@
 
 #include "GovermentMessageProvider.h"
 #include "InformationMessageProvider.h"
+#include "EndGameInformationProvider.h"
 
 #include <Network/Packet.h>
 
@@ -26,6 +27,7 @@ namespace ClientStates
     {
     m_providers.push_back(ProviderPtr(new GovermentMessageProvider(m_state)));
 		m_providers.push_back(ProviderPtr(new InformationMessageProvider(m_state)));
+		m_providers.push_back(ProviderPtr(new EndGameInformationProvider(m_state)));
     }
 
   void GameStateMessageProvider::Invalidate()

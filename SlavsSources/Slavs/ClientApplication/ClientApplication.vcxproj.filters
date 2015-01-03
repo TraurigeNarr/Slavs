@@ -281,6 +281,12 @@
     <ClInclude Include="InformationScreen.h">
       <Filter>Application\Screens\GameScreen\Dialogs</Filter>
     </ClInclude>
+    <ClInclude Include="EndGameInformationProvider.h">
+      <Filter>Application\States\GameState\CommandProviders</Filter>
+    </ClInclude>
+    <ClInclude Include="EndGameScreen.h">
+      <Filter>Application\Screens\GameScreen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -441,6 +447,12 @@
     </ClCompile>
     <ClCompile Include="UIRegistrar.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="EndGameInformationProvider.cpp">
+      <Filter>Application\States\GameState\CommandProviders</Filter>
+    </ClCompile>
+    <ClCompile Include="EndGameScreen.cpp">
+      <Filter>Application\Screens\GameScreen</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

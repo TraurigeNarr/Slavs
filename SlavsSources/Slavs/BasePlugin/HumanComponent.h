@@ -9,10 +9,14 @@
 #include <SlavsServer/Game/GameObject.h>
 #include <SlavsServer/include/Types.h>
 
+#include <Common/Patterns/StateMachine.h>
+
 class BaseObjectComposer;
 
 namespace BasePlugin
   {
+	class Profession;
+	typedef std::unique_ptr<Profession> ProfessionPtr;
   class HumanComponentSerializer;
 
   class HumanComponent : public Slavs::IHuman
@@ -33,6 +37,11 @@ namespace BasePlugin
 
       bool                m_has_work;
 
+			StateMachine<HumanComponent, long> m_state_machine;
+
+			std::vector<ProfessionPtr>	m_professions;
+			Profession*									mp_current_profession;
+
     public:
                     SLAVS_BASEPLUGIN_EXPORT           HumanComponent(Slavs::TGameObject ih_owner, int i_component_id, const BaseObjectComposer& i_object_composer);
       virtual       SLAVS_BASEPLUGIN_EXPORT           ~HumanComponent();
@@ -52,6 +61,10 @@ namespace BasePlugin
       virtual Slavs::HousePtr SLAVS_BASEPLUGIN_EXPORT GetHome() const override;
 
       virtual bool            SLAVS_BASEPLUGIN_EXPORT HasWork() const override;
+
+		// HumanComponent
+		public:
+			StateMachine<HumanComponent, long>& GetStateMachine() { return m_state_machine; }
     };
 
   class HumanComponentSerializer : public IComponentSerializer
