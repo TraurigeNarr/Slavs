@@ -130,6 +130,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="ButtonInfo.h" />
     <ClInclude Include="CommandInfo.h" />
     <ClInclude Include="CommandsPanel.h" />
+    <ClInclude Include="Dialog.h" />
     <ClInclude Include="ElementsPanel.h" />
     <ClInclude Include="ElementsBox.h" />
     <ClInclude Include="ComponentTypes.h" />
@@ -142,6 +143,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="GameBaseCommandHandler.h" />
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="IMouse.h" />
+    <ClInclude Include="InformationScreen.h" />
+    <ClInclude Include="InformationMessageProvider.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="MouseTypes.h" />
     <ClInclude Include="PlaceBuildingMouse.h" />
@@ -182,6 +185,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="TimeUtilities.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UiEvents.h" />
+    <ClInclude Include="WindowInformation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -205,6 +209,8 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateMessageProvider.cpp" />
     <ClCompile Include="IMouse.cpp" />
+    <ClCompile Include="InformationMessageProivder.cpp" />
+    <ClCompile Include="InformationScreen.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="LoadingStages.cpp" />
@@ -235,6 +241,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TimeUtilities.cpp" />
+    <ClCompile Include="UIRegistrar.cpp" />
     <ClCompile Include="UISettings.cpp" />
     <ClCompile Include="_LinkLibraries.cpp" />
   </ItemGroup>

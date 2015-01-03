@@ -2,7 +2,13 @@
 
 #include "ClientGameObject.h"
 
+#include "Application.h"
+#include "GameState.h"
+
+#include "InformationMessageProvider.h"
+
 #include <Common/Game/GameObjectState.h>
+#include <Common/Patterns/StateMachine.h>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -19,6 +25,24 @@ void ClientGameObject::ApplyState(GameObjectState& i_state)
     SetPosition(*i_state.pPosition);
 	
 	m_selected = (i_state.iFlags & GOF_Selected) == GOF_Selected;
+
+	if (i_state.informationToShow != InformationToShow::None)
+		{
+		auto p_game_state = static_cast<ClientStates::GameState*>(ClientGame::appInstance.GetStateMachine().GetCurrentState().get());
+		auto p_message_provider = p_game_state->GetMessageProvider()->GetProvider<ClientStates::InformationMessageProvider>();
+		UI::WindowType window_type = UI::WindowType::None;
+		switch (i_state.informationToShow)
+			{
+			case InformationToShow::Dialog:
+				window_type = UI::WindowType::Dialog;
+				break;
+			case InformationToShow::Information:
+				window_type = UI::WindowType::Information;
+				break;
+			}
+
+		p_message_provider->AddInformation(window_type, i_state.informationId);
+		}
 
   StateChanged();
   }

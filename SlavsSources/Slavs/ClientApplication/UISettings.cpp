@@ -10,12 +10,14 @@
 namespace UI
   {
 
+	extern void RegisterDialogs(UISettings& o_settings);
+
   const std::string DEFAULT_BUTTON_TYPE = "SlavsLook/Button";
 
   UISettings::UISettings()
     : m_next_command_id(0)
     {
-
+		RegisterDialogs(*this);
     }
 
   UISettings::~UISettings()
@@ -78,7 +80,6 @@ namespace UI
 
 	void UISettings::ParseImageSets(const TiXmlElement* ip_imagesets_root)
 		{
-		CEGUI::SchemeManager::getSingleton().createFromFile("SlavsGameCommands.scheme");
 		const TiXmlElement* p_child = nullptr;
 		const TiXmlElement* p_undefined_object = nullptr;
 		while (p_child = XmlUtilities::IterateChildElements(ip_imagesets_root, p_child))
@@ -94,6 +95,23 @@ namespace UI
 				}
 			
 			}
+		}
+
+	void UISettings::ParseInformation(const TiXmlElement* ip_imagesets_root)
+		{
+		const TiXmlElement* p_child = nullptr;
+		const TiXmlElement* p_undefined_object = nullptr;
+		while (p_child = XmlUtilities::IterateChildElements(ip_imagesets_root, p_child))
+			{
+			auto string_id = p_child->Value();
+			auto caption = p_child->FirstChild("Caption")->FirstChild()->Value();
+			auto text = p_child->FirstChild("Text")->FirstChild()->Value();
+			auto image = p_child->FirstChild("Image")->FirstChild()->Value();
+			auto id = boost::lexical_cast<int>(p_child->FirstChild("Id")->FirstChild()->Value());
+
+			m_dialogs.push_back(Dialog(WindowType::Information, id, string_id, text, caption, image));
+			}
+
 		}
 
   void UISettings::LoadFromFile(const std::string& i_file_path)
@@ -116,6 +134,10 @@ namespace UI
 		const TiXmlElement* p_root_imagesets = p_root->FirstChildElement("ImageSets");
 		if (p_root_imagesets)
 			ParseImageSets(p_root_imagesets);
+
+		const TiXmlElement* p_root_information = p_root->FirstChildElement("Information");
+		if (p_root_information)
+			ParseInformation(p_root_information);
     }
 
   void UISettings::ClearCommands()
@@ -215,5 +237,18 @@ namespace UI
 
     return GetButtonInfo(type_it->second);
     }
+
+	const Dialog& UISettings::GetDialog(int i_id) const
+		{
+		auto dlg_it = std::find_if(m_dialogs.begin(), m_dialogs.end(), [i_id](const Dialog& dlg)
+			{
+			return dlg.GetInformation().m_id == i_id;
+			});
+
+		if (dlg_it == m_dialogs.end())
+			throw std::logic_error("No such dialog");
+
+		return *dlg_it;
+		}
 
   } // UI

@@ -2,7 +2,9 @@
 
 #include "GameStateMessageProvider.h"
 #include "GameState.h"
+
 #include "GovermentMessageProvider.h"
+#include "InformationMessageProvider.h"
 
 #include <Network/Packet.h>
 
@@ -23,6 +25,7 @@ namespace ClientStates
   void GameStateMessageProvider::_CreateProviders()
     {
     m_providers.push_back(ProviderPtr(new GovermentMessageProvider(m_state)));
+		m_providers.push_back(ProviderPtr(new InformationMessageProvider(m_state)));
     }
 
   void GameStateMessageProvider::Invalidate()

@@ -66,9 +66,6 @@
     <Filter Include="Application\States\GameState\CommandProviders\Base">
       <UniqueIdentifier>{af808316-76fa-4e69-8ced-bb04cb10c74a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Screens\GameScreen\Base">
-      <UniqueIdentifier>{fa42accf-569a-43e5-a567-37b20af5b854}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mice">
       <UniqueIdentifier>{b02daadb-5992-4078-8952-640c63af876e}</UniqueIdentifier>
     </Filter>
@@ -77,6 +74,12 @@
     </Filter>
     <Filter Include="Mice\Base">
       <UniqueIdentifier>{96c3f87d-d9c4-4476-84e8-7fd2ff0818cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Base">
+      <UniqueIdentifier>{fa42accf-569a-43e5-a567-37b20af5b854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Screens\GameScreen\Dialogs">
+      <UniqueIdentifier>{dc4db41b-cfad-4429-8265-d248a9fdad8c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,22 +228,19 @@
       <Filter>Application\States\GameState\CommandProviders</Filter>
     </ClInclude>
     <ClInclude Include="ElementsPanel.h">
-      <Filter>Application\Screens\GameScreen\Base</Filter>
+      <Filter>UI\Base</Filter>
     </ClInclude>
     <ClInclude Include="CommandsPanel.h">
       <Filter>Application\Screens\GameScreen</Filter>
     </ClInclude>
     <ClInclude Include="ElementsBox.h">
-      <Filter>Application\Screens\GameScreen\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="UISettings.h">
-      <Filter>Application\Screens</Filter>
+      <Filter>UI\Base</Filter>
     </ClInclude>
     <ClInclude Include="ButtonInfo.h">
-      <Filter>Application\Screens\GameScreen\Base</Filter>
+      <Filter>UI\Base</Filter>
     </ClInclude>
     <ClInclude Include="CommandInfo.h">
-      <Filter>Application\Screens\GameScreen\Base</Filter>
+      <Filter>UI\Base</Filter>
     </ClInclude>
     <ClInclude Include="MouseManager.h">
       <Filter>Mice\Base</Filter>
@@ -265,6 +265,21 @@
     </ClInclude>
     <ClInclude Include="SendSelectionTask.h">
       <Filter>Application\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="InformationMessageProvider.h">
+      <Filter>Application\States\GameState\CommandProviders</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowInformation.h">
+      <Filter>UI\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="UISettings.h">
+      <Filter>UI\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialog.h">
+      <Filter>UI\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="InformationScreen.h">
+      <Filter>Application\Screens\GameScreen\Dialogs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -386,19 +401,16 @@
       <Filter>Application\Screens\GameScreen</Filter>
     </ClCompile>
     <ClCompile Include="ElementsPanel.cpp">
-      <Filter>Application\Screens\GameScreen\Base</Filter>
+      <Filter>UI\Base</Filter>
     </ClCompile>
     <ClCompile Include="ElmentsBox.cpp">
-      <Filter>Application\Screens\GameScreen\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="UISettings.cpp">
-      <Filter>Application\Screens</Filter>
+      <Filter>UI\Base</Filter>
     </ClCompile>
     <ClCompile Include="ButtonInfo.cpp">
-      <Filter>Application\Screens\GameScreen\Base</Filter>
+      <Filter>UI\Base</Filter>
     </ClCompile>
     <ClCompile Include="CmmandInfo.cpp">
-      <Filter>Application\Screens\GameScreen\Base</Filter>
+      <Filter>UI\Base</Filter>
     </ClCompile>
     <ClCompile Include="IMouse.cpp">
       <Filter>Mice\Base</Filter>
@@ -417,6 +429,18 @@
     </ClCompile>
     <ClCompile Include="SendSelectionTask.cpp">
       <Filter>Application\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="InformationMessageProivder.cpp">
+      <Filter>Application\States\GameState\CommandProviders</Filter>
+    </ClCompile>
+    <ClCompile Include="UISettings.cpp">
+      <Filter>UI\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="InformationScreen.cpp">
+      <Filter>Application\Screens\GameScreen\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRegistrar.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
