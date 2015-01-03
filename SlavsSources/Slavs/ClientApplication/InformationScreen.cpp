@@ -44,13 +44,6 @@ namespace UI
 
 		CEGUI::Window* p_text = CEGUI::WindowManager::getSingletonPtr()->createWindow("SlavsLook/StaticText");
 
-		// Colours are specified as aarrggbb in Hexadecimal
-		// Where aa is alpha, rr is red, gg is green, and bb is blue 
-		// tl: top left,  tr: top right,  bl: bottom left,  br: bottom right
-		p_text->setProperty("TextColours", "tl:FFFF0000 tr:FFFF0000 bl:FFFF0000 br:FFFF0000");
-		p_text->setProperty("VertFormatting", "VertCentred"); // TopAligned, BottomAligned, VertCentred
-		p_text->setProperty("HorzFormatting", "HorzCentred"); // LeftAligned, RightAligned, HorzCentred
-
 		p_text->setText(dlg.GetText());
 		p_text->setSize(CEGUI::USize(CEGUI::UDim(0.5, .0f), CEGUI::UDim(0.5, .0f)));
 		p_text->setPosition(CEGUI::UVector2(CEGUI::UDim(0.2f, .0f), CEGUI::UDim(0.2f, .0f)));
