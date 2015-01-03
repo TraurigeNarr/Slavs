@@ -25,7 +25,9 @@ namespace Network
     PT_ContentNumber    = 15,
     PT_GovermentState   = 16,
 		PT_CategoryDefinition	= 17,
-		PT_CommandDefinition	= 18
+		PT_CommandDefinition	= 18,
+		PT_ShowInformation		= 19, // on client supposed to show Information window with OK button -> nothing to send on server
+		PT_ShowDialog					= 20, // show dialog with ID and specific buttons (Ok, Cancel, Ignore, Retry...)
     };
 
   } // Network

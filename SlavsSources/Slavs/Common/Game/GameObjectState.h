@@ -49,7 +49,12 @@ enum
 	GOF_Selected = 1 << 4
 };
 
-
+enum class InformationToShow
+	{
+	None,
+	Information,
+	Dialog
+	};
 
 class GameObjectState
 {
@@ -70,7 +75,9 @@ public:
   size_t                                uiInhabitantNumber;
   size_t                                uiInhabitantsMaxNumber;
   size_t                                uiInhabitantsWorking;
-
+	
+	InformationToShow											informationToShow;
+	int																		informationId;
 
 										GameObjectState();
 										~GameObjectState();

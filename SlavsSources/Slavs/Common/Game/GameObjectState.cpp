@@ -5,7 +5,8 @@
 
 GameObjectState::GameObjectState()
 	: m_iNeededSize(0), pPosition(NULL), iFlags(0), request_for_workers(NULL), 
-  containersCount(0), oType(OT_None), iMask(0), uiSkill(0), iOwnerMask(0)
+  containersCount(0), oType(OT_None), iMask(0), uiSkill(0), iOwnerMask(0),
+	informationToShow(InformationToShow::None), informationId(-1)
 {}
 
 GameObjectState::~GameObjectState()
@@ -93,6 +94,16 @@ int GameObjectState::Serialize(char* buf_end, int size) const
     ToChar(uiInhabitantsWorking, buf_end, sizeof(size_t));
     buf_end += sizeof(size_t);
   }
+
+
+	ToChar(informationToShow, buf_end, sizeof(InformationToShow));
+	buf_end += sizeof(InformationToShow);
+	if (informationToShow != InformationToShow::None)
+		{
+		ToChar(informationId, buf_end, sizeof(int));
+		buf_end += sizeof(int);
+		}
+
 #pragma endregion
 	return m_iNeededSize;
 }
@@ -177,6 +188,15 @@ int GameObjectState::Deserialize(char* buf)
     uiInhabitantsWorking = FromChar<size_t>(buf + deserializeCount);
     deserializeCount += sizeof(size_t);
   }
+
+	informationToShow = static_cast<InformationToShow>(FromChar<int>(buf + deserializeCount));
+	deserializeCount += sizeof(InformationToShow);
+	if (informationToShow != InformationToShow::None)
+		{
+		informationId = FromChar<int>(buf + deserializeCount);
+		deserializeCount += sizeof(int);
+		}
+
 #pragma endregion
 
 	return deserializeCount;
@@ -223,5 +243,11 @@ int GameObjectState::NeededSize() const
     m_iNeededSize += sizeof(size_t);
   if(0 != (iFlags & GOF_HouseInformation))
     m_iNeededSize += 3*sizeof(size_t);
+
+	if (informationToShow == InformationToShow::None)
+		m_iNeededSize += sizeof(InformationToShow);
+	else
+		m_iNeededSize += sizeof(InformationToShow) + sizeof(int);
+
 	return m_iNeededSize;
 }
