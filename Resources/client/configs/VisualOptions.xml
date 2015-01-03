@@ -2,6 +2,7 @@
 	<!--Image sets that will be loaded-->
 	<ImageSets>
 		<ImageSet path="SlavsGameCommands.imageset"/>
+    <ImageSet path="Lesovik.imageset"/>
 	</ImageSets>
 	<Schemes>
 		<Scheme path="SlavsGameCommands.scheme"/>
@@ -44,4 +45,12 @@
 			<DisplayText>true</DisplayText>
 		</Society>
 	</Buttons>
+  <Information>
+    <Lesovik.Information>
+      <Image>Lesovik/Lesovik_Information</Image>
+      <Caption>Lesovik</Caption>
+      <Text>Lesovik do not likes when someone destroys tree</Text>
+      <Id>0</Id>
+    </Lesovik.Information>
+  </Information>
 </VisualOptions>

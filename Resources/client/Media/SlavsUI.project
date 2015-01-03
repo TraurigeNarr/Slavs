@@ -12,12 +12,15 @@
             <Item path="imagesets/SlavsLook.png" type="file" />
             <Item path="imagesets/SlavsMenuScreen.imageset" type="file" />
             <Item path="imagesets/SlavsMenuScreenBackground.png" type="file" />
+            <Item path="imagesets/Lesovik.imageset" type="file" />
+            <Item path="imagesets/Lesovik.png" type="file" />
         </Item>
         <Item name="layouts" type="folder">
             <Item path="layouts/SlavsGame.layout" type="file" />
             <Item path="layouts/SlavsLoad.layout" type="file" />
             <Item path="layouts/SlavsMenu.layout" type="file" />
             <Item path="layouts/Test.layout" type="file" />
+            <Item path="layouts/InformationView.layout" type="file" />
         </Item>
         <Item name="looknfeel" type="folder">
             <Item path="looknfeel/SlavsGameCommands.looknfeel" type="file" />
