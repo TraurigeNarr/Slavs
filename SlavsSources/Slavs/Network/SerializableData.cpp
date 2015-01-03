@@ -100,7 +100,8 @@ namespace Network
       offset += FromChar<int>(p_data + offset, type);
       offset += FromChar<size_t>(p_data + offset, size);
       DataPtr p_buffer(new unsigned char[size]);
-      offset += FromChar<unsigned char>(p_data + offset, *p_buffer.get());
+			memcpy(&p_buffer[0], p_data + offset, size);
+			offset += size;
       
       m_data_holders.push_back( std::move(DataHolder(type, size, std::move(p_buffer))) );
       //offset_in_buffer += size;

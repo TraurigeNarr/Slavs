@@ -31,9 +31,6 @@ namespace
   void SendControllerStates (const Slavs::GameContext& i_context, net::Connection& i_connection)
     {
     static std::unique_ptr<char[]> p_buffer(new char[PACKET_SIZE]);
-    for (size_t i = 0; i < PACKET_SIZE; ++i)
-      p_buffer[i] = 'x';
-
     ToChar(Network::PacketType::PT_GovermentState, &p_buffer[0], sizeof(Network::PacketType));
 
     Network::SerializableData data(10, sizeof(float));
