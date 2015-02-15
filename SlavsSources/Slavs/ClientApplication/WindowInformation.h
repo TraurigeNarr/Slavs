@@ -7,7 +7,8 @@ namespace UI
 		{
 		None,
 		Information,
-		Dialog
+		Dialog,
+		MovieClip,
 		};
 
 	struct WindowInformation

@@ -15,7 +15,8 @@ namespace UI
     // Plug ins pane
     BI_ECONOMY_PLUGIN_STATUS,
     /////////////////////////////
-
+		BI_INFORMATION_OK,
+		BI_INFORMATION_CANCEL
     };
 
   } // UI

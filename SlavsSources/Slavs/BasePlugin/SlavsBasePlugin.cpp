@@ -3,7 +3,7 @@
 #include "SlavsBasePlugin.h"
 #include "BaseObjectComposer.h"
 #include "CommandExecutor.h"
-#include "PrimitiveWinTask.h"
+#include "GameController.h"
 #include "TypeEnumerations.h"
 
 #include <Main/ServerMain.h>
@@ -25,6 +25,7 @@ const std::string PLUGIN_CONFIGURATION_FILE = "server\\configs\\SlavsBasePlugin.
 SlavsBasePlugin::SlavsBasePlugin()
 	: mp_command_executor(nullptr)
 	, mh_object_composer(nullptr)
+	, mp_game_controller(nullptr)
   {
 
   }
@@ -79,7 +80,7 @@ void SlavsBasePlugin::Initialize()
       }
     }
 
-	meta_factory.RegisterTask(SDK::TaskPtr(new BasePlugin::PrimitiveWinTask(0, mh_object_composer->GetObjectGlobalID(BasePlugin::ObjectType::OT_MANUFACTURE))));
+	mp_game_controller = meta_factory.RegisterController(std::unique_ptr<BasePlugin::GameController>(new BasePlugin::GameController(*mh_object_composer)));
   }
 
 /// performs logical releasing 
@@ -91,6 +92,7 @@ void SlavsBasePlugin::Release()
 	auto& command_manager = ServerMain::GetInstance().GetMetaFactory().GetCommandManager();
 	if (mp_command_executor)
 		command_manager.UnregisterCommandExecutor(mp_command_executor);
+	ServerMain::GetInstance().GetMetaFactory().UnregisterController(mp_game_controller);
   }
 
 /// performs memory and resources deletion

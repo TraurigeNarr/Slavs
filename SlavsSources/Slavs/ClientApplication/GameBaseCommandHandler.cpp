@@ -93,6 +93,15 @@ namespace UI
         break;
       case ButtonID::BI_ECONOMY_PLUGIN_STATUS:
         break;
+			case ButtonID::BI_INFORMATION_OK:
+			case ButtonID::BI_INFORMATION_CANCEL:
+				{
+				char buffer[sizeof(Network::PacketType)];
+				ToChar(Network::PacketType::PT_Achived, buffer, sizeof(Network::PacketType));
+				net::Connection& connection = reinterpret_cast<ClientStates::GameState*>(ClientGame::appInstance.GetStateMachine().GetCurrentState().get())->GetConnection();
+				connection.SendPacket(buffer, sizeof(buffer));
+				}
+				break;
       }
     }
 

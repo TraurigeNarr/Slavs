@@ -52,5 +52,11 @@
       <Text>Lesovik do not likes when someone destroys tree</Text>
       <Id>0</Id>
     </Lesovik.Information>
+    <Lesovik.Information>
+      <Image>Lesovik/Lesovik_Information</Image>
+      <Caption>Lesovik</Caption>
+      <Text>History</Text>
+      <Id>1</Id>
+    </Lesovik.Information>
   </Information>
 </VisualOptions>

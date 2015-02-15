@@ -117,6 +117,8 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Server\*.*
     <ClCompile Include="CommandManager.cpp" />
     <ClCompile Include="Game\GameWorld.cpp" />
     <ClCompile Include="ICommandExecutor.cpp" />
+    <ClCompile Include="Main\GameController.cpp" />
+    <ClCompile Include="Main\GameStateFSM.cpp" />
     <ClCompile Include="ObjectSelectorHandler.cpp" />
     <ClCompile Include="src\Management\ResourceManagerBase.cpp" />
     <ClCompile Include="Main\GameState.cpp" />
@@ -176,11 +178,15 @@ xcopy "$(SolutionDir)..\..\Dependencies\$(Configuration)_Dependencies\Server\*.*
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandInformation.h" />
+    <ClInclude Include="GameInfo.h" />
     <ClInclude Include="Game\GameWorld.h" />
     <ClInclude Include="ICommandExecutor.h" />
     <ClInclude Include="CommandManager.h" />
+    <ClInclude Include="IGameConroller.h" />
     <ClInclude Include="include\Management\IResourceManager.h" />
     <ClInclude Include="include\Management\ResourceManagerBase.h" />
+    <ClInclude Include="Main\GameController.h" />
+    <ClInclude Include="Main\GameStateFSM.h" />
     <ClInclude Include="PluginSystem\IResource.h" />
     <ClInclude Include="Main\LoadingParameters.h" />
     <ClInclude Include="ObjectSelectorHandler.h" />

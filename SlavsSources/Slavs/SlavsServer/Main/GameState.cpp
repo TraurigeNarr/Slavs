@@ -1,11 +1,14 @@
 #include "GameState.h"
 
+#include "GameStateFSM.h"
+
 #include "Game\GameContext.h"
 #include "Game\GameObject.h"
 #include "LoadGameState.h"
 #include "ServerMain.h"
 #include "misc\ServerEnums.h"
 
+#include "IGameConroller.h"
 #include "IController.h"
 
 #include "Management/Goverment.h"
@@ -86,13 +89,45 @@ namespace
 
 namespace Slavs
   {
-  GameState::GameState(TGameContext ih_game_context)
-    : mh_game_context(std::move(ih_game_context))
-    , mp_time_controller(std::make_shared<TimeController>(MS_FOR_TICK))
+
+	GameState::GameState(TGameContext ih_game_context)
+		: mh_game_context(std::move(ih_game_context))
+		, mp_time_controller(std::make_shared<TimeController>(MS_FOR_TICK))
+		, m_game_controller(*this, std::bind(&GameState::SwitchState, this, std::placeholders::_1), static_cast<int>(State::Play))
+		, m_game_state_FSM(this)
     {     }
 
   GameState::~GameState()
     {    }
+
+	bool GameState::SwitchState(int i_state)
+		{
+		switch (i_state)
+			{
+			case State::Play:
+				if (typeid(*m_game_state_FSM.GetCurrentState().get()) == typeid(PlayState))
+					return false;
+				m_game_state_FSM.ChangeState(std::make_shared<PlayState>());
+				break;
+			case State::PlayerDecision:
+				if (typeid(*m_game_state_FSM.GetCurrentState().get()) == typeid(PlayerDecisionState))
+					return false;
+				m_game_state_FSM.ChangeState(std::make_shared<PlayerDecisionState>());
+				break;
+			default:
+				return false;
+			}
+
+		return true;
+		}
+
+	GameState::State GameState::GetGameFSMState() const
+		{
+		if (typeid(*m_game_state_FSM.GetCurrentState().get()) == typeid(PlayState))
+			return State::Play;
+		if (typeid(*m_game_state_FSM.GetCurrentState().get()) == typeid(PlayerDecisionState))
+			return State::PlayerDecision;
+		}
 
   void GameState::Enter(ServerMain* ip_owner)
     {
@@ -102,45 +137,31 @@ namespace Slavs
     ip_owner->FromGame = true;
 
     mp_time_controller->AddSubscriber(mh_game_context.get());
+		auto& controllers = ip_owner->GetMetaFactory().GetControllers();
+		for (auto& p_controller : controllers)
+			p_controller->GameBegin(&m_game_controller);
+
+		m_game_state_FSM.SetCurrentState(std::make_shared<PlayState>());
     }
 
   void GameState::Execute(ServerMain* ip_owner, long i_elapsed_time)
     {
-    std::unique_ptr<unsigned char[]> packet(new unsigned char[PACKET_SIZE]);
-    while(true)
-      {
-      int bytes_read = ip_owner->GetConnection()->ReceivePacket( &packet[0], PACKET_SIZE );
-      if(0 == bytes_read)
-        break;
-
-      HoldPacket(ip_owner, &packet[0], bytes_read);
-      }
-    mp_time_controller->Update(i_elapsed_time);
-    SendStates(*mh_game_context, *ip_owner->GetConnection());
-
-    // move to tick listener
-    //      one state in 100 ticks
-    static long time_from_last_send = 0;
-    time_from_last_send += i_elapsed_time;
-    if (time_from_last_send > MS_FOR_TICK*100)
-      {
-      SendControllerStates(*mh_game_context, *ip_owner->GetConnection());
-      time_from_last_send = 0;
-
-			if (ip_owner->GetMetaFactory().IsAllTasksCompleted())
-				SendEndGameMessage(*ip_owner->GetConnection(), true);
-      }
+		m_game_controller.Update(i_elapsed_time);
+		m_game_state_FSM.Update(i_elapsed_time);
     }
 
   void GameState::Exit(ServerMain* ip_owner)
     {
     printf( "Exits LoadGame state\n" );
+		auto& controllers = ip_owner->GetMetaFactory().GetControllers();
+		for (auto& p_controller : controllers)
+			p_controller->GameEnd();
     mp_time_controller->RemoveSubscriber(mh_game_context.get());
     mh_game_context->ReleaseContext();
     ip_owner->GetConnection()->Disconnect();
     }
 
-	void HandleCommand(SDK::GameCore::CommandManager& i_command_manager, IController* ip_controller, unsigned char* ip_packet, size_t i_bytes_read)
+	/*void HandleCommand(SDK::GameCore::CommandManager& i_command_manager, IController* ip_controller, unsigned char* ip_packet, size_t i_bytes_read)
 		{
 		char* p_packet = reinterpret_cast<char*>(ip_packet);
 		Network::PacketType packet_type = (Network::PacketType)FromChar<int>(p_packet);
@@ -160,42 +181,10 @@ namespace Slavs
 			}
 
 		}
-
+		*/
   void GameState::HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read)
     {
-    Network::PacketType packet_type = (Network::PacketType)FromChar<int>(reinterpret_cast<char*>(ip_packet));
-    switch (packet_type)
-      {
-      case Network::PacketType::PT_EndGame:
-        ip_owner->Stop();
-        return;
-        break;
-      case Network::PacketType::PT_Command:
-        {
-        int controllers_mask = ip_owner->GetConnection()->GetAddress().GetAddress();
-        auto& controllers = mh_game_context->GetControllers();
-        auto it = std::find_if(controllers.begin(), controllers.end(), [controllers_mask](const GameContext::ControllerInformation& controller_info)
-          {
-          return controller_info.mp_controller->GetMask() == controllers_mask;
-          });
-				if (it != controllers.end())
-					HandleCommand(ip_owner->GetMetaFactory().GetCommandManager(), it->mp_controller.get(), ip_packet, i_bytes_read);
-        return;
-        }
-			case Network::PacketType::PT_Selection:
-				{
-				int controllers_mask = ip_owner->GetConnection()->GetAddress().GetAddress();
-				auto& controllers = mh_game_context->GetControllers();
-				auto it = std::find_if(controllers.begin(), controllers.end(), [controllers_mask](const GameContext::ControllerInformation& controller_info)
-					{
-					return controller_info.mp_controller->GetMask() == controllers_mask;
-					});
-				if (it != controllers.end())
-					it->mp_controller->HoldPacket(ip_packet, i_bytes_read);
-				return;
-				}
-        break;
-      }
+    
     }
 
   } // Slavs

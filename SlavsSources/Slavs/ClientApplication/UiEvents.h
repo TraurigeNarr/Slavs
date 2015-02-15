@@ -25,4 +25,13 @@ namespace UI
       {      }
     };
 
+	struct DialogEvent : public Event
+		{
+		const int m_action;
+
+		DialogEvent(int i_action)
+			: m_action(i_action)
+			{}
+		};
+
   } // UI

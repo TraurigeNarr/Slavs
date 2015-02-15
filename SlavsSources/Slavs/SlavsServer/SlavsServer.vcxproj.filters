@@ -117,6 +117,9 @@
     <Filter Include="Factories\Base">
       <UniqueIdentifier>{0e91c5a5-851a-4300-a39a-7a22af2281a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main\States\GameState">
+      <UniqueIdentifier>{11114654-d07b-4176-b289-2b45c6e38939}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ServerLoadGameState.cpp">
@@ -254,9 +257,6 @@
     <ClCompile Include="Main\LoadGameState.cpp">
       <Filter>Main\States\Loading</Filter>
     </ClCompile>
-    <ClCompile Include="Main\GameState.cpp">
-      <Filter>Main\States</Filter>
-    </ClCompile>
     <ClCompile Include="src\Management\ResourceManagerBase.cpp">
       <Filter>Source Files\Game\Management</Filter>
     </ClCompile>
@@ -274,6 +274,15 @@
     </ClCompile>
     <ClCompile Include="Game\GameWorld.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\GameController.cpp">
+      <Filter>Main\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\GameState.cpp">
+      <Filter>Main\States\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\GameStateFSM.cpp">
+      <Filter>Main\States\GameState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -445,9 +454,6 @@
     <ClInclude Include="Main\LoadingStages.h">
       <Filter>Main\States\Loading</Filter>
     </ClInclude>
-    <ClInclude Include="Main\GameState.h">
-      <Filter>Main\States</Filter>
-    </ClInclude>
     <ClInclude Include="include\Management\BaseEvent.h">
       <Filter>Game\Management.Base</Filter>
     </ClInclude>
@@ -540,6 +546,21 @@
     </ClInclude>
     <ClInclude Include="Task.h">
       <Filter>Factories\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\GameController.h">
+      <Filter>Main\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameConroller.h">
+      <Filter>Factories\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\GameState.h">
+      <Filter>Main\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfo.h">
+      <Filter>Main\States\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Main\GameStateFSM.h">
+      <Filter>Main\States\GameState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

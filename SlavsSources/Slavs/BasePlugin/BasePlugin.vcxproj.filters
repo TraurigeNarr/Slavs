@@ -109,7 +109,16 @@
     <ClInclude Include="Commands.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="PrimitiveWinTask.h">
+    <ClInclude Include="GameController.h">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitObjectCreatingTask.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMasteringTask.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="ShowHistoryTask.h">
       <Filter>Tasks</Filter>
     </ClInclude>
   </ItemGroup>
@@ -162,7 +171,16 @@
     <ClCompile Include="PrimitiveBrainComponent.cpp">
       <Filter>Components\AI</Filter>
     </ClCompile>
-    <ClCompile Include="PrimitiveWinTask.cpp">
+    <ClCompile Include="GameController.cpp">
+      <Filter>SlavsBasePlugin</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowHistoryTask.cpp">
+      <Filter>Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="WaitObjectCreatingTask.cpp">
+      <Filter>Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMasteringTask.cpp">
       <Filter>Tasks</Filter>
     </ClCompile>
   </ItemGroup>

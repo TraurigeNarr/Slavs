@@ -137,21 +137,6 @@ void GettingData::Execute(LoadingState* ip_owner, long i_parameter)
     }
   if (m_current_data_type == GettingData::CurrentData::CD_ALL_LOADED)
     {
-    // set dummy commands
-    /*ClientGame::appInstance.GetUISettings().AddCommandTypeFromString("Production;0");
-    ClientGame::appInstance.GetUISettings().AddCommandTypeFromString("Society;1");
-    ClientGame::appInstance.GetUISettings().AddCommandTypeFromString("Blabla;2");
-
-    ClientGame::appInstance.GetUISettings().AddCommandFromString("0;Create.Manufacture;0");
-    ClientGame::appInstance.GetUISettings().AddCommandFromString("0;Create.Manufacture.Dummy;1;Build dummy;");
-    ClientGame::appInstance.GetUISettings().AddCommandFromString("0;Create.Production.Store;3;Store;Dummy");
-
-    ClientGame::appInstance.GetUISettings().AddCommandFromString("1;Create.House;4");
-    ClientGame::appInstance.GetUISettings().AddCommandFromString("1;Create.Hizhina;5;Create hizhina");
-    ClientGame::appInstance.GetUISettings().AddCommandFromString("1;Create.Townhall;6");
-
-    ClientGame::appInstance.GetUISettings().AddCommandFromString("2;Create.Blabla;7;Create bbbb;Creates a different types of blabla");*/
-		_SendReadyPacket();
     ip_owner->GetStateMachine().ChangeState(std::make_shared<ResultsState>(LoadingResult::LR_SUCCEEDED));
     }
   }

@@ -8,6 +8,8 @@
 
 #include "SlavsServer/Task.h"
 
+#include "SlavsServer/IGameConroller.h"
+
 #include <map>
 #include <memory>
 #include <vector>
@@ -62,6 +64,7 @@ class MetaFactory : boost::noncopyable
 		SDK::GameCore::CommandManager m_command_manager;
 
 		std::vector<SDK::TaskPtr> m_tasks_for_win;
+		std::vector<std::unique_ptr<IGameController>> m_game_controllers;
     
   public:
     SLAVS_SERVER_EXPORT MetaFactory();
@@ -116,6 +119,10 @@ class MetaFactory : boost::noncopyable
 		// more sophisticated task management for win conditions (maybe only one of the task should be completed)
 		bool SLAVS_SERVER_EXPORT IsAllTasksCompleted() const;
 		SLAVS_SERVER_EXPORT SDK::Task* GetTask(int i_id) const;
+
+		SLAVS_SERVER_EXPORT IGameController*	RegisterController(std::unique_ptr<IGameController> ip_controller);
+		SLAVS_SERVER_EXPORT void							UnregisterController(IGameController* ip_controller);
+		std::vector<std::unique_ptr<IGameController>>& GetControllers() { return m_game_controllers; }
   };
 
 inline const MetaFactory::TDefinitionsMap& MetaFactory::GetDefinitions() const

@@ -5,7 +5,13 @@
 #include "GameStateMessageProvider.h"
 #include "InformationMessageProvider.h"
 #include "UISettings.h"
+#include "ButtonID.h"
 
+#include "InputManager.h"
+#include "ScreenManager.h"
+#include "UiEvents.h"
+
+#include <Patterns/MessageDispatcher/MessageDispatcher.h>
 
 namespace UI
 	{
@@ -71,7 +77,7 @@ namespace UI
 			CEGUI::Window* p_ok_button = mp_information_view->getChild("Background/OkButton");
 			if (p_ok_button != nullptr)
 				{
-				p_ok_button->setID(static_cast<int>(InformationScreenButton::Ok));
+				p_ok_button->setID(static_cast<int>(ButtonID::BI_INFORMATION_OK));
 				p_ok_button->subscribeEvent(CEGUI::PushButton::EventClicked,
 					CEGUI::Event::Subscriber(&InformationScreen::ButtonPressed, this));
 				}
@@ -111,15 +117,9 @@ namespace UI
 	bool InformationScreen::ButtonPressed(const CEGUI::EventArgs& i_arguments)
 		{
 		const CEGUI::WindowEventArgs& window_arguments = static_cast<const CEGUI::WindowEventArgs&>(i_arguments);
-		InformationScreenButton button_id = static_cast<InformationScreenButton>(window_arguments.window->getID());
-
-		switch (button_id)
-			{
-			case InformationScreenButton::Ok:
-				mp_information_view->setVisible(false);
-				break;
-			}
-
+		ButtonID button_id = static_cast<ButtonID>(window_arguments.window->getID());
+		m_screen_manager.GetMessageDispatcher().HandleMessage(UI::ButtonPressed(button_id));
+		mp_information_view->setVisible(false);
 		return true;
 		}
 

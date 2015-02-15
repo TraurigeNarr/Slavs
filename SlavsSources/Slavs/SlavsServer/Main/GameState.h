@@ -1,7 +1,11 @@
 #pragma once
 
-#include "Types.h"
+#include "SlavsServerAPI.h"
 
+#include "Types.h"
+#include "GameController.h"
+
+#include <Patterns/StateMachine.h>
 #include <Patterns/State.h>
 
 #include <memory>
@@ -16,14 +20,25 @@ namespace Slavs
     {
     public:
       typedef std::shared_ptr<TimeController> TimeControllerPtr;
+			
+			enum State
+				{
+				Play,
+				PlayerDecision,
+				};
+			typedef StateMachine<GameState, long> GameStateFSM;
 
     private:
       TGameContext mh_game_context;
 
       TimeControllerPtr mp_time_controller;
+			
+			SDK::GameController m_game_controller;
+			GameStateFSM				m_game_state_FSM;
 
     private:
       void                  HoldPacket(ServerMain* ip_owner, unsigned char* ip_packet, size_t i_bytes_read);
+			bool									SwitchState(int i_state);
 
     public:
       GameState(TGameContext ih_game_context);
@@ -39,7 +54,9 @@ namespace Slavs
 
     // GameState
     public:
-
+			SDK::GameController& GetGameController() { return m_game_controller; }
+			TimeController& GetTimeController() { return *mp_time_controller; }
+			SLAVS_SERVER_EXPORT State						GetGameFSMState() const;
     };
 
   }

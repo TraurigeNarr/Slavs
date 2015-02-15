@@ -105,6 +105,7 @@
     <ClInclude Include="CommandExecutor.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="DynamicObjectComponent.h" />
+    <ClInclude Include="GameController.h" />
     <ClInclude Include="HouseComponent.h" />
     <ClInclude Include="HumanComponent.h" />
     <ClInclude Include="IComponentSerializer.h" />
@@ -116,7 +117,8 @@
     <ClInclude Include="MovingGroupImpl.h" />
     <ClInclude Include="ObjectSettings.h" />
     <ClInclude Include="PrimitiveBrainComponent.h" />
-    <ClInclude Include="PrimitiveWinTask.h" />
+    <ClInclude Include="ShowHistoryTask.h" />
+    <ClInclude Include="WaitObjectCreatingTask.h" />
     <ClInclude Include="Profession.h" />
     <ClInclude Include="ResourceComponent.h" />
     <ClInclude Include="SlavsBasePlugin.h" />
@@ -126,6 +128,7 @@
     <ClInclude Include="StoreComponent.h" />
     <ClInclude Include="TypeEnumerations.h" />
     <ClInclude Include="TypeNames.h" />
+    <ClInclude Include="WorldMasteringTask.h" />
     <ClInclude Include="_Link.h" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +136,7 @@
     <ClCompile Include="BasePlugin.cpp" />
     <ClCompile Include="CommandExecutor.cpp" />
     <ClCompile Include="DynamicObjectComponent.cpp" />
+    <ClCompile Include="GameController.cpp" />
     <ClCompile Include="HouseComponent.cpp" />
     <ClCompile Include="HumanComponent.cpp" />
     <ClCompile Include="LesovikComponent.cpp" />
@@ -140,8 +144,9 @@
     <ClCompile Include="MovementStrategyBase.cpp" />
     <ClCompile Include="ObjectSettings.cpp" />
     <ClCompile Include="PrimitiveBrainComponent.cpp" />
-    <ClCompile Include="PrimitiveWinTask.cpp" />
+    <ClCompile Include="WaitObjectCreatingTask.cpp" />
     <ClCompile Include="ResourceComponent.cpp" />
+    <ClCompile Include="ShowHistoryTask.cpp" />
     <ClCompile Include="SlavsBasePlugin.cpp" />
     <ClCompile Include="StaticObjectComponent.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -149,6 +154,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StoreComponent.cpp" />
+    <ClCompile Include="WorldMasteringTask.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

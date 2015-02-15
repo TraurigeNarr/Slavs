@@ -199,3 +199,20 @@ SDK::Task* MetaFactory::GetTask(int i_id) const
 	return it->get();
 
 	}
+
+IGameController* MetaFactory::RegisterController(std::unique_ptr<IGameController> ip_controller)
+	{
+	auto p_controller = ip_controller.get();
+	m_game_controllers.push_back(std::move(ip_controller));
+	return p_controller;
+	}
+
+void MetaFactory::UnregisterController(IGameController* ip_controller)
+	{
+	auto it = std::find_if(m_game_controllers.begin(), m_game_controllers.end(), [ip_controller](std::unique_ptr<IGameController>& p_controller)
+		{
+		return p_controller.get() == ip_controller;
+		});
+	if (it != m_game_controllers.end())
+		m_game_controllers.erase(it);
+	}
