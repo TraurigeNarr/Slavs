@@ -128,6 +128,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="CeguiScreenBase.h" />
     <ClInclude Include="CeguiUtilities.h" />
     <ClInclude Include="ButtonInfo.h" />
+    <ClInclude Include="Clip.h" />
     <ClInclude Include="CommandInfo.h" />
     <ClInclude Include="CommandsPanel.h" />
     <ClInclude Include="Dialog.h" />
@@ -147,6 +148,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClInclude Include="IMouse.h" />
     <ClInclude Include="InformationScreen.h" />
     <ClInclude Include="InformationMessageProvider.h" />
+    <ClInclude Include="InformationView.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="MouseTypes.h" />
     <ClInclude Include="PlaceBuildingMouse.h" />
@@ -200,6 +202,7 @@ xcopy "$(SolutionDir)..\Binaries\$(Configuration)\SDK\Math.dll" "$(OutputPath)" 
     <ClCompile Include="ClientGameContext.cpp" />
     <ClCompile Include="ClientGameObject.cpp" />
     <ClCompile Include="ButtonInfo.cpp" />
+    <ClCompile Include="Clip.cpp" />
     <ClCompile Include="CmmandInfo.cpp" />
     <ClCompile Include="CommandsPanel.cpp" />
     <ClCompile Include="EconomySystemMessageProvider.cpp" />

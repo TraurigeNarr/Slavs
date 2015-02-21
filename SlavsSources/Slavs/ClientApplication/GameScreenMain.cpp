@@ -57,7 +57,7 @@ namespace UI
     {
     __super::Update(i_elapsed_time);
     auto p_message_provider = GetMessageProvider<ClientStates::GameStateMessageProvider>();
-    if (p_message_provider == nullptr || p_message_provider->IsValid())
+    if (p_message_provider == nullptr)
       return;
 
     for (ChildScreenPtr& p_screen : m_child_screens)

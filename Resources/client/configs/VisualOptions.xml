@@ -46,17 +46,25 @@
 		</Society>
 	</Buttons>
   <Information>
-    <Lesovik.Information>
+    <Lesovik.Information type="information">
       <Image>Lesovik/Lesovik_Information</Image>
       <Caption>Lesovik</Caption>
       <Text>Lesovik do not likes when someone destroys tree</Text>
       <Id>0</Id>
     </Lesovik.Information>
-    <Lesovik.Information>
-      <Image>Lesovik/Lesovik_Information</Image>
-      <Caption>Lesovik</Caption>
-      <Text>History</Text>
+    <FirstHistory type="clip">
+      <Caption>History</Caption>
       <Id>1</Id>
-    </Lesovik.Information>
+      <Clip>
+        <Frame show_time="1.5">
+          <Image>Lesovik/Lesovik_Information</Image>
+          <Text>Once upon a time when Gods decide to create a world</Text>
+        </Frame>
+        <Frame show_time="1.0">
+          <Image>Lesovik/Lesovik_Information</Image>
+          <Text>And they create us</Text>
+        </Frame>
+      </Clip>
+    </FirstHistory>
   </Information>
 </VisualOptions>

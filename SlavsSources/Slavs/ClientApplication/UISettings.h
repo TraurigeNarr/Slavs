@@ -4,7 +4,9 @@
 #include "ButtonInfo.h"
 #include "CommandInfo.h"
 
+#include "InformationView.h"
 #include "Dialog.h"
+#include "Clip.h"
 
 class TiXmlElement;
 
@@ -22,7 +24,8 @@ namespace UI
 			CommandsInfrmation m_server_commands;
 			ButtonsInformation m_commands;
       std::vector<CommandTypeInformation> m_command_types;
-			std::vector<Dialog>	m_dialogs;
+			typedef std::unique_ptr<InformationView> InformationPtr;
+			std::vector<InformationPtr>	m_information_views;
 
       size_t m_next_command_id;
 
@@ -31,6 +34,7 @@ namespace UI
 			void ParseSchemes(const TiXmlElement* ip_schemes_root);
 			void ParseImageSets(const TiXmlElement* ip_imagesets_root);
 			void ParseInformation(const TiXmlElement* ip_informations_root);
+			void ParseClip(const TiXmlElement* ip_informations_root);
 
       // adds undefined command
       ButtonInfo& AddUndefinedCommand(int i_id, const std::string& i_string_id);
@@ -61,6 +65,9 @@ namespace UI
 			// get dialog information -> show something depends on this information
 			//	all information belongs to UISettings
 			const Dialog& GetDialog(int i_id) const;
+			const Clip&		GetClip(int i_id) const;
+
+			const InformationView& GetInformation(int i_id) const;
     };
 
 	inline const CommandsInfrmation& UISettings::GetServerCommands() const

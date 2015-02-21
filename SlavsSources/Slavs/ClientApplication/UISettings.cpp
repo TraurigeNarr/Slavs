@@ -104,14 +104,40 @@ namespace UI
 		while (p_child = XmlUtilities::IterateChildElements(ip_imagesets_root, p_child))
 			{
 			auto string_id = p_child->Value();
-			auto caption = p_child->FirstChild("Caption")->FirstChild()->Value();
+			auto type = XmlUtilities::GetStringAttribute(p_child, "type", "");
+			if (type == "information")
+				{
+				auto caption = p_child->FirstChild("Caption")->FirstChild()->Value();
+				auto text = p_child->FirstChild("Text")->FirstChild()->Value();
+				auto image = p_child->FirstChild("Image")->FirstChild()->Value();
+				auto id = boost::lexical_cast<int>(p_child->FirstChild("Id")->FirstChild()->Value());
+
+				m_information_views.push_back(InformationPtr(new Dialog(WindowType::Information, id, string_id, text, caption, image)));
+				}
+			else if (type == "clip")
+				{
+				ParseClip(p_child);
+				}
+			}
+		}
+
+	void UISettings::ParseClip(const TiXmlElement* ip_clip_root)
+		{
+		auto string_id = ip_clip_root->Value();
+		auto caption = ip_clip_root->FirstChild("Caption")->FirstChild()->Value();
+		auto id = boost::lexical_cast<int>(ip_clip_root->FirstChild("Id")->FirstChild()->Value());
+		Clip clip(id, string_id, caption);
+
+		const TiXmlElement* p_clip = ip_clip_root->FirstChildElement("Clip");
+		const TiXmlElement* p_child = nullptr;
+		while (p_child = XmlUtilities::IterateChildElements(p_clip, p_child))
+			{
+			float show_time = XmlUtilities::GetRealAttribute(p_child, "show_time", 0.5f);
 			auto text = p_child->FirstChild("Text")->FirstChild()->Value();
 			auto image = p_child->FirstChild("Image")->FirstChild()->Value();
-			auto id = boost::lexical_cast<int>(p_child->FirstChild("Id")->FirstChild()->Value());
-
-			m_dialogs.push_back(Dialog(WindowType::Information, id, string_id, text, caption, image));
+			clip.AddFrame(text, image, show_time);
 			}
-
+		m_information_views.push_back(InformationPtr(new Clip(clip)));
 		}
 
   void UISettings::LoadFromFile(const std::string& i_file_path)
@@ -240,15 +266,39 @@ namespace UI
 
 	const Dialog& UISettings::GetDialog(int i_id) const
 		{
-		auto dlg_it = std::find_if(m_dialogs.begin(), m_dialogs.end(), [i_id](const Dialog& dlg)
+		auto dlg_it = std::find_if(m_information_views.begin(), m_information_views.end(), [i_id](const InformationPtr& dlg)
 			{
-			return dlg.GetInformation().m_id == i_id;
+			return dlg->GetInformation().m_id == i_id;
 			});
 
-		if (dlg_it == m_dialogs.end())
+		if (dlg_it == m_information_views.end() || typeid(*dlg_it) != typeid(Dialog))
 			throw std::logic_error("No such dialog");
+		return static_cast<const Dialog&>(**dlg_it);
+		}
 
-		return *dlg_it;
+	const Clip& UISettings::GetClip(int i_id) const
+		{
+		auto dlg_it = std::find_if(m_information_views.begin(), m_information_views.end(), [i_id](const InformationPtr& dlg)
+			{
+			return dlg->GetInformation().m_id == i_id;
+			});
+
+		if (dlg_it == m_information_views.end() || typeid(*dlg_it) != typeid(Clip))
+			throw std::logic_error("No such clip");
+
+		return static_cast<const Clip&>(**dlg_it);
+		}
+
+	const InformationView& UISettings::GetInformation(int i_id) const
+		{
+		auto dlg_it = std::find_if(m_information_views.begin(), m_information_views.end(), [i_id](const InformationPtr& dlg)
+			{
+			return dlg->GetInformation().m_id == i_id;
+			});
+
+		if (dlg_it == m_information_views.end())
+			throw std::logic_error("No such information");
+		return **dlg_it;
 		}
 
   } // UI

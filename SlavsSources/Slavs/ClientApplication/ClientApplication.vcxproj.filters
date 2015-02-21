@@ -287,6 +287,12 @@
     <ClInclude Include="EndGameScreen.h">
       <Filter>Application\Screens\GameScreen</Filter>
     </ClInclude>
+    <ClInclude Include="Clip.h">
+      <Filter>UI\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="InformationView.h">
+      <Filter>UI\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientApplication.cpp">
@@ -453,6 +459,9 @@
     </ClCompile>
     <ClCompile Include="EndGameScreen.cpp">
       <Filter>Application\Screens\GameScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Clip.cpp">
+      <Filter>UI\Base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

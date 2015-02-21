@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "InformationScreen.h"
 
 #include "Application.h"
@@ -42,21 +43,55 @@ namespace UI
 
 	void InformationScreen::ShowInformation(int i_id)
 		{
-		auto dlg = ClientGame::appInstance.GetUISettings().GetDialog(i_id);
-		
-		CEGUI::DefaultWindow* p_image = static_cast<CEGUI::DefaultWindow*>(mp_information_view->getChild("Background"));
-		p_image->setProperty("Image", dlg.GetImage());
-		//p_image->getChild("InformationText")->setText(dlg.GetText());
+		const auto& information = ClientGame::appInstance.GetUISettings().GetInformation(i_id);
 
-		CEGUI::Window* p_text = CEGUI::WindowManager::getSingletonPtr()->createWindow("SlavsLook/StaticText");
+		if (information.GetInformation().m_type == WindowType::Information)
+			{
+			const Dialog& dlg = static_cast<const Dialog&>(information);
+			CEGUI::DefaultWindow* p_image = static_cast<CEGUI::DefaultWindow*>(mp_information_view->getChild("Background"));
+			p_image->setProperty("Image", dlg.GetImage());
 
-		p_text->setText(dlg.GetText());
-		p_text->setSize(CEGUI::USize(CEGUI::UDim(0.5, .0f), CEGUI::UDim(0.5, .0f)));
-		p_text->setPosition(CEGUI::UVector2(CEGUI::UDim(0.2f, .0f), CEGUI::UDim(0.2f, .0f)));
-		mp_information_view->addChild(p_text);
+			//p_image->getChild("InformationText")->setText(dlg.GetText());
 
-		mp_information_view->setText(dlg.GetCaption());
-		mp_information_view->setVisible(true);
+			CEGUI::Window* p_text = CEGUI::WindowManager::getSingletonPtr()->createWindow("SlavsLook/StaticText");
+
+			p_text->setText(dlg.GetText());
+			p_text->setSize(CEGUI::USize(CEGUI::UDim(0.5, .0f), CEGUI::UDim(0.5, .0f)));
+			p_text->setPosition(CEGUI::UVector2(CEGUI::UDim(0.2f, .0f), CEGUI::UDim(0.2f, .0f)));
+			mp_information_view->addChild(p_text);
+
+			mp_information_view->setText(dlg.GetCaption());
+			mp_information_view->setVisible(true);
+			}
+		else if (information.GetInformation().m_type == WindowType::MovieClip)
+			{
+			m_current_clip = static_cast<const Clip&>(information);
+			m_elapsed_time = 0;
+			m_current_clip.Reset();
+			if (m_current_clip.GetFramesCount() == 0)
+				return;
+			CEGUI::DefaultWindow* p_image = static_cast<CEGUI::DefaultWindow*>(mp_information_view->getChild("Background"));
+
+			Clip::FrameInformation frame = m_current_clip.GetCurrentFrame();
+
+			p_image->setProperty("Image", frame.m_image);
+			
+			CEGUI::Window* p_text = nullptr;
+			if (mp_information_view->isChild("ClipText"))
+				p_text = mp_information_view->getChild("ClipText");
+			else
+				{
+				p_text = CEGUI::WindowManager::getSingletonPtr()->createWindow("SlavsLook/StaticText", "ClipText");
+				p_text->setSize(CEGUI::USize(CEGUI::UDim(1., .0f), CEGUI::UDim(0.3f, .0f)));
+				p_text->setPosition(CEGUI::UVector2(CEGUI::UDim(.0f, .0f), CEGUI::UDim(0.5f, .0f)));
+
+				mp_information_view->addChild(p_text);
+				}
+			p_text->setText(frame.m_text);
+
+			mp_information_view->setText(m_current_clip.GetCaption());
+			mp_information_view->setVisible(true);
+			}
 		}
 
 	void InformationScreen::ShowDialog(int i_id)
@@ -70,7 +105,7 @@ namespace UI
 		mp_information_view = wmgr.loadLayoutFromFile("InformationView.layout");
 		mp_root_window->addChild(mp_information_view);
 		mp_information_view->setVisible(false);
-
+		
 		try
 			{
 			// Ok
@@ -90,6 +125,31 @@ namespace UI
 
 	void InformationScreen::Update(long i_elapsed_time)
 		{
+		if (mp_information_view->isVisible() && m_current_clip.GetInformation().m_id != -1)
+			{
+			m_elapsed_time += i_elapsed_time;
+			// wait for switching to next frame
+			if (m_elapsed_time < m_current_clip.GetCurrentFrame().m_show_time)
+				return;
+			if (m_current_clip.IsLastFrame())
+				{
+				m_current_clip = Clip();
+				// TODO: show OK button
+				return;
+				}
+
+			m_current_clip.MoveToNextFrame();
+			auto frame = m_current_clip.GetCurrentFrame();
+			CEGUI::DefaultWindow* p_image = static_cast<CEGUI::DefaultWindow*>(mp_information_view->getChild("Background"));
+			p_image->setProperty("Image", frame.m_image);
+
+			auto p_text = mp_information_view->getChild("ClipText");
+			p_text->setText(frame.m_text);
+
+			m_elapsed_time = 0;
+			return;
+			}
+
 		if (mp_information_view->isVisible())
 			return;
 

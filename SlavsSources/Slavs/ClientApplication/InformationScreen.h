@@ -4,14 +4,19 @@
 #include "CeguiScreenBase.h"
 
 #include "Dialog.h"
+#include "Clip.h"
 
 namespace UI
 	{
+
+	class Clip;
 
 	class InformationScreen : public CeguiScreenBase
 		{
 		private:
 			CEGUI::Window*	mp_information_view;
+			Clip			m_current_clip;
+			long			m_elapsed_time;
 
 		private:
 			virtual void Initialize() override;
