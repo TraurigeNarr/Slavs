@@ -180,6 +180,8 @@ namespace UI
 		ButtonID button_id = static_cast<ButtonID>(window_arguments.window->getID());
 		m_screen_manager.GetMessageDispatcher().HandleMessage(UI::ButtonPressed(button_id));
 		mp_information_view->setVisible(false);
+		if (m_current_clip.GetInformation().m_id != -1)
+			m_current_clip = Clip();
 		return true;
 		}
 
