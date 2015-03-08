@@ -53,7 +53,7 @@ public:
 	bool Working(){ return m_bWorking; }
 
 	SLAVS_SERVER_EXPORT net::Connection* GetConnection() const;
-	StateMachine<ServerMain, long>* GetFSM() const { return m_pFSM; }
+	StateMachine<ServerMain, long>* GetFSM() const { throw std::runtime_error("Deprecated"); return m_pFSM; }
 	bool FromGame;
 
 //////////////////////////////////////////////////////////////////////////
