@@ -15,6 +15,8 @@ namespace Slavs
 
     private:
       void ParseGameDocument(TiXmlElement& i_root);
+			void ParseObjects(const TiXmlElement& i_root);
+			void ParseSpawns(const TiXmlElement& i_root);
       void ParseConfigurationDocument(TiXmlElement& i_root);
     public:
       GameSerializer(GameContext& i_game_context);

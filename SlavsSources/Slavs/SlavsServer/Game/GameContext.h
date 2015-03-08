@@ -32,6 +32,12 @@ namespace Slavs
                                         , boost::noncopyable
     {
     public:
+			struct Spawn
+				{
+				float m_x;
+				float m_y;
+				Spawn(float i_x, float i_y) : m_x(i_x), m_y(i_y){}
+				};
 
 			class Modifier
 				{
@@ -76,6 +82,7 @@ namespace Slavs
       std::set<GameObject*>               m_dead_pool;
       std::vector<ControllerInformation>  m_controllers;
       std::unique_ptr<GlobalEconomics>    mp_global_economics;
+			std::vector<Spawn>									m_spawns;
 
 			GameWorld									m_game_world;
 
@@ -98,6 +105,9 @@ namespace Slavs
       /// add object to the dead pool
       /// dead pool is clearing in TickPerformed method before updating all objects
 			SLAVS_SERVER_EXPORT void								RemoveObject(TGameObject ih_object);
+
+			SLAVS_SERVER_EXPORT void								AddSpawn(const Spawn& i_spawn);
+			SLAVS_SERVER_EXPORT Spawn								GetSpawn(int i_controller_mask) const;
 
       SLAVS_SERVER_EXPORT void                RegisterController(std::unique_ptr<IController> ip_controller);
       SLAVS_SERVER_EXPORT void                RegisterResources (int i_type, const ResourcesCountSet& i_resources);

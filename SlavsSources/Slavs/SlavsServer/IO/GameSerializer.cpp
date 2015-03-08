@@ -123,21 +123,39 @@ namespace Slavs
 
   void GameSerializer::ParseGameDocument(TiXmlElement& i_root)
     {
-    const TiXmlElement* p_child = 0;
-    std::string type_name = "";
-
-    MetaFactory& factory = ServerMain::GetInstance().GetMetaFactory();
-
-    while ((p_child = XmlUtilities::IterateChildElements(&i_root, p_child)))
-      {
-      type_name = p_child->Value();
-      int type_id = factory.GetObjectID(type_name);
-      if (type_id != -1)
-        {
-        _CreateObject(m_game_context, *p_child, type_id);
-        }
-      }
+		const auto p_objects = i_root.FirstChildElement("Objects");
+		ParseObjects(*p_objects);
+		const auto p_spawns = i_root.FirstChildElement("Spawns");
+		ParseSpawns(*p_spawns);
     }
+
+	void GameSerializer::ParseObjects(const TiXmlElement& i_root)
+		{
+		MetaFactory& factory = ServerMain::GetInstance().GetMetaFactory();
+		const TiXmlElement* p_child = 0;
+		std::string type_name = "";
+		while ((p_child = XmlUtilities::IterateChildElements(&i_root, p_child)))
+			{
+			type_name = p_child->Value();
+			int type_id = factory.GetObjectID(type_name);
+			if (type_id != -1)
+				{
+				_CreateObject(m_game_context, *p_child, type_id);
+				}
+			}
+		}
+
+	void GameSerializer::ParseSpawns(const TiXmlElement& i_root)
+		{
+		const TiXmlElement* p_child = 0;
+		while ((p_child = XmlUtilities::IterateChildElements(&i_root, p_child)))
+			{
+			const auto p_position = p_child->FirstChildElement("Position");
+			float pos_x = boost::lexical_cast<float>(p_position->FirstChild("x")->FirstChild()->Value());
+			float pos_y = boost::lexical_cast<float>(p_position->FirstChild("y")->FirstChild()->Value());
+			m_game_context.AddSpawn(GameContext::Spawn(pos_x, pos_y));
+			}
+		}
 
   void GameSerializer::ParseConfigurationDocument(TiXmlElement& i_root)
     {

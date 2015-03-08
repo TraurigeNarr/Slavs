@@ -139,6 +139,32 @@ namespace Slavs
     m_dead_pool.insert(ih_object);
     }
 
+	void GameContext::AddSpawn(const Spawn& i_spawn)
+		{
+		m_spawns.emplace_back(i_spawn);
+		}
+
+	GameContext::Spawn GameContext::GetSpawn(int i_controller_mask) const
+		{
+		auto controller_it = std::find_if(m_controllers.begin(), m_controllers.end(), [i_controller_mask](const ControllerInformation& i_controller)
+			{
+			return i_controller.mp_controller->GetMask() == i_controller_mask;
+			});
+		if (controller_it != m_controllers.end())
+			{
+			const size_t dist = std::distance(m_controllers.begin(), controller_it);
+#ifdef _DEBUG
+			if (m_spawns.size() <= dist)
+				throw std::logic_error("Not enough spawns");
+#endif
+			return m_spawns.at(dist);
+			}
+#ifdef _DEBUG
+		throw std::logic_error("Controller not found");
+#endif
+		return Spawn(0, 0);
+		}
+
   void GameContext::RegisterController(std::unique_ptr<IController> ip_controller)
     {
     ControllerInformation controller_info;
