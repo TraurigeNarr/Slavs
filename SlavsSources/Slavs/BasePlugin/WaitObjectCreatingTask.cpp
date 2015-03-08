@@ -11,11 +11,12 @@
 namespace BasePlugin
 	{
 
-	WaitObjectCreatingTask::WaitObjectCreatingTask(int i_task_id, int i_object_type)
+	WaitObjectCreatingTask::WaitObjectCreatingTask(int i_task_id, int i_object_type, IController* ip_player_controller)
 		: Task(i_task_id, false)
 		, mp_context(nullptr)
 		, m_object_type(i_object_type)
 		, m_object_created(false)
+		, mp_player_controller(ip_player_controller)
 		{		}
 
 	WaitObjectCreatingTask::~WaitObjectCreatingTask()
@@ -46,7 +47,7 @@ namespace BasePlugin
 		for (auto& object_pair : objects)
 			{
 			Slavs::GameObject* p_object = object_pair.second;
-			if (p_object->GetType() == m_object_type)
+			if (p_object->GetType() == m_object_type && p_object->GetController() == mp_player_controller)
 				{
 				m_object_created = true;
 				return;

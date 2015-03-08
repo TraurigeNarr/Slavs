@@ -5,6 +5,8 @@
 
 class BaseObjectComposer;
 
+class IController;
+
 namespace BasePlugin
 	{
 	class GameController;
@@ -16,6 +18,8 @@ namespace BasePlugin
 
 			std::vector<SDK::TaskPtr> m_tasks;
 
+			IController* mp_player_controller;
+
 			long m_time;
 
 		private:
@@ -23,7 +27,7 @@ namespace BasePlugin
 			virtual void DiscardImpl(const boost::any& i_value) override;
 
 		public:
-			WorldMasteringTask(int i_task_id, GameController& i_game_controller);
+			WorldMasteringTask(int i_task_id, GameController& i_game_controller, IController* ip_player_controller);
 			virtual ~WorldMasteringTask();
 
 			virtual void Update(long i_elapsed_time) override;

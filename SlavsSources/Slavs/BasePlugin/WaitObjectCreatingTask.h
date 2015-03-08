@@ -8,6 +8,8 @@ namespace Slavs
 	class GameContext;
 	} // Slavs
 
+class IController;
+
 namespace BasePlugin
 	{
 
@@ -15,6 +17,7 @@ namespace BasePlugin
 		{
 		private:
 			Slavs::GameContext* mp_context;
+			IController*				mp_player_controller;
 			int m_object_type;
 			bool m_object_created;
 
@@ -23,7 +26,7 @@ namespace BasePlugin
 			virtual void DiscardImpl(const boost::any& i_value) override;
 
 		public:
-			WaitObjectCreatingTask(int i_task_id, int i_object_id);
+			WaitObjectCreatingTask(int i_task_id, int i_object_id, IController* ip_player_controller);
 			virtual ~WaitObjectCreatingTask();
 
 			virtual void Update(long i_elapsed_time) override;
