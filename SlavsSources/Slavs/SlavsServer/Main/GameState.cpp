@@ -106,12 +106,12 @@ namespace Slavs
 			{
 			case State::Play:
 				if (typeid(*m_game_state_FSM.GetCurrentState().get()) == typeid(PlayState))
-					return false;
+					return true;
 				m_game_state_FSM.ChangeState(std::make_shared<PlayState>());
 				break;
 			case State::PlayerDecision:
 				if (typeid(*m_game_state_FSM.GetCurrentState().get()) == typeid(PlayerDecisionState))
-					return false;
+					return true;
 				m_game_state_FSM.ChangeState(std::make_shared<PlayerDecisionState>());
 				break;
 			default:

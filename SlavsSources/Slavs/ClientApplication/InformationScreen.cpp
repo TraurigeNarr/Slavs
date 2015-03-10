@@ -78,8 +78,11 @@ namespace UI
 			
 			CEGUI::Window* p_text = nullptr;
 			if (mp_information_view->isChild("ClipText"))
+				{
 				p_text = mp_information_view->getChild("ClipText");
-			else
+				mp_information_view->removeChild(p_text);
+				}
+			//else
 				{
 				p_text = CEGUI::WindowManager::getSingletonPtr()->createWindow("SlavsLook/StaticText", "ClipText");
 				p_text->setSize(CEGUI::USize(CEGUI::UDim(1., .0f), CEGUI::UDim(0.3f, .0f)));

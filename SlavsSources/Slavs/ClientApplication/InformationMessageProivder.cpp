@@ -55,7 +55,7 @@ namespace ClientStates
 
 		auto id = ConvertTo<int>(i_packet.GetPointerToCurrentConst());
 		i_packet.IncreaseOffset(sizeof(int));
-		m_information_to_show.push_back(UI::WindowInformation(type, id, std::string()));
+		AddInformation(type, id);
 
 		return true;
 		}
