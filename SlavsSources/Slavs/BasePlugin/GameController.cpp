@@ -3,6 +3,7 @@
 #include "GameController.h"
 
 #include "ShowHistoryTask.h"
+#include "EndTaskHanlers.h"
 
 #include <SlavsServer/Main/GameController.h>
 
@@ -20,8 +21,7 @@ namespace BasePlugin
 	void GameController::GameBegin(SDK::GameController* ip_main_game_controller)
 		{
 		mp_game_controller = ip_main_game_controller;
-		mp_game_controller->RegisterTask(SDK::TaskPtr(new ShowHistoryTask(0, *this)));
-
+		mp_game_controller->RegisterTask(SDK::TaskPtr(new ShowHistoryTask(0, *this, 1, &ShowWorldHistoryHandler)));
 		}
 
 	void GameController::GameEnd()

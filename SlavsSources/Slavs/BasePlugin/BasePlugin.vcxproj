@@ -105,6 +105,7 @@
     <ClInclude Include="CommandExecutor.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="DynamicObjectComponent.h" />
+    <ClInclude Include="EndTaskHanlers.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="HouseComponent.h" />
     <ClInclude Include="HumanComponent.h" />
@@ -144,6 +145,7 @@
     <ClCompile Include="MovementStrategyBase.cpp" />
     <ClCompile Include="ObjectSettings.cpp" />
     <ClCompile Include="PrimitiveBrainComponent.cpp" />
+    <ClCompile Include="EndTaskHandlers.cpp" />
     <ClCompile Include="WaitObjectCreatingTask.cpp" />
     <ClCompile Include="ResourceComponent.cpp" />
     <ClCompile Include="ShowHistoryTask.cpp" />

@@ -3,10 +3,14 @@
 #include "WorldMasteringTask.h"
 
 #include "WaitObjectCreatingTask.h"
+#include "ShowHistoryTask.h"
 
 #include "GameController.h"
 #include "BaseObjectComposer.h"
 #include "TypeEnumerations.h"
+#include "EndTaskHanlers.h"
+
+#include <SlavsServer/Main/GameController.h>
 
 namespace BasePlugin
 	{
@@ -30,7 +34,7 @@ namespace BasePlugin
 
 	void WorldMasteringTask::CompleteImpl(const boost::any& i_value)
 		{
-
+		m_game_controller.GetMainController()->RegisterTask(SDK::TaskPtr(new ShowHistoryTask(2, m_game_controller, 2, &ShowVelesHandler)));
 		}
 
 	void WorldMasteringTask::DiscardImpl(const boost::any& i_value)

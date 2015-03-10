@@ -121,6 +121,9 @@
     <ClInclude Include="ShowHistoryTask.h">
       <Filter>Tasks</Filter>
     </ClInclude>
+    <ClInclude Include="EndTaskHanlers.h">
+      <Filter>Tasks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -181,6 +184,9 @@
       <Filter>Tasks</Filter>
     </ClCompile>
     <ClCompile Include="WorldMasteringTask.cpp">
+      <Filter>Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="EndTaskHandlers.cpp">
       <Filter>Tasks</Filter>
     </ClCompile>
   </ItemGroup>

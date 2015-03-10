@@ -12,3 +12,4 @@
 #include <vector>
 #include <set>
 #include <typeinfo>
+#include <functional>

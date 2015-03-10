@@ -66,5 +66,19 @@
         </Frame>
       </Clip>
     </FirstHistory>
+    <VelesHistory type="clip">
+      <Caption>History</Caption>
+      <Id>2</Id>
+      <Clip>
+        <Frame show_time="1.5">
+          <Image>Lesovik/Lesovik_Information</Image>
+          <Text>Once upon a time when Gods decide to create a world</Text>
+        </Frame>
+        <Frame show_time="1.0">
+          <Image>Lesovik/Lesovik_Information</Image>
+          <Text>And they create us</Text>
+        </Frame>
+      </Clip>
+    </VelesHistory>
   </Information>
 </VisualOptions>
